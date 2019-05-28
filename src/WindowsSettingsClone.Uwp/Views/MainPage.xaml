@@ -3,8 +3,80 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="using:WindowsSettingsClone.ViewModels"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
 
-  <Grid />
+  <Page.Resources>
+    <viewModels:MainPageViewModel x:Name="ViewModel" />
+
+    <DataTemplate x:Key="GridViewItemTemplate" x:DataType="viewModels:SettingsGroupViewModel">
+      <GridViewItem Margin="10">
+        <Grid Width="250" Padding="16">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="34" />
+          </Grid.RowDefinitions>
+
+          <FontIcon x:Name="Icon"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Margin="0,0,20,0"
+                    VerticalAlignment="Top"
+                    Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontSize="30"
+                    Glyph="{x:Bind Glyph}" />
+
+          <TextBlock x:Name="GroupNameTextBlock"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                     Text="{x:Bind Name}"
+                     TextWrapping="NoWrap" />
+
+          <TextBlock x:Name="CaptionTextBlock"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource CaptionTextBlockStyle}"
+                     Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                     Text="{x:Bind Description}" />
+        </Grid>
+      </GridViewItem>
+    </DataTemplate>
+  </Page.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Grid.Row="0"
+               Margin="0,23,0,20"
+               HorizontalAlignment="Center"
+               Style="{StaticResource TitleTextBlockStyle}"
+               FontWeight="Light"
+               Text="Windows Settings" />
+
+    <AutoSuggestBox Grid.Row="1"
+                    Width="338"
+                    Margin="0,15"
+                    PlaceholderText="Find a setting"
+                    QueryIcon="Find" />
+
+    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+      <GridView Margin="0,24,0,0"
+                HorizontalAlignment="Center"
+                ItemTemplate="{StaticResource GridViewItemTemplate}"
+                ItemsSource="{x:Bind ViewModel.Groups}" />
+    </ScrollViewer>
+  </Grid>
 </Page>
