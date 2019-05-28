@@ -10,6 +10,8 @@ namespace WindowsSettingsClone
     using System;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
+    using Windows.Foundation;
+    using Windows.UI.ViewManagement;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
@@ -17,7 +19,7 @@ namespace WindowsSettingsClone
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,6 +38,8 @@ namespace WindowsSettingsClone
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            SetWindowMinSize();
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (!(Window.Current.Content is Frame rootFrame))
@@ -68,6 +72,16 @@ namespace WindowsSettingsClone
             }
         }
 
+        private void SetWindowMinSize()
+        {
+            float minWindowWidth = (float)(double)Resources["AppMinWindowWidth"];
+            float minWindowHeight = (float)(double)Resources["AppMinWindowHeight"];
+            Size minWindowSize = SizeHelper.FromDimensions(minWindowWidth, minWindowHeight);
+
+            var appView = ApplicationView.GetForCurrentView();
+            appView.SetPreferredMinSize(minWindowSize);
+        }
+
         /// <summary>
         /// Invoked when Navigation to a certain page fails
         /// </summary>
@@ -85,7 +99,7 @@ namespace WindowsSettingsClone
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
