@@ -1,52 +1,62 @@
 ﻿<Page x:Class="WindowsSettingsClone.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:converters="using:WindowsSettingsClone.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="using:WindowsSettingsClone.ViewModels"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      d:DesignHeight="400"
+      d:DesignWidth="600"
       mc:Ignorable="d">
 
   <Page.Resources>
     <viewModels:MainPageViewModel x:Name="ViewModel" />
 
+    <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
+
     <DataTemplate x:Key="GridViewItemTemplate" x:DataType="viewModels:SettingsGroupViewModel">
-      <GridViewItem Margin="10">
-        <Grid Width="250" Padding="16">
+      <GridViewItem Width="250"
+                    Height="Auto"
+                    Margin="10"
+                    Padding="15"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Top">
+        <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="1*" />
           </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="34" />
-          </Grid.RowDefinitions>
 
           <FontIcon x:Name="Icon"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Margin="0,0,20,0"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
                     FontFamily="{StaticResource SymbolThemeFontFamily}"
                     FontSize="30"
                     Glyph="{x:Bind Glyph}" />
 
-          <TextBlock x:Name="GroupNameTextBlock"
-                     Grid.Row="0"
-                     Grid.Column="1"
-                     VerticalAlignment="Top"
-                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                     Text="{x:Bind Name}"
-                     TextWrapping="NoWrap" />
+          <StackPanel Grid.Column="2"
+                      Padding="0,0,0,2"
+                      VerticalAlignment="Top">
 
-          <TextBlock x:Name="CaptionTextBlock"
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     VerticalAlignment="Top"
-                     Style="{StaticResource CaptionTextBlockStyle}"
-                     Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                     Text="{x:Bind Description}" />
+            <TextBlock x:Name="GroupNameTextBlock"
+                       Margin="0,0,0,2"
+                       VerticalAlignment="Top"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       MaxLines="2"
+                       OpticalMarginAlignment="TrimSideBearings"
+                       Text="{x:Bind Name}" />
+
+            <TextBlock x:Name="CaptionTextBlock"
+                       Height="32"
+                       VerticalAlignment="Top"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                       MaxLines="3"
+                       Text="{x:Bind Description}" />
+          </StackPanel>
         </Grid>
       </GridViewItem>
     </DataTemplate>
@@ -169,8 +179,8 @@
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="1*" />
       <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
     <VisualStateManager.VisualStateGroups>
@@ -185,53 +195,74 @@
             <AdaptiveTrigger MinWindowWidth="0" />
           </VisualState.StateTriggers>
           <VisualState.Setters>
-            <Setter Target="PageTitleTextBlock.Visibility" Value="Collapsed" />
-            <Setter Target="SearchBox.Margin" Value="16,20,16,12" />
+            <!--<Setter Target="PageTitleTextBlock.Visibility" Value="Collapsed" />-->
             <Setter Target="SearchBox.HorizontalAlignment" Value="Stretch" />
             <Setter Target="SearchBox.Width" Value="Auto" />
-            <Setter Target="SettingsGroupsGridViewContainer.Visibility" Value="Collapsed" />
-            <Setter Target="SettingsGroupsListView.Visibility" Value="Visible" />
+            <!--<Setter Target="SettingsGroupsGridViewContainer.Visibility" Value="Collapsed" />-->
+            <!--<Setter Target="SettingsGroupsListView.Visibility" Value="Visible" />-->
           </VisualState.Setters>
         </VisualState>
       </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
 
-    <TextBlock x:Name="PageTitleTextBlock"
-               Grid.Row="0"
-               Margin="0,23,0,15"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Style="{StaticResource TitleTextBlockStyle}"
-               FontWeight="Light"
-               MaxLines="2"
-               Text="Windows Settings"
-               TextTrimming="Clip" />
+    <!-- Title and search box -->
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
 
-    <AutoSuggestBox x:Name="SearchBox"
-                    Grid.Row="1"
-                    Width="338"
-                    Margin="15,15"
-                    HorizontalAlignment="Center"
-                    PlaceholderText="Find a setting"
-                    QueryIcon="Find" />
+      <TextBlock x:Name="PageTitleTextBlock"
+                 Grid.Row="0"
+                 Margin="0,23,0,15"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource TitleTextBlockStyle}"
+                 FontWeight="Light"
+                 MaxLines="2"
+                 Text="Windows Settings"
+                 TextTrimming="Clip" />
 
+      <AutoSuggestBox x:Name="SearchBox"
+                      Grid.Row="1"
+                      Width="336"
+                      Margin="16,20,16,12"
+                      HorizontalAlignment="Center"
+                      PlaceholderText="Find a setting"
+                      QueryIcon="Find" />
+    </Grid>
+
+    <!-- Not activated message -->
+    <StackPanel Grid.Row="2">
+      <HyperlinkButton Margin="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Content="Windows isn't activated. Activate Windows now."
+                       Visibility="{x:Bind ViewModel.IsWindowsActivated, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+    </StackPanel>
+
+    <!-- Grid View of settings groups -->
     <ScrollViewer x:Name="SettingsGroupsGridViewContainer"
-                  Grid.Row="2"
-                  VerticalScrollBarVisibility="Auto">
-      <GridView Margin="0,24,0,0"
+                  Grid.Row="1"
+                  HorizontalScrollMode="Disabled"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Enabled"
+                  ZoomMode="Disabled">
+
+      <GridView Margin="0,28,0,0"
                 HorizontalAlignment="Center"
                 ItemTemplate="{StaticResource GridViewItemTemplate}"
                 ItemsSource="{x:Bind ViewModel.Groups}"
                 SelectionMode="None" />
     </ScrollViewer>
 
-    <ListView x:Name="SettingsGroupsListView"
+    <!--<ListView x:Name="SettingsGroupsListView"
               Grid.Row="2"
               ItemContainerStyle="{StaticResource NoRevealListViewItemContainerStyle}"
               ItemTemplate="{StaticResource ListViewItemTemplate}"
               ItemsSource="{x:Bind ViewModel.Groups}"
               ScrollViewer.VerticalScrollBarVisibility="Visible"
               SelectionMode="Single"
-              Visibility="Collapsed" />
+              Visibility="Collapsed" />-->
   </Grid>
 </Page>

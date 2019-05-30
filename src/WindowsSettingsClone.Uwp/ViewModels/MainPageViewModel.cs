@@ -9,8 +9,17 @@ namespace WindowsSettingsClone.ViewModels
 {
     using System.Collections.ObjectModel;
 
-    internal class MainPageViewModel
+    /// <summary>
+    /// Represents the ViewModel for the MainPage view.
+    /// </summary>
+    internal class MainPageViewModel : BaseViewModel
     {
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
+        public bool IsWindowsActivated { get; } = true;
+
         public ReadOnlyObservableCollection<SettingsGroupViewModel> Groups { get; } =
             new ReadOnlyObservableCollection<SettingsGroupViewModel>(new ObservableCollection<SettingsGroupViewModel>
             {
