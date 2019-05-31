@@ -1,22 +1,29 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPage.xaml.cs" company="Justin Rockwood">
+// <copyright file="GlyphKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Views
+namespace WindowsSettingsClone.ViewModels
 {
-    using Windows.UI.Xaml.Controls;
-
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Enumerates the different kinds of glyphs that are available via system or packaged fonts.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public enum GlyphKind
     {
-        public MainPage() => InitializeComponent();
-
-        private void OnSettingsGridViewSelectionChanged(object sender, SelectionChangedEventArgs e) =>
-            SettingsGridView.SelectedItem = null;
+        System,
+        Devices,
+        Phone,
+        NetworkAndInternet,
+        Personalization,
+        Apps,
+        Accounts,
+        TimeAndLanguage,
+        Gaming,
+        EaseOfAccess,
+        Cortana,
+        Privacy,
+        UpdateAndSecurity,
     }
 }
