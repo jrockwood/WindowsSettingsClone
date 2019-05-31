@@ -23,19 +23,24 @@ namespace WindowsSettingsClone.ViewModels
         public ReadOnlyObservableCollection<SettingsGroupViewModel> Groups { get; } =
             new ReadOnlyObservableCollection<SettingsGroupViewModel>(new ObservableCollection<SettingsGroupViewModel>
             {
-                new SettingsGroupViewModel("System", "Display, sound, notifications, power", "\uE770"),
-                new SettingsGroupViewModel("Devices", "Bluetooth, printers, mouse", "\uE772"),
-                new SettingsGroupViewModel("Phone", "Link your Android, iPhone", "\uE8EA"),
-                new SettingsGroupViewModel("Network & Internet", "Wi-Fi, airplane mode, VPN", "\uE774"),
-                new SettingsGroupViewModel("Personalization", "Background, lock screen, colors", "\uE771"),
-                new SettingsGroupViewModel("Apps", "Uninstall, defaults, optional features", "\uE71D"),
-                new SettingsGroupViewModel("Accounts", "Your accounts, email, sync, work, family", "\uE77B"),
-                new SettingsGroupViewModel("Time & Language", "Speech, region, date", "\uE775"),
-                new SettingsGroupViewModel("Gaming", "Game bar, captures, broadcasting, Game Mode", "\uE7FC"),
-                new SettingsGroupViewModel("Ease of Access", "Narrator, magnifier, high contrast", "\uE776"),
-                new SettingsGroupViewModel("Cortana", "Cortana language, permissions, notifications", "\uEA3A"),
-                new SettingsGroupViewModel("Privacy", "Location, camera", "\uE72E"),
-                new SettingsGroupViewModel("Update & Security", "Windows Update, recovery, backup", "\uE895"),
+                new SettingsGroupViewModel("System", "Display, sound, notifications, power", GlyphKind.System),
+                new SettingsGroupViewModel("Devices", "Bluetooth, printers, mouse", GlyphKind.Devices),
+                new SettingsGroupViewModel("Phone", "Link your Android, iPhone", GlyphKind.Phone),
+                new SettingsGroupViewModel("Network & Internet", "Wi-Fi, airplane mode, VPN",
+                    GlyphKind.NetworkAndInternet),
+                new SettingsGroupViewModel("Personalization", "Background, lock screen, colors",
+                    GlyphKind.Personalization),
+                new SettingsGroupViewModel("Apps", "Uninstall, defaults, optional features", GlyphKind.Apps),
+                new SettingsGroupViewModel("Accounts", "Your accounts, email, sync, work, family", GlyphKind.Accounts),
+                new SettingsGroupViewModel("Time & Language", "Speech, region, date", GlyphKind.TimeAndLanguage),
+                new SettingsGroupViewModel("Gaming", "Game bar, captures, broadcasting, Game Mode", GlyphKind.Gaming),
+                new SettingsGroupViewModel("Ease of Access", "Narrator, magnifier, high contrast",
+                    GlyphKind.EaseOfAccess),
+                new SettingsGroupViewModel("Cortana", "Cortana language, permissions, notifications",
+                    GlyphKind.Cortana),
+                new SettingsGroupViewModel("Privacy", "Location, camera", GlyphKind.Privacy),
+                new SettingsGroupViewModel("Update & Security", "Windows Update, recovery, backup",
+                    GlyphKind.UpdateAndSecurity),
             });
     }
 }

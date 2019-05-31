@@ -1,4 +1,4 @@
-﻿<Page x:Class="WindowsSettingsClone.MainPage"
+<Page x:Class="WindowsSettingsClone.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:converters="using:WindowsSettingsClone.Converters"
@@ -13,6 +13,8 @@
   <Page.Resources>
     <viewModels:MainPageViewModel x:Name="ViewModel" />
 
+    <converters:GlyphKindToFontFamilyConverter x:Name="GlyphKindToFontFamilyConverter" />
+    <converters:GlyphKindToGlyphConverter x:Name="GlyphKindToGlyphConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
 
     <DataTemplate x:Key="GridViewItemTemplate" x:DataType="viewModels:SettingsGroupViewModel">
@@ -33,9 +35,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontFamily="{x:Bind Glyph, Converter={StaticResource GlyphKindToFontFamilyConverter}}"
                     FontSize="30"
-                    Glyph="{x:Bind Glyph}" />
+                    Glyph="{x:Bind Glyph, Converter={StaticResource GlyphKindToGlyphConverter}}" />
 
           <StackPanel Grid.Column="2"
                       Padding="0,0,0,2"
@@ -82,9 +84,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontFamily="{x:Bind Glyph, Converter={StaticResource GlyphKindToFontFamilyConverter}}"
                     FontSize="24"
-                    Glyph="{x:Bind Glyph}" />
+                    Glyph="{x:Bind Glyph, Converter={StaticResource GlyphKindToGlyphConverter}}" />
 
           <TextBlock x:Name="GroupNameTextBlock"
                      Grid.Row="0"

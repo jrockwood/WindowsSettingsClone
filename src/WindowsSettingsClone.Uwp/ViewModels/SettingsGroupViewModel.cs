@@ -7,17 +7,28 @@
 
 namespace WindowsSettingsClone.ViewModels
 {
+    /// <summary>
+    /// Represents a group of settings that has its own page and is listed on the main page.
+    /// </summary>
     internal class SettingsGroupViewModel
     {
-        public SettingsGroupViewModel(string name, string description, string glyph)
+        //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
+        public SettingsGroupViewModel(string name, string description, GlyphKind glyph)
         {
             Name = name;
             Description = description;
             Glyph = glyph;
         }
 
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
         public string Name { get; }
         public string Description { get; }
-        public string Glyph { get; }
+        public GlyphKind Glyph { get; }
     }
 }
