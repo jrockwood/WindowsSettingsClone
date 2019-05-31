@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone
 {
     using System;
+    using Views;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.Foundation;
