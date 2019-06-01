@@ -5,14 +5,14 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels
+namespace WindowsSettingsClone.Uwp.ViewModels
 {
     using System.Collections.ObjectModel;
 
     /// <summary>
     /// Represents the ViewModel for the MainPage view.
     /// </summary>
-    internal class MainPageViewModel : BaseViewModel
+    public class MainPageViewModel : BaseViewModel
     {
         //// ===========================================================================================================
         //// Properties

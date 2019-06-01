@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels
+namespace WindowsSettingsClone.Uwp.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace WindowsSettingsClone.ViewModels
     /// <summary>
     /// Abstract base class for a ViewModel.
     /// </summary>
-    internal abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         //// ===========================================================================================================
         //// Events

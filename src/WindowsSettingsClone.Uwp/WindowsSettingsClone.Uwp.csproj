@@ -7,8 +7,8 @@
     <ProjectGuid>{9A0D70E5-4A36-4C64-8228-BCA53FAF4D05}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsSettingsClone</RootNamespace>
-    <AssemblyName>WindowsSettingsClone</AssemblyName>
+    <RootNamespace>WindowsSettingsClone.Uwp</RootNamespace>
+    <AssemblyName>WindowsSettingsClone.Uwp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
@@ -122,10 +122,6 @@
     <Compile Include="Converters\GlyphKindToGlyphConverter.cs" />
     <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\GlyphKind.cs" />
-    <Compile Include="ViewModels\SettingsGroupViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +198,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SetMDL2.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WindowsSettingsClone.Uwp.ViewModels\WindowsSettingsClone.Uwp.ViewModels.csproj">
+      <Project>{23f522b7-eb71-4620-9ea9-f7671cc32075}</Project>
+      <Name>WindowsSettingsClone.Uwp.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

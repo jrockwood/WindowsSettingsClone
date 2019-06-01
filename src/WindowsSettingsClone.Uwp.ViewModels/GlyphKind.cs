@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels
+namespace WindowsSettingsClone.Uwp.ViewModels
 {
     /// <summary>
     /// Enumerates the different kinds of glyphs that are available via system or packaged fonts.
