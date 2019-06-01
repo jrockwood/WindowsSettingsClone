@@ -9,7 +9,8 @@ namespace WindowsSettingsClone.Uwp
 {
     using System;
     using ViewModels;
-    using Views;
+    using ViewModels.ViewServices;
+    using ViewServices;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.Foundation;
@@ -24,12 +25,6 @@ namespace WindowsSettingsClone.Uwp
     public sealed partial class App : Application
     {
         //// ===========================================================================================================
-        //// Member Variables
-        //// ===========================================================================================================
-
-        private readonly ApplicationViewModel _applicationViewModel = new ApplicationViewModel();
-
-        //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
@@ -42,6 +37,14 @@ namespace WindowsSettingsClone.Uwp
             InitializeComponent();
             Suspending += OnSuspending;
         }
+
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
+        public static new App Current => (App)Application.Current;
+
+        public INavigationViewService NavigationService { get; private set; }
 
         //// ===========================================================================================================
         //// Methods
@@ -62,13 +65,15 @@ namespace WindowsSettingsClone.Uwp
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
+
+                // Initialize the navigation service
+                NavigationService = new NavigationService(rootFrame);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -81,7 +86,7 @@ namespace WindowsSettingsClone.Uwp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    _ = rootFrame.Navigate(typeof(HomePage), _applicationViewModel.HomePage);
+                    NavigationService.NavigateTo(nameof(HomePageViewModel), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

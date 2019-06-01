@@ -15,7 +15,7 @@
     <converters:GlyphKindToGlyphConverter x:Name="GlyphKindToGlyphConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
 
-    <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:SettingsGroupViewModel">
+    <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
       <GridViewItem Width="250"
                     Height="Auto"
                     Margin="10"
@@ -48,7 +48,7 @@
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        MaxLines="2"
                        OpticalMarginAlignment="TrimSideBearings"
-                       Text="{x:Bind Name}" />
+                       Text="{x:Bind GroupName}" />
 
             <TextBlock x:Name="CaptionTextBlock"
                        Height="32"
@@ -62,7 +62,7 @@
       </GridViewItem>
     </DataTemplate>
 
-    <DataTemplate x:Key="NarrowSettingsGridViewItemTemplate" x:DataType="viewModels:SettingsGroupViewModel">
+    <DataTemplate x:Key="NarrowSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
       <GridViewItem Margin="0"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left">
@@ -94,7 +94,7 @@
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        MaxLines="2"
                        OpticalMarginAlignment="TrimSideBearings"
-                       Text="{x:Bind Name}" />
+                       Text="{x:Bind GroupName}" />
 
             <TextBlock x:Name="CaptionTextBlock"
                        Height="32"

@@ -7,21 +7,30 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Utility;
+    using ViewServices;
 
     /// <summary>
     /// Represents the ViewModel for the MainPage view.
     /// </summary>
-    public class HomePageViewModel : PageViewModel
+    public class HomePageViewModel : BaseViewModel
     {
+        //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public HomePageViewModel()
-            : base("Main Page")
-        {
-        }
+        public HomePageViewModel(INavigationViewService navigationService) =>
+            Param.VerifyNotNull(navigationService, nameof(navigationService));
+
+        //// ===========================================================================================================
+        //// Commands
+        //// ===========================================================================================================
 
         //// ===========================================================================================================
         //// Properties
@@ -29,75 +38,25 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public bool IsWindowsActivated { get; } = true;
 
-        public ReadOnlyObservableCollection<SettingsGroupViewModel> Groups { get; } =
-            new ReadOnlyObservableCollection<SettingsGroupViewModel>(
-                new ObservableCollection<SettingsGroupViewModel>
-                {
-                    new SettingsGroupViewModel(
-                        "System",
-                        "Display, sound, notifications, power",
-                        GlyphKind.System,
-                        new[] {new SettingPageViewModel("Display", GlyphKind.Accounts),}),
-                    new SettingsGroupViewModel(
-                        "Devices",
-                        "Bluetooth, printers, mouse",
-                        GlyphKind.Devices,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Phone",
-                        "Link your Android, iPhone",
-                        GlyphKind.Phone,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Network & Internet",
-                        "Wi-Fi, airplane mode, VPN",
-                        GlyphKind.NetworkAndInternet,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Personalization",
-                        "Background, lock screen, colors",
-                        GlyphKind.Personalization,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Apps",
-                        "Uninstall, defaults, optional features",
-                        GlyphKind.Apps,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Accounts",
-                        "Your accounts, email, sync, work, family",
-                        GlyphKind.Accounts,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Time & Language",
-                        "Speech, region, date",
-                        GlyphKind.TimeAndLanguage,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Gaming",
-                        "Game bar, captures, broadcasting, Game Mode",
-                        GlyphKind.Gaming,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Ease of Access",
-                        "Narrator, magnifier, high contrast",
-                        GlyphKind.EaseOfAccess,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Cortana",
-                        "Cortana language, permissions, notifications",
-                        GlyphKind.Cortana,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Privacy",
-                        "Location, camera",
-                        GlyphKind.Privacy,
-                        new SettingPageViewModel[0]),
-                    new SettingsGroupViewModel(
-                        "Update & Security",
-                        "Windows Update, recovery, backup",
-                        GlyphKind.UpdateAndSecurity,
-                        new SettingPageViewModel[0]),
-                });
+        public IReadOnlyList<HomePageGroup> Groups { get; } = new ReadOnlyCollection<HomePageGroup>(
+            new[]
+            {
+                new HomePageGroup("System", "Display, sound, notifications, power", GlyphKind.System),
+                new HomePageGroup("Devices", "Bluetooth, printers, mouse", GlyphKind.Devices),
+                new HomePageGroup("Phone", "Link your Android, iPhone", GlyphKind.Phone),
+                new HomePageGroup("Network & Internet", "Wi-Fi, airplane mode, VPN", GlyphKind.NetworkAndInternet),
+                new HomePageGroup("Personalization", "Background, lock screen, colors", GlyphKind.Personalization),
+                new HomePageGroup("Apps", "Uninstall, defaults, optional features", GlyphKind.Apps),
+                new HomePageGroup("Accounts", "Your accounts, email, sync, work, family", GlyphKind.Accounts),
+                new HomePageGroup("Time & Language", "Speech, region, date", GlyphKind.TimeAndLanguage),
+                new HomePageGroup("Gaming", "Game bar, captures, broadcasting, Game Mode", GlyphKind.Gaming),
+                new HomePageGroup("Ease of Access", "Narrator, magnifier, high contrast", GlyphKind.EaseOfAccess),
+                new HomePageGroup("Cortana", "Cortana language, permissions, notifications", GlyphKind.Cortana),
+                new HomePageGroup("Privacy", "Location, camera", GlyphKind.Privacy),
+                new HomePageGroup(
+                    "Update & Security",
+                    "Windows Update, recovery, backup",
+                    GlyphKind.UpdateAndSecurity),
+            });
     }
 }
