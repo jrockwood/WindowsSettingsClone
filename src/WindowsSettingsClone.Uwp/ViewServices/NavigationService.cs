@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="NavigationService.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -25,9 +25,9 @@ namespace WindowsSettingsClone.Uwp.ViewServices
         //// Member Variables
         //// ===========================================================================================================
 
-        private static readonly Dictionary<string, Type> s_viewModelToViewMap = new Dictionary<string, Type>
+        private static readonly Dictionary<Type, Type> s_viewModelToViewMap = new Dictionary<Type, Type>
         {
-            [nameof(HomePageViewModel)] = typeof(HomePage),
+            [typeof(HomePageViewModel)] = typeof(HomePage),
         };
 
         //// ===========================================================================================================
@@ -46,12 +46,12 @@ namespace WindowsSettingsClone.Uwp.ViewServices
         //// Methods
         //// ===========================================================================================================
 
-        public void NavigateTo(string pageViewModelTypeName, string pageViewModelState)
+        public void NavigateTo(Type pageViewModelType, string pageViewModelState)
 
         {
-            if (!s_viewModelToViewMap.TryGetValue(pageViewModelTypeName, out Type viewType))
+            if (!s_viewModelToViewMap.TryGetValue(pageViewModelType, out Type viewType))
             {
-                throw new InvalidOperationException($"Unknown view model type '{pageViewModelTypeName}'.");
+                throw new InvalidOperationException($"Unknown view model type '{pageViewModelType.Name}'.");
             }
 
             RootFrame.Navigate(viewType, pageViewModelState, new EntranceNavigationTransitionInfo());

@@ -7,11 +7,13 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels.ViewServices
 {
+    using System;
+
     /// <summary>
     /// Service contract for navigating to various pages within the application. Typically implemented in the view layer.
     /// </summary>
     public interface INavigationViewService
     {
-        void NavigateTo(string pageViewModelTypeName, string pageViewModelState);
+        void NavigateTo(Type pageViewModelType, string pageViewModelState);
     }
 }
