@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Converters
+namespace WindowsSettingsClone.Uwp.Converters
 {
     using System;
     using ViewModels;

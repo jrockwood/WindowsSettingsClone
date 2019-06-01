@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone
+namespace WindowsSettingsClone.Uwp
 {
     using System;
     using Views;

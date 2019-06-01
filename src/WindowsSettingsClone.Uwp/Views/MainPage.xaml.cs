@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Views
+namespace WindowsSettingsClone.Uwp.Views
 {
     using Windows.UI.Xaml.Controls;
 
