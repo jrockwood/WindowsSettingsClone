@@ -224,6 +224,7 @@
       </Grid.RowDefinitions>
 
       <TextBlock x:Name="PageTitleTextBlock"
+                 x:Uid="HomePageTitleTextBlock"
                  Grid.Row="0"
                  Margin="0,23,0,15"
                  HorizontalAlignment="Center"
@@ -231,31 +232,29 @@
                  Style="{StaticResource TitleTextBlockStyle}"
                  FontWeight="Light"
                  MaxLines="2"
-                 Text="Windows Settings"
                  TextTrimming="Clip" />
 
       <AutoSuggestBox x:Name="SearchBox"
+                      x:Uid="SearchBox"
                       Grid.Row="1"
                       Width="336"
                       Margin="16,20,16,12"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
-                      PlaceholderText="Find a setting"
                       QueryIcon="Find" />
     </Grid>
 
     <!-- Not activated message -->
     <StackPanel Grid.Row="2">
-      <HyperlinkButton Margin="12"
+      <HyperlinkButton x:Uid="WindowsNotActivatedHyperlinkButton"
+                       Margin="12"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       Content="Windows isn't activated. Activate Windows now."
                        Visibility="{x:Bind ViewModel.IsWindowsActivated, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
     </StackPanel>
 
     <!-- Grid View of settings groups -->
-    <ScrollViewer x:Name="SettingsGroupsGridViewContainer"
-                  Grid.Row="1"
+    <ScrollViewer Grid.Row="1"
                   HorizontalScrollMode="Disabled"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Enabled"

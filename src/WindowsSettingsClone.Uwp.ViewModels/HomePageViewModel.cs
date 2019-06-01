@@ -41,21 +41,70 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public IReadOnlyList<HomePageGroup> Groups { get; } = new ReadOnlyCollection<HomePageGroup>(
             new[]
             {
-                new HomePageGroup("System", "Display, sound, notifications, power", GlyphKind.System),
-                new HomePageGroup("Devices", "Bluetooth, printers, mouse", GlyphKind.Devices),
-                new HomePageGroup("Phone", "Link your Android, iPhone", GlyphKind.Phone),
-                new HomePageGroup("Network & Internet", "Wi-Fi, airplane mode, VPN", GlyphKind.NetworkAndInternet),
-                new HomePageGroup("Personalization", "Background, lock screen, colors", GlyphKind.Personalization),
-                new HomePageGroup("Apps", "Uninstall, defaults, optional features", GlyphKind.Apps),
-                new HomePageGroup("Accounts", "Your accounts, email, sync, work, family", GlyphKind.Accounts),
-                new HomePageGroup("Time & Language", "Speech, region, date", GlyphKind.TimeAndLanguage),
-                new HomePageGroup("Gaming", "Game bar, captures, broadcasting, Game Mode", GlyphKind.Gaming),
-                new HomePageGroup("Ease of Access", "Narrator, magnifier, high contrast", GlyphKind.EaseOfAccess),
-                new HomePageGroup("Cortana", "Cortana language, permissions, notifications", GlyphKind.Cortana),
-                new HomePageGroup("Privacy", "Location, camera", GlyphKind.Privacy),
                 new HomePageGroup(
-                    "Update & Security",
-                    "Windows Update, recovery, backup",
+                    Strings.SystemGroupName,
+                    Strings.SystemGroupDescription,
+                    SettingGroupKind.System,
+                    GlyphKind.System),
+                new HomePageGroup(
+                    Strings.DevicesGroupName,
+                    Strings.DevicesGroupDescription,
+                    SettingGroupKind.Devices,
+                    GlyphKind.Devices),
+                new HomePageGroup(
+                    Strings.PhoneGroupName,
+                    Strings.PhoneGroupDescription,
+                    SettingGroupKind.Phone,
+                    GlyphKind.Phone),
+                new HomePageGroup(
+                    Strings.NetworkAndInternetGroupName,
+                    Strings.NetworkAndInternetGroupDescription,
+                    SettingGroupKind.NetworkAndInternet,
+                    GlyphKind.NetworkAndInternet),
+                new HomePageGroup(
+                    Strings.PersonalizationGroupName,
+                    Strings.PersonalizationGroupDescription,
+                    SettingGroupKind.Personalization,
+                    GlyphKind.Personalization),
+                new HomePageGroup(
+                    Strings.AppsGroupName,
+                    Strings.AppsGroupDescription,
+                    SettingGroupKind.Apps,
+                    GlyphKind.Apps),
+                new HomePageGroup(
+                    Strings.AccountsGroupName,
+                    Strings.AccountsGroupDescription,
+                    SettingGroupKind.Accounts,
+                    GlyphKind.Accounts),
+                new HomePageGroup(
+                    Strings.TimeAndLanguageGroupName,
+                    Strings.TimeAndLanguageGroupDescription,
+                    SettingGroupKind.TimeAndLanguage,
+                    GlyphKind.TimeAndLanguage),
+                new HomePageGroup(
+                    Strings.GamingGroupName,
+                    Strings.GamingGroupDescription,
+                    SettingGroupKind.Gaming,
+                    GlyphKind.Gaming),
+                new HomePageGroup(
+                    Strings.EaseOfAccessGroupName,
+                    Strings.EaseOfAccessGroupDescription,
+                    SettingGroupKind.EaseOfAccess,
+                    GlyphKind.EaseOfAccess),
+                new HomePageGroup(
+                    Strings.CortanaGroupName,
+                    Strings.CortanaGroupDescription,
+                    SettingGroupKind.Cortana,
+                    GlyphKind.Cortana),
+                new HomePageGroup(
+                    Strings.PrivacyGroupName,
+                    Strings.PrivacyGroupDescription,
+                    SettingGroupKind.Privacy,
+                    GlyphKind.Privacy),
+                new HomePageGroup(
+                    Strings.UpdateAndSecurityGroupName,
+                    Strings.UpdateAndSecurityGroupDescription,
+                    SettingGroupKind.UpdateAndSecurity,
                     GlyphKind.UpdateAndSecurity),
             });
     }

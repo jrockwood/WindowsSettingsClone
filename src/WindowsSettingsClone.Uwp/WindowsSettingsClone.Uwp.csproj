@@ -216,6 +216,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <None Include="WindowsSettingsClone.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
