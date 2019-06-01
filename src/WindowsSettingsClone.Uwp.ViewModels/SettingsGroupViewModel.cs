@@ -7,6 +7,8 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels
 {
+    using Utility;
+
     /// <summary>
     /// Represents a group of settings that has its own page and is listed on the main page.
     /// </summary>
@@ -18,8 +20,8 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public SettingsGroupViewModel(string name, string description, GlyphKind glyph)
         {
-            Name = name;
-            Description = description;
+            Name = Param.VerifyString(name, nameof(name));
+            Description = Param.VerifyString(description, nameof(description));
             Glyph = glyph;
         }
 
