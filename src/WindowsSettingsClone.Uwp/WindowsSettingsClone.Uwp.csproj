@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -122,10 +122,6 @@
     <Compile Include="Converters\GlyphKindToGlyphConverter.cs" />
     <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\GlyphKind.cs" />
-    <Compile Include="ViewModels\SettingsGroupViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +198,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SetMDL2.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WindowsSettingsClone.Uwp.ViewModels\WindowsSettingsClone.Uwp.ViewModels.csproj">
+      <Project>{23f522b7-eb71-4620-9ea9-f7671cc32075}</Project>
+      <Name>WindowsSettingsClone.Uwp.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
