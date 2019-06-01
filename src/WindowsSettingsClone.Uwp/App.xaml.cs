@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.Uwp
 {
     using System;
+    using ViewModels;
     using Views;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
@@ -22,6 +23,16 @@ namespace WindowsSettingsClone.Uwp
     /// </summary>
     public sealed partial class App : Application
     {
+        //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
+        private readonly ApplicationViewModel _applicationViewModel = new ApplicationViewModel();
+
+        //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,6 +42,10 @@ namespace WindowsSettingsClone.Uwp
             InitializeComponent();
             Suspending += OnSuspending;
         }
+
+        //// ===========================================================================================================
+        //// Methods
+        //// ===========================================================================================================
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -66,7 +81,7 @@ namespace WindowsSettingsClone.Uwp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    _ = rootFrame.Navigate(typeof(HomePage), e.Arguments);
+                    _ = rootFrame.Navigate(typeof(HomePage), _applicationViewModel.HomePage);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

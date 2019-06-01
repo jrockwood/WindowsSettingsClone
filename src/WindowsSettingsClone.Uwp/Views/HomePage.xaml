@@ -11,8 +11,6 @@
       mc:Ignorable="d">
 
   <Page.Resources>
-    <viewModels:HomePageViewModel x:Name="ViewModel" />
-
     <converters:GlyphKindToFontFamilyConverter x:Name="GlyphKindToFontFamilyConverter" />
     <converters:GlyphKindToGlyphConverter x:Name="GlyphKindToGlyphConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
