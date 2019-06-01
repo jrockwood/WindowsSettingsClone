@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPageViewModel.cs" company="Justin Rockwood">
+// <copyright file="HomePageViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// <summary>
     /// Represents the ViewModel for the MainPage view.
     /// </summary>
-    public class MainPageViewModel : BaseViewModel
+    public class HomePageViewModel : BaseViewModel
     {
         //// ===========================================================================================================
         //// Properties

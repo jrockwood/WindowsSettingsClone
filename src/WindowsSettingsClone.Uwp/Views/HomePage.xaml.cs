@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPage.xaml.cs" company="Justin Rockwood">
+// <copyright file="HomePage.xaml.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -12,9 +12,9 @@ namespace WindowsSettingsClone.Uwp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class HomePage : Page
     {
-        public MainPage() => InitializeComponent();
+        public HomePage() => InitializeComponent();
 
         private void OnSettingsGridViewSelectionChanged(object sender, SelectionChangedEventArgs e) =>
             SettingsGridView.SelectedItem = null;
