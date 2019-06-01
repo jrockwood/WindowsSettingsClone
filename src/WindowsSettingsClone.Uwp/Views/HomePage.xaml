@@ -1,4 +1,4 @@
-﻿<Page x:Class="WindowsSettingsClone.Uwp.Views.HomePage"
+<Page x:Class="WindowsSettingsClone.Uwp.Views.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:converters="using:WindowsSettingsClone.Uwp.Converters"
@@ -118,7 +118,7 @@
       <ItemsStackPanel Orientation="Vertical" />
     </ItemsPanelTemplate>
 
-    <Style x:Key="BaseGridViewItemContainerStyle" TargetType="GridViewItem">
+    <Style x:Key="NoRevealListViewItemContainerStyle" TargetType="GridViewItem">
       <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
       <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
       <Setter Property="Background" Value="{ThemeResource GridViewItemBackground}" />
@@ -133,11 +133,6 @@
       <Setter Property="AllowDrop" Value="False" />
       <Setter Property="UseSystemFocusVisuals" Value="True" />
       <Setter Property="FocusVisualMargin" Value="-2" />
-    </Style>
-
-    <Style x:Key="NoSelectionNoRevealGridViewItemContainerStyle"
-           BasedOn="{StaticResource BaseGridViewItemContainerStyle}"
-           TargetType="GridViewItem">
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="GridViewItem">
@@ -212,7 +207,7 @@
             <Setter Target="SearchBox.HorizontalAlignment" Value="Stretch" />
             <Setter Target="SearchBox.Width" Value="Auto" />
             <Setter Target="SettingsGridView.HorizontalAlignment" Value="Stretch" />
-            <Setter Target="SettingsGridView.ItemContainerStyle" Value="{StaticResource NoSelectionNoRevealGridViewItemContainerStyle}" />
+            <Setter Target="SettingsGridView.ItemContainerStyle" Value="{StaticResource NoRevealListViewItemContainerStyle}" />
             <Setter Target="SettingsGridView.ItemTemplate" Value="{StaticResource NarrowSettingsGridViewItemTemplate}" />
             <Setter Target="SettingsGridView.ItemsPanel" Value="{StaticResource VerticallyStackedGridViewItemsPanel}" />
             <Setter Target="SettingsGridView.Margin" Value="0" />
@@ -270,11 +265,11 @@
                 Margin="0,28,0,0"
                 Padding="0,0,0,28"
                 HorizontalAlignment="Center"
+                IsItemClickEnabled="True"
                 ItemTemplate="{StaticResource WideSettingsGridViewItemTemplate}"
                 ItemsPanel="{StaticResource HorizontallyWrappedGridViewItemsPanel}"
                 ItemsSource="{x:Bind ViewModel.Groups}"
-                SelectionChanged="OnSettingsGridViewSelectionChanged"
-                SelectionMode="Single" />
+                SelectionMode="None" />
     </ScrollViewer>
   </Grid>
 </Page>
