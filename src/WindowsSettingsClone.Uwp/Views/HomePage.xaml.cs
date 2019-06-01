@@ -18,5 +18,11 @@ namespace WindowsSettingsClone.Uwp.Views
         public HomePage() => InitializeComponent();
 
         public HomePageViewModel ViewModel { get; } = new HomePageViewModel(App.Current.NavigationService);
+
+        private void OnSettingsGridViewItemClick(object sender, ItemClickEventArgs e)
+        {
+            var homePageGroup = (HomePageGroup)e.ClickedItem;
+            ViewModel.GroupClick.Execute(homePageGroup);
+        }
     }
 }

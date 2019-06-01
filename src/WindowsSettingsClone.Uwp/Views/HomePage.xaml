@@ -265,6 +265,7 @@
                 Padding="0,0,0,28"
                 HorizontalAlignment="Center"
                 IsItemClickEnabled="True"
+                ItemClick="OnSettingsGridViewItemClick"
                 ItemTemplate="{StaticResource WideSettingsGridViewItemTemplate}"
                 ItemsPanel="{StaticResource HorizontallyWrappedGridViewItemsPanel}"
                 ItemsSource="{x:Bind ViewModel.Groups}"

@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="HomePageGroup.cs" company="Justin Rockwood">
+// <copyright file="SettingNavigationInfo.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -9,19 +9,21 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 {
     using Utility;
 
-    public class HomePageGroup
+    /// <summary>
+    /// Represents enough information about an individual setting that it can be displayed on a page navigation control
+    /// to invoke the proper setting editor.
+    /// </summary>
+    public sealed class SettingNavigationInfo
     {
-        public HomePageGroup(string groupName, string description, SettingGroupKind groupKind, GlyphKind glyph)
+        public SettingNavigationInfo(string name, GlyphKind glyph, SettingEditorKind editorKind)
         {
-            GroupName = Param.VerifyString(groupName, nameof(groupName));
-            Description = Param.VerifyString(description, nameof(description));
-            GroupKind = groupKind;
+            Name = Param.VerifyString(name, nameof(name));
             Glyph = glyph;
+            EditorKind = editorKind;
         }
 
-        public SettingGroupKind GroupKind { get; }
-        public string GroupName { get; }
-        public string Description { get; }
+        public string Name { get; }
         public GlyphKind Glyph { get; }
+        public SettingEditorKind EditorKind { get; }
     }
 }

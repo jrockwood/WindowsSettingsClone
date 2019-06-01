@@ -25,12 +25,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        public HomePageViewModel(INavigationViewService navigationService) =>
+        public HomePageViewModel(INavigationViewService navigationService)
+        {
             Param.VerifyNotNull(navigationService, nameof(navigationService));
+            GroupClick = new RelayCommand<HomePageGroup>(
+                group => navigationService.NavigateTo(typeof(SettingsGroupPageViewModel), group.GroupKind.ToString()));
+        }
 
         //// ===========================================================================================================
         //// Commands
         //// ===========================================================================================================
+
+        public ICommand<HomePageGroup> GroupClick { get; }
 
         //// ===========================================================================================================
         //// Properties

@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="GlyphKind.cs" company="Justin Rockwood">
+// <copyright file="SettingGroupKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -7,10 +7,7 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels
 {
-    /// <summary>
-    /// Enumerates the different kinds of glyphs that are available via system or packaged fonts.
-    /// </summary>
-    public enum GlyphKind
+    public enum SettingGroupKind
     {
         System,
         Devices,
@@ -22,10 +19,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         TimeAndLanguage,
         Gaming,
         EaseOfAccess,
+        Search,
         Cortana,
         Privacy,
         UpdateAndSecurity,
-        Display,
-        Speaker
     }
 }

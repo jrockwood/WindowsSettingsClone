@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="NavigationService.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -28,6 +28,7 @@ namespace WindowsSettingsClone.Uwp.ViewServices
         private static readonly Dictionary<Type, Type> s_viewModelToViewMap = new Dictionary<Type, Type>
         {
             [typeof(HomePageViewModel)] = typeof(HomePage),
+            [typeof(SettingsGroupPageViewModel)] = typeof(SettingsGroupPage),
         };
 
         //// ===========================================================================================================
@@ -47,7 +48,6 @@ namespace WindowsSettingsClone.Uwp.ViewServices
         //// ===========================================================================================================
 
         public void NavigateTo(Type pageViewModelType, string pageViewModelState)
-
         {
             if (!s_viewModelToViewMap.TryGetValue(pageViewModelType, out Type viewType))
             {
