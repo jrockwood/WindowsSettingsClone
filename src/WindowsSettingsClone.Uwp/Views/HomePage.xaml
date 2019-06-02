@@ -11,8 +11,7 @@
       mc:Ignorable="d">
 
   <Page.Resources>
-    <converters:GlyphKindToFontFamilyConverter x:Name="GlyphKindToFontFamilyConverter" />
-    <converters:GlyphKindToGlyphConverter x:Name="GlyphKindToGlyphConverter" />
+    <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
 
     <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
@@ -33,9 +32,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                    FontFamily="{x:Bind Glyph, Converter={StaticResource GlyphKindToFontFamilyConverter}}"
+                    FontFamily="{x:Bind GlyphInfo, Converter={StaticResource GlyphInfoToFontFamilyConverter}}"
                     FontSize="30"
-                    Glyph="{x:Bind Glyph, Converter={StaticResource GlyphKindToGlyphConverter}}" />
+                    Glyph="{x:Bind GlyphInfo.Glyph}" />
 
           <StackPanel Grid.Column="2"
                       Padding="0,0,0,2"
@@ -79,9 +78,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                    FontFamily="{x:Bind Glyph, Converter={StaticResource GlyphKindToFontFamilyConverter}}"
+                    FontFamily="{x:Bind GlyphInfo, Converter={StaticResource GlyphInfoToFontFamilyConverter}}"
                     FontSize="24"
-                    Glyph="{x:Bind Glyph, Converter={StaticResource GlyphKindToGlyphConverter}}" />
+                    Glyph="{x:Bind GlyphInfo.Glyph}" />
 
           <StackPanel Grid.Column="3"
                       Padding="0,0,0,2"

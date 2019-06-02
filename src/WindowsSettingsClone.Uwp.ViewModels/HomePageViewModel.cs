@@ -51,67 +51,67 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                     Strings.SystemGroupName,
                     Strings.SystemGroupDescription,
                     SettingGroupKind.System,
-                    GlyphKind.System),
+                    GlyphInfo.System),
                 new HomePageGroup(
                     Strings.DevicesGroupName,
                     Strings.DevicesGroupDescription,
                     SettingGroupKind.Devices,
-                    GlyphKind.Devices),
+                    GlyphInfo.Devices),
                 new HomePageGroup(
                     Strings.PhoneGroupName,
                     Strings.PhoneGroupDescription,
                     SettingGroupKind.Phone,
-                    GlyphKind.Phone),
+                    GlyphInfo.CellPhone),
                 new HomePageGroup(
                     Strings.NetworkAndInternetGroupName,
                     Strings.NetworkAndInternetGroupDescription,
                     SettingGroupKind.NetworkAndInternet,
-                    GlyphKind.NetworkAndInternet),
+                    GlyphInfo.Globe),
                 new HomePageGroup(
                     Strings.PersonalizationGroupName,
                     Strings.PersonalizationGroupDescription,
                     SettingGroupKind.Personalization,
-                    GlyphKind.Personalization),
+                    GlyphInfo.Personalize),
                 new HomePageGroup(
                     Strings.AppsGroupName,
                     Strings.AppsGroupDescription,
                     SettingGroupKind.Apps,
-                    GlyphKind.Apps),
+                    GlyphInfo.AllApps),
                 new HomePageGroup(
                     Strings.AccountsGroupName,
                     Strings.AccountsGroupDescription,
                     SettingGroupKind.Accounts,
-                    GlyphKind.Accounts),
+                    GlyphInfo.Contact),
                 new HomePageGroup(
                     Strings.TimeAndLanguageGroupName,
                     Strings.TimeAndLanguageGroupDescription,
                     SettingGroupKind.TimeAndLanguage,
-                    GlyphKind.TimeAndLanguage),
+                    GlyphInfo.TimeLanguage),
                 new HomePageGroup(
                     Strings.GamingGroupName,
                     Strings.GamingGroupDescription,
                     SettingGroupKind.Gaming,
-                    GlyphKind.Gaming),
+                    GlyphInfo.XboxLogo),
                 new HomePageGroup(
                     Strings.EaseOfAccessGroupName,
                     Strings.EaseOfAccessGroupDescription,
                     SettingGroupKind.EaseOfAccess,
-                    GlyphKind.EaseOfAccess),
+                    GlyphInfo.EaseOfAccess),
                 new HomePageGroup(
                     Strings.CortanaGroupName,
                     Strings.CortanaGroupDescription,
                     SettingGroupKind.Cortana,
-                    GlyphKind.Cortana),
+                    GlyphInfo.Cortana),
                 new HomePageGroup(
                     Strings.PrivacyGroupName,
                     Strings.PrivacyGroupDescription,
                     SettingGroupKind.Privacy,
-                    GlyphKind.Privacy),
+                    GlyphInfo.Lock),
                 new HomePageGroup(
                     Strings.UpdateAndSecurityGroupName,
                     Strings.UpdateAndSecurityGroupDescription,
                     SettingGroupKind.UpdateAndSecurity,
-                    GlyphKind.UpdateAndSecurity),
+                    GlyphInfo.Sync),
             });
     }
 }

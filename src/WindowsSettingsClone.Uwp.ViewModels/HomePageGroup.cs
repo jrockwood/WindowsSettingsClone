@@ -11,17 +11,17 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
     public class HomePageGroup
     {
-        public HomePageGroup(string groupName, string description, SettingGroupKind groupKind, GlyphKind glyph)
+        public HomePageGroup(string groupName, string description, SettingGroupKind groupKind, GlyphInfo glyphInfo)
         {
             GroupName = Param.VerifyString(groupName, nameof(groupName));
             Description = Param.VerifyString(description, nameof(description));
             GroupKind = groupKind;
-            Glyph = glyph;
+            GlyphInfo = glyphInfo;
         }
 
         public SettingGroupKind GroupKind { get; }
         public string GroupName { get; }
         public string Description { get; }
-        public GlyphKind Glyph { get; }
+        public GlyphInfo GlyphInfo { get; }
     }
 }

@@ -15,15 +15,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// </summary>
     public sealed class SettingNavigationInfo
     {
-        public SettingNavigationInfo(string name, GlyphKind glyph, SettingEditorKind editorKind)
+        public SettingNavigationInfo(SettingEditorKind editorKind, GlyphInfo glyphInfo, string name)
         {
-            Name = Param.VerifyString(name, nameof(name));
-            Glyph = glyph;
             EditorKind = editorKind;
+            GlyphInfo = Param.VerifyNotNull(glyphInfo, nameof(glyphInfo));
+            Name = Param.VerifyString(name, nameof(name));
         }
 
-        public string Name { get; }
-        public GlyphKind Glyph { get; }
         public SettingEditorKind EditorKind { get; }
+        public GlyphInfo GlyphInfo { get; }
+        public string Name { get; }
     }
 }

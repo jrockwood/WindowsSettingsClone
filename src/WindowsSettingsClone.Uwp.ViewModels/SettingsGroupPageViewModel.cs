@@ -19,6 +19,51 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     public class SettingsGroupPageViewModel : BaseViewModel
     {
         //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
+        private static readonly SettingNavigationInfo[] s_systemGroupSettings =
+        {
+            new SettingNavigationInfo(SettingEditorKind.Display, GlyphInfo.TvMonitor, Strings.DisplaySettingName),
+            new SettingNavigationInfo(SettingEditorKind.Sound, GlyphInfo.Volume, Strings.SoundSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.NotificationsAndActions,
+                GlyphInfo.Message,
+                Strings.NotificationsAndActionsSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.FocusAssist,
+                GlyphInfo.QuietHours,
+                Strings.FocusAssistSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.PowerAndSleep,
+                GlyphInfo.PowerButton,
+                Strings.PowerAndSleepSettingName),
+            new SettingNavigationInfo(SettingEditorKind.Storage, GlyphInfo.HardDrive, Strings.StorageSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.TabletMode,
+                GlyphInfo.TabletMode,
+                Strings.TabletModeSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.Multitasking,
+                GlyphInfo.Multitasking,
+                Strings.MultitaskingSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.ProjectingToThisPC,
+                GlyphInfo.Project,
+                Strings.ProjectingToThisPCSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.SharedExperiences,
+                GlyphInfo.Connected,
+                Strings.SharedExperiencesSettingName),
+            new SettingNavigationInfo(SettingEditorKind.Clipboard, GlyphInfo.Paste, Strings.ClipboardSettingName),
+            new SettingNavigationInfo(
+                SettingEditorKind.RemoteDesktop,
+                GlyphInfo.Remote,
+                Strings.RemoteDesktopSettingName),
+            new SettingNavigationInfo(SettingEditorKind.About, GlyphInfo.Info, Strings.AboutSettingName),
+        };
+
+        //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
@@ -45,19 +90,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Methods
         //// ===========================================================================================================
 
+        /// <summary>
+        /// Creates a new <see cref="SettingsGroupPageViewModel"/> corresponding to the specified <see
+        /// cref="SettingGroupKind"/>. Called from the view.
+        /// </summary>
         public static SettingsGroupPageViewModel CreateFromGroupKind(SettingGroupKind groupKind)
         {
             switch (groupKind)
             {
                 case SettingGroupKind.System:
-                    return new SettingsGroupPageViewModel(
-                        groupKind,
-                        Strings.SystemGroupName,
-                        new[]
-                        {
-                            new SettingNavigationInfo("Display", GlyphKind.Display, SettingEditorKind.Display),
-                            new SettingNavigationInfo("Sound", GlyphKind.Speaker, SettingEditorKind.Sound),
-                        });
+                    return new SettingsGroupPageViewModel(groupKind, Strings.SystemGroupName, s_systemGroupSettings);
 
                 case SettingGroupKind.Devices:
                     break;
