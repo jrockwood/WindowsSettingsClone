@@ -13,7 +13,7 @@
   <Page.Resources>
     <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
 
-    <DataTemplate x:Key="SettingsNavigationListItemTemplate" x:DataType="viewModels:SettingNavigationInfo">
+    <DataTemplate x:Key="SettingsNavigationListItemTemplate" x:DataType="viewModels:SettingNavigationInfoViewModel">
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="48" />
@@ -109,8 +109,20 @@
 
         <ListView x:Name="SettingsNavigationListView"
                   Grid.Row="3"
+                  Padding="0,0,0,84"
+                  IsSwipeEnabled="False"
                   ItemTemplate="{StaticResource SettingsNavigationListItemTemplate}"
-                  ItemsSource="{x:Bind ViewModel.Settings}" />
+                  ItemsSource="{x:Bind ViewModel.Settings}"
+                  ScrollViewer.HorizontalScrollMode="Disabled"
+                  SelectionMode="Single">
+          <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+              <Setter Property="Margin" Value="0" />
+              <Setter Property="MinHeight" Value="48" />
+              <Setter Property="Padding" Value="0" />
+            </Style>
+          </ListView.ItemContainerStyle>
+        </ListView>
       </Grid>
     </Border>
   </Grid>

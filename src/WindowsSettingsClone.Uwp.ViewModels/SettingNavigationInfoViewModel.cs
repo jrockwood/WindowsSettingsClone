@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="SettingNavigationInfo.cs" company="Justin Rockwood">
+// <copyright file="SettingNavigationInfoViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -13,9 +13,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// Represents enough information about an individual setting that it can be displayed on a page navigation control
     /// to invoke the proper setting editor.
     /// </summary>
-    public sealed class SettingNavigationInfo
+    public sealed class SettingNavigationInfoViewModel
     {
-        public SettingNavigationInfo(SettingEditorKind editorKind, GlyphInfo glyphInfo, string name)
+        public SettingNavigationInfoViewModel(SettingEditorKind editorKind, GlyphInfo glyphInfo, string name)
         {
             EditorKind = editorKind;
             GlyphInfo = Param.VerifyNotNull(glyphInfo, nameof(glyphInfo));

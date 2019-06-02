@@ -22,47 +22,6 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Member Variables
         //// ===========================================================================================================
 
-        private static readonly SettingNavigationInfo[] s_systemGroupSettings =
-        {
-            new SettingNavigationInfo(SettingEditorKind.Display, GlyphInfo.TvMonitor, Strings.DisplaySettingName),
-            new SettingNavigationInfo(SettingEditorKind.Sound, GlyphInfo.Volume, Strings.SoundSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.NotificationsAndActions,
-                GlyphInfo.Message,
-                Strings.NotificationsAndActionsSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.FocusAssist,
-                GlyphInfo.QuietHours,
-                Strings.FocusAssistSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.PowerAndSleep,
-                GlyphInfo.PowerButton,
-                Strings.PowerAndSleepSettingName),
-            new SettingNavigationInfo(SettingEditorKind.Storage, GlyphInfo.HardDrive, Strings.StorageSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.TabletMode,
-                GlyphInfo.TabletMode,
-                Strings.TabletModeSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.Multitasking,
-                GlyphInfo.Multitasking,
-                Strings.MultitaskingSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.ProjectingToThisPC,
-                GlyphInfo.Project,
-                Strings.ProjectingToThisPCSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.SharedExperiences,
-                GlyphInfo.Connected,
-                Strings.SharedExperiencesSettingName),
-            new SettingNavigationInfo(SettingEditorKind.Clipboard, GlyphInfo.Paste, Strings.ClipboardSettingName),
-            new SettingNavigationInfo(
-                SettingEditorKind.RemoteDesktop,
-                GlyphInfo.Remote,
-                Strings.RemoteDesktopSettingName),
-            new SettingNavigationInfo(SettingEditorKind.About, GlyphInfo.Info, Strings.AboutSettingName),
-        };
-
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
@@ -70,11 +29,11 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         private SettingsGroupPageViewModel(
             SettingGroupKind groupKind,
             string groupName,
-            IEnumerable<SettingNavigationInfo> settings)
+            IEnumerable<SettingNavigationInfoViewModel> settings)
         {
             GroupKind = groupKind;
             GroupName = Param.VerifyString(groupName, nameof(groupName));
-            Settings = new ReadOnlyCollection<SettingNavigationInfo>(
+            Settings = new ReadOnlyCollection<SettingNavigationInfoViewModel>(
                 Param.VerifyNotNull(settings, nameof(settings)).ToList());
         }
 
@@ -84,7 +43,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public SettingGroupKind GroupKind { get; }
         public string GroupName { get; }
-        public ReadOnlyCollection<SettingNavigationInfo> Settings { get; }
+        public ReadOnlyCollection<SettingNavigationInfoViewModel> Settings { get; }
 
         //// ===========================================================================================================
         //// Methods
@@ -99,7 +58,64 @@ namespace WindowsSettingsClone.Uwp.ViewModels
             switch (groupKind)
             {
                 case SettingGroupKind.System:
-                    return new SettingsGroupPageViewModel(groupKind, Strings.SystemGroupName, s_systemGroupSettings);
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.SystemGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Display,
+                                GlyphInfo.TvMonitor,
+                                Strings.DisplaySettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Sound,
+                                GlyphInfo.Volume,
+                                Strings.SoundSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.NotificationsAndActions,
+                                GlyphInfo.Message,
+                                Strings.NotificationsAndActionsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.FocusAssist,
+                                GlyphInfo.QuietHours,
+                                Strings.FocusAssistSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.PowerAndSleep,
+                                GlyphInfo.PowerButton,
+                                Strings.PowerAndSleepSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Storage,
+                                GlyphInfo.HardDrive,
+                                Strings.StorageSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.TabletMode,
+                                GlyphInfo.TabletMode,
+                                Strings.TabletModeSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Multitasking,
+                                GlyphInfo.Multitasking,
+                                Strings.MultitaskingSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.ProjectingToThisPC,
+                                GlyphInfo.Project,
+                                Strings.ProjectingToThisPCSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.SharedExperiences,
+                                GlyphInfo.Connected,
+                                Strings.SharedExperiencesSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Clipboard,
+                                GlyphInfo.Paste,
+                                Strings.ClipboardSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.RemoteDesktop,
+                                GlyphInfo.Remote,
+                                Strings.RemoteDesktopSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.About,
+                                GlyphInfo.Info,
+                                Strings.AboutSettingName),
+                        });
 
                 case SettingGroupKind.Devices:
                     break;
@@ -144,7 +160,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                     throw new ArgumentOutOfRangeException(nameof(groupKind), groupKind, null);
             }
 
-            return new SettingsGroupPageViewModel(SettingGroupKind.Accounts, "Accounts", new SettingNavigationInfo[0]);
+            return new SettingsGroupPageViewModel(SettingGroupKind.Accounts, "Accounts", new SettingNavigationInfoViewModel[0]);
         }
     }
 }
