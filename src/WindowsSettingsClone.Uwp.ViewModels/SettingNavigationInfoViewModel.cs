@@ -13,8 +13,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// Represents enough information about an individual setting that it can be displayed on a page navigation control
     /// to invoke the proper setting editor.
     /// </summary>
-    public sealed class SettingNavigationInfoViewModel
+    public sealed class SettingNavigationInfoViewModel : BaseViewModel
     {
+        //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
+        private bool _isSelected;
+
+        //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
         public SettingNavigationInfoViewModel(SettingEditorKind editorKind, GlyphInfo glyphInfo, string name)
         {
             EditorKind = editorKind;
@@ -22,8 +32,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
             Name = Param.VerifyString(name, nameof(name));
         }
 
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
         public SettingEditorKind EditorKind { get; }
         public GlyphInfo GlyphInfo { get; }
         public string Name { get; }
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
+        }
     }
 }

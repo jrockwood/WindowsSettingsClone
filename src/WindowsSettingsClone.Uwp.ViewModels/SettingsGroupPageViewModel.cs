@@ -66,7 +66,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Display,
                                 GlyphInfo.TvMonitor,
-                                Strings.DisplaySettingName),
+                                Strings.DisplaySettingName) { IsSelected = true },
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Sound,
                                 GlyphInfo.Volume,
@@ -160,7 +160,10 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                     throw new ArgumentOutOfRangeException(nameof(groupKind), groupKind, null);
             }
 
-            return new SettingsGroupPageViewModel(SettingGroupKind.Accounts, "Accounts", new SettingNavigationInfoViewModel[0]);
+            return new SettingsGroupPageViewModel(
+                SettingGroupKind.Accounts,
+                "Accounts",
+                new SettingNavigationInfoViewModel[0]);
         }
     }
 }
