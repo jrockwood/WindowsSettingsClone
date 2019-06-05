@@ -113,18 +113,11 @@
                   Grid.Row="3"
                   Padding="0,0,0,84"
                   IsSwipeEnabled="False"
+                  ItemContainerStyle="{StaticResource SettingsNavigationListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource SettingsNavigationListItemTemplate}"
                   ItemsSource="{x:Bind ViewModel.Settings}"
                   ScrollViewer.HorizontalScrollMode="Disabled"
-                  SelectionMode="Single">
-          <ListView.ItemContainerStyle>
-            <Style TargetType="ListViewItem">
-              <Setter Property="Margin" Value="0" />
-              <Setter Property="MinHeight" Value="48" />
-              <Setter Property="Padding" Value="0" />
-            </Style>
-          </ListView.ItemContainerStyle>
-        </ListView>
+                  SelectionMode="Single" />
       </Grid>
     </Border>
   </Grid>

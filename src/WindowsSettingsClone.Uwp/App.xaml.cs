@@ -57,6 +57,7 @@ namespace WindowsSettingsClone.Uwp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            AddPlatformStyles();
             SetWindowMinSize();
 
             // Do not repeat app initialization when the Window already has content,
@@ -91,6 +92,20 @@ namespace WindowsSettingsClone.Uwp
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+        }
+
+        private void AddPlatformStyles()
+        {
+            // We need to load the appropriate styles depending on the platform capabilities.
+            // Note: The RevealStyles.xaml is a file deployed with the application and NonRevealStyles.xaml is an
+            // embedded resource. We can't embed the reveal styles since our Visual Studio project targets an older
+            // platform (Creator's Update) where the reveal brush is not supported. Therefore we get compile-time errors
+            // when trying to embed it.
+            ResourceDictionary stylesDictionary = PlatformCapabilityService.Instance.IsRevealBrushSupported
+                ? new ResourceDictionary { Source = new Uri("ms-appx:///Resources/RevealStyles.xaml") }
+                : new ResourceDictionary { Source = new Uri("ms-appx:///Resources/NonRevealStyles.xaml") };
+
+            Resources.MergedDictionaries.Add(stylesDictionary);
         }
 
         private void SetWindowMinSize()
