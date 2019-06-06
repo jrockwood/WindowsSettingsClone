@@ -89,6 +89,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apps &amp; features.
+        /// </summary>
+        internal static string AppsAndFeaturesSettingName {
+            get {
+                return ResourceManager.GetString("AppsAndFeaturesSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apps for websites.
+        /// </summary>
+        internal static string AppsForWebsitesSettingName {
+            get {
+                return ResourceManager.GetString("AppsForWebsitesSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uninstall, defaults, optional features.
         /// </summary>
         internal static string AppsGroupDescription {
@@ -175,6 +193,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string DataUsageSettingName {
             get {
                 return ResourceManager.GetString("DataUsageSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default apps.
+        /// </summary>
+        internal static string DefaultAppsSettingName {
+            get {
+                return ResourceManager.GetString("DefaultAppsSettingName", resourceCulture);
             }
         }
         
@@ -341,6 +368,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline maps.
+        /// </summary>
+        internal static string OfflineMapsSettingName {
+            get {
+                return ResourceManager.GetString("OfflineMapsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pen &amp; Windows Ink.
         /// </summary>
         internal static string PenAndWindowsInkSettingName {
@@ -494,6 +530,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Startup.
+        /// </summary>
+        internal static string StartupSettingName {
+            get {
+                return ResourceManager.GetString("StartupSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Storage.
         /// </summary>
         internal static string StorageSettingName {
@@ -598,6 +643,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string UsbSettingName {
             get {
                 return ResourceManager.GetString("UsbSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video playback.
+        /// </summary>
+        internal static string VideoPlaybackSettingName {
+            get {
+                return ResourceManager.GetString("VideoPlaybackSettingName", resourceCulture);
             }
         }
         

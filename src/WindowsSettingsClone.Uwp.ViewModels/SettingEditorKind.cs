@@ -70,5 +70,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         Taskbar,
 
         #endregion Personalization
+
+        #region Apps
+
+        AppsAndFeatures,
+        DefaultApps,
+        OfflineMaps,
+        AppsForWebsites,
+        VideoPlayback,
+        Startup,
+
+        #endregion Apps
     }
 }

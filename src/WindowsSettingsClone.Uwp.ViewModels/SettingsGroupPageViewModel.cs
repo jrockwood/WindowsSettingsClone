@@ -204,7 +204,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                                 Strings.ColorsSettingName),
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.LockScreen,
-                                GlyphInfo.LockscreenDesktop,
+                                GlyphInfo.LockScreenDesktop,
                                 Strings.LockScreenSettingName),
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Themes,
@@ -225,7 +225,36 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Apps:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.AppsGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.AppsAndFeatures,
+                                GlyphInfo.AllApps,
+                                Strings.AppsAndFeaturesSettingName) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.DefaultApps,
+                                GlyphInfo.OpenWith,
+                                Strings.DefaultAppsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.OfflineMaps,
+                                GlyphInfo.DownloadMap,
+                                Strings.OfflineMapsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.AppsForWebsites,
+                                GlyphInfo.NewWindow,
+                                Strings.AppsForWebsitesSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.VideoPlayback,
+                                GlyphInfo.Video,
+                                Strings.VideoPlaybackSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Startup,
+                                GlyphInfo.SetLockScreen,
+                                Strings.StartupSettingName),
+                        });
 
                 case SettingGroupKind.Accounts:
                     break;

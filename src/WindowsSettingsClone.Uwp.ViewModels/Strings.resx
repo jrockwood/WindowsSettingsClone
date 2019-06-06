@@ -129,6 +129,14 @@
     <value>Accounts</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="AppsAndFeaturesSettingName" xml:space="preserve">
+    <value>Apps &amp; features</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="AppsForWebsitesSettingName" xml:space="preserve">
+    <value>Apps for websites</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="AppsGroupDescription" xml:space="preserve">
     <value>Uninstall, defaults, optional features</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -167,6 +175,10 @@
   </data>
   <data name="DataUsageSettingName" xml:space="preserve">
     <value>Data usage</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="DefaultAppsSettingName" xml:space="preserve">
+    <value>Default apps</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="DevicesGroupDescription" xml:space="preserve">
@@ -241,6 +253,10 @@
     <value>Notifications &amp; actions</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="OfflineMapsSettingName" xml:space="preserve">
+    <value>Offline maps</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="PenAndWindowsInkSettingName" xml:space="preserve">
     <value>Pen &amp; Windows Ink</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -309,6 +325,10 @@
     <value>Start</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="StartupSettingName" xml:space="preserve">
+    <value>Startup</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="StorageSettingName" xml:space="preserve">
     <value>Storage</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -355,6 +375,10 @@
   </data>
   <data name="UsbSettingName" xml:space="preserve">
     <value>USB</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="VideoPlaybackSettingName" xml:space="preserve">
+    <value>Video playback</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="VpnSettingName" xml:space="preserve">
