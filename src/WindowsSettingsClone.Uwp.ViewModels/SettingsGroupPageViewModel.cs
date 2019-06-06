@@ -289,7 +289,28 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.TimeAndLanguage:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.TimeAndLanguage,
+                        Strings.TimeAndLanguageGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.DateAndTimeSettingName,
+                                SettingEditorKind.DateAndTime,
+                                GlyphInfo.DateTime) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                Strings.RegionSettingName,
+                                SettingEditorKind.Region,
+                                GlyphInfo.World),
+                            new SettingNavigationInfoViewModel(
+                                Strings.LanguageSettingName,
+                                SettingEditorKind.Language,
+                                GlyphInfo.Characters),
+                            new SettingNavigationInfoViewModel(
+                                Strings.SpeechSettingName,
+                                SettingEditorKind.Speech,
+                                GlyphInfo.Microphone),
+                        });
 
                 case SettingGroupKind.Gaming:
                     break;

@@ -92,5 +92,14 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         SyncYourSettings,
 
         #endregion Accounts
+
+        #region Time & Language
+
+        DateAndTime,
+        Region,
+        Language,
+        Speech,
+
+        #endregion Time & Language
     }
 }

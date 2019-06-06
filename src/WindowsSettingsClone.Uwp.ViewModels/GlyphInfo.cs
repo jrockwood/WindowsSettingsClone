@@ -29,6 +29,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Contact = new GlyphInfo("\uE77B");
         public static readonly GlyphInfo ContactInfo = new GlyphInfo("\uE779");
         public static readonly GlyphInfo Cortana = new GlyphInfo("\uE832", SettingsMdl2FontFamilyName);
+        public static readonly GlyphInfo DateTime = new GlyphInfo("\uEC92");
         public static readonly GlyphInfo Devices = new GlyphInfo("\uE772");
         public static readonly GlyphInfo DialUp = new GlyphInfo("\uE83C");
         public static readonly GlyphInfo DockBottom = new GlyphInfo("\uE90E");
@@ -46,6 +47,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo LockScreenDesktop = new GlyphInfo("\uEE3F");
         public static readonly GlyphInfo Mail = new GlyphInfo("\uE715");
         public static readonly GlyphInfo Message = new GlyphInfo("\uE8BD");
+        public static readonly GlyphInfo Microphone = new GlyphInfo("\uE720");
         public static readonly GlyphInfo Mouse = new GlyphInfo("\uE962");
         public static readonly GlyphInfo MyNetwork = new GlyphInfo("\uEC27");
         public static readonly GlyphInfo NewWindow = new GlyphInfo("\uE78B");
@@ -76,6 +78,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Video = new GlyphInfo("\uE714");
         public static readonly GlyphInfo Vpn = new GlyphInfo("\uE705");
         public static readonly GlyphInfo Work = new GlyphInfo("\uE821");
+        public static readonly GlyphInfo World = new GlyphInfo("\uE909");
         public static readonly GlyphInfo XboxLogo = new GlyphInfo("\uF20B", SettingsMdl2FontFamilyName);
 
         //// ===========================================================================================================

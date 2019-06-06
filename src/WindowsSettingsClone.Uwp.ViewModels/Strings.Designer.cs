@@ -206,6 +206,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date &amp; time.
+        /// </summary>
+        internal static string DateAndTimeSettingName {
+            get {
+                return ResourceManager.GetString("DateAndTimeSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default apps.
         /// </summary>
         internal static string DefaultAppsSettingName {
@@ -328,6 +337,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string GamingGroupName {
             get {
                 return ResourceManager.GetString("GamingGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string LanguageSettingName {
+            get {
+                return ResourceManager.GetString("LanguageSettingName", resourceCulture);
             }
         }
         
@@ -503,6 +521,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        internal static string RegionSettingName {
+            get {
+                return ResourceManager.GetString("RegionSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remote Desktop.
         /// </summary>
         internal static string RemoteDesktopSettingName {
@@ -553,6 +580,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string SoundSettingName {
             get {
                 return ResourceManager.GetString("SoundSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech.
+        /// </summary>
+        internal static string SpeechSettingName {
+            get {
+                return ResourceManager.GetString("SpeechSettingName", resourceCulture);
             }
         }
         

@@ -181,6 +181,10 @@
     <value>Data usage</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="DateAndTimeSettingName" xml:space="preserve">
+    <value>Date &amp; time</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="DefaultAppsSettingName" xml:space="preserve">
     <value>Default apps</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -236,6 +240,10 @@
   <data name="GamingGroupName" xml:space="preserve">
     <value>Gaming</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="LanguageSettingName" xml:space="preserve">
+    <value>Language</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="LockScreenSettingName" xml:space="preserve">
     <value>Lock screen</value>
@@ -313,6 +321,10 @@
     <value>Proxy</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="RegionSettingName" xml:space="preserve">
+    <value>Region</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="RemoteDesktopSettingName" xml:space="preserve">
     <value>Remote Desktop</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -335,6 +347,10 @@
   </data>
   <data name="SoundSettingName" xml:space="preserve">
     <value>Sound</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="SpeechSettingName" xml:space="preserve">
+    <value>Speech</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="StartSettingName" xml:space="preserve">
