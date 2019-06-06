@@ -11,6 +11,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Utility
 
     internal static class Param
     {
+        public static T VerifyNotNull<T>(T value, string parameterName) where T : class
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(parameterName);
+            }
+
+            return value;
+        }
+
         public static string VerifyString(string value, string parameterName)
         {
             if (value is null)

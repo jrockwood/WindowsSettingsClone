@@ -1,22 +1,17 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPage.xaml.cs" company="Justin Rockwood">
+// <copyright file="IPlatformCapabilityService.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Views
+namespace WindowsSettingsClone.Uwp.ViewModels.ViewServices
 {
-    using Windows.UI.Xaml.Controls;
-
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Interface for querying the underlying platform capabilities.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public interface IPlatformCapabilityService
     {
-        public MainPage() => InitializeComponent();
-
-        private void OnSettingsGridViewSelectionChanged(object sender, SelectionChangedEventArgs e) =>
-            SettingsGridView.SelectedItem = null;
+        bool IsRevealBrushSupported { get; }
     }
 }

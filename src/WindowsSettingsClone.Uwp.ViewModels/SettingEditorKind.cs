@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="GlyphKind.cs" company="Justin Rockwood">
+// <copyright file="SettingEditorKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -8,22 +8,22 @@
 namespace WindowsSettingsClone.Uwp.ViewModels
 {
     /// <summary>
-    /// Enumerates the different kinds of glyphs that are available via system or packaged fonts.
+    /// Enumerates the different types of settings editors.
     /// </summary>
-    public enum GlyphKind
+    public enum SettingEditorKind
     {
-        System,
-        Devices,
-        Phone,
-        NetworkAndInternet,
-        Personalization,
-        Apps,
-        Accounts,
-        TimeAndLanguage,
-        Gaming,
-        EaseOfAccess,
-        Cortana,
-        Privacy,
-        UpdateAndSecurity,
+        Display,
+        Sound,
+        NotificationsAndActions,
+        FocusAssist,
+        PowerAndSleep,
+        Storage,
+        TabletMode,
+        Multitasking,
+        ProjectingToThisPC,
+        SharedExperiences,
+        Clipboard,
+        RemoteDesktop,
+        About
     }
 }

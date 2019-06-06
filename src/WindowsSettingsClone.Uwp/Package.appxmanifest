@@ -1,54 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="Rockwood.WindowsSettingsClone"
-    Publisher="CN=justi"
-    Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="12bb5738-5aba-427f-884d-9cdd2483f06e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="Rockwood.WindowsSettingsClone" Publisher="CN=justi" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="12bb5738-5aba-427f-884d-9cdd2483f06e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>WindowsSettingsClone</DisplayName>
+    <DisplayName>Settings [Clone]</DisplayName>
     <PublisherDisplayName>Justin Rockwood</PublisherDisplayName>
     <Logo>Assets\PackageLogo.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="WindowsSettingsClone.App">
-      <uap:VisualElements
-        DisplayName="Settings [Clone]"
-        Description="Clone of the Windows 10 Settings app. Used as a learning tool."
-        BackgroundColor="transparent"
-        Square150x150Logo="Assets\MediumTile.png"
-        Square44x44Logo="Assets\AppIcon.png">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WindowsSettingsClone.App">
+      <uap:VisualElements DisplayName="Settings [Clone]" Description="Clone of the Windows 10 Settings app. Used as a learning tool." BackgroundColor="transparent" Square150x150Logo="Assets\MediumTile.png" Square44x44Logo="Assets\AppIcon.png">
         <uap:DefaultTile Square71x71Logo="Assets\SmallTile.png" Wide310x150Logo="Assets\WideTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Settings">
           <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo"/>
-            <uap:ShowOn Tile="square310x310Logo"/>
-            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
