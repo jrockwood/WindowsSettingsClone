@@ -58,5 +58,17 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         Proxy,
 
         #endregion Network & Internet
+
+        #region Personalization
+
+        Background,
+        Colors,
+        LockScreen,
+        Themes,
+        Fonts,
+        Start,
+        Taskbar,
+
+        #endregion Personalization
     }
 }

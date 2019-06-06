@@ -141,12 +141,20 @@
     <value>AutoPlay</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="BackgroundSettingName" xml:space="preserve">
+    <value>Background</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="BluetoothAndOtherDevicesSettingName" xml:space="preserve">
     <value>Bluetooth &amp; other devices</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="ClipboardSettingName" xml:space="preserve">
     <value>Clipboard</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ColorsSettingName" xml:space="preserve">
+    <value>Colors</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="CortanaGroupDescription" xml:space="preserve">
@@ -193,6 +201,10 @@
     <value>Focus assist</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="FontsSettingName" xml:space="preserve">
+    <value>Fonts</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="GamingGroupDescription" xml:space="preserve">
     <value>Game bar, captures, broadcasting, Game Mode</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -200,6 +212,10 @@
   <data name="GamingGroupName" xml:space="preserve">
     <value>Gaming</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="LockScreenSettingName" xml:space="preserve">
+    <value>Lock screen</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="MouseSettingName" xml:space="preserve">
     <value>Mouse</value>
@@ -289,6 +305,10 @@
     <value>Sound</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="StartSettingName" xml:space="preserve">
+    <value>Start</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="StorageSettingName" xml:space="preserve">
     <value>Storage</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -303,6 +323,14 @@
   </data>
   <data name="TabletModeSettingName" xml:space="preserve">
     <value>Tablet mode</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="TaskbarSettingName" xml:space="preserve">
+    <value>Taskbar</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ThemesSettingName" xml:space="preserve">
+    <value>Themes</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="TimeAndLanguageGroupDescription" xml:space="preserve">

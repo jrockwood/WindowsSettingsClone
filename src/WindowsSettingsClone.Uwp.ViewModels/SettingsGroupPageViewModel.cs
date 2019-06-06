@@ -189,7 +189,40 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Personalization:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.PersonalizationGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Background,
+                                GlyphInfo.Photo2,
+                                Strings.BackgroundSettingName) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Colors,
+                                GlyphInfo.Color,
+                                Strings.ColorsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.LockScreen,
+                                GlyphInfo.LockscreenDesktop,
+                                Strings.LockScreenSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Themes,
+                                GlyphInfo.Personalize,
+                                Strings.ThemesSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Fonts,
+                                GlyphInfo.Font,
+                                Strings.FontsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Start,
+                                GlyphInfo.Tiles,
+                                Strings.StartSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Taskbar,
+                                GlyphInfo.DockBottom,
+                                Strings.TaskbarSettingName),
+                        });
 
                 case SettingGroupKind.Apps:
                     break;
@@ -223,8 +256,8 @@ namespace WindowsSettingsClone.Uwp.ViewModels
             }
 
             return new SettingsGroupPageViewModel(
-                SettingGroupKind.Accounts,
-                "Accounts",
+                groupKind,
+                groupKind.ToString(),
                 new SettingNavigationInfoViewModel[0]);
         }
     }

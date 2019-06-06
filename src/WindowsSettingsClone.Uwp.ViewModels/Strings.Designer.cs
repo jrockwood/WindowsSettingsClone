@@ -116,6 +116,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background.
+        /// </summary>
+        internal static string BackgroundSettingName {
+            get {
+                return ResourceManager.GetString("BackgroundSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bluetooth &amp; other devices.
         /// </summary>
         internal static string BluetoothAndOtherDevicesSettingName {
@@ -130,6 +139,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string ClipboardSettingName {
             get {
                 return ResourceManager.GetString("ClipboardSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        internal static string ColorsSettingName {
+            get {
+                return ResourceManager.GetString("ColorsSettingName", resourceCulture);
             }
         }
         
@@ -233,6 +251,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fonts.
+        /// </summary>
+        internal static string FontsSettingName {
+            get {
+                return ResourceManager.GetString("FontsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game bar, captures, broadcasting, Game Mode.
         /// </summary>
         internal static string GamingGroupDescription {
@@ -247,6 +274,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string GamingGroupName {
             get {
                 return ResourceManager.GetString("GamingGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lock screen.
+        /// </summary>
+        internal static string LockScreenSettingName {
+            get {
+                return ResourceManager.GetString("LockScreenSettingName", resourceCulture);
             }
         }
         
@@ -449,6 +485,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string StartSettingName {
+            get {
+                return ResourceManager.GetString("StartSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Storage.
         /// </summary>
         internal static string StorageSettingName {
@@ -481,6 +526,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string TabletModeSettingName {
             get {
                 return ResourceManager.GetString("TabletModeSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taskbar.
+        /// </summary>
+        internal static string TaskbarSettingName {
+            get {
+                return ResourceManager.GetString("TaskbarSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string ThemesSettingName {
+            get {
+                return ResourceManager.GetString("ThemesSettingName", resourceCulture);
             }
         }
         
