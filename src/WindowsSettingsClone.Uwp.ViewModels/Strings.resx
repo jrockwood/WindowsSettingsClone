@@ -149,6 +149,10 @@
     <value>Apps</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="AudioSettingName" xml:space="preserve">
+    <value>Audio</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="AutoPlaySettingName" xml:space="preserve">
     <value>AutoPlay</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -173,6 +177,14 @@
     <value>Clipboard</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="ClosedCaptionsSettingName" xml:space="preserve">
+    <value>Closed captions</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ColorFiltersSettingName" xml:space="preserve">
+    <value>Color filters</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="ColorsSettingName" xml:space="preserve">
     <value>Colors</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -184,6 +196,10 @@
   <data name="CortanaGroupName" xml:space="preserve">
     <value>Cortana</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="CursorAndPointerSettingName" xml:space="preserve">
+    <value>Cursor &amp; pointer</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="DataUsageSettingName" xml:space="preserve">
     <value>Data usage</value>
@@ -229,6 +245,10 @@
     <value>Ethernet</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="EyeControlSettingName" xml:space="preserve">
+    <value>Eye control</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="FamilyAndOtherUsersSettingName" xml:space="preserve">
     <value>Family &amp; other users</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -257,6 +277,22 @@
     <value>Gaming</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="HearingSettingHeader" xml:space="preserve">
+    <value>Hearing</value>
+    <comment>Header for a sub group in the navigation pane</comment>
+  </data>
+  <data name="HighContrastSettingName" xml:space="preserve">
+    <value>High contrast</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="InteractionSettingHeader" xml:space="preserve">
+    <value>Interaction</value>
+    <comment>Header for a sub group in the navigation pane</comment>
+  </data>
+  <data name="KeyboardSettingName" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="LanguageSettingName" xml:space="preserve">
     <value>Language</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -265,12 +301,20 @@
     <value>Lock screen</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="MagnifierSettingName" xml:space="preserve">
+    <value>Magnifier</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="MouseSettingName" xml:space="preserve">
     <value>Mouse</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="MultitaskingSettingName" xml:space="preserve">
     <value>Multitasking</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="NarratorSettingName" xml:space="preserve">
+    <value>Narrator</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="NetworkAndInternetGroupDescription" xml:space="preserve">
@@ -432,6 +476,10 @@
   <data name="VideoPlaybackSettingName" xml:space="preserve">
     <value>Video playback</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="VisionSettingHeader" xml:space="preserve">
+    <value>Vision</value>
+    <comment>Header for a sub group in the navigation pane</comment>
   </data>
   <data name="VpnSettingName" xml:space="preserve">
     <value>VPN</value>

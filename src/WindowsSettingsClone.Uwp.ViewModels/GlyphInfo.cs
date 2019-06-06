@@ -22,7 +22,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public static readonly GlyphInfo AddFriend = new GlyphInfo("\uE8FA");
         public static readonly GlyphInfo AllApps = new GlyphInfo("\uE71D");
+        public static readonly GlyphInfo Brightness = new GlyphInfo("\uE706");
         public static readonly GlyphInfo Captures = new GlyphInfo("\uED36", SettingsMdl2FontFamilyName);
+        public static readonly GlyphInfo CC = new GlyphInfo("\uE7F0");
         public static readonly GlyphInfo CellPhone = new GlyphInfo("\uE8EA");
         public static readonly GlyphInfo Characters = new GlyphInfo("\uE8C1");
         public static readonly GlyphInfo Color = new GlyphInfo("\uE790");
@@ -38,6 +40,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo EaseOfAccess = new GlyphInfo("\uE776");
         public static readonly GlyphInfo Error = new GlyphInfo("\uE783");
         public static readonly GlyphInfo Ethernet = new GlyphInfo("\uE839");
+        public static readonly GlyphInfo EyeGaze = new GlyphInfo("\uF19D");
         public static readonly GlyphInfo Font = new GlyphInfo("\uE8D2");
         public static readonly GlyphInfo GameBar = new GlyphInfo("\uF192", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Globe = new GlyphInfo("\uE774");
@@ -52,6 +55,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Microphone = new GlyphInfo("\uE720");
         public static readonly GlyphInfo Mouse = new GlyphInfo("\uE962");
         public static readonly GlyphInfo MyNetwork = new GlyphInfo("\uEC27");
+        public static readonly GlyphInfo Narrator = new GlyphInfo("\uED4D");
         public static readonly GlyphInfo NewWindow = new GlyphInfo("\uE78B");
         public static readonly GlyphInfo OpenWith = new GlyphInfo("\uE7AC");
         public static readonly GlyphInfo Paste = new GlyphInfo("\uE77F");
@@ -76,6 +80,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo TaskView = new GlyphInfo("\uE7C4");
         public static readonly GlyphInfo Tiles = new GlyphInfo("\uECA5");
         public static readonly GlyphInfo TimeLanguage = new GlyphInfo("\uE775");
+        public static readonly GlyphInfo TouchPointer = new GlyphInfo("\uE7C9");
         public static readonly GlyphInfo TvMonitor = new GlyphInfo("\uE7F4");
         public static readonly GlyphInfo Usb = new GlyphInfo("\uE88E");
         public static readonly GlyphInfo Volume = new GlyphInfo("\uE767");
@@ -84,6 +89,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Work = new GlyphInfo("\uE821");
         public static readonly GlyphInfo World = new GlyphInfo("\uE909");
         public static readonly GlyphInfo XboxLogo = new GlyphInfo("\uF20B", SettingsMdl2FontFamilyName);
+        public static readonly GlyphInfo ZoomIn = new GlyphInfo("\uE8A3");
 
         //// ===========================================================================================================
         //// Constructors

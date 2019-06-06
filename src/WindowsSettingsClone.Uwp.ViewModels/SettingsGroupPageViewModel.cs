@@ -341,7 +341,60 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.EaseOfAccess:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.EaseOfAccess,
+                        Strings.EaseOfAccessGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.DisplaySettingName,
+                                SettingEditorKind.EaseOfAccessDisplay,
+                                GlyphInfo.TvMonitor) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                Strings.CursorAndPointerSettingName,
+                                SettingEditorKind.CursorAndPointer,
+                                GlyphInfo.TouchPointer),
+                            new SettingNavigationInfoViewModel(
+                                Strings.MagnifierSettingName,
+                                SettingEditorKind.Magnifier,
+                                GlyphInfo.ZoomIn),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ColorFiltersSettingName,
+                                SettingEditorKind.ColorFilters,
+                                GlyphInfo.Color),
+                            new SettingNavigationInfoViewModel(
+                                Strings.HighContrastSettingName,
+                                SettingEditorKind.HighContrast,
+                                GlyphInfo.Brightness),
+                            new SettingNavigationInfoViewModel(
+                                Strings.NarratorSettingName,
+                                SettingEditorKind.Narrator,
+                                GlyphInfo.Narrator),
+                            new SettingNavigationInfoViewModel(
+                                Strings.AudioSettingName,
+                                SettingEditorKind.Audio,
+                                GlyphInfo.Volume),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ClosedCaptionsSettingName,
+                                SettingEditorKind.ClosedCaptions,
+                                GlyphInfo.CC),
+                            new SettingNavigationInfoViewModel(
+                                Strings.SpeechSettingName,
+                                SettingEditorKind.EaseOfAccessSpeech,
+                                GlyphInfo.Microphone),
+                            new SettingNavigationInfoViewModel(
+                                Strings.KeyboardSettingName,
+                                SettingEditorKind.EaseOfAccessKeyboard,
+                                GlyphInfo.KeyboardClassic),
+                            new SettingNavigationInfoViewModel(
+                                Strings.MouseSettingName,
+                                SettingEditorKind.EaseOfAccessMouse,
+                                GlyphInfo.Mouse),
+                            new SettingNavigationInfoViewModel(
+                                Strings.EyeControlSettingName,
+                                SettingEditorKind.EyeControl,
+                                GlyphInfo.EyeGaze),
+                        });
 
                 case SettingGroupKind.Search:
                     break;

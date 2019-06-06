@@ -134,6 +134,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio.
+        /// </summary>
+        internal static string AudioSettingName {
+            get {
+                return ResourceManager.GetString("AudioSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPlay.
         /// </summary>
         internal static string AutoPlaySettingName {
@@ -188,6 +197,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed captions.
+        /// </summary>
+        internal static string ClosedCaptionsSettingName {
+            get {
+                return ResourceManager.GetString("ClosedCaptionsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color filters.
+        /// </summary>
+        internal static string ColorFiltersSettingName {
+            get {
+                return ResourceManager.GetString("ColorFiltersSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         internal static string ColorsSettingName {
@@ -211,6 +238,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string CortanaGroupName {
             get {
                 return ResourceManager.GetString("CortanaGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursor &amp; pointer.
+        /// </summary>
+        internal static string CursorAndPointerSettingName {
+            get {
+                return ResourceManager.GetString("CursorAndPointerSettingName", resourceCulture);
             }
         }
         
@@ -314,6 +350,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eye control.
+        /// </summary>
+        internal static string EyeControlSettingName {
+            get {
+                return ResourceManager.GetString("EyeControlSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Family &amp; other users.
         /// </summary>
         internal static string FamilyAndOtherUsersSettingName {
@@ -377,6 +422,42 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hearing.
+        /// </summary>
+        internal static string HearingSettingHeader {
+            get {
+                return ResourceManager.GetString("HearingSettingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High contrast.
+        /// </summary>
+        internal static string HighContrastSettingName {
+            get {
+                return ResourceManager.GetString("HighContrastSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interaction.
+        /// </summary>
+        internal static string InteractionSettingHeader {
+            get {
+                return ResourceManager.GetString("InteractionSettingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string KeyboardSettingName {
+            get {
+                return ResourceManager.GetString("KeyboardSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string LanguageSettingName {
@@ -395,6 +476,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Magnifier.
+        /// </summary>
+        internal static string MagnifierSettingName {
+            get {
+                return ResourceManager.GetString("MagnifierSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mouse.
         /// </summary>
         internal static string MouseSettingName {
@@ -409,6 +499,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string MultitaskingSettingName {
             get {
                 return ResourceManager.GetString("MultitaskingSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Narrator.
+        /// </summary>
+        internal static string NarratorSettingName {
+            get {
+                return ResourceManager.GetString("NarratorSettingName", resourceCulture);
             }
         }
         
@@ -769,6 +868,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string VideoPlaybackSettingName {
             get {
                 return ResourceManager.GetString("VideoPlaybackSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision.
+        /// </summary>
+        internal static string VisionSettingHeader {
+            get {
+                return ResourceManager.GetString("VisionSettingHeader", resourceCulture);
             }
         }
         

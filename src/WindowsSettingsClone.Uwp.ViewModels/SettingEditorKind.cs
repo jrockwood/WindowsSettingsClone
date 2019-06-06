@@ -111,5 +111,22 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         XboxNetworking,
 
         #endregion Gaming
+
+        #region Ease of Access
+
+        EaseOfAccessDisplay,
+        CursorAndPointer,
+        Magnifier,
+        ColorFilters,
+        HighContrast,
+        Narrator,
+        Audio,
+        ClosedCaptions,
+        EaseOfAccessSpeech,
+        EaseOfAccessKeyboard,
+        EaseOfAccessMouse,
+        EyeControl,
+
+        #endregion Ease of Access
     }
 }
