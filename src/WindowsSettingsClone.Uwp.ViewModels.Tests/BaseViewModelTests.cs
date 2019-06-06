@@ -7,6 +7,8 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels.Tests
 {
+    using FluentAssertions;
+    using FluentAssertions.Events;
     using NUnit.Framework;
 
     public class BaseViewModelTests
@@ -15,43 +17,43 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests
         public void SetProperty_should_set_the_new_value()
         {
             var vm = new TestViewModel { Prop = "new value" };
-            Assert.That(vm.Prop, Is.EqualTo("new value"));
+            vm.Prop.Should().Be("new value");
         }
 
         [Test]
         public void SetProperty_should_return_false_if_the_value_is_the_same()
         {
             var vm = new TestViewModel { Prop = TestViewModel.InitialPropValue };
-            Assert.That(vm.LastSetPropertyResult, Is.False);
+            vm.LastSetPropertyResult.Should().BeFalse();
         }
 
         [Test]
         public void SetProperty_should_return_true_if_the_value_is_different()
         {
             var vm = new TestViewModel { Prop = "new value" };
-            Assert.That(vm.LastSetPropertyResult, Is.True);
+            vm.LastSetPropertyResult.Should().BeTrue();
         }
 
         [Test]
         public void SetProperty_should_not_raise_PropertyChanged_if_the_value_is_the_same()
         {
             var vm = new TestViewModel();
-            bool raised = false;
-            vm.PropertyChanged += (sender, args) => raised = true;
-
-            vm.Prop = TestViewModel.InitialPropValue;
-            Assert.That(raised, Is.False);
+            using (IMonitor<TestViewModel> monitoredVm = vm.Monitor())
+            {
+                vm.Prop = TestViewModel.InitialPropValue;
+                monitoredVm.Should().NotRaisePropertyChangeFor(x => x.Prop);
+            }
         }
 
         [Test]
         public void SetProperty_should_raise_PropertyChanged_if_the_value_is_different()
         {
             var vm = new TestViewModel();
-            bool raised = false;
-            vm.PropertyChanged += (sender, args) => raised = true;
-
-            vm.Prop = "new value";
-            Assert.That(raised, Is.True);
+            using (IMonitor<TestViewModel> monitoredVm = vm.Monitor())
+            {
+                vm.Prop = "new value";
+                monitoredVm.Should().RaisePropertyChangeFor(x => x.Prop);
+            }
         }
 
         private sealed class TestViewModel : BaseViewModel
