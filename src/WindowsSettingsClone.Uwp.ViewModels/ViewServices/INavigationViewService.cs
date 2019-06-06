@@ -14,6 +14,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels.ViewServices
     /// </summary>
     public interface INavigationViewService
     {
+        //// ===========================================================================================================
+        //// Events
+        //// ===========================================================================================================
+
+        event EventHandler BackStackDepthChange;
+
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
+        /// <summary>
+        /// Gets a value that indicates whether there is at least one entry in back navigation history.
+        /// </summary>
+        bool CanGoBack { get; }
+
+        int BackStackDepth { get; }
+
+        //// ===========================================================================================================
+        //// Methods
+        //// ===========================================================================================================
+
+        void GoBack();
+
         void NavigateTo(Type pageViewModelType, string pageViewModelState);
     }
 }
