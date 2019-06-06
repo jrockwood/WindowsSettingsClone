@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.Uwp.Views
 {
     using System;
+    using ViewModels;
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.Core;
@@ -39,6 +40,12 @@ namespace WindowsSettingsClone.Uwp.Views
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
         }
+
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
+
+        public TitleBarViewModel ViewModel { get; set; }
 
         //// ===========================================================================================================
         //// Methods

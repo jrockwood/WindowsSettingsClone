@@ -9,7 +9,7 @@
       mc:Ignorable="d">
 
   <Grid>
-    <views:TitleBar x:Name="AppTitleBar" />
+    <views:TitleBar x:Name="AppTitleBar" ViewModel="{x:Bind TitleBarViewModel}" />
     <Frame x:Name="RootFrame" NavigationFailed="OnNavigationFailed" />
   </Grid>
 </Page>

@@ -67,4 +67,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Utility
 
         public void Execute(T parameter) => _executeAction(parameter);
     }
+
+    /// <summary>
+    /// Implements an <see cref="ICommand"/> interface by calling delegates specified in the constructor.
+    /// </summary>
+    internal class RelayCommand : RelayCommand<object>
+    {
+        public RelayCommand(Action executeAction, bool enabled = true)
+            : base(_ => executeAction(), enabled)
+        {
+        }
+    }
 }
