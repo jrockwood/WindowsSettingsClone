@@ -12,6 +12,8 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// </summary>
     public enum SettingEditorKind
     {
+        #region System
+
         Display,
         Sound,
         NotificationsAndActions,
@@ -24,6 +26,37 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         SharedExperiences,
         Clipboard,
         RemoteDesktop,
-        About
+        About,
+
+        #endregion System
+
+        #region Devices
+
+        BluetoothAndOtherDevices,
+        PrintersAndScanners,
+        Mouse,
+        Typing,
+        PenAndWindowsInk,
+        AutoPlay,
+        Usb,
+
+        #endregion Devices
+
+        #region Phone
+
+        Phone,
+
+        #endregion Phone
+
+        #region Network & Internet
+
+        NetworkStatus,
+        Ethernet,
+        DialUp,
+        Vpn,
+        DataUsage,
+        Proxy,
+
+        #endregion Network & Internet
     }
 }

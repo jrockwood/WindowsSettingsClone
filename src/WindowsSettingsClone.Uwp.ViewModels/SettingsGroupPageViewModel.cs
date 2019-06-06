@@ -29,12 +29,12 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         private SettingsGroupPageViewModel(
             SettingGroupKind groupKind,
             string groupName,
-            IEnumerable<SettingNavigationInfoViewModel> settings)
+            IEnumerable<SettingNavigationInfoViewModel> settings = null)
         {
             GroupKind = groupKind;
             GroupName = Param.VerifyString(groupName, nameof(groupName));
             Settings = new ReadOnlyCollection<SettingNavigationInfoViewModel>(
-                Param.VerifyNotNull(settings, nameof(settings)).ToList());
+                settings?.ToList() ?? new List<SettingNavigationInfoViewModel>());
         }
 
         //// ===========================================================================================================
@@ -66,7 +66,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Display,
                                 GlyphInfo.TvMonitor,
-                                Strings.DisplaySettingName) { IsSelected = true },
+                                Strings.DisplaySettingName) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Sound,
                                 GlyphInfo.Volume,
@@ -93,7 +93,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                                 Strings.TabletModeSettingName),
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.Multitasking,
-                                GlyphInfo.Multitasking,
+                                GlyphInfo.TaskView,
                                 Strings.MultitaskingSettingName),
                             new SettingNavigationInfoViewModel(
                                 SettingEditorKind.ProjectingToThisPC,
@@ -118,13 +118,75 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Devices:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.DevicesGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.BluetoothAndOtherDevices,
+                                GlyphInfo.Devices,
+                                Strings.BluetoothAndOtherDevicesSettingName) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.PrintersAndScanners,
+                                GlyphInfo.Print,
+                                Strings.PrintersAndScannersSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Mouse,
+                                GlyphInfo.Mouse,
+                                Strings.MouseSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Typing,
+                                GlyphInfo.KeyboardClassic,
+                                Strings.TypingSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.PenAndWindowsInk,
+                                GlyphInfo.PenWorkspace,
+                                Strings.PenAndWindowsInkSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.AutoPlay,
+                                GlyphInfo.PlaybackRate1x,
+                                Strings.AutoPlaySettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Usb,
+                                GlyphInfo.Usb,
+                                Strings.UsbSettingName),
+                        });
 
                 case SettingGroupKind.Phone:
-                    break;
+                    return new SettingsGroupPageViewModel(groupKind, Strings.PhoneGroupName);
 
                 case SettingGroupKind.NetworkAndInternet:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.NetworkAndInternetGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.NetworkStatus,
+                                GlyphInfo.MyNetwork,
+                                Strings.NetworkStatusSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Ethernet,
+                                GlyphInfo.Ethernet,
+                                Strings.EthernetSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.DialUp,
+                                GlyphInfo.DialUp,
+                                Strings.DialUpSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Vpn,
+                                GlyphInfo.Vpn,
+                                Strings.VpnSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.DataUsage,
+                                GlyphInfo.PieSingle,
+                                Strings.DataUsageSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.Proxy,
+                                GlyphInfo.Globe,
+                                Strings.ProxySettingName),
+                        });
 
                 case SettingGroupKind.Personalization:
                     break;

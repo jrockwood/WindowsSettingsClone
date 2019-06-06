@@ -107,6 +107,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AutoPlay.
+        /// </summary>
+        internal static string AutoPlaySettingName {
+            get {
+                return ResourceManager.GetString("AutoPlaySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bluetooth &amp; other devices.
+        /// </summary>
+        internal static string BluetoothAndOtherDevicesSettingName {
+            get {
+                return ResourceManager.GetString("BluetoothAndOtherDevicesSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
         internal static string ClipboardSettingName {
@@ -134,6 +152,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data usage.
+        /// </summary>
+        internal static string DataUsageSettingName {
+            get {
+                return ResourceManager.GetString("DataUsageSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bluetooth, printers, mouse.
         /// </summary>
         internal static string DevicesGroupDescription {
@@ -148,6 +175,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string DevicesGroupName {
             get {
                 return ResourceManager.GetString("DevicesGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dial-up.
+        /// </summary>
+        internal static string DialUpSettingName {
+            get {
+                return ResourceManager.GetString("DialUpSettingName", resourceCulture);
             }
         }
         
@@ -179,6 +215,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ethernet.
+        /// </summary>
+        internal static string EthernetSettingName {
+            get {
+                return ResourceManager.GetString("EthernetSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Focus assist.
         /// </summary>
         internal static string FocusAssistSettingName {
@@ -202,6 +247,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string GamingGroupName {
             get {
                 return ResourceManager.GetString("GamingGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse.
+        /// </summary>
+        internal static string MouseSettingName {
+            get {
+                return ResourceManager.GetString("MouseSettingName", resourceCulture);
             }
         }
         
@@ -233,11 +287,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string NetworkStatusSettingName {
+            get {
+                return ResourceManager.GetString("NetworkStatusSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notifications &amp; actions.
         /// </summary>
         internal static string NotificationsAndActionsSettingName {
             get {
                 return ResourceManager.GetString("NotificationsAndActionsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pen &amp; Windows Ink.
+        /// </summary>
+        internal static string PenAndWindowsInkSettingName {
+            get {
+                return ResourceManager.GetString("PenAndWindowsInkSettingName", resourceCulture);
             }
         }
         
@@ -287,6 +359,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Printers &amp; scanners.
+        /// </summary>
+        internal static string PrintersAndScannersSettingName {
+            get {
+                return ResourceManager.GetString("PrintersAndScannersSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location, camera, microphone.
         /// </summary>
         internal static string PrivacyGroupDescription {
@@ -310,6 +391,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string ProjectingToThisPCSettingName {
             get {
                 return ResourceManager.GetString("ProjectingToThisPCSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proxy.
+        /// </summary>
+        internal static string ProxySettingName {
+            get {
+                return ResourceManager.GetString("ProxySettingName", resourceCulture);
             }
         }
         
@@ -413,6 +503,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Typing.
+        /// </summary>
+        internal static string TypingSettingName {
+            get {
+                return ResourceManager.GetString("TypingSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Windows Update, recovery, backup.
         /// </summary>
         internal static string UpdateAndSecurityGroupDescription {
@@ -427,6 +526,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string UpdateAndSecurityGroupName {
             get {
                 return ResourceManager.GetString("UpdateAndSecurityGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USB.
+        /// </summary>
+        internal static string UsbSettingName {
+            get {
+                return ResourceManager.GetString("UsbSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VPN.
+        /// </summary>
+        internal static string VpnSettingName {
+            get {
+                return ResourceManager.GetString("VpnSettingName", resourceCulture);
             }
         }
     }

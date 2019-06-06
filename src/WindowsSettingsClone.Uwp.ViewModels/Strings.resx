@@ -137,6 +137,14 @@
     <value>Apps</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="AutoPlaySettingName" xml:space="preserve">
+    <value>AutoPlay</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="BluetoothAndOtherDevicesSettingName" xml:space="preserve">
+    <value>Bluetooth &amp; other devices</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="ClipboardSettingName" xml:space="preserve">
     <value>Clipboard</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -149,6 +157,10 @@
     <value>Cortana</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="DataUsageSettingName" xml:space="preserve">
+    <value>Data usage</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="DevicesGroupDescription" xml:space="preserve">
     <value>Bluetooth, printers, mouse</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -156,6 +168,10 @@
   <data name="DevicesGroupName" xml:space="preserve">
     <value>Devices</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="DialUpSettingName" xml:space="preserve">
+    <value>Dial-up</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="DisplaySettingName" xml:space="preserve">
     <value>Display</value>
@@ -169,6 +185,10 @@
     <value>Ease of Access</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="EthernetSettingName" xml:space="preserve">
+    <value>Ethernet</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="FocusAssistSettingName" xml:space="preserve">
     <value>Focus assist</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -180,6 +200,10 @@
   <data name="GamingGroupName" xml:space="preserve">
     <value>Gaming</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="MouseSettingName" xml:space="preserve">
+    <value>Mouse</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="MultitaskingSettingName" xml:space="preserve">
     <value>Multitasking</value>
@@ -193,8 +217,16 @@
     <value>Network &amp; Internet</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="NetworkStatusSettingName" xml:space="preserve">
+    <value>Status</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="NotificationsAndActionsSettingName" xml:space="preserve">
     <value>Notifications &amp; actions</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="PenAndWindowsInkSettingName" xml:space="preserve">
+    <value>Pen &amp; Windows Ink</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="PersonalizationGroupDescription" xml:space="preserve">
@@ -217,6 +249,10 @@
     <value>Power &amp; sleep</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="PrintersAndScannersSettingName" xml:space="preserve">
+    <value>Printers &amp; scanners</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="PrivacyGroupDescription" xml:space="preserve">
     <value>Location, camera, microphone</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -227,6 +263,10 @@
   </data>
   <data name="ProjectingToThisPCSettingName" xml:space="preserve">
     <value>Projecting to this PC</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ProxySettingName" xml:space="preserve">
+    <value>Proxy</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="RemoteDesktopSettingName" xml:space="preserve">
@@ -273,6 +313,10 @@
     <value>Time &amp; Language</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="TypingSettingName" xml:space="preserve">
+    <value>Typing</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="UpdateAndSecurityGroupDescription" xml:space="preserve">
     <value>Windows Update, recovery, backup</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -280,5 +324,13 @@
   <data name="UpdateAndSecurityGroupName" xml:space="preserve">
     <value>Update &amp; Security</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="UsbSettingName" xml:space="preserve">
+    <value>USB</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="VpnSettingName" xml:space="preserve">
+    <value>VPN</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
 </root>
