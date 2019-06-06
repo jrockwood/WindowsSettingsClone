@@ -52,7 +52,7 @@
                    LineHeight="20"
                    LineStackingStrategy="BlockLineHeight"
                    OpticalMarginAlignment="TrimSideBearings"
-                   Text="{x:Bind Name}" />
+                   Text="{x:Bind DisplayName}" />
       </Grid>
     </DataTemplate>
 

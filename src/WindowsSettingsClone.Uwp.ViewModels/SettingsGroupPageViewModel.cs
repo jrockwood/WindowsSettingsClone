@@ -59,233 +59,233 @@ namespace WindowsSettingsClone.Uwp.ViewModels
             {
                 case SettingGroupKind.System:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.System,
                         Strings.SystemGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.DisplaySettingName,
                                 SettingEditorKind.Display,
-                                GlyphInfo.TvMonitor,
-                                Strings.DisplaySettingName) {IsSelected = true},
+                                GlyphInfo.TvMonitor) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
+                                Strings.SoundSettingName,
                                 SettingEditorKind.Sound,
-                                GlyphInfo.Volume,
-                                Strings.SoundSettingName),
+                                GlyphInfo.Volume),
                             new SettingNavigationInfoViewModel(
+                                Strings.NotificationsAndActionsSettingName,
                                 SettingEditorKind.NotificationsAndActions,
-                                GlyphInfo.Message,
-                                Strings.NotificationsAndActionsSettingName),
+                                GlyphInfo.Message),
                             new SettingNavigationInfoViewModel(
+                                Strings.FocusAssistSettingName,
                                 SettingEditorKind.FocusAssist,
-                                GlyphInfo.QuietHours,
-                                Strings.FocusAssistSettingName),
+                                GlyphInfo.QuietHours),
                             new SettingNavigationInfoViewModel(
+                                Strings.PowerAndSleepSettingName,
                                 SettingEditorKind.PowerAndSleep,
-                                GlyphInfo.PowerButton,
-                                Strings.PowerAndSleepSettingName),
+                                GlyphInfo.PowerButton),
                             new SettingNavigationInfoViewModel(
+                                Strings.StorageSettingName,
                                 SettingEditorKind.Storage,
-                                GlyphInfo.HardDrive,
-                                Strings.StorageSettingName),
+                                GlyphInfo.HardDrive),
                             new SettingNavigationInfoViewModel(
+                                Strings.TabletModeSettingName,
                                 SettingEditorKind.TabletMode,
-                                GlyphInfo.TabletMode,
-                                Strings.TabletModeSettingName),
+                                GlyphInfo.TabletMode),
                             new SettingNavigationInfoViewModel(
+                                Strings.MultitaskingSettingName,
                                 SettingEditorKind.Multitasking,
-                                GlyphInfo.TaskView,
-                                Strings.MultitaskingSettingName),
+                                GlyphInfo.TaskView),
                             new SettingNavigationInfoViewModel(
+                                Strings.ProjectingToThisPCSettingName,
                                 SettingEditorKind.ProjectingToThisPC,
-                                GlyphInfo.Project,
-                                Strings.ProjectingToThisPCSettingName),
+                                GlyphInfo.Project),
                             new SettingNavigationInfoViewModel(
+                                Strings.SharedExperiencesSettingName,
                                 SettingEditorKind.SharedExperiences,
-                                GlyphInfo.Connected,
-                                Strings.SharedExperiencesSettingName),
+                                GlyphInfo.Connected),
                             new SettingNavigationInfoViewModel(
+                                Strings.ClipboardSettingName,
                                 SettingEditorKind.Clipboard,
-                                GlyphInfo.Paste,
-                                Strings.ClipboardSettingName),
+                                GlyphInfo.Paste),
                             new SettingNavigationInfoViewModel(
+                                Strings.RemoteDesktopSettingName,
                                 SettingEditorKind.RemoteDesktop,
-                                GlyphInfo.Remote,
-                                Strings.RemoteDesktopSettingName),
+                                GlyphInfo.Remote),
                             new SettingNavigationInfoViewModel(
+                                Strings.AboutSettingName,
                                 SettingEditorKind.About,
-                                GlyphInfo.Info,
-                                Strings.AboutSettingName),
+                                GlyphInfo.Info),
                         });
 
                 case SettingGroupKind.Devices:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.Devices,
                         Strings.DevicesGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.BluetoothAndOtherDevicesSettingName,
                                 SettingEditorKind.BluetoothAndOtherDevices,
-                                GlyphInfo.Devices,
-                                Strings.BluetoothAndOtherDevicesSettingName) {IsSelected = true},
+                                GlyphInfo.Devices) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
+                                Strings.PrintersAndScannersSettingName,
                                 SettingEditorKind.PrintersAndScanners,
-                                GlyphInfo.Print,
-                                Strings.PrintersAndScannersSettingName),
+                                GlyphInfo.Print),
                             new SettingNavigationInfoViewModel(
+                                Strings.MouseSettingName,
                                 SettingEditorKind.Mouse,
-                                GlyphInfo.Mouse,
-                                Strings.MouseSettingName),
+                                GlyphInfo.Mouse),
                             new SettingNavigationInfoViewModel(
+                                Strings.TypingSettingName,
                                 SettingEditorKind.Typing,
-                                GlyphInfo.KeyboardClassic,
-                                Strings.TypingSettingName),
+                                GlyphInfo.KeyboardClassic),
                             new SettingNavigationInfoViewModel(
+                                Strings.PenAndWindowsInkSettingName,
                                 SettingEditorKind.PenAndWindowsInk,
-                                GlyphInfo.PenWorkspace,
-                                Strings.PenAndWindowsInkSettingName),
+                                GlyphInfo.PenWorkspace),
                             new SettingNavigationInfoViewModel(
+                                Strings.AutoPlaySettingName,
                                 SettingEditorKind.AutoPlay,
-                                GlyphInfo.PlaybackRate1x,
-                                Strings.AutoPlaySettingName),
+                                GlyphInfo.PlaybackRate1x),
                             new SettingNavigationInfoViewModel(
+                                Strings.UsbSettingName,
                                 SettingEditorKind.Usb,
-                                GlyphInfo.Usb,
-                                Strings.UsbSettingName),
+                                GlyphInfo.Usb),
                         });
 
                 case SettingGroupKind.Phone:
-                    return new SettingsGroupPageViewModel(groupKind, Strings.PhoneGroupName);
+                    return new SettingsGroupPageViewModel(SettingGroupKind.Phone, Strings.PhoneGroupName);
 
                 case SettingGroupKind.NetworkAndInternet:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.NetworkAndInternet,
                         Strings.NetworkAndInternetGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.NetworkStatusSettingName,
                                 SettingEditorKind.NetworkStatus,
-                                GlyphInfo.MyNetwork,
-                                Strings.NetworkStatusSettingName),
+                                GlyphInfo.MyNetwork),
                             new SettingNavigationInfoViewModel(
+                                Strings.EthernetSettingName,
                                 SettingEditorKind.Ethernet,
-                                GlyphInfo.Ethernet,
-                                Strings.EthernetSettingName),
+                                GlyphInfo.Ethernet),
                             new SettingNavigationInfoViewModel(
+                                Strings.DialUpSettingName,
                                 SettingEditorKind.DialUp,
-                                GlyphInfo.DialUp,
-                                Strings.DialUpSettingName),
+                                GlyphInfo.DialUp),
                             new SettingNavigationInfoViewModel(
+                                Strings.VpnSettingName,
                                 SettingEditorKind.Vpn,
-                                GlyphInfo.Vpn,
-                                Strings.VpnSettingName),
+                                GlyphInfo.Vpn),
                             new SettingNavigationInfoViewModel(
+                                Strings.DataUsageSettingName,
                                 SettingEditorKind.DataUsage,
-                                GlyphInfo.PieSingle,
-                                Strings.DataUsageSettingName),
+                                GlyphInfo.PieSingle),
                             new SettingNavigationInfoViewModel(
+                                Strings.ProxySettingName,
                                 SettingEditorKind.Proxy,
-                                GlyphInfo.Globe,
-                                Strings.ProxySettingName),
+                                GlyphInfo.Globe),
                         });
 
                 case SettingGroupKind.Personalization:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.Personalization,
                         Strings.PersonalizationGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.BackgroundSettingName,
                                 SettingEditorKind.Background,
-                                GlyphInfo.Photo2,
-                                Strings.BackgroundSettingName) {IsSelected = true},
+                                GlyphInfo.Photo2) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
+                                Strings.ColorsSettingName,
                                 SettingEditorKind.Colors,
-                                GlyphInfo.Color,
-                                Strings.ColorsSettingName),
+                                GlyphInfo.Color),
                             new SettingNavigationInfoViewModel(
+                                Strings.LockScreenSettingName,
                                 SettingEditorKind.LockScreen,
-                                GlyphInfo.LockScreenDesktop,
-                                Strings.LockScreenSettingName),
+                                GlyphInfo.LockScreenDesktop),
                             new SettingNavigationInfoViewModel(
+                                Strings.ThemesSettingName,
                                 SettingEditorKind.Themes,
-                                GlyphInfo.Personalize,
-                                Strings.ThemesSettingName),
+                                GlyphInfo.Personalize),
                             new SettingNavigationInfoViewModel(
+                                Strings.FontsSettingName,
                                 SettingEditorKind.Fonts,
-                                GlyphInfo.Font,
-                                Strings.FontsSettingName),
+                                GlyphInfo.Font),
                             new SettingNavigationInfoViewModel(
+                                Strings.StartSettingName,
                                 SettingEditorKind.Start,
-                                GlyphInfo.Tiles,
-                                Strings.StartSettingName),
+                                GlyphInfo.Tiles),
                             new SettingNavigationInfoViewModel(
+                                Strings.TaskbarSettingName,
                                 SettingEditorKind.Taskbar,
-                                GlyphInfo.DockBottom,
-                                Strings.TaskbarSettingName),
+                                GlyphInfo.DockBottom),
                         });
 
                 case SettingGroupKind.Apps:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.Apps,
                         Strings.AppsGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.AppsAndFeaturesSettingName,
                                 SettingEditorKind.AppsAndFeatures,
-                                GlyphInfo.AllApps,
-                                Strings.AppsAndFeaturesSettingName) {IsSelected = true},
+                                GlyphInfo.AllApps) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
+                                Strings.DefaultAppsSettingName,
                                 SettingEditorKind.DefaultApps,
-                                GlyphInfo.OpenWith,
-                                Strings.DefaultAppsSettingName),
+                                GlyphInfo.OpenWith),
                             new SettingNavigationInfoViewModel(
+                                Strings.OfflineMapsSettingName,
                                 SettingEditorKind.OfflineMaps,
-                                GlyphInfo.DownloadMap,
-                                Strings.OfflineMapsSettingName),
+                                GlyphInfo.DownloadMap),
                             new SettingNavigationInfoViewModel(
+                                Strings.AppsForWebsitesSettingName,
                                 SettingEditorKind.AppsForWebsites,
-                                GlyphInfo.NewWindow,
-                                Strings.AppsForWebsitesSettingName),
+                                GlyphInfo.NewWindow),
                             new SettingNavigationInfoViewModel(
+                                Strings.VideoPlaybackSettingName,
                                 SettingEditorKind.VideoPlayback,
-                                GlyphInfo.Video,
-                                Strings.VideoPlaybackSettingName),
+                                GlyphInfo.Video),
                             new SettingNavigationInfoViewModel(
+                                Strings.StartupSettingName,
                                 SettingEditorKind.Startup,
-                                GlyphInfo.SetLockScreen,
-                                Strings.StartupSettingName),
+                                GlyphInfo.SetLockScreen),
                         });
 
                 case SettingGroupKind.Accounts:
                     return new SettingsGroupPageViewModel(
-                        groupKind,
+                        SettingGroupKind.Accounts,
                         Strings.AccountsGroupName,
                         new[]
                         {
                             new SettingNavigationInfoViewModel(
+                                Strings.YourInfoSettingName,
                                 SettingEditorKind.YourInfo,
-                                GlyphInfo.ContactInfo,
-                                Strings.YourInfoSettingName) { IsSelected = true},
+                                GlyphInfo.ContactInfo) {IsSelected = true},
                             new SettingNavigationInfoViewModel(
+                                Strings.EmailAndAccountsSettingName,
                                 SettingEditorKind.EmailAndAccounts,
-                                GlyphInfo.Mail,
-                                Strings.EmailAndAccountsSettingName),
+                                GlyphInfo.Mail),
                             new SettingNavigationInfoViewModel(
+                                Strings.SignInOptionsSettingName,
                                 SettingEditorKind.SignInOptions,
-                                GlyphInfo.Permissions,
-                                Strings.SignInOptionsSettingName),
+                                GlyphInfo.Permissions),
                             new SettingNavigationInfoViewModel(
+                                Strings.AccessWorkOrSchoolSettingName,
                                 SettingEditorKind.AccessWorkOrSchool,
-                                GlyphInfo.Work,
-                                Strings.AccessWorkOrSchoolSettingName),
+                                GlyphInfo.Work),
                             new SettingNavigationInfoViewModel(
+                                Strings.FamilyAndOtherUsersSettingName,
                                 SettingEditorKind.FamilyAndOtherUsers,
-                                GlyphInfo.AddFriend,
-                                Strings.FamilyAndOtherUsersSettingName),
+                                GlyphInfo.AddFriend),
                             new SettingNavigationInfoViewModel(
+                                Strings.SyncYourSettingsSettingName,
                                 SettingEditorKind.SyncYourSettings,
-                                GlyphInfo.Sync,
-                                Strings.SyncYourSettingsSettingName),
+                                GlyphInfo.Sync),
                         });
 
                 case SettingGroupKind.TimeAndLanguage:
