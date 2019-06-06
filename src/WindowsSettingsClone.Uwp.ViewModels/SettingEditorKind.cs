@@ -81,5 +81,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         Startup,
 
         #endregion Apps
+
+        #region Accounts
+
+        YourInfo,
+        EmailAndAccounts,
+        SignInOptions,
+        AccessWorkOrSchool,
+        FamilyAndOtherUsers,
+        SyncYourSettings,
+
+        #endregion Accounts
     }
 }

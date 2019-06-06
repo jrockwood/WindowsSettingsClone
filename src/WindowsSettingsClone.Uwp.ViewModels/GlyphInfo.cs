@@ -20,12 +20,14 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public const string SegoeMdl2FontFamilyName = "Segoe MDL2 Assets";
         public const string SettingsMdl2FontFamilyName = "Settings MDL2 Assets";
 
+        public static readonly GlyphInfo AddFriend = new GlyphInfo("\uE8FA");
         public static readonly GlyphInfo AllApps = new GlyphInfo("\uE71D");
         public static readonly GlyphInfo CellPhone = new GlyphInfo("\uE8EA");
         public static readonly GlyphInfo Characters = new GlyphInfo("\uE8C1");
         public static readonly GlyphInfo Color = new GlyphInfo("\uE790");
         public static readonly GlyphInfo Connected = new GlyphInfo("\uF0B9");
         public static readonly GlyphInfo Contact = new GlyphInfo("\uE77B");
+        public static readonly GlyphInfo ContactInfo = new GlyphInfo("\uE779");
         public static readonly GlyphInfo Cortana = new GlyphInfo("\uE832", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Devices = new GlyphInfo("\uE772");
         public static readonly GlyphInfo DialUp = new GlyphInfo("\uE83C");
@@ -42,6 +44,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo KeyboardClassic = new GlyphInfo("\uE765");
         public static readonly GlyphInfo Lock = new GlyphInfo("\uE72E");
         public static readonly GlyphInfo LockScreenDesktop = new GlyphInfo("\uEE3F");
+        public static readonly GlyphInfo Mail = new GlyphInfo("\uE715");
         public static readonly GlyphInfo Message = new GlyphInfo("\uE8BD");
         public static readonly GlyphInfo Mouse = new GlyphInfo("\uE962");
         public static readonly GlyphInfo MyNetwork = new GlyphInfo("\uEC27");
@@ -49,6 +52,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo OpenWith = new GlyphInfo("\uE7AC");
         public static readonly GlyphInfo Paste = new GlyphInfo("\uE77F");
         public static readonly GlyphInfo PenWorkspace = new GlyphInfo("\uEDC6");
+        public static readonly GlyphInfo Permissions = new GlyphInfo("\uE8D7");
         public static readonly GlyphInfo Personalize = new GlyphInfo("\uE771");
         public static readonly GlyphInfo Photo2 = new GlyphInfo("\uEB9F");
         public static readonly GlyphInfo PieSingle = new GlyphInfo("\uEB05");
@@ -71,6 +75,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Volume = new GlyphInfo("\uE767");
         public static readonly GlyphInfo Video = new GlyphInfo("\uE714");
         public static readonly GlyphInfo Vpn = new GlyphInfo("\uE705");
+        public static readonly GlyphInfo Work = new GlyphInfo("\uE821");
         public static readonly GlyphInfo XboxLogo = new GlyphInfo("\uF20B", SettingsMdl2FontFamilyName);
 
         //// ===========================================================================================================

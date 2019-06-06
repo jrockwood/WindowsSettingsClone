@@ -71,6 +71,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access work or school.
+        /// </summary>
+        internal static string AccessWorkOrSchoolSettingName {
+            get {
+                return ResourceManager.GetString("AccessWorkOrSchoolSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your accounts, email, sync, work, family.
         /// </summary>
         internal static string AccountsGroupDescription {
@@ -260,11 +269,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email &amp; accounts.
+        /// </summary>
+        internal static string EmailAndAccountsSettingName {
+            get {
+                return ResourceManager.GetString("EmailAndAccountsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ethernet.
         /// </summary>
         internal static string EthernetSettingName {
             get {
                 return ResourceManager.GetString("EthernetSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family &amp; other users.
+        /// </summary>
+        internal static string FamilyAndOtherUsersSettingName {
+            get {
+                return ResourceManager.GetString("FamilyAndOtherUsersSettingName", resourceCulture);
             }
         }
         
@@ -512,6 +539,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign-in options.
+        /// </summary>
+        internal static string SignInOptionsSettingName {
+            get {
+                return ResourceManager.GetString("SignInOptionsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sound.
         /// </summary>
         internal static string SoundSettingName {
@@ -544,6 +580,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string StorageSettingName {
             get {
                 return ResourceManager.GetString("StorageSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync your settings.
+        /// </summary>
+        internal static string SyncYourSettingsSettingName {
+            get {
+                return ResourceManager.GetString("SyncYourSettingsSettingName", resourceCulture);
             }
         }
         
@@ -661,6 +706,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string VpnSettingName {
             get {
                 return ResourceManager.GetString("VpnSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your info.
+        /// </summary>
+        internal static string YourInfoSettingName {
+            get {
+                return ResourceManager.GetString("YourInfoSettingName", resourceCulture);
             }
         }
     }

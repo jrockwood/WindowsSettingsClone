@@ -257,7 +257,36 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Accounts:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        groupKind,
+                        Strings.AccountsGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.YourInfo,
+                                GlyphInfo.ContactInfo,
+                                Strings.YourInfoSettingName) { IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.EmailAndAccounts,
+                                GlyphInfo.Mail,
+                                Strings.EmailAndAccountsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.SignInOptions,
+                                GlyphInfo.Permissions,
+                                Strings.SignInOptionsSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.AccessWorkOrSchool,
+                                GlyphInfo.Work,
+                                Strings.AccessWorkOrSchoolSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.FamilyAndOtherUsers,
+                                GlyphInfo.AddFriend,
+                                Strings.FamilyAndOtherUsersSettingName),
+                            new SettingNavigationInfoViewModel(
+                                SettingEditorKind.SyncYourSettings,
+                                GlyphInfo.Sync,
+                                Strings.SyncYourSettingsSettingName),
+                        });
 
                 case SettingGroupKind.TimeAndLanguage:
                     break;

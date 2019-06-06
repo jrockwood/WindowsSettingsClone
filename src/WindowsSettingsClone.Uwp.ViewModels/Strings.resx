@@ -121,6 +121,10 @@
     <value>About</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="AccessWorkOrSchoolSettingName" xml:space="preserve">
+    <value>Access work or school</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="AccountsGroupDescription" xml:space="preserve">
     <value>Your accounts, email, sync, work, family</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -205,8 +209,16 @@
     <value>Ease of Access</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="EmailAndAccountsSettingName" xml:space="preserve">
+    <value>Email &amp; accounts</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="EthernetSettingName" xml:space="preserve">
     <value>Ethernet</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="FamilyAndOtherUsersSettingName" xml:space="preserve">
+    <value>Family &amp; other users</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="FocusAssistSettingName" xml:space="preserve">
@@ -317,6 +329,10 @@
     <value>Shared experiences</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="SignInOptionsSettingName" xml:space="preserve">
+    <value>Sign-in options</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="SoundSettingName" xml:space="preserve">
     <value>Sound</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -331,6 +347,10 @@
   </data>
   <data name="StorageSettingName" xml:space="preserve">
     <value>Storage</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="SyncYourSettingsSettingName" xml:space="preserve">
+    <value>Sync your settings</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="SystemGroupDescription" xml:space="preserve">
@@ -383,6 +403,10 @@
   </data>
   <data name="VpnSettingName" xml:space="preserve">
     <value>VPN</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="YourInfoSettingName" xml:space="preserve">
+    <value>Your info</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
 </root>
