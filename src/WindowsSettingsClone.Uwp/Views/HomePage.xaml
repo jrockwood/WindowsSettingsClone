@@ -8,6 +8,7 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       d:DesignHeight="400"
       d:DesignWidth="600"
+      TabNavigation="Cycle"
       mc:Ignorable="d">
 
   <Page.Resources>
@@ -183,7 +184,7 @@
     </Style>
   </Page.Resources>
 
-  <Grid>
+  <Grid Margin="0,32,0,0">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="1*" />
