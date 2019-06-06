@@ -161,6 +161,14 @@
     <value>Bluetooth &amp; other devices</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="BroadcastingSettingName" xml:space="preserve">
+    <value>Broadcasting</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="CapturesSettingName" xml:space="preserve">
+    <value>Captures</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="ClipboardSettingName" xml:space="preserve">
     <value>Clipboard</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -231,6 +239,14 @@
   </data>
   <data name="FontsSettingName" xml:space="preserve">
     <value>Fonts</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="GameBarSettingName" xml:space="preserve">
+    <value>Game bar</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="GameModeSettingName" xml:space="preserve">
+    <value>Game Mode</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="GamingGroupDescription" xml:space="preserve">
@@ -419,6 +435,10 @@
   </data>
   <data name="VpnSettingName" xml:space="preserve">
     <value>VPN</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="XboxNetworkingSettingName" xml:space="preserve">
+    <value>Xbox Networking</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="YourInfoSettingName" xml:space="preserve">

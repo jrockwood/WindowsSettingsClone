@@ -161,6 +161,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broadcasting.
+        /// </summary>
+        internal static string BroadcastingSettingName {
+            get {
+                return ResourceManager.GetString("BroadcastingSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captures.
+        /// </summary>
+        internal static string CapturesSettingName {
+            get {
+                return ResourceManager.GetString("CapturesSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
         internal static string ClipboardSettingName {
@@ -319,6 +337,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string FontsSettingName {
             get {
                 return ResourceManager.GetString("FontsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game bar.
+        /// </summary>
+        internal static string GameBarSettingName {
+            get {
+                return ResourceManager.GetString("GameBarSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Mode.
+        /// </summary>
+        internal static string GameModeSettingName {
+            get {
+                return ResourceManager.GetString("GameModeSettingName", resourceCulture);
             }
         }
         
@@ -742,6 +778,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string VpnSettingName {
             get {
                 return ResourceManager.GetString("VpnSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xbox Networking.
+        /// </summary>
+        internal static string XboxNetworkingSettingName {
+            get {
+                return ResourceManager.GetString("XboxNetworkingSettingName", resourceCulture);
             }
         }
         

@@ -313,7 +313,32 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Gaming:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.Gaming,
+                        Strings.GamingGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.GameBarSettingName,
+                                SettingEditorKind.GameBar,
+                                GlyphInfo.GameBar) {IsSelected = true},
+                            new SettingNavigationInfoViewModel(
+                                Strings.CapturesSettingName,
+                                SettingEditorKind.Captures,
+                                GlyphInfo.Captures),
+                            new SettingNavigationInfoViewModel(
+                                Strings.BroadcastingSettingName,
+                                SettingEditorKind.Broadcasting,
+                                GlyphInfo.SatelliteDish),
+                            new SettingNavigationInfoViewModel(
+                                Strings.GameModeSettingName,
+                                SettingEditorKind.GameMode,
+                                GlyphInfo.SpeedHigh),
+                            new SettingNavigationInfoViewModel(
+                                Strings.XboxNetworkingSettingName,
+                                SettingEditorKind.XboxNetworking,
+                                GlyphInfo.XboxLogo),
+                        });
 
                 case SettingGroupKind.EaseOfAccess:
                     break;

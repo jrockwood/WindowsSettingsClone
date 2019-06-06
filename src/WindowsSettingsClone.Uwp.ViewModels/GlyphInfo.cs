@@ -22,6 +22,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public static readonly GlyphInfo AddFriend = new GlyphInfo("\uE8FA");
         public static readonly GlyphInfo AllApps = new GlyphInfo("\uE71D");
+        public static readonly GlyphInfo Captures = new GlyphInfo("\uED36", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo CellPhone = new GlyphInfo("\uE8EA");
         public static readonly GlyphInfo Characters = new GlyphInfo("\uE8C1");
         public static readonly GlyphInfo Color = new GlyphInfo("\uE790");
@@ -38,6 +39,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Error = new GlyphInfo("\uE783");
         public static readonly GlyphInfo Ethernet = new GlyphInfo("\uE839");
         public static readonly GlyphInfo Font = new GlyphInfo("\uE8D2");
+        public static readonly GlyphInfo GameBar = new GlyphInfo("\uF192", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Globe = new GlyphInfo("\uE774");
         public static readonly GlyphInfo HardDrive = new GlyphInfo("\uEDA2");
         public static readonly GlyphInfo Home = new GlyphInfo("\uE80F");
@@ -64,8 +66,10 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Project = new GlyphInfo("\uEBC6");
         public static readonly GlyphInfo QuietHours = new GlyphInfo("\uE708");
         public static readonly GlyphInfo Remote = new GlyphInfo("\uE8AF");
+        public static readonly GlyphInfo SatelliteDish = new GlyphInfo("\uF1B5", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Search = new GlyphInfo("\uE721");
         public static readonly GlyphInfo SetLockScreen = new GlyphInfo("\uE7B5");
+        public static readonly GlyphInfo SpeedHigh = new GlyphInfo("\uEC4A");
         public static readonly GlyphInfo Sync = new GlyphInfo("\uE895");
         public static readonly GlyphInfo System = new GlyphInfo("\uE770");
         public static readonly GlyphInfo TabletMode = new GlyphInfo("\uEBFC");

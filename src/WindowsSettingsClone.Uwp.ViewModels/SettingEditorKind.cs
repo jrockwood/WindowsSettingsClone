@@ -101,5 +101,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         Speech,
 
         #endregion Time & Language
+
+        #region Gaming
+
+        GameBar,
+        Captures,
+        Broadcasting,
+        GameMode,
+        XboxNetworking,
+
+        #endregion Gaming
     }
 }
