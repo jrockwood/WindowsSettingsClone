@@ -24,11 +24,13 @@ namespace WindowsSettingsClone.Uwp.Views
         {
             InitializeComponent();
 
-            // Initialize the navigation service
             NavigationService = new NavigationService(RootFrame);
+            TitleBarViewModel = new TitleBarViewModel(NavigationService);
         }
 
         public INavigationViewService NavigationService { get; }
+
+        public TitleBarViewModel TitleBarViewModel { get; }
 
         private void OnLoaded(object sender, RoutedEventArgs e) =>
             // When the navigation stack isn't restored navigate to the first page, configuring the new page by

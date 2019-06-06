@@ -9,13 +9,20 @@ namespace WindowsSettingsClone.Uwp.Views
 {
     using ViewModels;
     using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HomePage : Page
     {
-        public HomePage() => InitializeComponent();
+        public HomePage()
+        {
+            InitializeComponent();
+
+            // Cache the home page since there's no changing state and we should make it snappy.
+            NavigationCacheMode = NavigationCacheMode.Enabled;
+        }
 
         public HomePageViewModel ViewModel { get; } = new HomePageViewModel(App.Current.NavigationService);
 
