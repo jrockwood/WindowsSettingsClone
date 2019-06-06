@@ -41,6 +41,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo PowerButton = new GlyphInfo("\uE7E8");
         public static readonly GlyphInfo Project = new GlyphInfo("\uEBC6");
         public static readonly GlyphInfo Remote = new GlyphInfo("\uE8AF");
+        public static readonly GlyphInfo Search = new GlyphInfo("\uE721");
         public static readonly GlyphInfo Sync = new GlyphInfo("\uE895");
         public static readonly GlyphInfo System = new GlyphInfo("\uE770");
         public static readonly GlyphInfo TabletMode = new GlyphInfo("\uEBFC");
