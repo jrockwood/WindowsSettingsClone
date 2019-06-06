@@ -10,6 +10,16 @@
       d:DesignWidth="600"
       mc:Ignorable="d">
 
+  <Page.Transitions>
+    <TransitionCollection>
+      <NavigationThemeTransition>
+        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+          <DrillInNavigationTransitionInfo />
+        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+      </NavigationThemeTransition>
+    </TransitionCollection>
+  </Page.Transitions>
+
   <Page.Resources>
     <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
     <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter" />
