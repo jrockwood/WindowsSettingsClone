@@ -24,6 +24,17 @@
     <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
     <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter" />
 
+    <!-- Source and IsSourceGrouped is set from code-behind -->
+    <CollectionViewSource x:Name="NavigationItemsCollectionViewSource" />
+
+    <DataTemplate x:Key="SettingsNavigationHeaderTemplate" x:DataType="viewModels:SettingNavigationInfoGroupViewModel">
+      <TextBlock Margin="0,24,0,0"
+                 Padding="4,0,0,0"
+                 Style="{ThemeResource BodyTextBlockStyle}"
+                 Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                 Text="{x:Bind GroupName}" />
+    </DataTemplate>
+
     <DataTemplate x:Key="SettingsNavigationListItemTemplate" x:DataType="viewModels:SettingNavigationInfoViewModel">
       <Grid>
         <Grid.ColumnDefinitions>
@@ -55,6 +66,42 @@
                    Text="{x:Bind DisplayName}" />
       </Grid>
     </DataTemplate>
+
+    <Style x:Key="SettingsNavigationListViewHeaderTemplate" TargetType="ListViewHeaderItem">
+      <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+      <Setter Property="FontSize" Value="{ThemeResource ListViewHeaderItemThemeFontSize}" />
+      <Setter Property="Background" Value="{ThemeResource ListViewHeaderItemBackground}" />
+      <Setter Property="Margin" Value="0,0,0,4" />
+      <Setter Property="Padding" Value="12,8,12,0" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="VerticalContentAlignment" Value="Top" />
+      <Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}" />
+      <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListViewHeaderItem">
+            <StackPanel Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+              <ContentPresenter x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}" />
+              <Rectangle Height="1"
+                         Margin="12,8,12,0"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Bottom"
+                         Stroke="Transparent"
+                         StrokeThickness="0.5" />
+            </StackPanel>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
     <Style x:Key="HomeButtonStyle" TargetType="Button">
       <Setter Property="Background" Value="Transparent" />
@@ -195,9 +242,12 @@
                   IsSwipeEnabled="False"
                   ItemContainerStyle="{StaticResource SettingsNavigationListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource SettingsNavigationListItemTemplate}"
-                  ItemsSource="{x:Bind ViewModel.Settings}"
                   ScrollViewer.HorizontalScrollMode="Disabled"
-                  SelectionMode="Single" />
+                  SelectionMode="Single">
+          <ListView.GroupStyle>
+            <GroupStyle HeaderContainerStyle="{StaticResource SettingsNavigationListViewHeaderTemplate}" HeaderTemplate="{StaticResource SettingsNavigationHeaderTemplate}" />
+          </ListView.GroupStyle>
+        </ListView>
       </Grid>
     </Border>
   </Grid>
