@@ -584,6 +584,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        internal static string PermissionsSettingName {
+            get {
+                return ResourceManager.GetString("PermissionsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background, lock screen, colors.
         /// </summary>
         internal static string PersonalizationGroupDescription {
@@ -814,6 +823,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string TabletModeSettingName {
             get {
                 return ResourceManager.GetString("TabletModeSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Talk to Cortana.
+        /// </summary>
+        internal static string TalkToCortanaSettingName {
+            get {
+                return ResourceManager.GetString("TalkToCortanaSettingName", resourceCulture);
             }
         }
         

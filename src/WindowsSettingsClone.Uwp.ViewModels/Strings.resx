@@ -349,6 +349,10 @@
     <value>Permissions &amp; History</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="PermissionsSettingName" xml:space="preserve">
+    <value>Permissions</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="PersonalizationGroupDescription" xml:space="preserve">
     <value>Background, lock screen, colors</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -451,6 +455,10 @@
   </data>
   <data name="TabletModeSettingName" xml:space="preserve">
     <value>Tablet mode</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="TalkToCortanaSettingName" xml:space="preserve">
+    <value>Talk to Cortana</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="TaskbarSettingName" xml:space="preserve">

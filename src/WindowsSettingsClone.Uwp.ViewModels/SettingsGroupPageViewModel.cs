@@ -394,7 +394,25 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Cortana:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.Cortana,
+                        Strings.CortanaGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.TalkToCortanaSettingName,
+                                SettingEditorKind.TalkToCortana,
+                                GlyphInfo.Microphone,
+                                isSelected: true),
+                            new SettingNavigationInfoViewModel(
+                                Strings.PermissionsSettingName,
+                                SettingEditorKind.CortanaPermissions,
+                                GlyphInfo.SecureApp),
+                            new SettingNavigationInfoViewModel(
+                                Strings.MoreDetailsSettingName,
+                                SettingEditorKind.CortanaMoreDetails,
+                                GlyphInfo.Info),
+                        });
 
                 case SettingGroupKind.Privacy:
                     break;

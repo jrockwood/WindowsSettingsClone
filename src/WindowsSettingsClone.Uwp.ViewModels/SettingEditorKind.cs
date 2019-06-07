@@ -136,5 +136,13 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         SearchMoreDetails,
 
         #endregion Search
+
+        #region Cortana
+
+        TalkToCortana,
+        CortanaPermissions,
+        CortanaMoreDetails,
+
+        #endregion Cortana
     }
 }
