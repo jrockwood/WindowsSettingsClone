@@ -485,6 +485,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More details.
+        /// </summary>
+        internal static string MoreDetailsSettingName {
+            get {
+                return ResourceManager.GetString("MoreDetailsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mouse.
         /// </summary>
         internal static string MouseSettingName {
@@ -562,6 +571,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string PenAndWindowsInkSettingName {
             get {
                 return ResourceManager.GetString("PenAndWindowsInkSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions &amp; History.
+        /// </summary>
+        internal static string PermissionsAndHistorySettingName {
+            get {
+                return ResourceManager.GetString("PermissionsAndHistorySettingName", resourceCulture);
             }
         }
         
@@ -688,6 +706,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string SearchGroupName {
             get {
                 return ResourceManager.GetString("SearchGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching Windows.
+        /// </summary>
+        internal static string SearchingWindowsSettingName {
+            get {
+                return ResourceManager.GetString("SearchingWindowsSettingName", resourceCulture);
             }
         }
         

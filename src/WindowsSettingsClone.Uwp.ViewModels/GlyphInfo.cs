@@ -72,6 +72,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Remote = new GlyphInfo("\uE8AF");
         public static readonly GlyphInfo SatelliteDish = new GlyphInfo("\uF1B5", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Search = new GlyphInfo("\uE721");
+        public static readonly GlyphInfo SecureApp = new GlyphInfo("\uE1A7");
         public static readonly GlyphInfo SetLockScreen = new GlyphInfo("\uE7B5");
         public static readonly GlyphInfo SpeedHigh = new GlyphInfo("\uEC4A");
         public static readonly GlyphInfo Sync = new GlyphInfo("\uE895");
@@ -89,6 +90,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Work = new GlyphInfo("\uE821");
         public static readonly GlyphInfo World = new GlyphInfo("\uE909");
         public static readonly GlyphInfo XboxLogo = new GlyphInfo("\uF20B", SettingsMdl2FontFamilyName);
+        public static readonly GlyphInfo Zoom = new GlyphInfo("\uE71E");
         public static readonly GlyphInfo ZoomIn = new GlyphInfo("\uE8A3");
 
         //// ===========================================================================================================

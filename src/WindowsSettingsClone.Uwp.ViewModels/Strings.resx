@@ -305,6 +305,10 @@
     <value>Magnifier</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="MoreDetailsSettingName" xml:space="preserve">
+    <value>More details</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="MouseSettingName" xml:space="preserve">
     <value>Mouse</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -339,6 +343,10 @@
   </data>
   <data name="PenAndWindowsInkSettingName" xml:space="preserve">
     <value>Pen &amp; Windows Ink</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="PermissionsAndHistorySettingName" xml:space="preserve">
+    <value>Permissions &amp; History</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="PersonalizationGroupDescription" xml:space="preserve">
@@ -396,6 +404,10 @@
   <data name="SearchGroupName" xml:space="preserve">
     <value>Search</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+  </data>
+  <data name="SearchingWindowsSettingName" xml:space="preserve">
+    <value>Searching Windows</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="SharedExperiencesSettingName" xml:space="preserve">
     <value>Shared experiences</value>

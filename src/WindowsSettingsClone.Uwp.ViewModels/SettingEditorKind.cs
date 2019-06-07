@@ -128,5 +128,13 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         EyeControl,
 
         #endregion Ease of Access
+
+        #region Search
+
+        PermissionsAndHistory,
+        SearchingWindows,
+        SearchMoreDetails,
+
+        #endregion Search
     }
 }
