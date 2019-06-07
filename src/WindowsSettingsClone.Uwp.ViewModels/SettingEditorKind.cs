@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="SettingEditorKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -12,137 +12,91 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// </summary>
     public enum SettingEditorKind
     {
-        #region System
+        SystemDisplay,
+        SystemSound,
+        SystemNotificationsAndActions,
+        SystemFocusAssist,
+        SystemPowerAndSleep,
+        SystemStorage,
+        SystemTabletMode,
+        SystemMultitasking,
+        SystemProjectingToThisPC,
+        SystemSharedExperiences,
+        SystemClipboard,
+        SystemRemoteDesktop,
+        SystemAbout,
 
-        Display,
-        Sound,
-        NotificationsAndActions,
-        FocusAssist,
-        PowerAndSleep,
-        Storage,
-        TabletMode,
-        Multitasking,
-        ProjectingToThisPC,
-        SharedExperiences,
-        Clipboard,
-        RemoteDesktop,
-        About,
-
-        #endregion System
-
-        #region Devices
-
-        BluetoothAndOtherDevices,
-        PrintersAndScanners,
-        Mouse,
-        Typing,
-        PenAndWindowsInk,
-        AutoPlay,
-        Usb,
-
-        #endregion Devices
-
-        #region Phone
+        DevicesBluetoothAndOtherDevices,
+        DevicesPrintersAndScanners,
+        DevicesMouse,
+        DevicesTyping,
+        DevicesPenAndWindowsInk,
+        DevicesAutoPlay,
+        DevicesUsb,
 
         Phone,
 
-        #endregion Phone
+        NetworkAndInternetNetworkStatus,
+        NetworkAndInternetEthernet,
+        NetworkAndInternetDialUp,
+        NetworkAndInternetVpn,
+        NetworkAndInternetDataUsage,
+        NetworkAndInternetProxy,
 
-        #region Network & Internet
+        PersonalizationBackground,
+        PersonalizationColors,
+        PersonalizationLockScreen,
+        PersonalizationThemes,
+        PersonalizationFonts,
+        PersonalizationStart,
+        PersonalizationTaskbar,
 
-        NetworkStatus,
-        Ethernet,
-        DialUp,
-        Vpn,
-        DataUsage,
-        Proxy,
+        AppsAppsAndFeatures,
+        AppsDefaultApps,
+        AppsOfflineMaps,
+        AppsAppsForWebsites,
+        AppsVideoPlayback,
+        AppsStartup,
 
-        #endregion Network & Internet
+        AccountsYourInfo,
+        AccountsEmailAndAccounts,
+        AccountsSignInOptions,
+        AccountsAccessWorkOrSchool,
+        AccountsFamilyAndOtherUsers,
+        AccountsSyncYourSettings,
 
-        #region Personalization
+        TimeAndLanguageDateAndTime,
+        TimeAndLanguageRegion,
+        TimeAndLanguageLanguage,
+        TimeAndLanguageSpeech,
 
-        Background,
-        Colors,
-        LockScreen,
-        Themes,
-        Fonts,
-        Start,
-        Taskbar,
-
-        #endregion Personalization
-
-        #region Apps
-
-        AppsAndFeatures,
-        DefaultApps,
-        OfflineMaps,
-        AppsForWebsites,
-        VideoPlayback,
-        Startup,
-
-        #endregion Apps
-
-        #region Accounts
-
-        YourInfo,
-        EmailAndAccounts,
-        SignInOptions,
-        AccessWorkOrSchool,
-        FamilyAndOtherUsers,
-        SyncYourSettings,
-
-        #endregion Accounts
-
-        #region Time & Language
-
-        DateAndTime,
-        Region,
-        Language,
-        Speech,
-
-        #endregion Time & Language
-
-        #region Gaming
-
-        GameBar,
-        Captures,
-        Broadcasting,
-        GameMode,
-        XboxNetworking,
-
-        #endregion Gaming
-
-        #region Ease of Access
+        GamingGameBar,
+        GamingCaptures,
+        GamingBroadcasting,
+        GamingGameMode,
+        GamingXboxNetworking,
 
         EaseOfAccessDisplay,
-        CursorAndPointer,
-        Magnifier,
-        ColorFilters,
-        HighContrast,
-        Narrator,
-        Audio,
-        ClosedCaptions,
+        EaseOfAccessCursorAndPointer,
+        EaseOfAccessMagnifier,
+        EaseOfAccessColorFilters,
+        EaseOfAccessHighContrast,
+        EaseOfAccessNarrator,
+        EaseOfAccessAudio,
+        EaseOfAccessClosedCaptions,
         EaseOfAccessSpeech,
         EaseOfAccessKeyboard,
         EaseOfAccessMouse,
-        EyeControl,
+        EaseOfAccessEyeControl,
 
-        #endregion Ease of Access
-
-        #region Search
-
-        PermissionsAndHistory,
-        SearchingWindows,
+        SearchPermissionsAndHistory,
+        SearchSearchingWindows,
         SearchMoreDetails,
 
-        #endregion Search
-
-        #region Cortana
-
-        TalkToCortana,
+        CortanaTalkToCortana,
         CortanaPermissions,
         CortanaMoreDetails,
 
-        #endregion Cortana
+        PrivacyGeneral,
     }
 }
