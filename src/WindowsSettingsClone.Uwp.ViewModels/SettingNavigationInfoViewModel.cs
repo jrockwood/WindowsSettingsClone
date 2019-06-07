@@ -25,11 +25,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        public SettingNavigationInfoViewModel(string displayName, SettingEditorKind editorKind, GlyphInfo glyphInfo)
+        private SettingNavigationInfoViewModel(
+            string displayName,
+            SettingEditorKind editorKind,
+            GlyphInfo glyphInfo,
+            bool isSelected,
+            bool isHeader)
         {
-            EditorKind = editorKind;
-            GlyphInfo = Param.VerifyNotNull(glyphInfo, nameof(glyphInfo));
             DisplayName = Param.VerifyString(displayName, nameof(displayName));
+            EditorKind = editorKind;
+            GlyphInfo = glyphInfo;
+            IsSelected = isSelected;
+            IsHeader = isHeader;
         }
 
         //// ===========================================================================================================
@@ -39,11 +46,37 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public SettingEditorKind EditorKind { get; }
         public GlyphInfo GlyphInfo { get; }
         public string DisplayName { get; }
+        public bool IsHeader { get; }
 
         public bool IsSelected
         {
             get => _isSelected;
             set => SetProperty(ref _isSelected, value);
         }
+
+        //// ===========================================================================================================
+        //// Methods
+        //// ===========================================================================================================
+
+        public static SettingNavigationInfoViewModel Create(
+            string displayName,
+            SettingEditorKind editorKind,
+            GlyphInfo glyphInfo,
+            bool isSelected = false) =>
+            // The auto-formatter doesn't put a space here and it's hard to read
+            new SettingNavigationInfoViewModel(
+                displayName,
+                editorKind,
+                Param.VerifyNotNull(glyphInfo, nameof(glyphInfo)),
+                isSelected,
+                isHeader: false);
+
+        public static SettingNavigationInfoViewModel CreateHeader(string displayName) =>
+            new SettingNavigationInfoViewModel(
+                displayName,
+                SettingEditorKind.About,
+                glyphInfo: null,
+                isSelected: false,
+                isHeader: true);
     }
 }

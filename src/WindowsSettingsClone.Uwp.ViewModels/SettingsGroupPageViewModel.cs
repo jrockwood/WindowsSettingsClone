@@ -63,56 +63,45 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.SystemGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.DisplaySettingName,
                                 SettingEditorKind.Display,
-                                GlyphInfo.TvMonitor) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.SoundSettingName,
+                                GlyphInfo.TvMonitor,
+                                isSelected : true),
+                            SettingNavigationInfoViewModel.Create(Strings.SoundSettingName,
                                 SettingEditorKind.Sound,
                                 GlyphInfo.Volume),
-                            new SettingNavigationInfoViewModel(
-                                Strings.NotificationsAndActionsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.NotificationsAndActionsSettingName,
                                 SettingEditorKind.NotificationsAndActions,
                                 GlyphInfo.Message),
-                            new SettingNavigationInfoViewModel(
-                                Strings.FocusAssistSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.FocusAssistSettingName,
                                 SettingEditorKind.FocusAssist,
                                 GlyphInfo.QuietHours),
-                            new SettingNavigationInfoViewModel(
-                                Strings.PowerAndSleepSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.PowerAndSleepSettingName,
                                 SettingEditorKind.PowerAndSleep,
                                 GlyphInfo.PowerButton),
-                            new SettingNavigationInfoViewModel(
-                                Strings.StorageSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.StorageSettingName,
                                 SettingEditorKind.Storage,
                                 GlyphInfo.HardDrive),
-                            new SettingNavigationInfoViewModel(
-                                Strings.TabletModeSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.TabletModeSettingName,
                                 SettingEditorKind.TabletMode,
                                 GlyphInfo.TabletMode),
-                            new SettingNavigationInfoViewModel(
-                                Strings.MultitaskingSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.MultitaskingSettingName,
                                 SettingEditorKind.Multitasking,
                                 GlyphInfo.TaskView),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ProjectingToThisPCSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ProjectingToThisPCSettingName,
                                 SettingEditorKind.ProjectingToThisPC,
                                 GlyphInfo.Project),
-                            new SettingNavigationInfoViewModel(
-                                Strings.SharedExperiencesSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.SharedExperiencesSettingName,
                                 SettingEditorKind.SharedExperiences,
                                 GlyphInfo.Connected),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ClipboardSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ClipboardSettingName,
                                 SettingEditorKind.Clipboard,
                                 GlyphInfo.Paste),
-                            new SettingNavigationInfoViewModel(
-                                Strings.RemoteDesktopSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.RemoteDesktopSettingName,
                                 SettingEditorKind.RemoteDesktop,
                                 GlyphInfo.Remote),
-                            new SettingNavigationInfoViewModel(
-                                Strings.AboutSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.AboutSettingName,
                                 SettingEditorKind.About,
                                 GlyphInfo.Info),
                         });
@@ -123,32 +112,27 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.DevicesGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.BluetoothAndOtherDevicesSettingName,
                                 SettingEditorKind.BluetoothAndOtherDevices,
-                                GlyphInfo.Devices) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.PrintersAndScannersSettingName,
+                                GlyphInfo.Devices,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.PrintersAndScannersSettingName,
                                 SettingEditorKind.PrintersAndScanners,
                                 GlyphInfo.Print),
-                            new SettingNavigationInfoViewModel(
-                                Strings.MouseSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.MouseSettingName,
                                 SettingEditorKind.Mouse,
                                 GlyphInfo.Mouse),
-                            new SettingNavigationInfoViewModel(
-                                Strings.TypingSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.TypingSettingName,
                                 SettingEditorKind.Typing,
                                 GlyphInfo.KeyboardClassic),
-                            new SettingNavigationInfoViewModel(
-                                Strings.PenAndWindowsInkSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.PenAndWindowsInkSettingName,
                                 SettingEditorKind.PenAndWindowsInk,
                                 GlyphInfo.PenWorkspace),
-                            new SettingNavigationInfoViewModel(
-                                Strings.AutoPlaySettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.AutoPlaySettingName,
                                 SettingEditorKind.AutoPlay,
                                 GlyphInfo.PlaybackRate1x),
-                            new SettingNavigationInfoViewModel(
-                                Strings.UsbSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.UsbSettingName,
                                 SettingEditorKind.Usb,
                                 GlyphInfo.Usb),
                         });
@@ -162,28 +146,23 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.NetworkAndInternetGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
-                                Strings.NetworkStatusSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.NetworkStatusSettingName,
                                 SettingEditorKind.NetworkStatus,
-                                GlyphInfo.MyNetwork),
-                            new SettingNavigationInfoViewModel(
-                                Strings.EthernetSettingName,
+                                GlyphInfo.MyNetwork,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.EthernetSettingName,
                                 SettingEditorKind.Ethernet,
                                 GlyphInfo.Ethernet),
-                            new SettingNavigationInfoViewModel(
-                                Strings.DialUpSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.DialUpSettingName,
                                 SettingEditorKind.DialUp,
                                 GlyphInfo.DialUp),
-                            new SettingNavigationInfoViewModel(
-                                Strings.VpnSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.VpnSettingName,
                                 SettingEditorKind.Vpn,
                                 GlyphInfo.Vpn),
-                            new SettingNavigationInfoViewModel(
-                                Strings.DataUsageSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.DataUsageSettingName,
                                 SettingEditorKind.DataUsage,
                                 GlyphInfo.PieSingle),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ProxySettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ProxySettingName,
                                 SettingEditorKind.Proxy,
                                 GlyphInfo.Globe),
                         });
@@ -194,32 +173,27 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.PersonalizationGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.BackgroundSettingName,
                                 SettingEditorKind.Background,
-                                GlyphInfo.Photo2) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.ColorsSettingName,
+                                GlyphInfo.Photo2,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.ColorsSettingName,
                                 SettingEditorKind.Colors,
                                 GlyphInfo.Color),
-                            new SettingNavigationInfoViewModel(
-                                Strings.LockScreenSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.LockScreenSettingName,
                                 SettingEditorKind.LockScreen,
                                 GlyphInfo.LockScreenDesktop),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ThemesSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ThemesSettingName,
                                 SettingEditorKind.Themes,
                                 GlyphInfo.Personalize),
-                            new SettingNavigationInfoViewModel(
-                                Strings.FontsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.FontsSettingName,
                                 SettingEditorKind.Fonts,
                                 GlyphInfo.Font),
-                            new SettingNavigationInfoViewModel(
-                                Strings.StartSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.StartSettingName,
                                 SettingEditorKind.Start,
                                 GlyphInfo.Tiles),
-                            new SettingNavigationInfoViewModel(
-                                Strings.TaskbarSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.TaskbarSettingName,
                                 SettingEditorKind.Taskbar,
                                 GlyphInfo.DockBottom),
                         });
@@ -230,28 +204,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.AppsGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.AppsAndFeaturesSettingName,
                                 SettingEditorKind.AppsAndFeatures,
-                                GlyphInfo.AllApps) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.DefaultAppsSettingName,
+                                GlyphInfo.AllApps,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.DefaultAppsSettingName,
                                 SettingEditorKind.DefaultApps,
                                 GlyphInfo.OpenWith),
-                            new SettingNavigationInfoViewModel(
-                                Strings.OfflineMapsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.OfflineMapsSettingName,
                                 SettingEditorKind.OfflineMaps,
                                 GlyphInfo.DownloadMap),
-                            new SettingNavigationInfoViewModel(
-                                Strings.AppsForWebsitesSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.AppsForWebsitesSettingName,
                                 SettingEditorKind.AppsForWebsites,
                                 GlyphInfo.NewWindow),
-                            new SettingNavigationInfoViewModel(
-                                Strings.VideoPlaybackSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.VideoPlaybackSettingName,
                                 SettingEditorKind.VideoPlayback,
                                 GlyphInfo.Video),
-                            new SettingNavigationInfoViewModel(
-                                Strings.StartupSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.StartupSettingName,
                                 SettingEditorKind.Startup,
                                 GlyphInfo.SetLockScreen),
                         });
@@ -262,28 +232,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.AccountsGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.YourInfoSettingName,
                                 SettingEditorKind.YourInfo,
-                                GlyphInfo.ContactInfo) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.EmailAndAccountsSettingName,
+                                GlyphInfo.ContactInfo,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.EmailAndAccountsSettingName,
                                 SettingEditorKind.EmailAndAccounts,
                                 GlyphInfo.Mail),
-                            new SettingNavigationInfoViewModel(
-                                Strings.SignInOptionsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.SignInOptionsSettingName,
                                 SettingEditorKind.SignInOptions,
                                 GlyphInfo.Permissions),
-                            new SettingNavigationInfoViewModel(
-                                Strings.AccessWorkOrSchoolSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.AccessWorkOrSchoolSettingName,
                                 SettingEditorKind.AccessWorkOrSchool,
                                 GlyphInfo.Work),
-                            new SettingNavigationInfoViewModel(
-                                Strings.FamilyAndOtherUsersSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.FamilyAndOtherUsersSettingName,
                                 SettingEditorKind.FamilyAndOtherUsers,
                                 GlyphInfo.AddFriend),
-                            new SettingNavigationInfoViewModel(
-                                Strings.SyncYourSettingsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.SyncYourSettingsSettingName,
                                 SettingEditorKind.SyncYourSettings,
                                 GlyphInfo.Sync),
                         });
@@ -294,20 +260,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.TimeAndLanguageGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.DateAndTimeSettingName,
                                 SettingEditorKind.DateAndTime,
-                                GlyphInfo.DateTime) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.RegionSettingName,
+                                GlyphInfo.DateTime,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.RegionSettingName,
                                 SettingEditorKind.Region,
                                 GlyphInfo.World),
-                            new SettingNavigationInfoViewModel(
-                                Strings.LanguageSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.LanguageSettingName,
                                 SettingEditorKind.Language,
                                 GlyphInfo.Characters),
-                            new SettingNavigationInfoViewModel(
-                                Strings.SpeechSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.SpeechSettingName,
                                 SettingEditorKind.Speech,
                                 GlyphInfo.Microphone),
                         });
@@ -318,24 +282,21 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.GamingGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.GameBarSettingName,
                                 SettingEditorKind.GameBar,
-                                GlyphInfo.GameBar) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.CapturesSettingName,
+                                GlyphInfo.GameBar,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.CapturesSettingName,
                                 SettingEditorKind.Captures,
                                 GlyphInfo.Captures),
-                            new SettingNavigationInfoViewModel(
-                                Strings.BroadcastingSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.BroadcastingSettingName,
                                 SettingEditorKind.Broadcasting,
                                 GlyphInfo.SatelliteDish),
-                            new SettingNavigationInfoViewModel(
-                                Strings.GameModeSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.GameModeSettingName,
                                 SettingEditorKind.GameMode,
                                 GlyphInfo.SpeedHigh),
-                            new SettingNavigationInfoViewModel(
-                                Strings.XboxNetworkingSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.XboxNetworkingSettingName,
                                 SettingEditorKind.XboxNetworking,
                                 GlyphInfo.XboxLogo),
                         });
@@ -346,52 +307,45 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         Strings.EaseOfAccessGroupName,
                         new[]
                         {
-                            new SettingNavigationInfoViewModel(
+                            SettingNavigationInfoViewModel.CreateHeader(Strings.VisionSettingHeader),
+                            SettingNavigationInfoViewModel.Create(
                                 Strings.DisplaySettingName,
                                 SettingEditorKind.EaseOfAccessDisplay,
-                                GlyphInfo.TvMonitor) {IsSelected = true},
-                            new SettingNavigationInfoViewModel(
-                                Strings.CursorAndPointerSettingName,
+                                GlyphInfo.TvMonitor,
+                                isSelected: true),
+                            SettingNavigationInfoViewModel.Create(Strings.CursorAndPointerSettingName,
                                 SettingEditorKind.CursorAndPointer,
                                 GlyphInfo.TouchPointer),
-                            new SettingNavigationInfoViewModel(
-                                Strings.MagnifierSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.MagnifierSettingName,
                                 SettingEditorKind.Magnifier,
                                 GlyphInfo.ZoomIn),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ColorFiltersSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ColorFiltersSettingName,
                                 SettingEditorKind.ColorFilters,
                                 GlyphInfo.Color),
-                            new SettingNavigationInfoViewModel(
-                                Strings.HighContrastSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.HighContrastSettingName,
                                 SettingEditorKind.HighContrast,
                                 GlyphInfo.Brightness),
-                            new SettingNavigationInfoViewModel(
-                                Strings.NarratorSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.NarratorSettingName,
                                 SettingEditorKind.Narrator,
                                 GlyphInfo.Narrator),
-                            new SettingNavigationInfoViewModel(
-                                Strings.AudioSettingName,
+                            SettingNavigationInfoViewModel.CreateHeader(Strings.AudioSettingName),
+                            SettingNavigationInfoViewModel.Create(Strings.AudioSettingName,
                                 SettingEditorKind.Audio,
                                 GlyphInfo.Volume),
-                            new SettingNavigationInfoViewModel(
-                                Strings.ClosedCaptionsSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.ClosedCaptionsSettingName,
                                 SettingEditorKind.ClosedCaptions,
                                 GlyphInfo.CC),
-                            new SettingNavigationInfoViewModel(
-                                Strings.SpeechSettingName,
+                            SettingNavigationInfoViewModel.CreateHeader(Strings.InteractionSettingHeader),
+                            SettingNavigationInfoViewModel.Create(Strings.SpeechSettingName,
                                 SettingEditorKind.EaseOfAccessSpeech,
                                 GlyphInfo.Microphone),
-                            new SettingNavigationInfoViewModel(
-                                Strings.KeyboardSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.KeyboardSettingName,
                                 SettingEditorKind.EaseOfAccessKeyboard,
                                 GlyphInfo.KeyboardClassic),
-                            new SettingNavigationInfoViewModel(
-                                Strings.MouseSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.MouseSettingName,
                                 SettingEditorKind.EaseOfAccessMouse,
                                 GlyphInfo.Mouse),
-                            new SettingNavigationInfoViewModel(
-                                Strings.EyeControlSettingName,
+                            SettingNavigationInfoViewModel.Create(Strings.EyeControlSettingName,
                                 SettingEditorKind.EyeControl,
                                 GlyphInfo.EyeGaze),
                         });
