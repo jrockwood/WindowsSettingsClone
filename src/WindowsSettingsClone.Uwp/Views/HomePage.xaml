@@ -1,7 +1,6 @@
 <Page x:Class="WindowsSettingsClone.Uwp.Views.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:converters="using:WindowsSettingsClone.Uwp.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="using:WindowsSettingsClone.Uwp.ViewModels"
@@ -22,9 +21,6 @@
   </Page.Transitions>
 
   <Page.Resources>
-    <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
-    <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
-
     <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
       <GridViewItem Width="250"
                     Height="Auto"
