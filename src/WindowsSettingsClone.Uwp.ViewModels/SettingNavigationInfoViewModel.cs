@@ -25,11 +25,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        public SettingNavigationInfoViewModel(SettingEditorKind editorKind, GlyphInfo glyphInfo, string name)
+        public SettingNavigationInfoViewModel(
+            string displayName,
+            SettingEditorKind editorKind,
+            GlyphInfo glyphInfo,
+            bool isSelected = false,
+            string headerDisplayName = null)
         {
+            DisplayName = Param.VerifyString(displayName, nameof(displayName));
             EditorKind = editorKind;
             GlyphInfo = Param.VerifyNotNull(glyphInfo, nameof(glyphInfo));
-            Name = Param.VerifyString(name, nameof(name));
+            IsSelected = isSelected;
+            HeaderDisplayName = headerDisplayName;
         }
 
         //// ===========================================================================================================
@@ -38,7 +45,8 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public SettingEditorKind EditorKind { get; }
         public GlyphInfo GlyphInfo { get; }
-        public string Name { get; }
+        public string DisplayName { get; }
+        public string HeaderDisplayName { get; }
 
         public bool IsSelected
         {

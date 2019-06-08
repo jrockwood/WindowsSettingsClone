@@ -98,6 +98,11 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                     SettingGroupKind.EaseOfAccess,
                     GlyphInfo.EaseOfAccess),
                 new HomePageGroup(
+                    Strings.SearchGroupName,
+                    Strings.SearchGroupDescription,
+                    SettingGroupKind.Search,
+                    GlyphInfo.Search),
+                new HomePageGroup(
                     Strings.CortanaGroupName,
                     Strings.CortanaGroupDescription,
                     SettingGroupKind.Cortana,

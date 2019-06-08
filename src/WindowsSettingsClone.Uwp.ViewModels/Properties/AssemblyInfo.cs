@@ -5,6 +5,8 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using System.Resources;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("WindowsSettingsClone.Uwp")]
+[assembly: NeutralResourcesLanguage("en-US")]
