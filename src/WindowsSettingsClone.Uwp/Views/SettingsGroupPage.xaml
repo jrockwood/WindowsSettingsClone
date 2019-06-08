@@ -1,4 +1,4 @@
-<Page x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupPage"
+﻿<Page x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:converters="using:WindowsSettingsClone.Uwp.Converters"
@@ -200,7 +200,9 @@
           <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Button x:Name="HomeButton" Style="{ThemeResource HomeButtonStyle}">
+        <Button x:Name="HomeButton"
+                Style="{ThemeResource HomeButtonStyle}"
+                Command="{x:Bind ViewModel.HomeCommand}">
           <Button.Content>
             <Grid>
               <Grid.ColumnDefinitions>

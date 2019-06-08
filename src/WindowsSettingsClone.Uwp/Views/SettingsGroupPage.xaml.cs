@@ -22,7 +22,7 @@ namespace WindowsSettingsClone.Uwp.Views
         {
             // The name of the group is passed in via the event args, which we can use to construct a view model.
             var groupKind = (SettingGroupKind)Enum.Parse(typeof(SettingGroupKind), (string)e.Parameter);
-            ViewModel = SettingsGroupPageViewModel.CreateFromGroupKind(groupKind);
+            ViewModel = SettingsGroupPageViewModel.CreateFromGroupKind(groupKind, App.Current.NavigationService);
 
             NavigationItemsCollectionViewSource.IsSourceGrouped = ViewModel.IsGrouped;
             NavigationItemsCollectionViewSource.Source =
