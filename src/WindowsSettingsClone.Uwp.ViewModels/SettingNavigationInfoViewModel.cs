@@ -27,7 +27,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public SettingNavigationInfoViewModel(
             string displayName,
-            SettingEditorKind editorKind,
+            SettingsEditorKind editorKind,
             GlyphInfo glyphInfo,
             bool isSelected = false,
             string headerDisplayName = null)
@@ -43,7 +43,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Properties
         //// ===========================================================================================================
 
-        public SettingEditorKind EditorKind { get; }
+        public SettingsEditorKind EditorKind { get; }
         public GlyphInfo GlyphInfo { get; }
         public string DisplayName { get; }
         public string HeaderDisplayName { get; }
