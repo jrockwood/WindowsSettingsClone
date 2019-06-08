@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.Uwp.Views
 {
+    using System.Linq;
     using ViewModels;
     using Windows.UI.Xaml.Controls;
 
@@ -35,5 +36,8 @@ namespace WindowsSettingsClone.Uwp.Views
                 SettingsNavigationListView.ItemsSource = NavigationItemsCollectionViewSource.View;
             }
         }
+
+        private void OnSettingsNavigationListViewSelectionChanged(object sender, SelectionChangedEventArgs e) =>
+            ViewModel.SelectedItem = e.AddedItems.Cast<SettingNavigationInfoViewModel>().Single();
     }
 }

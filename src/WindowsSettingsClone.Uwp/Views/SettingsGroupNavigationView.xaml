@@ -228,6 +228,7 @@
                 ItemContainerStyle="{StaticResource SettingsNavigationListViewItemContainerStyle}"
                 ItemTemplate="{StaticResource SettingsNavigationListItemTemplate}"
                 ScrollViewer.HorizontalScrollMode="Disabled"
+                SelectionChanged="OnSettingsNavigationListViewSelectionChanged"
                 SelectionMode="Single">
         <ListView.GroupStyle>
           <GroupStyle HeaderContainerStyle="{StaticResource SettingsNavigationListViewHeaderTemplate}" HeaderTemplate="{StaticResource SettingsNavigationHeaderTemplate}" />

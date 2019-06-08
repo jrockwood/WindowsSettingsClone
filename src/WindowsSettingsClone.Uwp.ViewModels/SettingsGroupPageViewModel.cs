@@ -46,10 +46,14 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         }
 
         //// ===========================================================================================================
-        //// Properties
+        //// Commands
         //// ===========================================================================================================
 
         public ICommand HomeCommand { get; }
+
+        //// ===========================================================================================================
+        //// Properties
+        //// ===========================================================================================================
 
         public SettingGroupKind GroupKind { get; }
         public string GroupName { get; }
@@ -57,6 +61,21 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public bool IsGrouped { get; }
         public IEnumerable<SettingNavigationInfoGroupViewModel> GroupedSettings { get; }
+
+        public SettingNavigationInfoViewModel SelectedItem
+        {
+            get => Settings.First(setting => setting.IsSelected);
+            set
+            {
+                SettingNavigationInfoViewModel selectedItem = SelectedItem;
+                if (selectedItem != value)
+                {
+                    selectedItem.IsSelected = false;
+                    value.IsSelected = true;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         //// ===========================================================================================================
         //// Methods
