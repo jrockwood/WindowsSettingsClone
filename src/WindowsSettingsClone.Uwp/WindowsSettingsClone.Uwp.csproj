@@ -139,6 +139,9 @@
     <Compile Include="Views\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingPageHost.xaml.cs">
+      <DependentUpon>SettingPageHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsGroupNavigationView.xaml.cs">
       <DependentUpon>SettingsGroupNavigationView.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
     <Page Include="Views\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingPageHost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsGroupNavigationView.xaml">
       <SubType>Designer</SubType>

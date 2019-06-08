@@ -26,5 +26,43 @@
     </Grid.ColumnDefinitions>
 
     <views:SettingsGroupNavigationView x:Name="SettingsGroupNavigationView" Grid.Column="0" />
+
+    <Grid Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <Grid x:Name="TitlePanel"
+            VerticalAlignment="Top"
+            Canvas.ZIndex="20">
+
+        <Grid x:Name="PageTitle" Padding="0,32,0,0">
+          <TextBlock Margin="24,19,0,7"
+                     Style="{ThemeResource TitleTextBlockStyle}"
+                     FontSize="28"
+                     Text="{x:Bind ViewModel.SelectedItem.DisplayName, Mode=OneWay}"
+                     TextTrimming="Clip"
+                     TextWrapping="NoWrap" />
+        </Grid>
+      </Grid>
+
+      <ProgressBar VerticalAlignment="Top"
+                   Canvas.ZIndex="30"
+                   IsIndeterminate="True"
+                   Visibility="Collapsed" />
+
+      <views:SettingPageHost x:Name="PageContent"
+                             Padding="24,5,24,24"
+                             VerticalAlignment="Stretch"
+                             HorizontalContentAlignment="Stretch"
+                             VerticalContentAlignment="Stretch"
+                             Canvas.ZIndex="10" />
+    </Grid>
+
+    <Rectangle x:Name="VerticalSeparator"
+               Grid.Column="1"
+               Width="1"
+               HorizontalAlignment="Left"
+               Fill="Transparent" />
   </Grid>
 </Page>
