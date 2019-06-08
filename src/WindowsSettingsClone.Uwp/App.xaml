@@ -1,6 +1,7 @@
-<Application x:Class="WindowsSettingsClone.Uwp.App"
+﻿<Application x:Class="WindowsSettingsClone.Uwp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:WindowsSettingsClone.Uwp.Controls"
              xmlns:converters="using:WindowsSettingsClone.Uwp.Converters">
 
   <Application.Resources>
@@ -17,5 +18,63 @@
     <x:Double x:Key="MediumWindowSnapPoint">720</x:Double>
 
     <FontFamily x:Key="SettingsFontFamily">ms-appx:///Assets/SetMDL2.ttf#Settings MDL2 Assets</FontFamily>
+
+    <Style TargetType="controls:SettingsEditorHostControl">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="controls:SettingsEditorHostControl">
+            <ScrollViewer x:Name="SettingPageHostPanel"
+                          Margin="{Binding TopMargin, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopThicknessConverter}, Mode=OneWay}"
+                          Padding="{Binding TopPadding, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopThicknessConverter}, Mode=OneWay}"
+                          HorizontalScrollMode="Disabled"
+                          IsVerticalRailEnabled="True"
+                          VerticalScrollBarVisibility="Auto"
+                          ZoomMode="Disabled">
+
+              <Grid x:Name="RootScrollableGrid">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+
+                  <Border Height="96" />
+
+                  <ContentPresenter Grid.Row="1">
+                    <TextBlock x:Name="PageErrorTextBlock" Visibility="Collapsed" />
+                  </ContentPresenter>
+
+                  <Grid Grid.Row="2" Opacity="{Binding IsContentReady, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToOpacityConverter}, Mode=OneWay}">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ContentControl HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    Content="{TemplateBinding Content}" />
+
+                    <Border Grid.Row="0"
+                            Grid.Column="1"
+                            Width="240"
+                            Margin="24,0,0,0">
+                      <TextBlock Text="Bonus Bar" />
+                    </Border>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </ScrollViewer>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
   </Application.Resources>
 </Application>
