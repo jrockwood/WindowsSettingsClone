@@ -11,6 +11,16 @@
       TabNavigation="Cycle"
       mc:Ignorable="d">
 
+  <Page.Transitions>
+    <TransitionCollection>
+      <NavigationThemeTransition>
+        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+          <DrillInNavigationTransitionInfo />
+        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+      </NavigationThemeTransition>
+    </TransitionCollection>
+  </Page.Transitions>
+
   <Page.Resources>
     <converters:GlyphInfoToFontFamilyConverter x:Name="GlyphInfoToFontFamilyConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Name="InverseBooleanToVisibilityConverter" />
