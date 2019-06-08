@@ -560,16 +560,57 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.UpdateAndSecurity:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.UpdateAndSecurity,
+                        Strings.UpdateAndSecurityGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.WindowsUpdateSettingName,
+                                SettingEditorKind.UpdateAndSecurityWindowsUpdate,
+                                GlyphInfo.Sync,
+                                isSelected: true),
+                            new SettingNavigationInfoViewModel(
+                                Strings.DeliveryOptimizationSettingName,
+                                SettingEditorKind.UpdateAndSecurityDeliveryOptimization,
+                                GlyphInfo.DeliveryOptimization),
+                            new SettingNavigationInfoViewModel(
+                                Strings.WindowsSecuritySettingName,
+                                SettingEditorKind.UpdateAndSecurityWindowsSecurity,
+                                GlyphInfo.DefenderApp),
+                            new SettingNavigationInfoViewModel(
+                                Strings.BackupSettingName,
+                                SettingEditorKind.UpdateAndSecurityBackup,
+                                GlyphInfo.Upload),
+                            new SettingNavigationInfoViewModel(
+                                Strings.TroubleshootSettingName,
+                                SettingEditorKind.UpdateAndSecurityTroubleshoot,
+                                GlyphInfo.Repair),
+                            new SettingNavigationInfoViewModel(
+                                Strings.RecoverySettingName,
+                                SettingEditorKind.UpdateAndSecurityRecovery,
+                                GlyphInfo.ResetDrive),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ActivationSettingName,
+                                SettingEditorKind.UpdateAndSecurityActivation,
+                                GlyphInfo.Completed),
+                            new SettingNavigationInfoViewModel(
+                                Strings.FindMyDeviceSettingName,
+                                SettingEditorKind.UpdateAndSecurityFindMyDevice,
+                                GlyphInfo.MapPin),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ForDevelopersSettingName,
+                                SettingEditorKind.UpdateAndSecurityForDevelopers,
+                                GlyphInfo.DeveloperTools),
+                            new SettingNavigationInfoViewModel(
+                                Strings.WindowsInsiderProgramSettingName,
+                                SettingEditorKind.UpdateAndSecurityWindowsInsiderProgram,
+                                GlyphInfo.WindowsInsider),
+                        });
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(groupKind), groupKind, null);
             }
-
-            return new SettingsGroupPageViewModel(
-                groupKind,
-                groupKind.ToString(),
-                new SettingNavigationInfoViewModel[0]);
         }
     }
 }

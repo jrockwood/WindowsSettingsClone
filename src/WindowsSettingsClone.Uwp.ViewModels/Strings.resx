@@ -629,4 +629,44 @@
     <value>Your info</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="ActivationSettingName" xml:space="preserve">
+    <value>Activation</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="BackupSettingName" xml:space="preserve">
+    <value>Backup</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="DeliveryOptimizationSettingName" xml:space="preserve">
+    <value>Delivery Optimization</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="FindMyDeviceSettingName" xml:space="preserve">
+    <value>Find my device</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ForDevelopersSettingName" xml:space="preserve">
+    <value>For developers</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="RecoverySettingName" xml:space="preserve">
+    <value>Recovery</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="TroubleshootSettingName" xml:space="preserve">
+    <value>Troubleshoot</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="WindowsInsiderProgramSettingName" xml:space="preserve">
+    <value>Windows Insider Program</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="WindowsSecuritySettingName" xml:space="preserve">
+    <value>Windows Security</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="WindowsUpdateSettingName" xml:space="preserve">
+    <value>Windows Update</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
 </root>

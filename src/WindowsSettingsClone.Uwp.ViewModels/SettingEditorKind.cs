@@ -124,5 +124,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         PrivacyPictures,
         PrivacyVideos,
         PrivacyFileSystem,
+
+        UpdateAndSecurityWindowsUpdate,
+        UpdateAndSecurityDeliveryOptimization,
+        UpdateAndSecurityWindowsSecurity,
+        UpdateAndSecurityBackup,
+        UpdateAndSecurityTroubleshoot,
+        UpdateAndSecurityRecovery,
+        UpdateAndSecurityActivation,
+        UpdateAndSecurityFindMyDevice,
+        UpdateAndSecurityForDevelopers,
+        UpdateAndSecurityWindowsInsiderProgram,
     }
 }
