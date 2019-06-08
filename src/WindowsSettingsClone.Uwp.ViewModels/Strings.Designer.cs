@@ -80,6 +80,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account info.
+        /// </summary>
+        internal static string AccountInfoSettingName {
+            get {
+                return ResourceManager.GetString("AccountInfoSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your accounts, email, sync, work, family.
         /// </summary>
         internal static string AccountsGroupDescription {
@@ -94,6 +103,33 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string AccountsGroupName {
             get {
                 return ResourceManager.GetString("AccountsGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activity history.
+        /// </summary>
+        internal static string ActivityHistorySettingName {
+            get {
+                return ResourceManager.GetString("ActivityHistorySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App diagnostics.
+        /// </summary>
+        internal static string AppDiagnosticsSettingName {
+            get {
+                return ResourceManager.GetString("AppDiagnosticsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App permissions.
+        /// </summary>
+        internal static string AppPermissionsSettingHeader {
+            get {
+                return ResourceManager.GetString("AppPermissionsSettingHeader", resourceCulture);
             }
         }
         
@@ -143,11 +179,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic file downloads.
+        /// </summary>
+        internal static string AutomaticFileDownloadsSettingName {
+            get {
+                return ResourceManager.GetString("AutomaticFileDownloadsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoPlay.
         /// </summary>
         internal static string AutoPlaySettingName {
             get {
                 return ResourceManager.GetString("AutoPlaySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background apps.
+        /// </summary>
+        internal static string BackgroundAppsSettingName {
+            get {
+                return ResourceManager.GetString("BackgroundAppsSettingName", resourceCulture);
             }
         }
         
@@ -175,6 +229,33 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string BroadcastingSettingName {
             get {
                 return ResourceManager.GetString("BroadcastingSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string CalendarSettingName {
+            get {
+                return ResourceManager.GetString("CalendarSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call history.
+        /// </summary>
+        internal static string CallHistorySettingName {
+            get {
+                return ResourceManager.GetString("CallHistorySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera.
+        /// </summary>
+        internal static string CameraSettingName {
+            get {
+                return ResourceManager.GetString("CameraSettingName", resourceCulture);
             }
         }
         
@@ -220,6 +301,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string ColorsSettingName {
             get {
                 return ResourceManager.GetString("ColorsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string ContactsSettingName {
+            get {
+                return ResourceManager.GetString("ContactsSettingName", resourceCulture);
             }
         }
         
@@ -296,6 +386,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagnostics &amp; feedback.
+        /// </summary>
+        internal static string DiagnosticsAndFeedbackSettingName {
+            get {
+                return ResourceManager.GetString("DiagnosticsAndFeedbackSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dial-up.
         /// </summary>
         internal static string DialUpSettingName {
@@ -310,6 +409,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string DisplaySettingName {
             get {
                 return ResourceManager.GetString("DisplaySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        internal static string DocumentsSettingName {
+            get {
+                return ResourceManager.GetString("DocumentsSettingName", resourceCulture);
             }
         }
         
@@ -341,6 +449,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string EmailSettingName {
+            get {
+                return ResourceManager.GetString("EmailSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ethernet.
         /// </summary>
         internal static string EthernetSettingName {
@@ -364,6 +481,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string FamilyAndOtherUsersSettingName {
             get {
                 return ResourceManager.GetString("FamilyAndOtherUsersSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File system.
+        /// </summary>
+        internal static string FileSystemSettingName {
+            get {
+                return ResourceManager.GetString("FileSystemSettingName", resourceCulture);
             }
         }
         
@@ -422,6 +548,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string GeneralSettingName {
+            get {
+                return ResourceManager.GetString("GeneralSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hearing.
         /// </summary>
         internal static string HearingSettingHeader {
@@ -436,6 +571,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string HighContrastSettingName {
             get {
                 return ResourceManager.GetString("HighContrastSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inking &amp; typing personalization.
+        /// </summary>
+        internal static string InkingAndTypingPersonalizationSettingName {
+            get {
+                return ResourceManager.GetString("InkingAndTypingPersonalizationSettingName", resourceCulture);
             }
         }
         
@@ -467,6 +611,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string LocationSettingName {
+            get {
+                return ResourceManager.GetString("LocationSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lock screen.
         /// </summary>
         internal static string LockScreenSettingName {
@@ -481,6 +634,24 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string MagnifierSettingName {
             get {
                 return ResourceManager.GetString("MagnifierSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messaging.
+        /// </summary>
+        internal static string MessagingSettingName {
+            get {
+                return ResourceManager.GetString("MessagingSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microphone.
+        /// </summary>
+        internal static string MicrophoneSettingName {
+            get {
+                return ResourceManager.GetString("MicrophoneSettingName", resourceCulture);
             }
         }
         
@@ -557,11 +728,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        internal static string NotificationsSettingName {
+            get {
+                return ResourceManager.GetString("NotificationsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offline maps.
         /// </summary>
         internal static string OfflineMapsSettingName {
             get {
                 return ResourceManager.GetString("OfflineMapsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other devices.
+        /// </summary>
+        internal static string OtherDevicesSettingName {
+            get {
+                return ResourceManager.GetString("OtherDevicesSettingName", resourceCulture);
             }
         }
         
@@ -611,6 +800,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone calls.
+        /// </summary>
+        internal static string PhoneCallsSettingName {
+            get {
+                return ResourceManager.GetString("PhoneCallsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Link your Android, iPhone.
         /// </summary>
         internal static string PhoneGroupDescription {
@@ -625,6 +823,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string PhoneGroupName {
             get {
                 return ResourceManager.GetString("PhoneGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pictures.
+        /// </summary>
+        internal static string PicturesSettingName {
+            get {
+                return ResourceManager.GetString("PicturesSettingName", resourceCulture);
             }
         }
         
@@ -665,6 +872,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privacy.
+        /// </summary>
+        internal static string PrivacySettingName {
+            get {
+                return ResourceManager.GetString("PrivacySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projecting to this PC.
         /// </summary>
         internal static string ProjectingToThisPCSettingName {
@@ -679,6 +895,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string ProxySettingName {
             get {
                 return ResourceManager.GetString("ProxySettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radios.
+        /// </summary>
+        internal static string RadiosSettingName {
+            get {
+                return ResourceManager.GetString("RadiosSettingName", resourceCulture);
             }
         }
         
@@ -845,6 +1070,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string TasksSettingName {
+            get {
+                return ResourceManager.GetString("TasksSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Themes.
         /// </summary>
         internal static string ThemesSettingName {
@@ -917,6 +1151,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Videos.
+        /// </summary>
+        internal static string VideosSettingName {
+            get {
+                return ResourceManager.GetString("VideosSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vision.
         /// </summary>
         internal static string VisionSettingHeader {
@@ -926,11 +1169,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voice activation.
+        /// </summary>
+        internal static string VoiceActivationSettingName {
+            get {
+                return ResourceManager.GetString("VoiceActivationSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VPN.
         /// </summary>
         internal static string VpnSettingName {
             get {
                 return ResourceManager.GetString("VpnSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows permissions.
+        /// </summary>
+        internal static string WindowsPermissionsSettingHeader {
+            get {
+                return ResourceManager.GetString("WindowsPermissionsSettingHeader", resourceCulture);
             }
         }
         

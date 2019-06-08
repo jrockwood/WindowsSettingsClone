@@ -415,7 +415,149 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                         });
 
                 case SettingGroupKind.Privacy:
-                    break;
+                    return new SettingsGroupPageViewModel(
+                        SettingGroupKind.Privacy,
+                        Strings.PrivacyGroupName,
+                        new[]
+                        {
+                            new SettingNavigationInfoViewModel(
+                                Strings.GeneralSettingName,
+                                SettingEditorKind.PrivacyGeneral,
+                                GlyphInfo.Lock,
+                                isSelected: true,
+                                headerDisplayName: Strings.WindowsPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.SpeechSettingName,
+                                SettingEditorKind.PrivacySpeech,
+                                GlyphInfo.Speech,
+                                headerDisplayName: Strings.WindowsPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.InkingAndTypingPersonalizationSettingName,
+                                SettingEditorKind.PrivacyInkingAndTypingPersonalization,
+                                GlyphInfo.Trackers,
+                                headerDisplayName: Strings.WindowsPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.DiagnosticsAndFeedbackSettingName,
+                                SettingEditorKind.PrivacyDiagnosticsAndFeedback,
+                                GlyphInfo.Feedback,
+                                headerDisplayName: Strings.WindowsPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ActivityHistorySettingName,
+                                SettingEditorKind.PrivacyActivityHistory,
+                                GlyphInfo.TaskView,
+                                headerDisplayName: Strings.WindowsPermissionsSettingHeader),
+
+                            new SettingNavigationInfoViewModel(
+                                Strings.LocationSettingName,
+                                SettingEditorKind.PrivacyLocation,
+                                GlyphInfo.MapPin,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.CameraSettingName,
+                                SettingEditorKind.PrivacyCamera,
+                                GlyphInfo.Camera,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.MicrophoneSettingName,
+                                SettingEditorKind.PrivacyMicrophone,
+                                GlyphInfo.Microphone,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.VoiceActivationSettingName,
+                                SettingEditorKind.PrivacyVoiceActivation,
+                                GlyphInfo.MicrophoneListening,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.NotificationsSettingName,
+                                SettingEditorKind.PrivacyNotifications,
+                                GlyphInfo.ActionCenter,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.AccountInfoSettingName,
+                                SettingEditorKind.PrivacyAccountInfo,
+                                GlyphInfo.ContactInfo,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.ContactsSettingName,
+                                SettingEditorKind.PrivacyContacts,
+                                GlyphInfo.People,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.CalendarSettingName,
+                                SettingEditorKind.PrivacyCalendar,
+                                GlyphInfo.Calendar,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.PhoneCallsSettingName,
+                                SettingEditorKind.PrivacyPhoneCalls,
+                                GlyphInfo.Phone,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.CallHistorySettingName,
+                                SettingEditorKind.PrivacyCallHistory,
+                                GlyphInfo.History,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.EmailSettingName,
+                                SettingEditorKind.PrivacyEmail,
+                                GlyphInfo.Mail,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.TasksSettingName,
+                                SettingEditorKind.PrivacyTasks,
+                                GlyphInfo.Trackers,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.MessagingSettingName,
+                                SettingEditorKind.PrivacyMessaging,
+                                GlyphInfo.Message,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.RadiosSettingName,
+                                SettingEditorKind.PrivacyRadios,
+                                GlyphInfo.NetworkTower,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.OtherDevicesSettingName,
+                                SettingEditorKind.PrivacyOtherDevices,
+                                GlyphInfo.Devices2,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.BackgroundAppsSettingName,
+                                SettingEditorKind.PrivacyBackgroundApps,
+                                GlyphInfo.Diagnostic,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.AppDiagnosticsSettingName,
+                                SettingEditorKind.PrivacyAppDiagnostics,
+                                GlyphInfo.AreaChart,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.AutomaticFileDownloadsSettingName,
+                                SettingEditorKind.PrivacyAutomaticFileDownloads,
+                                GlyphInfo.Cloud,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.DocumentsSettingName,
+                                SettingEditorKind.PrivacyDocuments,
+                                GlyphInfo.Page,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.PicturesSettingName,
+                                SettingEditorKind.PrivacyPictures,
+                                GlyphInfo.Photo2,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.VideosSettingName,
+                                SettingEditorKind.PrivacyVideos,
+                                GlyphInfo.Movies,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                            new SettingNavigationInfoViewModel(
+                                Strings.FileSystemSettingName,
+                                SettingEditorKind.PrivacyFileSystem,
+                                GlyphInfo.Page,
+                                headerDisplayName: Strings.AppPermissionsSettingHeader),
+                        });
 
                 case SettingGroupKind.UpdateAndSecurity:
                     break;

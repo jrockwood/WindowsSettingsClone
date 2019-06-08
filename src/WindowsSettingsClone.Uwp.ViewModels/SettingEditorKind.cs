@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="SettingEditorKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -98,5 +98,31 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         CortanaMoreDetails,
 
         PrivacyGeneral,
+        PrivacySpeech,
+        PrivacyInkingAndTypingPersonalization,
+        PrivacyDiagnosticsAndFeedback,
+        PrivacyActivityHistory,
+        PrivacyLocation,
+        PrivacyCamera,
+        PrivacyMicrophone,
+        PrivacyVoiceActivation,
+        PrivacyNotifications,
+        PrivacyAccountInfo,
+        PrivacyContacts,
+        PrivacyCalendar,
+        PrivacyPhoneCalls,
+        PrivacyCallHistory,
+        PrivacyEmail,
+        PrivacyTasks,
+        PrivacyMessaging,
+        PrivacyRadios,
+        PrivacyOtherDevices,
+        PrivacyBackgroundApps,
+        PrivacyAppDiagnostics,
+        PrivacyAutomaticFileDownloads,
+        PrivacyDocuments,
+        PrivacyPictures,
+        PrivacyVideos,
+        PrivacyFileSystem,
     }
 }
