@@ -133,6 +133,12 @@
     <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\TopThicknessConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml.cs">
+      <DependentUpon>BackgroundSettingsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEditors\Personalization\PersonalizePreviewControl.xaml.cs">
+      <DependentUpon>PersonalizePreviewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewServices\NavigationService.cs" />
     <Compile Include="ViewServices\PlatformCapabilityService.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
@@ -228,6 +234,14 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsEditors\Personalization\PersonalizePreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
