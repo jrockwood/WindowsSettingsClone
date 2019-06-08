@@ -24,11 +24,7 @@ namespace WindowsSettingsClone.Uwp.Views
             var groupKind = (SettingGroupKind)Enum.Parse(typeof(SettingGroupKind), (string)e.Parameter);
             ViewModel = SettingsGroupPageViewModel.CreateFromGroupKind(groupKind, App.Current.NavigationService);
 
-            NavigationItemsCollectionViewSource.IsSourceGrouped = ViewModel.IsGrouped;
-            NavigationItemsCollectionViewSource.Source =
-                ViewModel.IsGrouped ? ViewModel.GroupedSettings : (object)ViewModel.Settings;
-
-            SettingsNavigationListView.ItemsSource = NavigationItemsCollectionViewSource.View;
+            SettingsGroupNavigationView.ViewModel = ViewModel;
         }
     }
 }
