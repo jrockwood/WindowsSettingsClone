@@ -1,4 +1,4 @@
-﻿<Page x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupPage"
+<Page x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:converters="using:WindowsSettingsClone.Uwp.Converters"
@@ -211,7 +211,7 @@
               <FontIcon HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Glyph="&#xE10F;" />
+                        Glyph="{x:Bind viewModels:GlyphInfo.Home.Glyph}" />
               <TextBlock x:Uid="HomeButtonTextBlock"
                          Grid.Column="1"
                          VerticalAlignment="Center"
