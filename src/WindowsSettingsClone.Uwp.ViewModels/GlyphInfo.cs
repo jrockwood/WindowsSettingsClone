@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlyphInfo.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -53,6 +53,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public static readonly GlyphInfo Font = new GlyphInfo("\uE8D2");
         public static readonly GlyphInfo GameBar = new GlyphInfo("\uF192", SettingsMdl2FontFamilyName);
         public static readonly GlyphInfo Globe = new GlyphInfo("\uE774");
+        public static readonly GlyphInfo Globe2 = new GlyphInfo("\uF49A");
         public static readonly GlyphInfo HardDrive = new GlyphInfo("\uEDA2");
         public static readonly GlyphInfo History = new GlyphInfo("\uE81C");
         public static readonly GlyphInfo Home = new GlyphInfo("\uE80F");

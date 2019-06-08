@@ -275,7 +275,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
                                 isSelected: true),
                             new SettingNavigationInfoViewModel(Strings.RegionSettingName,
                                 SettingEditorKind.TimeAndLanguageRegion,
-                                GlyphInfo.World),
+                                GlyphInfo.Globe2),
                             new SettingNavigationInfoViewModel(Strings.LanguageSettingName,
                                 SettingEditorKind.TimeAndLanguageLanguage,
                                 GlyphInfo.Characters),
