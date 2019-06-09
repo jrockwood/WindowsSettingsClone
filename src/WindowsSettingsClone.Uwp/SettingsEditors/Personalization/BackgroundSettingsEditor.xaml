@@ -9,7 +9,6 @@
              mc:Ignorable="d">
 
   <StackPanel Orientation="Vertical">
-    <TextBlock Text="Demo" />
-    <personalization:PersonalizePreviewControl />
+    <personalization:PersonalizePreviewControl Margin="0,-5,0,48" />
   </StackPanel>
 </UserControl>
