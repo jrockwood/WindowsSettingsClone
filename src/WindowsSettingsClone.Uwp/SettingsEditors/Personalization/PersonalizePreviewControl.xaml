@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WindowsSettingsClone.Uwp.SettingsEditors.Personalization.PersonalizePreviewControl"
+<UserControl x:Class="WindowsSettingsClone.Uwp.SettingsEditors.Personalization.PersonalizePreviewControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -101,12 +101,12 @@
                    Margin="8,0,0,0"
                    HorizontalAlignment="Left"
                    Fill="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-        <TextBlock Grid.Row="1"
+        <TextBlock x:Uid="PersonalizePreviewControlSampleTextBlock"
+                   Grid.Row="1"
                    Margin="8,4,8,12"
                    Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                    FontSize="12"
                    FontWeight="Normal"
-                   Text="Sample Text"
                    TextWrapping="Wrap" />
       </Grid>
     </Border>
@@ -192,12 +192,11 @@
               <Grid Width="49"
                     Height="50"
                     Background="{StaticResource TileColorBrush}">
-                <TextBlock HorizontalAlignment="Center"
+                <TextBlock x:Uid="PersonalizePreviewControlSampleTileTextBlock"
                            VerticalAlignment="Center"
                            Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                            FontSize="14"
-                           FontWeight="Normal"
-                           Text="Aa" />
+                           FontWeight="Normal" />
               </Grid>
               <Grid Width="25"
                     Height="50"

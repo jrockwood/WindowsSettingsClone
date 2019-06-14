@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -124,6 +124,14 @@
   <data name="HomePageTitleTextBlock.Text" xml:space="preserve">
     <value>Windows Settings</value>
     <comment>Home page title</comment>
+  </data>
+  <data name="PersonalizePreviewControlSampleTextBlock.Text" xml:space="preserve">
+    <value>Sample Text</value>
+    <comment>Shown in the Background and Colors setting group in the personlization preview control for the Window preview</comment>
+  </data>
+  <data name="PersonalizePreviewControlSampleTileTextBlock.Text" xml:space="preserve">
+    <value>Aa</value>
+    <comment>Shown in the Background and Colors setting group in the personlization preview control for the Start menu preview</comment>
   </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>Find a setting</value>
