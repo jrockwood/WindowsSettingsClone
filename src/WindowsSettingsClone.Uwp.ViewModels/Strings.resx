@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -137,6 +137,10 @@
     <value>Accounts</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="ActivationSettingName" xml:space="preserve">
+    <value>Activation</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="ActivityHistorySettingName" xml:space="preserve">
     <value>Activity history</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -183,6 +187,10 @@
   </data>
   <data name="BackgroundSettingName" xml:space="preserve">
     <value>Background</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="BackupSettingName" xml:space="preserve">
+    <value>Backup</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="BluetoothAndOtherDevicesSettingName" xml:space="preserve">
@@ -253,6 +261,10 @@
     <value>Default apps</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="DeliveryOptimizationSettingName" xml:space="preserve">
+    <value>Delivery Optimization</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="DevicesGroupDescription" xml:space="preserve">
     <value>Bluetooth, printers, mouse</value>
     <comment>Description of the settings group shown on the home page</comment>
@@ -309,12 +321,20 @@
     <value>File system</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="FindMyDeviceSettingName" xml:space="preserve">
+    <value>Find my device</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="FocusAssistSettingName" xml:space="preserve">
     <value>Focus assist</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="FontsSettingName" xml:space="preserve">
     <value>Fonts</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ForDevelopersSettingName" xml:space="preserve">
+    <value>For developers</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
   <data name="GameBarSettingName" xml:space="preserve">
@@ -493,6 +513,10 @@
     <value>Radios</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="RecoverySettingName" xml:space="preserve">
+    <value>Recovery</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="RegionSettingName" xml:space="preserve">
     <value>Region</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -581,6 +605,10 @@
     <value>Time &amp; Language</value>
     <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
   </data>
+  <data name="TroubleshootSettingName" xml:space="preserve">
+    <value>Troubleshoot</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
   <data name="TypingSettingName" xml:space="preserve">
     <value>Typing</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -617,49 +645,13 @@
     <value>VPN</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="WindowsPermissionsSettingHeader" xml:space="preserve">
-    <value>Windows permissions</value>
-    <comment>Header for a sub group in the navigation pane</comment>
-  </data>
-  <data name="XboxNetworkingSettingName" xml:space="preserve">
-    <value>Xbox Networking</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="YourInfoSettingName" xml:space="preserve">
-    <value>Your info</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="ActivationSettingName" xml:space="preserve">
-    <value>Activation</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="BackupSettingName" xml:space="preserve">
-    <value>Backup</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="DeliveryOptimizationSettingName" xml:space="preserve">
-    <value>Delivery Optimization</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="FindMyDeviceSettingName" xml:space="preserve">
-    <value>Find my device</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="ForDevelopersSettingName" xml:space="preserve">
-    <value>For developers</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="RecoverySettingName" xml:space="preserve">
-    <value>Recovery</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
-  <data name="TroubleshootSettingName" xml:space="preserve">
-    <value>Troubleshoot</value>
-    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
-  </data>
   <data name="WindowsInsiderProgramSettingName" xml:space="preserve">
     <value>Windows Insider Program</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="WindowsPermissionsSettingHeader" xml:space="preserve">
+    <value>Windows permissions</value>
+    <comment>Header for a sub group in the navigation pane</comment>
   </data>
   <data name="WindowsSecuritySettingName" xml:space="preserve">
     <value>Windows Security</value>
@@ -667,6 +659,14 @@
   </data>
   <data name="WindowsUpdateSettingName" xml:space="preserve">
     <value>Windows Update</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="XboxNetworkingSettingName" xml:space="preserve">
+    <value>Xbox Networking</value>
+    <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="YourInfoSettingName" xml:space="preserve">
+    <value>Your info</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
 </root>
