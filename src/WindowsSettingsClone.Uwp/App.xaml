@@ -19,6 +19,25 @@
 
     <FontFamily x:Key="SettingsFontFamily">ms-appx:///Assets/SetMDL2.ttf#Settings MDL2 Assets</FontFamily>
 
+    <Style x:Key="SettingTextBlockLabel" TargetType="TextBlock">
+      <Setter Property="Margin" Value="0,0,0,8" />
+    </Style>
+
+    <Style x:Key="SettingButton" TargetType="Button">
+      <Setter Property="MinWidth" Value="90" />
+      <Setter Property="Padding" Value="12,4,12,4" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Thickness x:Key="SettingComboBoxMargin">0,0,0,28</Thickness>
+
+    <Style x:Key="SettingComboBox" TargetType="ComboBox">
+      <Setter Property="MinWidth" Value="280" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="Margin" Value="{StaticResource SettingComboBoxMargin}" />
+    </Style>
+
     <Style TargetType="controls:SettingsEditorHostControl">
       <Setter Property="Template">
         <Setter.Value>

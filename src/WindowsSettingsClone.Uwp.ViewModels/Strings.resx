@@ -185,6 +185,66 @@
     <value>Background apps</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="BackgroundChangePictureIntervalComboBox10MinutesOption" xml:space="preserve">
+    <value>10 minutes</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundChangePictureIntervalComboBox1DayOption" xml:space="preserve">
+    <value>1 day</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundChangePictureIntervalComboBox1HourOption" xml:space="preserve">
+    <value>1 hour</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundChangePictureIntervalComboBox1MinuteOption" xml:space="preserve">
+    <value>1 minute</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundChangePictureIntervalComboBox30MinutesOption" xml:space="preserve">
+    <value>30 minutes</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundChangePictureIntervalComboBox6HoursOption" xml:space="preserve">
+    <value>6 hours</value>
+    <comment>Background/Change picture every combo box item</comment>
+  </data>
+  <data name="BackgroundComboBoxPictureOption" xml:space="preserve">
+    <value>Picture</value>
+    <comment>Background combo box item</comment>
+  </data>
+  <data name="BackgroundComboBoxSlideshowOption" xml:space="preserve">
+    <value>Slideshow</value>
+    <comment>Background combo box item</comment>
+  </data>
+  <data name="BackgroundComboBoxSolidColorOption" xml:space="preserve">
+    <value>Solid color</value>
+    <comment>Background combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxCenterOption" xml:space="preserve">
+    <value>Center</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxFillOption" xml:space="preserve">
+    <value>Fill</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxFitOption" xml:space="preserve">
+    <value>Fit</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxSpanOption" xml:space="preserve">
+    <value>Span</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxStretchOption" xml:space="preserve">
+    <value>Stretch</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
+  <data name="BackgroundFitComboBoxTileOption" xml:space="preserve">
+    <value>Tile</value>
+    <comment>Background/Fit combo box item</comment>
+  </data>
   <data name="BackgroundSettingName" xml:space="preserve">
     <value>Background</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
