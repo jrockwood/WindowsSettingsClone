@@ -26,6 +26,9 @@ namespace WindowsSettingsClone.Uwp.Controls
             typeof(SettingsEditorHostControl),
             new PropertyMetadata(default(bool)));
 
+        /// <summary>
+        /// Shows or hides the content.
+        /// </summary>
         public bool IsContentReady
         {
             get => (bool)GetValue(IsContentReadyProperty);
@@ -38,6 +41,9 @@ namespace WindowsSettingsClone.Uwp.Controls
             typeof(SettingsEditorHostControl),
             new PropertyMetadata(default(bool)));
 
+        /// <summary>
+        /// Shows or hides the progress bar.
+        /// </summary>
         public bool IsUpdating
         {
             get => (bool)GetValue(IsUpdatingProperty);
