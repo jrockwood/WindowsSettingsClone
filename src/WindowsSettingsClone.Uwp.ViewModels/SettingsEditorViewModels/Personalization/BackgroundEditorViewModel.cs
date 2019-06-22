@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="BackgroundEditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -23,7 +23,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
         private const int SixHours = OneHour * 6;
         private const int OneDay = OneHour * 24;
 
-        private SlideshowAlbum _slideshowAlbum = new SlideshowAlbum("DesktopWallpaper", GlyphInfo.HardDrive, @"C:\");
+        private SlideshowAlbum _slideshowAlbum = new SlideshowAlbum("DesktopWallpaper", @"C:\");
         private bool _shuffleSlideshow;
 
         //// ===========================================================================================================
@@ -163,15 +163,13 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
 
     public class SlideshowAlbum
     {
-        public SlideshowAlbum(string displayName, GlyphInfo glyphInfo, string folderPath)
+        public SlideshowAlbum(string displayName, string folderPath)
         {
             DisplayName = displayName;
-            GlyphInfo = glyphInfo;
             FolderPath = folderPath;
         }
 
         public string DisplayName { get; }
-        public GlyphInfo GlyphInfo { get; }
         public string FolderPath { get; }
     }
 }
