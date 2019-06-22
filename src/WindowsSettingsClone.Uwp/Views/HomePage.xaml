@@ -21,7 +21,7 @@
   </Page.Transitions>
 
   <Page.Resources>
-    <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
+    <DataTemplate x:Key="WideSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageCategory">
       <GridViewItem Width="250"
                     Height="Auto"
                     Margin="10"
@@ -54,7 +54,7 @@
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        MaxLines="2"
                        OpticalMarginAlignment="TrimSideBearings"
-                       Text="{x:Bind GroupName}" />
+                       Text="{x:Bind CategoryDisplayName}" />
 
             <TextBlock x:Name="CaptionTextBlock"
                        Height="32"
@@ -68,7 +68,7 @@
       </GridViewItem>
     </DataTemplate>
 
-    <DataTemplate x:Key="NarrowSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageGroup">
+    <DataTemplate x:Key="NarrowSettingsGridViewItemTemplate" x:DataType="viewModels:HomePageCategory">
       <GridViewItem Margin="0"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left">
@@ -100,7 +100,7 @@
                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                        MaxLines="2"
                        OpticalMarginAlignment="TrimSideBearings"
-                       Text="{x:Bind GroupName}" />
+                       Text="{x:Bind CategoryDisplayName}" />
 
             <TextBlock x:Name="CaptionTextBlock"
                        Height="32"
@@ -274,7 +274,7 @@
                 ItemClick="OnSettingsGridViewItemClick"
                 ItemTemplate="{StaticResource WideSettingsGridViewItemTemplate}"
                 ItemsPanel="{StaticResource HorizontallyWrappedGridViewItemsPanel}"
-                ItemsSource="{x:Bind ViewModel.Groups}"
+                ItemsSource="{x:Bind ViewModel.Categories}"
                 SelectionMode="None" />
     </ScrollViewer>
   </Grid>

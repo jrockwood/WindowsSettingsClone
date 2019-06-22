@@ -11,13 +11,16 @@ namespace WindowsSettingsClone.Uwp.Views
     using ViewModels;
     using Windows.UI.Xaml.Controls;
 
-    public sealed partial class SettingsGroupNavigationView : UserControl
+    public sealed partial class CategoryPageNavigationView : UserControl
     {
-        private SettingsGroupPageViewModel _viewModel;
+        private CategoryPageNavigationViewModel _viewModel;
 
-        public SettingsGroupNavigationView() => InitializeComponent();
+        public CategoryPageNavigationView()
+        {
+            InitializeComponent();
+        }
 
-        public SettingsGroupPageViewModel ViewModel
+        public CategoryPageNavigationViewModel ViewModel
         {
             get => _viewModel;
             set
@@ -38,6 +41,6 @@ namespace WindowsSettingsClone.Uwp.Views
         }
 
         private void OnSettingsNavigationListViewSelectionChanged(object sender, SelectionChangedEventArgs e) =>
-            ViewModel.SelectedItem = e.AddedItems.Cast<SettingNavigationInfoViewModel>().Single();
+            ViewModel.SelectedItem = e.AddedItems.Cast<CategoryPageNavigationItem>().Single();
     }
 }

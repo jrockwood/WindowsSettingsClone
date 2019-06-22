@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="SettingNavigationInfoGroupViewModel.cs" company="Justin Rockwood">
+// <copyright file="CategoryPageNavigationGroupedItem.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -12,13 +12,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     using System.Linq;
 
     /// <summary>
-    /// Represents a group of <see cref="SettingNavigationInfoViewModel"/> when the items are grouped.
+    /// Represents a group of <see cref="CategoryPageNavigationItem"/> when the items are grouped.
     /// </summary>
-    public sealed class SettingNavigationInfoGroupViewModel : IGrouping<string, SettingNavigationInfoViewModel>
+    public sealed class
+        CategoryPageNavigationGroupedItem : IGrouping<string, CategoryPageNavigationItem>
     {
-        private readonly List<SettingNavigationInfoViewModel> _items;
+        private readonly List<CategoryPageNavigationItem> _items;
 
-        public SettingNavigationInfoGroupViewModel(string groupName, IEnumerable<SettingNavigationInfoViewModel> items)
+        public CategoryPageNavigationGroupedItem(
+            string groupName,
+            IEnumerable<CategoryPageNavigationItem> items)
         {
             Key = groupName;
             _items = items.ToList();
@@ -27,7 +30,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public string Key { get; }
         public string GroupName => Key;
 
-        public IEnumerator<SettingNavigationInfoViewModel> GetEnumerator() => _items.GetEnumerator();
+        public IEnumerator<CategoryPageNavigationItem> GetEnumerator() => _items.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

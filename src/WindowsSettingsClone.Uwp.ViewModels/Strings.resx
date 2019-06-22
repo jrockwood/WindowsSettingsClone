@@ -129,13 +129,13 @@
     <value>Account info</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="AccountsGroupDescription" xml:space="preserve">
+  <data name="AccountsCategoryDescription" xml:space="preserve">
     <value>Your accounts, email, sync, work, family</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="AccountsGroupName" xml:space="preserve">
+  <data name="AccountsCategoryName" xml:space="preserve">
     <value>Accounts</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="ActivationSettingName" xml:space="preserve">
     <value>Activation</value>
@@ -161,13 +161,13 @@
     <value>Apps for websites</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="AppsGroupDescription" xml:space="preserve">
+  <data name="AppsCategoryDescription" xml:space="preserve">
     <value>Uninstall, defaults, optional features</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="AppsGroupName" xml:space="preserve">
+  <data name="AppsCategoryName" xml:space="preserve">
     <value>Apps</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="AudioSettingName" xml:space="preserve">
     <value>Audio</value>
@@ -297,13 +297,13 @@
     <value>Contacts</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="CortanaGroupDescription" xml:space="preserve">
+  <data name="CortanaCategoryDescription" xml:space="preserve">
     <value>Cortana language, permissions, notifications</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="CortanaGroupName" xml:space="preserve">
+  <data name="CortanaCategoryName" xml:space="preserve">
     <value>Cortana</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="CursorAndPointerSettingName" xml:space="preserve">
     <value>Cursor &amp; pointer</value>
@@ -325,13 +325,13 @@
     <value>Delivery Optimization</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="DevicesGroupDescription" xml:space="preserve">
+  <data name="DevicesCategoryDescription" xml:space="preserve">
     <value>Bluetooth, printers, mouse</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="DevicesGroupName" xml:space="preserve">
+  <data name="DevicesCategoryName" xml:space="preserve">
     <value>Devices</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="DiagnosticsAndFeedbackSettingName" xml:space="preserve">
     <value>Diagnostics &amp; feedback</value>
@@ -349,13 +349,13 @@
     <value>Documents</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="EaseOfAccessGroupDescription" xml:space="preserve">
+  <data name="EaseOfAccessCategoryDescription" xml:space="preserve">
     <value>Narrator, magnifier, high contrast</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="EaseOfAccessGroupName" xml:space="preserve">
+  <data name="EaseOfAccessCategoryName" xml:space="preserve">
     <value>Ease of Access</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="EmailAndAccountsSettingName" xml:space="preserve">
     <value>Email &amp; accounts</value>
@@ -405,13 +405,13 @@
     <value>Game Mode</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="GamingGroupDescription" xml:space="preserve">
+  <data name="GamingCategoryDescription" xml:space="preserve">
     <value>Game bar, captures, broadcasting, Game Mode</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="GamingGroupName" xml:space="preserve">
+  <data name="GamingCategoryName" xml:space="preserve">
     <value>Gaming</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="GeneralSettingName" xml:space="preserve">
     <value>General</value>
@@ -477,13 +477,13 @@
     <value>Narrator</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="NetworkAndInternetGroupDescription" xml:space="preserve">
+  <data name="NetworkAndInternetCategoryDescription" xml:space="preserve">
     <value>Wi-Fi, airplane mode, VPN</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="NetworkAndInternetGroupName" xml:space="preserve">
+  <data name="NetworkAndInternetCategoryName" xml:space="preserve">
     <value>Network &amp; Internet</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="NetworkStatusSettingName" xml:space="preserve">
     <value>Status</value>
@@ -517,25 +517,25 @@
     <value>Permissions</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="PersonalizationGroupDescription" xml:space="preserve">
+  <data name="PersonalizationCategoryDescription" xml:space="preserve">
     <value>Background, lock screen, colors</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="PersonalizationGroupName" xml:space="preserve">
+  <data name="PersonalizationCategoryName" xml:space="preserve">
     <value>Personalization</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="PhoneCallsSettingName" xml:space="preserve">
     <value>Phone calls</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="PhoneGroupDescription" xml:space="preserve">
+  <data name="PhoneCategoryDescription" xml:space="preserve">
     <value>Link your Android, iPhone</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="PhoneGroupName" xml:space="preserve">
+  <data name="PhoneCategoryName" xml:space="preserve">
     <value>Phone</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="PicturesSettingName" xml:space="preserve">
     <value>Pictures</value>
@@ -549,13 +549,13 @@
     <value>Printers &amp; scanners</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="PrivacyGroupDescription" xml:space="preserve">
+  <data name="PrivacyCategoryDescription" xml:space="preserve">
     <value>Location, camera, microphone</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="PrivacyGroupName" xml:space="preserve">
+  <data name="PrivacyCategoryName" xml:space="preserve">
     <value>Privacy</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="PrivacySettingName" xml:space="preserve">
     <value>Privacy</value>
@@ -585,13 +585,13 @@
     <value>Remote Desktop</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="SearchGroupDescription" xml:space="preserve">
+  <data name="SearchCategoryDescription" xml:space="preserve">
     <value>Find my files, permissions</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="SearchGroupName" xml:space="preserve">
+  <data name="SearchCategoryName" xml:space="preserve">
     <value>Search</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="SearchingWindowsSettingName" xml:space="preserve">
     <value>Searching Windows</value>
@@ -629,13 +629,13 @@
     <value>Sync your settings</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="SystemGroupDescription" xml:space="preserve">
+  <data name="SystemCategoryDescription" xml:space="preserve">
     <value>Display, sound, notifications, power</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="SystemGroupName" xml:space="preserve">
+  <data name="SystemCategoryName" xml:space="preserve">
     <value>System</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="TabletModeSettingName" xml:space="preserve">
     <value>Tablet mode</value>
@@ -657,13 +657,13 @@
     <value>Themes</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="TimeAndLanguageGroupDescription" xml:space="preserve">
+  <data name="TimeAndLanguageCategoryDescription" xml:space="preserve">
     <value>Speech, region, date</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="TimeAndLanguageGroupName" xml:space="preserve">
+  <data name="TimeAndLanguageCategoryName" xml:space="preserve">
     <value>Time &amp; Language</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="TroubleshootSettingName" xml:space="preserve">
     <value>Troubleshoot</value>
@@ -673,13 +673,13 @@
     <value>Typing</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
-  <data name="UpdateAndSecurityGroupDescription" xml:space="preserve">
+  <data name="UpdateAndSecurityCategoryDescription" xml:space="preserve">
     <value>Windows Update, recovery, backup</value>
     <comment>Description of the settings group shown on the home page</comment>
   </data>
-  <data name="UpdateAndSecurityGroupName" xml:space="preserve">
+  <data name="UpdateAndSecurityCategoryName" xml:space="preserve">
     <value>Update &amp; Security</value>
-    <comment>Name for the group shown on the home page and the heading on the settings group page</comment>
+    <comment>Name for the category shown on the home page and the heading on the category page</comment>
   </data>
   <data name="UsbSettingName" xml:space="preserve">
     <value>USB</value>

@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="SettingNavigationInfoViewModel.cs" company="Justin Rockwood">
+// <copyright file="CategoryPageNavigationItem.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -13,7 +13,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
     /// Represents enough information about an individual setting that it can be displayed on a page navigation control
     /// to invoke the proper setting editor.
     /// </summary>
-    public sealed class SettingNavigationInfoViewModel : BaseViewModel
+    public sealed class CategoryPageNavigationItem : BaseViewModel
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -25,17 +25,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        public SettingNavigationInfoViewModel(
+        public CategoryPageNavigationItem(
             string displayName,
-            SettingsEditorKind editorKind,
+            EditorKind editorKind,
             GlyphInfo glyphInfo,
-            bool isSelected = false,
             string headerDisplayName = null)
         {
             DisplayName = Param.VerifyString(displayName, nameof(displayName));
             EditorKind = editorKind;
             GlyphInfo = Param.VerifyNotNull(glyphInfo, nameof(glyphInfo));
-            IsSelected = isSelected;
             HeaderDisplayName = headerDisplayName;
         }
 
@@ -43,9 +41,14 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         //// Properties
         //// ===========================================================================================================
 
-        public SettingsEditorKind EditorKind { get; }
+        public EditorKind EditorKind { get; }
         public GlyphInfo GlyphInfo { get; }
         public string DisplayName { get; }
+
+        /// <summary>
+        /// The display name of the grouped section if the setting is within a grouped section in the navigation view, or
+        /// null if the setting is not within a grouped section.
+        /// </summary>
         public string HeaderDisplayName { get; }
 
         public bool IsSelected

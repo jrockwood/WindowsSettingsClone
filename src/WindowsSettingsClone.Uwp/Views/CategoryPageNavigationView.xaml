@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupNavigationView"
+﻿<UserControl x:Class="WindowsSettingsClone.Uwp.Views.CategoryPageNavigationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
     <!-- Source and IsSourceGrouped is set from code-behind -->
     <CollectionViewSource x:Name="NavigationItemsCollectionViewSource" />
 
-    <DataTemplate x:Key="SettingsNavigationHeaderTemplate" x:DataType="viewModels:SettingNavigationInfoGroupViewModel">
+    <DataTemplate x:Key="SettingsNavigationHeaderTemplate" x:DataType="viewModels:CategoryPageNavigationGroupedItem">
       <TextBlock Margin="0,24,0,0"
                  Padding="4,0,0,0"
                  Style="{ThemeResource BodyTextBlockStyle}"
@@ -20,7 +20,7 @@
                  Text="{x:Bind GroupName}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="SettingsNavigationListItemTemplate" x:DataType="viewModels:SettingNavigationInfoViewModel">
+    <DataTemplate x:Key="SettingsNavigationListItemTemplate" x:DataType="viewModels:CategoryPageNavigationItem">
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="48" />

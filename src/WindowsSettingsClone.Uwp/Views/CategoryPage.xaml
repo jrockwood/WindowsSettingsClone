@@ -1,4 +1,4 @@
-﻿<Page x:Class="WindowsSettingsClone.Uwp.Views.SettingsGroupPage"
+﻿<Page x:Class="WindowsSettingsClone.Uwp.Views.CategoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="using:WindowsSettingsClone.Uwp.Controls"
@@ -31,7 +31,7 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <views:SettingsGroupNavigationView x:Name="SettingsGroupNavigationView" Grid.Column="0" />
+    <views:CategoryPageNavigationView x:Name="SettingsGroupNavigationView" Grid.Column="0" />
 
     <Grid Grid.Column="1">
       <Grid.RowDefinitions>

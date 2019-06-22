@@ -28,8 +28,8 @@ namespace WindowsSettingsClone.Uwp.Views
 
         private void OnSettingsGridViewItemClick(object sender, ItemClickEventArgs e)
         {
-            var homePageGroup = (HomePageGroup)e.ClickedItem;
-            ViewModel.GroupClick.Execute(homePageGroup);
+            var homePageGroup = (HomePageCategory)e.ClickedItem;
+            ViewModel.CategoryClick.Execute(homePageGroup);
         }
     }
 }
