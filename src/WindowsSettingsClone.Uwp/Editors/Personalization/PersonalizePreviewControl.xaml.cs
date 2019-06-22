@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.Uwp.Editors.Personalization
 {
+    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
     public sealed partial class PersonalizePreviewControl : UserControl
@@ -14,6 +15,18 @@ namespace WindowsSettingsClone.Uwp.Editors.Personalization
         public PersonalizePreviewControl()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty ShowWindowPreviewProperty = DependencyProperty.Register(
+            "ShowWindowPreview",
+            typeof(bool),
+            typeof(PersonalizePreviewControl),
+            new PropertyMetadata(default(bool)));
+
+        public bool ShowWindowPreview
+        {
+            get => (bool)GetValue(ShowWindowPreviewProperty);
+            set => SetValue(ShowWindowPreviewProperty, value);
         }
     }
 }
