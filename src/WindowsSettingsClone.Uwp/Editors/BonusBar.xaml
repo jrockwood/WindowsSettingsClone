@@ -3,52 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:editorViewModels="using:WindowsSettingsClone.Uwp.ViewModels.EditorViewModels"
+             xmlns:editors="using:WindowsSettingsClone.Uwp.Editors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
 
   <UserControl.Resources>
-    <DataTemplate x:Key="RelatedSettingsItemTemplate" x:DataType="editorViewModels:RelatedSettingLink">
-      <HyperlinkButton Margin="0,0,0,12">
+    <editors:BonusBarItemTemplateSelector x:Key="BonusBarItemTemplateSelector"
+                                          DescriptionTemplate="{StaticResource DescriptionTemplate}"
+                                          LaunchAppLinkTemplate="{StaticResource LaunchAppLinkTemplate}"
+                                          NavigationLinkTemplate="{StaticResource NavigationLinkTemplate}"
+                                          WebLinkTemplate="{StaticResource WebLinkTemplate}" />
+
+    <DataTemplate x:Key="SectionTemplate" x:DataType="editorViewModels:BonusBarSection">
+      <StackPanel Margin="0,0,0,48" Orientation="Vertical">
+        <TextBlock Text="{x:Bind HeaderDisplayName}" />
+        <ItemsControl Margin="0,8,0,-20"
+                      ItemTemplateSelector="{StaticResource BonusBarItemTemplateSelector}"
+                      ItemsSource="{x:Bind Items}" />
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DescriptionTemplate" x:DataType="editorViewModels:BonusBarDescriptionItem">
+      <TextBlock Text="{x:Bind Description}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="NavigationLinkTemplate" x:DataType="editorViewModels:BonusBarNavigationLink">
+      <HyperlinkButton Margin="0,0,0,20" Padding="0">
         <TextBlock Text="{x:Bind DisplayName}" />
       </HyperlinkButton>
     </DataTemplate>
 
-    <DataTemplate x:Key="HaveAQuestionItemTemplate" x:DataType="editorViewModels:WebLink">
-      <HyperlinkButton Margin="0,8,0,0" NavigateUri="{x:Bind Url}">
+    <DataTemplate x:Key="WebLinkTemplate" x:DataType="editorViewModels:BonusBarWebLink">
+      <HyperlinkButton Margin="0,8,0,0"
+                       Padding="0"
+                       NavigateUri="{x:Bind Url}">
+        <TextBlock Text="{x:Bind DisplayName}" />
+      </HyperlinkButton>
+    </DataTemplate>
+
+    <DataTemplate x:Key="LaunchAppLinkTemplate" x:DataType="editorViewModels:BonusBarLaunchAppLink">
+      <HyperlinkButton Margin="0,8,0,0" Padding="0">
         <TextBlock Text="{x:Bind DisplayName}" />
       </HyperlinkButton>
     </DataTemplate>
   </UserControl.Resources>
 
   <StackPanel x:Name="RootPanel" Orientation="Vertical">
-    <StackPanel x:Name="RelatedSettingsPanel"
-                Margin="0,0,0,48"
-                Orientation="Vertical">
-      <TextBlock x:Uid="BonusBarRelatedSettingsHeaderTextBlock" />
-      <ItemsControl Margin="0,8,0,-20"
-                    ItemTemplate="{StaticResource RelatedSettingsItemTemplate}"
-                    ItemsSource="{x:Bind ViewModel.RelatedSettingsLinks}" />
-    </StackPanel>
-
-    <StackPanel x:Name="HaveAQuestionPanel"
-                Margin="0,0,0,48"
-                Orientation="Vertical">
-      <TextBlock x:Uid="BonusBarHaveAQuestionHeaderTextBlock" />
-      <ItemsControl ItemTemplate="{StaticResource HaveAQuestionItemTemplate}" ItemsSource="{x:Bind ViewModel.QuestionLinks}" />
-      <HyperlinkButton Margin="0,8,0,0">
-        <TextBlock Text="{x:Bind ViewModel.GetHelpLink.DisplayName}" />
-      </HyperlinkButton>
-    </StackPanel>
-
-    <StackPanel x:Name="MakeWindowsBetterPanel"
-                Margin="0,0,0,48"
-                Orientation="Vertical">
-      <TextBlock x:Uid="BonusBarMakeWindowsBetterTextBlock" />
-      <HyperlinkButton Margin="0,8,0,0">
-        <TextBlock Text="{x:Bind ViewModel.FeedbackLink.DisplayName}" />
-      </HyperlinkButton>
-    </StackPanel>
+    <ItemsControl ItemTemplate="{StaticResource SectionTemplate}" ItemsSource="{x:Bind ViewModel.Sections}" />
   </StackPanel>
 </UserControl>

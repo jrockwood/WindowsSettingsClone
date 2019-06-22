@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.Uwp.Editors
 {
+    using System;
     using ViewModels.EditorViewModels;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -28,6 +29,35 @@ namespace WindowsSettingsClone.Uwp.Editors
         {
             get => (BonusBarViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
+        }
+    }
+
+    public sealed class BonusBarItemTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate DescriptionTemplate { get; set; }
+        public DataTemplate NavigationLinkTemplate { get; set; }
+        public DataTemplate WebLinkTemplate { get; set; }
+        public DataTemplate LaunchAppLinkTemplate { get; set; }
+
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
+        {
+            switch (item)
+            {
+                case BonusBarDescriptionItem _:
+                    return DescriptionTemplate;
+
+                case BonusBarNavigationLink _:
+                    return NavigationLinkTemplate;
+
+                case BonusBarWebLink _:
+                    return WebLinkTemplate;
+
+                case BonusBarLaunchAppLink _:
+                    return LaunchAppLinkTemplate;
+
+                default:
+                    throw new InvalidOperationException($"Unknown item type '{item.GetType()}'");
+            }
         }
     }
 }

@@ -17,9 +17,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
 
     public class EditorViewModelTests
     {
-        private static readonly BonusBarViewModel s_bonusBar = new BonusBarViewModel(
-            new RelatedSettingLink[0],
-            new WebLink[0]);
+        private static readonly BonusBarViewModel s_bonusBar = new BonusBarViewModel(null);
 
         [Test]
         public void Ctor_should_throw_on_null_arguments()

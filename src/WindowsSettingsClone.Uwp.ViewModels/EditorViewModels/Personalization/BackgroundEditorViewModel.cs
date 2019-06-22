@@ -117,25 +117,27 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels.Personalization
         protected override Task LoadInternalAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         private static BonusBarViewModel CreateBonusBarViewModel() => new BonusBarViewModel(
-            relatedSettingsLinks: new[]
-            {
-                new RelatedSettingLink(
+            new BonusBarSection(
+                Strings.RelatedSettingsHeader,
+                new BonusBarNavigationLink(
                     Strings.HighContrastSettingsLink,
                     EditorKind.EaseOfAccessHighContrast),
-                new RelatedSettingLink(Strings.SyncYourSettingsLink, EditorKind.AccountsSyncYourSettings),
-            },
-            questionLinks: new[]
-            {
-                new WebLink(
+                new BonusBarNavigationLink(Strings.SyncYourSettingsLink, EditorKind.AccountsSyncYourSettings)),
+            new BonusBarSection(
+                Strings.HaveAQuestionHeader,
+                new BonusBarWebLink(
                     Strings.ShowDesktopIconsLink,
                     "https://www.bing.com/search?q=show desktop icons windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-                new WebLink(
+                new BonusBarWebLink(
                     Strings.FindNewThemesLink,
                     "https://www.bing.com/search?q=get themes windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-                new WebLink(
+                new BonusBarWebLink(
                     Strings.ChangeMyDeesktopBackgroundLink,
                     "https://www.bing.com/search?q=change background picture windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-            });
+                new BonusBarLaunchAppLink(Strings.GetHelpLink)),
+            new BonusBarSection(
+                Strings.MakeWindowsBetterHeader,
+                new BonusBarLaunchAppLink(Strings.GiveUsFeedbackLink)));
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
     public class NotYetImplementedEditorViewModel : EditorViewModel
     {
         public NotYetImplementedEditorViewModel(EditorKind editorKind, string displayName)
-            : base(new BonusBarViewModel(new RelatedSettingLink[0], new WebLink[0]))
+            : base(new BonusBarViewModel(null))
         {
             EditorKind = editorKind;
             DisplayName = displayName;

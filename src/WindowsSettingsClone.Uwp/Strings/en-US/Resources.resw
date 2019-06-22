@@ -125,18 +125,6 @@
     <value>Choose albums for your slideshow</value>
     <comment>Personalization/Background</comment>
   </data>
-  <data name="BonusBarHaveAQuestionHeaderTextBlock.Text" xml:space="preserve">
-    <value>Have a question?</value>
-    <comment>Header for the bonus bar</comment>
-  </data>
-  <data name="BonusBarMakeWindowsBetterTextBlock.Text" xml:space="preserve">
-    <value>Make Windows better</value>
-    <comment>Header for the bonus bar</comment>
-  </data>
-  <data name="BonusBarRelatedSettingsHeaderTextBlock.Text" xml:space="preserve">
-    <value>Related Settings</value>
-    <comment>Header for the bonus bar</comment>
-  </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Browse</value>
     <comment>General-purpose browse button</comment>
