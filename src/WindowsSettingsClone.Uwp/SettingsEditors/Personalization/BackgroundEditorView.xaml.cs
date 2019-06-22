@@ -7,16 +7,18 @@
 
 namespace WindowsSettingsClone.Uwp.SettingsEditors.Personalization
 {
+    using System;
     using ViewModels.SettingsEditorViewModels.Personalization;
     using Windows.UI.Xaml.Controls;
 
     public sealed partial class BackgroundEditorView : UserControl
     {
-        public BackgroundEditorView()
+        public BackgroundEditorView(BackgroundEditorViewModel viewModel)
         {
             InitializeComponent();
+            ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
         }
 
-        public BackgroundEditorViewModel ViewModel { get; } = new BackgroundEditorViewModel();
+        public BackgroundEditorViewModel ViewModel { get; }
     }
 }

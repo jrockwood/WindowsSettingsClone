@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="BackgroundEditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -7,6 +7,9 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personalization
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class BackgroundEditorViewModel : EditorViewModel
     {
         //// ===========================================================================================================
@@ -26,6 +29,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
         //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
+
+        public override EditorKind EditorKind => EditorKind.PersonalizationBackground;
+        public override string DisplayName => Strings.BackgroundSettingName;
 
         public SelectionObservableCollection<NamedValue<DesktopBackgroundKind>> BackgroundKinds { get; } =
             new SelectionObservableCollection<NamedValue<DesktopBackgroundKind>>(
@@ -94,6 +100,12 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
             get => _shuffleSlideshow;
             set => SetProperty(ref _shuffleSlideshow, value);
         }
+
+        //// ===========================================================================================================
+        //// Methods
+        //// ===========================================================================================================
+
+        protected override Task LoadInternalAsync(CancellationToken cancellationToken) => Task.CompletedTask;
     }
 
     /// <summary>

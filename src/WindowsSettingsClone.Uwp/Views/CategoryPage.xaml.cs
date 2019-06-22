@@ -25,9 +25,12 @@ namespace WindowsSettingsClone.Uwp.Views
         {
             // The name of the group is passed in via the event args, which we can use to construct a view model.
             var category = (CategoryKind)Enum.Parse(typeof(CategoryKind), (string)e.Parameter);
-            ViewModel = CategoryPageViewModel.CreateFromCategoryKind(category, App.Current.NavigationService);
+            ViewModel = CategoryPageViewModel.CreateFromCategoryKind(
+                category,
+                App.Current.NavigationService,
+                App.Current.ThreadDispatcher);
 
-            SettingsGroupNavigationView.ViewModel = ViewModel;
+            SettingsGroupNavigationView.ViewModel = ViewModel.Navigation;
         }
     }
 }

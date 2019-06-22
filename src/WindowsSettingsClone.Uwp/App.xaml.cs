@@ -44,7 +44,9 @@ namespace WindowsSettingsClone.Uwp
         public static new App Current => (App)Application.Current;
 
         public INavigationViewService NavigationService =>
-            ((Window.Current.Content as Frame)?.Content as RootPage).NavigationService;
+            ((Window.Current.Content as Frame)?.Content as RootPage)?.NavigationService;
+
+        public IThreadDispatcher ThreadDispatcher { get; } = new ViewThreadDispatcher();
 
         //// ===========================================================================================================
         //// Methods

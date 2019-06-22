@@ -39,6 +39,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels
 
         public BonusBarViewModel BonusBar { get; }
 
+        public abstract EditorKind EditorKind { get; }
+        public abstract string DisplayName { get; }
+
         public bool IsContentReady
         {
             get => _isContentReady;

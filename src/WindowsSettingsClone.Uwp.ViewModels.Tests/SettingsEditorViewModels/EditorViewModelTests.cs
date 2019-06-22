@@ -127,6 +127,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
             public bool LoadInternalAsyncCalled { get; private set; }
             public CancellationToken LoadInternalAsyncCancellationToken { get; private set; }
 
+            public override EditorKind EditorKind => EditorKind.AccountsYourInfo;
+            public override string DisplayName => "Test Setting";
+
             protected override Task LoadInternalAsync(CancellationToken cancellationToken)
             {
                 LoadInternalAsyncCalled = true;
