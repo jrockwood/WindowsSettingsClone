@@ -8,10 +8,10 @@
 namespace WindowsSettingsClone.Uwp.Converters
 {
     using System;
-    using SettingsEditors.Personalization;
+    using Editors.Personalization;
     using ViewModels;
-    using ViewModels.SettingsEditorViewModels;
-    using ViewModels.SettingsEditorViewModels.Personalization;
+    using ViewModels.EditorViewModels;
+    using ViewModels.EditorViewModels.Personalization;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Data;
 

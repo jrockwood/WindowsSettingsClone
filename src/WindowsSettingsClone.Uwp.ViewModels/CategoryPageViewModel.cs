@@ -9,7 +9,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 {
     using System;
     using System.ComponentModel;
-    using SettingsEditorViewModels;
+    using EditorViewModels;
     using Utility;
     using ViewServices;
 

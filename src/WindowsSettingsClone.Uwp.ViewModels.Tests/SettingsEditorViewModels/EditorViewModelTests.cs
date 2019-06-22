@@ -10,9 +10,9 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using EditorViewModels;
     using FluentAssertions;
     using NUnit.Framework;
-    using ViewModels.SettingsEditorViewModels;
     using ViewServices;
 
     public class EditorViewModelTests

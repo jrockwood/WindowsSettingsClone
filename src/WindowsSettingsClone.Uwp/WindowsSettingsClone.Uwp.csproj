@@ -134,16 +134,16 @@
     <Compile Include="Converters\EditorViewModelToEditorViewConverter.cs" />
     <Compile Include="Converters\TopThicknessConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsEditors\BonusBar.xaml.cs">
+    <Compile Include="Editors\BonusBar.xaml.cs">
       <DependentUpon>BonusBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEditors\Personalization\BackgroundEditorView.xaml.cs">
+    <Compile Include="Editors\Personalization\BackgroundEditorView.xaml.cs">
       <DependentUpon>BackgroundEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEditors\Personalization\PersonalizePreviewControl.xaml.cs">
+    <Compile Include="Editors\Personalization\PersonalizePreviewControl.xaml.cs">
       <DependentUpon>PersonalizePreviewControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEditors\EditorView.xaml.cs">
+    <Compile Include="Editors\EditorView.xaml.cs">
       <DependentUpon>EditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewServices\NavigationService.cs" />
@@ -240,19 +240,19 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Page Include="SettingsEditors\BonusBar.xaml">
+    <Page Include="Editors\BonusBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsEditors\Personalization\BackgroundEditorView.xaml">
+    <Page Include="Editors\Personalization\BackgroundEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsEditors\Personalization\PersonalizePreviewControl.xaml">
+    <Page Include="Editors\Personalization\PersonalizePreviewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsEditors\EditorView.xaml">
+    <Page Include="Editors\EditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

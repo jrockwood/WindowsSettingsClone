@@ -5,12 +5,15 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.SettingsEditors.Personalization
+namespace WindowsSettingsClone.Uwp.Editors.Personalization
 {
     using Windows.UI.Xaml.Controls;
 
     public sealed partial class PersonalizePreviewControl : UserControl
     {
-        public PersonalizePreviewControl() => InitializeComponent();
+        public PersonalizePreviewControl()
+        {
+            InitializeComponent();
+        }
     }
 }

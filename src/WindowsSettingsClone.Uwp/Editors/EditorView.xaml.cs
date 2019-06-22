@@ -5,9 +5,9 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.SettingsEditors
+namespace WindowsSettingsClone.Uwp.Editors
 {
-    using ViewModels.SettingsEditorViewModels;
+    using ViewModels.EditorViewModels;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 

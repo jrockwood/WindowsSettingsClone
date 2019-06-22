@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels
+namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
 {
     using System;
     using Personalization;
