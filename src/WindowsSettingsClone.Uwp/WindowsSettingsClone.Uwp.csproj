@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -134,8 +134,8 @@
     <Compile Include="Converters\EditorViewModelToEditorViewConverter.cs" />
     <Compile Include="Converters\TopThicknessConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml.cs">
-      <DependentUpon>BackgroundSettingsEditor.xaml</DependentUpon>
+    <Compile Include="SettingsEditors\BonusBar.xaml.cs">
+      <DependentUpon>BonusBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsEditors\Personalization\BackgroundEditorView.xaml.cs">
       <DependentUpon>BackgroundEditorView.xaml</DependentUpon>
@@ -240,7 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Page Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml">
+    <Page Include="SettingsEditors\BonusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingsEditors\Personalization\BackgroundEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -27,6 +27,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
         private bool _shuffleSlideshow;
 
         //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
+        public BackgroundEditorViewModel()
+            : base(CreateBonusBarViewModel())
+        {
+        }
+
+        //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
 
@@ -106,6 +115,27 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personali
         //// ===========================================================================================================
 
         protected override Task LoadInternalAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        private static BonusBarViewModel CreateBonusBarViewModel() => new BonusBarViewModel(
+            relatedSettingsLinks: new[]
+            {
+                new RelatedSettingLink(
+                    Strings.HighContrastSettingsLink,
+                    EditorKind.EaseOfAccessHighContrast),
+                new RelatedSettingLink(Strings.SyncYourSettingsLink, EditorKind.AccountsSyncYourSettings),
+            },
+            questionLinks: new[]
+            {
+                new WebLink(
+                    Strings.ShowDesktopIconsLink,
+                    "https://www.bing.com/search?q=show desktop icons windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
+                new WebLink(
+                    Strings.FindNewThemesLink,
+                    "https://www.bing.com/search?q=get themes windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
+                new WebLink(
+                    Strings.ChangeMyDeesktopBackgroundLink,
+                    "https://www.bing.com/search?q=change background picture windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
+            });
     }
 
     /// <summary>

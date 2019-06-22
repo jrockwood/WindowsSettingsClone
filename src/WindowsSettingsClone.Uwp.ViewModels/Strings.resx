@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -277,6 +277,10 @@
     <value>Captures</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="ChangeMyDeesktopBackgroundLink" xml:space="preserve">
+    <value>Change my desktop background</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
+  </data>
   <data name="ClipboardSettingName" xml:space="preserve">
     <value>Clipboard</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -385,6 +389,10 @@
     <value>Find my device</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="FindNewThemesLink" xml:space="preserve">
+    <value>Find new themes</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
+  </data>
   <data name="FocusAssistSettingName" xml:space="preserve">
     <value>Focus assist</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -417,6 +425,18 @@
     <value>General</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="GetHelpLink" xml:space="preserve">
+    <value>Get help</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
+  </data>
+  <data name="GiveUsFeedbackLink" xml:space="preserve">
+    <value>Give us feedback</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
+  </data>
+  <data name="HaveAQuestionHeader" xml:space="preserve">
+    <value>Have a question?</value>
+    <comment>Header for the section in the bonus bar</comment>
+  </data>
   <data name="HearingSettingHeader" xml:space="preserve">
     <value>Hearing</value>
     <comment>Header for a sub group in the navigation pane</comment>
@@ -424,6 +444,10 @@
   <data name="HighContrastSettingName" xml:space="preserve">
     <value>High contrast</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="HighContrastSettingsLink" xml:space="preserve">
+    <value>High contrast settings</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
   </data>
   <data name="InkingAndTypingPersonalizationSettingName" xml:space="preserve">
     <value>Inking &amp; typing personalization</value>
@@ -452,6 +476,10 @@
   <data name="MagnifierSettingName" xml:space="preserve">
     <value>Magnifier</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="MakeWindowsBetterHeader" xml:space="preserve">
+    <value>Make Windows better</value>
+    <comment>Header for the section in the bonus bar</comment>
   </data>
   <data name="MessagingSettingName" xml:space="preserve">
     <value>Messaging</value>
@@ -581,6 +609,10 @@
     <value>Region</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="RelatedSettingsHeader" xml:space="preserve">
+    <value>Related Settings</value>
+    <comment>Header for the section in the bonus bar</comment>
+  </data>
   <data name="RemoteDesktopSettingName" xml:space="preserve">
     <value>Remote Desktop</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
@@ -600,6 +632,10 @@
   <data name="SharedExperiencesSettingName" xml:space="preserve">
     <value>Shared experiences</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="ShowDesktopIconsLink" xml:space="preserve">
+    <value>Show desktop icons</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
   </data>
   <data name="SignInOptionsSettingName" xml:space="preserve">
     <value>Sign-in options</value>
@@ -624,6 +660,10 @@
   <data name="StorageSettingName" xml:space="preserve">
     <value>Storage</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
+  </data>
+  <data name="SyncYourSettingsLink" xml:space="preserve">
+    <value>Sync your settings</value>
+    <comment>Display name for the hyperlink in the settings bonus bar</comment>
   </data>
   <data name="SyncYourSettingsSettingName" xml:space="preserve">
     <value>Sync your settings</value>
