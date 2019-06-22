@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="BackgroundSettingsEditorViewModel.cs" company="Justin Rockwood">
+// <copyright file="BackgroundEditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -7,7 +7,7 @@
 
 namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels.Personalization
 {
-    public class BackgroundSettingsEditorViewModel : BaseViewModel
+    public class BackgroundEditorViewModel : EditorViewModel
     {
         //// ===========================================================================================================
         //// Member Variables

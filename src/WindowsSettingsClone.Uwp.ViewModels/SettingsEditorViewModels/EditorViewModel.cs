@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="SettingsEditorViewModel.cs" company="Justin Rockwood">
+// <copyright file="EditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -15,7 +15,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels
     /// <summary>
     /// Abstract base class describing all settings editors.
     /// </summary>
-    public abstract class SettingsEditorViewModel : BaseViewModel
+    public abstract class EditorViewModel : BaseViewModel
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -28,8 +28,10 @@ namespace WindowsSettingsClone.Uwp.ViewModels.SettingsEditorViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        protected SettingsEditorViewModel(BonusBarViewModel bonusBar) =>
+        protected EditorViewModel(BonusBarViewModel bonusBar)
+        {
             BonusBar = bonusBar ?? throw new ArgumentNullException(nameof(bonusBar));
+        }
 
         //// ===========================================================================================================
         //// Properties

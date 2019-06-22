@@ -138,6 +138,9 @@
     <Compile Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml.cs">
       <DependentUpon>BackgroundSettingsEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsEditors\Personalization\BackgroundEditorView.xaml.cs">
+      <DependentUpon>BackgroundEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsEditors\Personalization\PersonalizePreviewControl.xaml.cs">
       <DependentUpon>PersonalizePreviewControl.xaml</DependentUpon>
     </Compile>
@@ -236,6 +239,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="SettingsEditors\Personalization\BackgroundSettingsEditor.xaml">
+    <Page Include="SettingsEditors\Personalization\BackgroundEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

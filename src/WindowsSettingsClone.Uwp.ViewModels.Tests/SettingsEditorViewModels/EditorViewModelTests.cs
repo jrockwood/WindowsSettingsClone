@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="SettingsEditorViewModelTests.cs" company="Justin Rockwood">
+// <copyright file="EditorViewModelTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -15,7 +15,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
     using ViewModels.SettingsEditorViewModels;
     using ViewServices;
 
-    public class SettingsEditorViewModelTests
+    public class EditorViewModelTests
     {
         private static readonly BonusBarViewModel s_bonusBar = new BonusBarViewModel(
             new RelatedSettingLink[0],
@@ -24,28 +24,28 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
         [Test]
         public void Ctor_should_throw_on_null_arguments()
         {
-            Action action = () => new TestSettingsEditorViewModel(null);
+            Action action = () => new TestEditorViewModel(null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("bonusBar");
         }
 
         [Test]
         public void IsContentReady_should_be_false_initially()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             vm.IsContentReady.Should().BeFalse();
         }
 
         [Test]
         public void IsIndeterminateProgressBarVisible_should_be_false_initially()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             vm.IsIndeterminateProgressBarVisible.Should().BeFalse();
         }
 
         [Test]
         public async Task LoadAsync_should_invoke_LoadInternalAsync_using_the_correct_parameters()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             CancellationToken cancellationToken = new CancellationTokenSource().Token;
             await vm.LoadAsync(new UnitTestThreadDispatcher(), cancellationToken: cancellationToken);
             vm.LoadInternalAsyncCalled.Should().BeTrue();
@@ -55,7 +55,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
         [Test]
         public async Task LoadAsync_should_start_a_timer_for_the_progress_bar_then_run_the_action()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
             await vm.LoadAsync(dispatcher);
@@ -68,7 +68,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
             const int delay = 1;
             var cancellationToken = new CancellationToken();
 
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher(
                 delayInvoker: (ms, token) =>
                 {
@@ -86,7 +86,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
             var cancellationSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationSource.Token;
 
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher(backgroundThreadInvoker: action => Task.Delay(-1, cancellationToken));
 
             Task task = vm.LoadAsync(dispatcher, 0, cancellationToken);
@@ -100,7 +100,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
         [Test]
         public async Task IsIndeterminateProgressBarVisible_should_be_false_after_the_load_returns()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
             await vm.LoadAsync(dispatcher);
@@ -110,16 +110,16 @@ namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
         [Test]
         public async Task IsContentReady_should_be_true_after_LoadAsync_returns()
         {
-            var vm = new TestSettingsEditorViewModel(s_bonusBar);
+            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
             await vm.LoadAsync(dispatcher);
             vm.IsContentReady.Should().BeTrue();
         }
 
-        private class TestSettingsEditorViewModel : SettingsEditorViewModel
+        private class TestEditorViewModel : EditorViewModel
         {
-            public TestSettingsEditorViewModel(BonusBarViewModel bonusBar)
+            public TestEditorViewModel(BonusBarViewModel bonusBar)
                 : base(bonusBar)
             {
             }
