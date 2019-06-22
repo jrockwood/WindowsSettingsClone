@@ -114,30 +114,53 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels.Personalization
         //// Methods
         //// ===========================================================================================================
 
-        protected override Task LoadInternalAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+        protected override Task LoadInternalAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
 
-        private static BonusBarViewModel CreateBonusBarViewModel() => new BonusBarViewModel(
-            new BonusBarSection(
-                Strings.RelatedSettingsHeader,
-                new BonusBarNavigationLink(
-                    Strings.HighContrastSettingsLink,
-                    EditorKind.EaseOfAccessHighContrast),
-                new BonusBarNavigationLink(Strings.SyncYourSettingsLink, EditorKind.AccountsSyncYourSettings)),
-            new BonusBarSection(
-                Strings.HaveAQuestionHeader,
-                new BonusBarWebLink(
-                    Strings.ShowDesktopIconsLink,
-                    "https://www.bing.com/search?q=show desktop icons windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-                new BonusBarWebLink(
-                    Strings.FindNewThemesLink,
-                    "https://www.bing.com/search?q=get themes windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-                new BonusBarWebLink(
-                    Strings.ChangeMyDeesktopBackgroundLink,
-                    "https://www.bing.com/search?q=change background picture windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
-                new BonusBarLaunchAppLink(Strings.GetHelpLink)),
-            new BonusBarSection(
-                Strings.MakeWindowsBetterHeader,
-                new BonusBarLaunchAppLink(Strings.GiveUsFeedbackLink)));
+        private static BonusBarViewModel CreateBonusBarViewModel()
+        {
+            var printersAndScannersTest = BonusBarViewModel.CreateStandard(
+                new BonusBarOverviewSection(
+                    "Troubleshoot your printer",
+                    "If you can't get your printer to work, trying running the printer troubleshooter.",
+                    new BonusBarNavigationLink(
+                        "Open troubleshooter settings",
+                        EditorKind.UpdateAndSecurityTroubleshoot)),
+                relatedSettings: new[]
+                {
+                    new BonusBarNavigationLink("Print server properties", EditorKind.DevicesPrintersAndScanners),
+                    new BonusBarNavigationLink("Run the troubleshooter", EditorKind.UpdateAndSecurityTroubleshoot),
+                },
+                supportLinks: new[]
+                {
+                    new BonusBarWebLink("Download print drivers", "https://microsoft.com"),
+                    new BonusBarWebLink("Scan documents", "https://microsoft.com"),
+                    new BonusBarWebLink("Change printer status", "https://microsoft.com"),
+                });
+
+            var realOne = BonusBarViewModel.CreateStandard(
+                relatedSettings: new[]
+                {
+                    new BonusBarNavigationLink(Strings.HighContrastSettingsLink,EditorKind.EaseOfAccessHighContrast),
+                    new BonusBarNavigationLink(Strings.SyncYourSettingsLink, EditorKind.AccountsSyncYourSettings)
+                },
+                supportLinks: new[]
+                {
+                    new BonusBarWebLink(
+                        Strings.ShowDesktopIconsLink,
+                        "https://www.bing.com/search?q=show desktop icons windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
+                    new BonusBarWebLink(
+                        Strings.FindNewThemesLink,
+                        "https://www.bing.com/search?q=get themes windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US"),
+                    new BonusBarWebLink(
+                        Strings.ChangeMyDeesktopBackgroundLink,
+                        "https://www.bing.com/search?q=change background picture windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US")
+                });
+
+            return realOne;
+        }
     }
 
     /// <summary>

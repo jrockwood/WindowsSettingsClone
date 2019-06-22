@@ -32,9 +32,41 @@ namespace WindowsSettingsClone.Uwp.Editors
         }
     }
 
+    public sealed class BonusBarSectionTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate OverviewSectionTemplate { get; set; }
+        public DataTemplate RelatedSettingsSectionTemplate { get; set; }
+        public DataTemplate PrivacyOptionsSectionTemplate { get; set; }
+        public DataTemplate SupportSectionTemplate { get; set; }
+        public DataTemplate FeedbackSectionTemplate { get; set; }
+
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
+        {
+            switch (item)
+            {
+                case BonusBarOverviewSection _:
+                    return OverviewSectionTemplate;
+
+                case BonusBarRelatedSettingsSection _:
+                    return RelatedSettingsSectionTemplate;
+
+                case BonusBarPrivacyOptionsSection _:
+                    return PrivacyOptionsSectionTemplate;
+
+                case BonusBarSupportSection _:
+                    return SupportSectionTemplate;
+
+                case BonusBarFeedbackSection _:
+                    return FeedbackSectionTemplate;
+
+                default:
+                    throw new InvalidOperationException($"Unknown item type '{item.GetType()}'");
+            }
+        }
+    }
+
     public sealed class BonusBarItemTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate DescriptionTemplate { get; set; }
         public DataTemplate NavigationLinkTemplate { get; set; }
         public DataTemplate WebLinkTemplate { get; set; }
         public DataTemplate LaunchAppLinkTemplate { get; set; }
@@ -43,9 +75,6 @@ namespace WindowsSettingsClone.Uwp.Editors
         {
             switch (item)
             {
-                case BonusBarDescriptionItem _:
-                    return DescriptionTemplate;
-
                 case BonusBarNavigationLink _:
                     return NavigationLinkTemplate;
 

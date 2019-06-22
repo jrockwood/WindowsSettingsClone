@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Utility;
 
     /// <summary>
@@ -18,32 +19,119 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
     {
         public BonusBarViewModel(params BonusBarSection[] sections)
         {
-            Sections = new List<BonusBarSection>(sections).AsReadOnly();
+            Sections = new List<BonusBarSection>(sections ?? new BonusBarSection[0]).AsReadOnly();
         }
 
         public IReadOnlyCollection<BonusBarSection> Sections { get; }
-    }
 
-    public class BonusBarSection : BaseViewModel
-    {
-        public BonusBarSection(string headerDisplayName, params BonusBarItem[] items)
+        public static BonusBarViewModel CreateStandard(
+            IEnumerable<BonusBarItem> relatedSettings,
+            IEnumerable<BonusBarWebLink> supportLinks)
         {
-            HeaderDisplayName = Param.VerifyString(headerDisplayName, nameof(headerDisplayName));
-            Items = new List<BonusBarItem>(items).AsReadOnly();
+            return CreateStandard(null, relatedSettings, supportLinks);
         }
 
-        public string HeaderDisplayName { get; }
-        public IReadOnlyList<BonusBarItem> Items { get; }
+        public static BonusBarViewModel CreateStandard(
+            BonusBarOverviewSection overviewSection,
+            IEnumerable<BonusBarItem> relatedSettings,
+            IEnumerable<BonusBarWebLink> supportLinks)
+        {
+            var items = new List<BonusBarSection>();
+            if (overviewSection != null)
+            {
+                items.Add(overviewSection);
+            }
+
+            items.Add(new BonusBarRelatedSettingsSection(relatedSettings.ToArray()));
+            items.Add(new BonusBarSupportSection(supportLinks.ToArray()));
+            items.Add(new BonusBarFeedbackSection());
+
+            return new BonusBarViewModel(items.ToArray());
+        }
     }
 
-    public enum BonusBarContentKind
+    public enum BonusBarSectionKind
     {
-        /// <summary>
-        /// A textual description that usually gives more details about a setting. For example, the "Sleep better"
-        /// section in System/Display.
-        /// </summary>
-        Description,
+        Overview,
+        RelatedSettings,
+        PrivacyOptions,
+        Support,
+        Feedback,
+    }
 
+    public abstract class BonusBarSection : BaseViewModel
+    {
+        protected BonusBarSection(BonusBarSectionKind sectionKind, string headerDisplayName)
+        {
+            SectionKind = sectionKind;
+            HeaderDisplayName = Param.VerifyString(headerDisplayName, nameof(headerDisplayName));
+        }
+
+        public BonusBarSectionKind SectionKind { get; }
+        public string HeaderDisplayName { get; }
+    }
+
+    /// <summary>
+    /// A textual description that usually gives more details about a setting. For example, the "Sleep better"
+    /// section in System/Display.
+    /// </summary>
+    public class BonusBarOverviewSection : BonusBarSection
+    {
+        public BonusBarOverviewSection(string headerDisplayName, string overview, BonusBarNavigationLink actionLink)
+            : base(BonusBarSectionKind.Overview, headerDisplayName)
+        {
+            Overview = overview ?? string.Empty;
+            ActionLink = actionLink;
+        }
+
+        public string Overview { get; }
+        public BonusBarNavigationLink ActionLink { get; }
+        public bool ShouldDisplayActionLink => ActionLink != null;
+    }
+
+    public class BonusBarRelatedSettingsSection : BonusBarSection
+    {
+        public BonusBarRelatedSettingsSection(params BonusBarItem[] relatedSettings)
+            : base(BonusBarSectionKind.RelatedSettings, Strings.RelatedSettingsHeader)
+        {
+            RelatedSettings = relatedSettings.ToList().AsReadOnly();
+        }
+
+        public IReadOnlyList<BonusBarItem> RelatedSettings { get; }
+    }
+
+    public class BonusBarPrivacyOptionsSection : BonusBarSection
+    {
+        public BonusBarPrivacyOptionsSection()
+            : base(BonusBarSectionKind.PrivacyOptions, "Privacy options - not implemented")
+        {
+        }
+    }
+
+    public class BonusBarSupportSection : BonusBarSection
+    {
+        public BonusBarSupportSection(params BonusBarWebLink[] supportLinks)
+            : base(BonusBarSectionKind.Support, Strings.HaveAQuestionHeader)
+        {
+            SupportLinks = supportLinks.ToList().AsReadOnly();
+        }
+
+        public IReadOnlyList<BonusBarWebLink> SupportLinks { get; }
+        public BonusBarLaunchAppLink GetHelpLink { get; } = new BonusBarLaunchAppLink(Strings.GetHelpLink);
+    }
+
+    public class BonusBarFeedbackSection : BonusBarSection
+    {
+        public BonusBarFeedbackSection()
+            : base(BonusBarSectionKind.Feedback, Strings.MakeWindowsBetterHeader)
+        {
+        }
+
+        public BonusBarLaunchAppLink GetFeedbackLink { get; } = new BonusBarLaunchAppLink(Strings.GiveUsFeedbackLink);
+    }
+
+    public enum BonusBarItemKind
+    {
         /// <summary>
         /// A link to another setting page within the application.
         /// </summary>
@@ -62,29 +150,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
 
     public abstract class BonusBarItem : BaseViewModel
     {
-        protected BonusBarItem(BonusBarContentKind contentKind)
+        protected BonusBarItem(BonusBarItemKind itemKind)
         {
-            ContentKind = contentKind;
+            ItemKind = itemKind;
         }
 
-        public BonusBarContentKind ContentKind { get; }
-    }
-
-    public class BonusBarDescriptionItem : BonusBarItem
-    {
-        public BonusBarDescriptionItem(string description)
-            : base(BonusBarContentKind.Description)
-        {
-            Description = Param.VerifyString(description, nameof(description));
-        }
-
-        public string Description { get; }
+        public BonusBarItemKind ItemKind { get; }
     }
 
     public class BonusBarNavigationLink : BonusBarItem
     {
         public BonusBarNavigationLink(string displayName, EditorKind editorTarget)
-            : base(BonusBarContentKind.NavigationLink)
+            : base(BonusBarItemKind.NavigationLink)
         {
             DisplayName = displayName;
             EditorTarget = editorTarget;
@@ -97,7 +174,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
     public class BonusBarWebLink : BonusBarItem
     {
         public BonusBarWebLink(string displayName, string url)
-            : base(BonusBarContentKind.WebLink)
+            : base(BonusBarItemKind.WebLink)
         {
             DisplayName = displayName;
             Url = url;
@@ -110,7 +187,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels
     public class BonusBarLaunchAppLink : BonusBarItem
     {
         public BonusBarLaunchAppLink(string displayName)
-            : base(BonusBarContentKind.LaunchAppLink)
+            : base(BonusBarItemKind.LaunchAppLink)
         {
             DisplayName = displayName;
         }

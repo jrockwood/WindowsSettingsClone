@@ -10,24 +10,74 @@
              mc:Ignorable="d">
 
   <UserControl.Resources>
-    <editors:BonusBarItemTemplateSelector x:Key="BonusBarItemTemplateSelector"
-                                          DescriptionTemplate="{StaticResource DescriptionTemplate}"
-                                          LaunchAppLinkTemplate="{StaticResource LaunchAppLinkTemplate}"
-                                          NavigationLinkTemplate="{StaticResource NavigationLinkTemplate}"
-                                          WebLinkTemplate="{StaticResource WebLinkTemplate}" />
 
-    <DataTemplate x:Key="SectionTemplate" x:DataType="editorViewModels:BonusBarSection">
-      <StackPanel Margin="0,0,0,48" Orientation="Vertical">
+    <Style x:Key="SectionStackPanel" TargetType="StackPanel">
+      <Setter Property="Margin" Value="0,0,0,48" />
+    </Style>
+
+    <editors:BonusBarSectionTemplateSelector x:Key="BonusBarSectionTemplateSelector"
+                                             FeedbackSectionTemplate="{StaticResource FeedbackSectionTemplate}"
+                                             OverviewSectionTemplate="{StaticResource OverviewSectionTemplate}"
+                                             PrivacyOptionsSectionTemplate="{StaticResource PrivacyOptionsSectionTemplate}"
+                                             RelatedSettingsSectionTemplate="{StaticResource RelatedSettingsSectionTemplate}"
+                                             SupportSectionTemplate="{StaticResource SupportSectionTemplate}" />
+
+    <DataTemplate x:Key="OverviewSectionTemplate" x:DataType="editorViewModels:BonusBarOverviewSection">
+      <StackPanel Style="{StaticResource SectionStackPanel}">
         <TextBlock Text="{x:Bind HeaderDisplayName}" />
-        <ItemsControl Margin="0,8,0,-20"
-                      ItemTemplateSelector="{StaticResource BonusBarItemTemplateSelector}"
-                      ItemsSource="{x:Bind Items}" />
+        <TextBlock Margin="0,8,0,0"
+                   Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                   Text="{x:Bind Overview}"
+                   TextWrapping="Wrap" />
+        <HyperlinkButton Margin="0,8,0,0"
+                         Padding="0"
+                         Visibility="{x:Bind ShouldDisplayActionLink, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <TextBlock Text="{x:Bind ActionLink.DisplayName}" />
+        </HyperlinkButton>
       </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="DescriptionTemplate" x:DataType="editorViewModels:BonusBarDescriptionItem">
-      <TextBlock Text="{x:Bind Description}" />
+    <DataTemplate x:Key="RelatedSettingsSectionTemplate" x:DataType="editorViewModels:BonusBarRelatedSettingsSection">
+      <StackPanel Style="{StaticResource SectionStackPanel}">
+        <TextBlock Text="{x:Bind HeaderDisplayName}" />
+        <ItemsControl Margin="0,8,0,-20"
+                      ItemTemplateSelector="{StaticResource BonusBarItemTemplateSelector}"
+                      ItemsSource="{x:Bind RelatedSettings}" />
+      </StackPanel>
     </DataTemplate>
+
+    <DataTemplate x:Key="PrivacyOptionsSectionTemplate" x:DataType="editorViewModels:BonusBarPrivacyOptionsSection">
+      <StackPanel Style="{StaticResource SectionStackPanel}">
+        <TextBlock Text="{x:Bind HeaderDisplayName}" />
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SupportSectionTemplate" x:DataType="editorViewModels:BonusBarSupportSection">
+      <StackPanel Style="{StaticResource SectionStackPanel}">
+        <TextBlock Text="{x:Bind HeaderDisplayName}" />
+        <ItemsControl Margin="0,8,0,0"
+                      ItemTemplateSelector="{StaticResource BonusBarItemTemplateSelector}"
+                      ItemsSource="{x:Bind SupportLinks}" />
+        <HyperlinkButton Margin="0,8,0,0" Padding="0">
+          <TextBlock Text="{x:Bind GetHelpLink.DisplayName}" />
+        </HyperlinkButton>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FeedbackSectionTemplate" x:DataType="editorViewModels:BonusBarFeedbackSection">
+      <StackPanel Style="{StaticResource SectionStackPanel}">
+        <TextBlock Text="{x:Bind HeaderDisplayName}" />
+        <HyperlinkButton Margin="0,8,0,0" Padding="0">
+          <TextBlock Text="{x:Bind GetFeedbackLink.DisplayName}" />
+        </HyperlinkButton>
+      </StackPanel>
+    </DataTemplate>
+
+    <!-- Item Templates -->
+    <editors:BonusBarItemTemplateSelector x:Key="BonusBarItemTemplateSelector"
+                                          LaunchAppLinkTemplate="{StaticResource LaunchAppLinkTemplate}"
+                                          NavigationLinkTemplate="{StaticResource NavigationLinkTemplate}"
+                                          WebLinkTemplate="{StaticResource WebLinkTemplate}" />
 
     <DataTemplate x:Key="NavigationLinkTemplate" x:DataType="editorViewModels:BonusBarNavigationLink">
       <HyperlinkButton Margin="0,0,0,20" Padding="0">
@@ -51,6 +101,6 @@
   </UserControl.Resources>
 
   <StackPanel x:Name="RootPanel" Orientation="Vertical">
-    <ItemsControl ItemTemplate="{StaticResource SectionTemplate}" ItemsSource="{x:Bind ViewModel.Sections}" />
+    <ItemsControl ItemTemplateSelector="{StaticResource BonusBarSectionTemplateSelector}" ItemsSource="{x:Bind ViewModel.Sections}" />
   </StackPanel>
 </UserControl>
