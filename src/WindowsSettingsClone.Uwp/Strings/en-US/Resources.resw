@@ -117,6 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BackgroundLabelTextBlock.Text" xml:space="preserve">
+    <value>Background</value>
+    <comment>Personalization/Background</comment>
+  </data>
+  <data name="BackgroundSlideshowAlbumsLabelTextBlock.Text" xml:space="preserve">
+    <value>Choose albums for your slideshow</value>
+    <comment>Personalization/Background</comment>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Browse</value>
+    <comment>General-purpose browse button</comment>
+  </data>
+  <data name="ChangePictureEveryTextBlock.Text" xml:space="preserve">
+    <value>Change picture every</value>
+    <comment>Personalization/Background</comment>
+  </data>
+  <data name="ChooseAFitTextBlock.Text" xml:space="preserve">
+    <value>Choose a fit</value>
+    <comment>Personalization/Background</comment>
+  </data>
   <data name="HomeButtonTextBlock.Text" xml:space="preserve">
     <value>Home</value>
     <comment>Home button text</comment>
@@ -125,9 +145,21 @@
     <value>Windows Settings</value>
     <comment>Home page title</comment>
   </data>
+  <data name="PersonalizePreviewControlSampleTextBlock.Text" xml:space="preserve">
+    <value>Sample Text</value>
+    <comment>Shown in the Background and Colors setting group in the personlization preview control for the Window preview</comment>
+  </data>
+  <data name="PersonalizePreviewControlSampleTileTextBlock.Text" xml:space="preserve">
+    <value>Aa</value>
+    <comment>Shown in the Background and Colors setting group in the personlization preview control for the Start menu preview</comment>
+  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>Find a setting</value>
     <comment>Placeholder text for the search box (when nothing is shown in the search box)</comment>
+  </data>
+  <data name="ShuffleToggleSwitch.Header" xml:space="preserve">
+    <value>Shuffle</value>
+    <comment>Personalization/Background</comment>
   </data>
   <data name="WindowsNotActivatedHyperlinkButton.Content" xml:space="preserve">
     <value>Windows isn't activated. Activate Windows now.</value>

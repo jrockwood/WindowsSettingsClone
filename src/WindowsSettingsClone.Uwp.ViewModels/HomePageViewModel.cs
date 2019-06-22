@@ -28,15 +28,17 @@ namespace WindowsSettingsClone.Uwp.ViewModels
         public HomePageViewModel(INavigationViewService navigationService)
         {
             Param.VerifyNotNull(navigationService, nameof(navigationService));
-            GroupClick = new RelayCommand<HomePageGroup>(
-                group => navigationService.NavigateTo(typeof(SettingsGroupPageViewModel), group.GroupKind.ToString()));
+            CategoryClick = new RelayCommand<HomePageCategory>(
+                category => navigationService.NavigateTo(
+                    typeof(CategoryPageViewModel),
+                    category.Category.ToString()));
         }
 
         //// ===========================================================================================================
         //// Commands
         //// ===========================================================================================================
 
-        public ICommand<HomePageGroup> GroupClick { get; }
+        public ICommand<HomePageCategory> CategoryClick { get; }
 
         //// ===========================================================================================================
         //// Properties
@@ -44,78 +46,78 @@ namespace WindowsSettingsClone.Uwp.ViewModels
 
         public bool IsWindowsActivated { get; } = true;
 
-        public IReadOnlyList<HomePageGroup> Groups { get; } = new ReadOnlyCollection<HomePageGroup>(
+        public IReadOnlyList<HomePageCategory> Categories { get; } = new ReadOnlyCollection<HomePageCategory>(
             new[]
             {
-                new HomePageGroup(
-                    Strings.SystemGroupName,
-                    Strings.SystemGroupDescription,
-                    SettingGroupKind.System,
+                new HomePageCategory(
+                    Strings.SystemCategoryName,
+                    Strings.SystemCategoryDescription,
+                    CategoryKind.System,
                     GlyphInfo.System),
-                new HomePageGroup(
-                    Strings.DevicesGroupName,
-                    Strings.DevicesGroupDescription,
-                    SettingGroupKind.Devices,
+                new HomePageCategory(
+                    Strings.DevicesCategoryName,
+                    Strings.DevicesCategoryDescription,
+                    CategoryKind.Devices,
                     GlyphInfo.Devices),
-                new HomePageGroup(
-                    Strings.PhoneGroupName,
-                    Strings.PhoneGroupDescription,
-                    SettingGroupKind.Phone,
+                new HomePageCategory(
+                    Strings.PhoneCategoryName,
+                    Strings.PhoneCategoryDescription,
+                    CategoryKind.Phone,
                     GlyphInfo.CellPhone),
-                new HomePageGroup(
-                    Strings.NetworkAndInternetGroupName,
-                    Strings.NetworkAndInternetGroupDescription,
-                    SettingGroupKind.NetworkAndInternet,
+                new HomePageCategory(
+                    Strings.NetworkAndInternetCategoryName,
+                    Strings.NetworkAndInternetCategoryDescription,
+                    CategoryKind.NetworkAndInternet,
                     GlyphInfo.Globe),
-                new HomePageGroup(
-                    Strings.PersonalizationGroupName,
-                    Strings.PersonalizationGroupDescription,
-                    SettingGroupKind.Personalization,
+                new HomePageCategory(
+                    Strings.PersonalizationCategoryName,
+                    Strings.PersonalizationCategoryDescription,
+                    CategoryKind.Personalization,
                     GlyphInfo.Personalize),
-                new HomePageGroup(
-                    Strings.AppsGroupName,
-                    Strings.AppsGroupDescription,
-                    SettingGroupKind.Apps,
+                new HomePageCategory(
+                    Strings.AppsCategoryName,
+                    Strings.AppsCategoryDescription,
+                    CategoryKind.Apps,
                     GlyphInfo.AllApps),
-                new HomePageGroup(
-                    Strings.AccountsGroupName,
-                    Strings.AccountsGroupDescription,
-                    SettingGroupKind.Accounts,
+                new HomePageCategory(
+                    Strings.AccountsCategoryName,
+                    Strings.AccountsCategoryDescription,
+                    CategoryKind.Accounts,
                     GlyphInfo.Contact),
-                new HomePageGroup(
-                    Strings.TimeAndLanguageGroupName,
-                    Strings.TimeAndLanguageGroupDescription,
-                    SettingGroupKind.TimeAndLanguage,
+                new HomePageCategory(
+                    Strings.TimeAndLanguageCategoryName,
+                    Strings.TimeAndLanguageCategoryDescription,
+                    CategoryKind.TimeAndLanguage,
                     GlyphInfo.TimeLanguage),
-                new HomePageGroup(
-                    Strings.GamingGroupName,
-                    Strings.GamingGroupDescription,
-                    SettingGroupKind.Gaming,
+                new HomePageCategory(
+                    Strings.GamingCategoryName,
+                    Strings.GamingCategoryDescription,
+                    CategoryKind.Gaming,
                     GlyphInfo.XboxLogo),
-                new HomePageGroup(
-                    Strings.EaseOfAccessGroupName,
-                    Strings.EaseOfAccessGroupDescription,
-                    SettingGroupKind.EaseOfAccess,
+                new HomePageCategory(
+                    Strings.EaseOfAccessCategoryName,
+                    Strings.EaseOfAccessCategoryDescription,
+                    CategoryKind.EaseOfAccess,
                     GlyphInfo.EaseOfAccess),
-                new HomePageGroup(
-                    Strings.SearchGroupName,
-                    Strings.SearchGroupDescription,
-                    SettingGroupKind.Search,
+                new HomePageCategory(
+                    Strings.SearchCategoryName,
+                    Strings.SearchCategoryDescription,
+                    CategoryKind.Search,
                     GlyphInfo.Search),
-                new HomePageGroup(
-                    Strings.CortanaGroupName,
-                    Strings.CortanaGroupDescription,
-                    SettingGroupKind.Cortana,
+                new HomePageCategory(
+                    Strings.CortanaCategoryName,
+                    Strings.CortanaCategoryDescription,
+                    CategoryKind.Cortana,
                     GlyphInfo.Cortana),
-                new HomePageGroup(
-                    Strings.PrivacyGroupName,
-                    Strings.PrivacyGroupDescription,
-                    SettingGroupKind.Privacy,
+                new HomePageCategory(
+                    Strings.PrivacyCategoryName,
+                    Strings.PrivacyCategoryDescription,
+                    CategoryKind.Privacy,
                     GlyphInfo.Lock),
-                new HomePageGroup(
-                    Strings.UpdateAndSecurityGroupName,
-                    Strings.UpdateAndSecurityGroupDescription,
-                    SettingGroupKind.UpdateAndSecurity,
+                new HomePageCategory(
+                    Strings.UpdateAndSecurityCategoryName,
+                    Strings.UpdateAndSecurityCategoryDescription,
+                    CategoryKind.UpdateAndSecurity,
                     GlyphInfo.Sync),
             });
     }

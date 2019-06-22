@@ -27,7 +27,7 @@ namespace WindowsSettingsClone.Uwp.ViewServices
         private static readonly Dictionary<Type, Type> s_viewModelToViewMap = new Dictionary<Type, Type>
         {
             [typeof(HomePageViewModel)] = typeof(HomePage),
-            [typeof(SettingsGroupPageViewModel)] = typeof(SettingsGroupPage),
+            [typeof(CategoryPageViewModel)] = typeof(CategoryPage),
         };
 
         //// ===========================================================================================================

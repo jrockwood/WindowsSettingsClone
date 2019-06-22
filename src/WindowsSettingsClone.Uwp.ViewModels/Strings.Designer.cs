@@ -91,18 +91,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Your accounts, email, sync, work, family.
         /// </summary>
-        internal static string AccountsGroupDescription {
+        internal static string AccountsCategoryDescription {
             get {
-                return ResourceManager.GetString("AccountsGroupDescription", resourceCulture);
+                return ResourceManager.GetString("AccountsCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
-        internal static string AccountsGroupName {
+        internal static string AccountsCategoryName {
             get {
-                return ResourceManager.GetString("AccountsGroupName", resourceCulture);
+                return ResourceManager.GetString("AccountsCategoryName", resourceCulture);
             }
         }
         
@@ -152,29 +152,29 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apps for websites.
-        /// </summary>
-        internal static string AppsForWebsitesSettingName {
-            get {
-                return ResourceManager.GetString("AppsForWebsitesSettingName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Uninstall, defaults, optional features.
         /// </summary>
-        internal static string AppsGroupDescription {
+        internal static string AppsCategoryDescription {
             get {
-                return ResourceManager.GetString("AppsGroupDescription", resourceCulture);
+                return ResourceManager.GetString("AppsCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Apps.
         /// </summary>
-        internal static string AppsGroupName {
+        internal static string AppsCategoryName {
             get {
-                return ResourceManager.GetString("AppsGroupName", resourceCulture);
+                return ResourceManager.GetString("AppsCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apps for websites.
+        /// </summary>
+        internal static string AppsForWebsitesSettingName {
+            get {
+                return ResourceManager.GetString("AppsForWebsitesSettingName", resourceCulture);
             }
         }
         
@@ -211,6 +211,141 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string BackgroundAppsSettingName {
             get {
                 return ResourceManager.GetString("BackgroundAppsSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10 minutes.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox10MinutesOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox10MinutesOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 day.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox1DayOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox1DayOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox1HourOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox1HourOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 minute.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox1MinuteOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox1MinuteOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30 minutes.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox30MinutesOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox30MinutesOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6 hours.
+        /// </summary>
+        internal static string BackgroundChangePictureIntervalComboBox6HoursOption {
+            get {
+                return ResourceManager.GetString("BackgroundChangePictureIntervalComboBox6HoursOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picture.
+        /// </summary>
+        internal static string BackgroundComboBoxPictureOption {
+            get {
+                return ResourceManager.GetString("BackgroundComboBoxPictureOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slideshow.
+        /// </summary>
+        internal static string BackgroundComboBoxSlideshowOption {
+            get {
+                return ResourceManager.GetString("BackgroundComboBoxSlideshowOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solid color.
+        /// </summary>
+        internal static string BackgroundComboBoxSolidColorOption {
+            get {
+                return ResourceManager.GetString("BackgroundComboBoxSolidColorOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        internal static string BackgroundFitComboBoxCenterOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxCenterOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill.
+        /// </summary>
+        internal static string BackgroundFitComboBoxFillOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxFillOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fit.
+        /// </summary>
+        internal static string BackgroundFitComboBoxFitOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxFitOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Span.
+        /// </summary>
+        internal static string BackgroundFitComboBoxSpanOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxSpanOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stretch.
+        /// </summary>
+        internal static string BackgroundFitComboBoxStretchOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxStretchOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile.
+        /// </summary>
+        internal static string BackgroundFitComboBoxTileOption {
+            get {
+                return ResourceManager.GetString("BackgroundFitComboBoxTileOption", resourceCulture);
             }
         }
         
@@ -287,6 +422,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change my desktop background.
+        /// </summary>
+        internal static string ChangeMyDeesktopBackgroundLink {
+            get {
+                return ResourceManager.GetString("ChangeMyDeesktopBackgroundLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
         internal static string ClipboardSettingName {
@@ -334,18 +478,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Cortana language, permissions, notifications.
         /// </summary>
-        internal static string CortanaGroupDescription {
+        internal static string CortanaCategoryDescription {
             get {
-                return ResourceManager.GetString("CortanaGroupDescription", resourceCulture);
+                return ResourceManager.GetString("CortanaCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cortana.
         /// </summary>
-        internal static string CortanaGroupName {
+        internal static string CortanaCategoryName {
             get {
-                return ResourceManager.GetString("CortanaGroupName", resourceCulture);
+                return ResourceManager.GetString("CortanaCategoryName", resourceCulture);
             }
         }
         
@@ -397,18 +541,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Bluetooth, printers, mouse.
         /// </summary>
-        internal static string DevicesGroupDescription {
+        internal static string DevicesCategoryDescription {
             get {
-                return ResourceManager.GetString("DevicesGroupDescription", resourceCulture);
+                return ResourceManager.GetString("DevicesCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Devices.
         /// </summary>
-        internal static string DevicesGroupName {
+        internal static string DevicesCategoryName {
             get {
-                return ResourceManager.GetString("DevicesGroupName", resourceCulture);
+                return ResourceManager.GetString("DevicesCategoryName", resourceCulture);
             }
         }
         
@@ -451,18 +595,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Narrator, magnifier, high contrast.
         /// </summary>
-        internal static string EaseOfAccessGroupDescription {
+        internal static string EaseOfAccessCategoryDescription {
             get {
-                return ResourceManager.GetString("EaseOfAccessGroupDescription", resourceCulture);
+                return ResourceManager.GetString("EaseOfAccessCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ease of Access.
         /// </summary>
-        internal static string EaseOfAccessGroupName {
+        internal static string EaseOfAccessCategoryName {
             get {
-                return ResourceManager.GetString("EaseOfAccessGroupName", resourceCulture);
+                return ResourceManager.GetString("EaseOfAccessCategoryName", resourceCulture);
             }
         }
         
@@ -530,6 +674,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find new themes.
+        /// </summary>
+        internal static string FindNewThemesLink {
+            get {
+                return ResourceManager.GetString("FindNewThemesLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Focus assist.
         /// </summary>
         internal static string FocusAssistSettingName {
@@ -577,18 +730,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Game bar, captures, broadcasting, Game Mode.
         /// </summary>
-        internal static string GamingGroupDescription {
+        internal static string GamingCategoryDescription {
             get {
-                return ResourceManager.GetString("GamingGroupDescription", resourceCulture);
+                return ResourceManager.GetString("GamingCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Gaming.
         /// </summary>
-        internal static string GamingGroupName {
+        internal static string GamingCategoryName {
             get {
-                return ResourceManager.GetString("GamingGroupName", resourceCulture);
+                return ResourceManager.GetString("GamingCategoryName", resourceCulture);
             }
         }
         
@@ -598,6 +751,33 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string GeneralSettingName {
             get {
                 return ResourceManager.GetString("GeneralSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get help.
+        /// </summary>
+        internal static string GetHelpLink {
+            get {
+                return ResourceManager.GetString("GetHelpLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Give us feedback.
+        /// </summary>
+        internal static string GiveUsFeedbackLink {
+            get {
+                return ResourceManager.GetString("GiveUsFeedbackLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a question?.
+        /// </summary>
+        internal static string HaveAQuestionHeader {
+            get {
+                return ResourceManager.GetString("HaveAQuestionHeader", resourceCulture);
             }
         }
         
@@ -616,6 +796,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string HighContrastSettingName {
             get {
                 return ResourceManager.GetString("HighContrastSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High contrast settings.
+        /// </summary>
+        internal static string HighContrastSettingsLink {
+            get {
+                return ResourceManager.GetString("HighContrastSettingsLink", resourceCulture);
             }
         }
         
@@ -683,6 +872,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make Windows better.
+        /// </summary>
+        internal static string MakeWindowsBetterHeader {
+            get {
+                return ResourceManager.GetString("MakeWindowsBetterHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Messaging.
         /// </summary>
         internal static string MessagingSettingName {
@@ -739,18 +937,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Wi-Fi, airplane mode, VPN.
         /// </summary>
-        internal static string NetworkAndInternetGroupDescription {
+        internal static string NetworkAndInternetCategoryDescription {
             get {
-                return ResourceManager.GetString("NetworkAndInternetGroupDescription", resourceCulture);
+                return ResourceManager.GetString("NetworkAndInternetCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Network &amp; Internet.
         /// </summary>
-        internal static string NetworkAndInternetGroupName {
+        internal static string NetworkAndInternetCategoryName {
             get {
-                return ResourceManager.GetString("NetworkAndInternetGroupName", resourceCulture);
+                return ResourceManager.GetString("NetworkAndInternetCategoryName", resourceCulture);
             }
         }
         
@@ -829,18 +1027,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Background, lock screen, colors.
         /// </summary>
-        internal static string PersonalizationGroupDescription {
+        internal static string PersonalizationCategoryDescription {
             get {
-                return ResourceManager.GetString("PersonalizationGroupDescription", resourceCulture);
+                return ResourceManager.GetString("PersonalizationCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Personalization.
         /// </summary>
-        internal static string PersonalizationGroupName {
+        internal static string PersonalizationCategoryName {
             get {
-                return ResourceManager.GetString("PersonalizationGroupName", resourceCulture);
+                return ResourceManager.GetString("PersonalizationCategoryName", resourceCulture);
             }
         }
         
@@ -856,18 +1054,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Link your Android, iPhone.
         /// </summary>
-        internal static string PhoneGroupDescription {
+        internal static string PhoneCategoryDescription {
             get {
-                return ResourceManager.GetString("PhoneGroupDescription", resourceCulture);
+                return ResourceManager.GetString("PhoneCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
-        internal static string PhoneGroupName {
+        internal static string PhoneCategoryName {
             get {
-                return ResourceManager.GetString("PhoneGroupName", resourceCulture);
+                return ResourceManager.GetString("PhoneCategoryName", resourceCulture);
             }
         }
         
@@ -901,18 +1099,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Location, camera, microphone.
         /// </summary>
-        internal static string PrivacyGroupDescription {
+        internal static string PrivacyCategoryDescription {
             get {
-                return ResourceManager.GetString("PrivacyGroupDescription", resourceCulture);
+                return ResourceManager.GetString("PrivacyCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Privacy.
         /// </summary>
-        internal static string PrivacyGroupName {
+        internal static string PrivacyCategoryName {
             get {
-                return ResourceManager.GetString("PrivacyGroupName", resourceCulture);
+                return ResourceManager.GetString("PrivacyCategoryName", resourceCulture);
             }
         }
         
@@ -971,6 +1169,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Related Settings.
+        /// </summary>
+        internal static string RelatedSettingsHeader {
+            get {
+                return ResourceManager.GetString("RelatedSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remote Desktop.
         /// </summary>
         internal static string RemoteDesktopSettingName {
@@ -982,18 +1189,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Find my files, permissions.
         /// </summary>
-        internal static string SearchGroupDescription {
+        internal static string SearchCategoryDescription {
             get {
-                return ResourceManager.GetString("SearchGroupDescription", resourceCulture);
+                return ResourceManager.GetString("SearchCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
-        internal static string SearchGroupName {
+        internal static string SearchCategoryName {
             get {
-                return ResourceManager.GetString("SearchGroupName", resourceCulture);
+                return ResourceManager.GetString("SearchCategoryName", resourceCulture);
             }
         }
         
@@ -1012,6 +1219,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static string SharedExperiencesSettingName {
             get {
                 return ResourceManager.GetString("SharedExperiencesSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show desktop icons.
+        /// </summary>
+        internal static string ShowDesktopIconsLink {
+            get {
+                return ResourceManager.GetString("ShowDesktopIconsLink", resourceCulture);
             }
         }
         
@@ -1072,6 +1288,15 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Sync your settings.
         /// </summary>
+        internal static string SyncYourSettingsLink {
+            get {
+                return ResourceManager.GetString("SyncYourSettingsLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync your settings.
+        /// </summary>
         internal static string SyncYourSettingsSettingName {
             get {
                 return ResourceManager.GetString("SyncYourSettingsSettingName", resourceCulture);
@@ -1081,18 +1306,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Display, sound, notifications, power.
         /// </summary>
-        internal static string SystemGroupDescription {
+        internal static string SystemCategoryDescription {
             get {
-                return ResourceManager.GetString("SystemGroupDescription", resourceCulture);
+                return ResourceManager.GetString("SystemCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
-        internal static string SystemGroupName {
+        internal static string SystemCategoryName {
             get {
-                return ResourceManager.GetString("SystemGroupName", resourceCulture);
+                return ResourceManager.GetString("SystemCategoryName", resourceCulture);
             }
         }
         
@@ -1144,18 +1369,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Speech, region, date.
         /// </summary>
-        internal static string TimeAndLanguageGroupDescription {
+        internal static string TimeAndLanguageCategoryDescription {
             get {
-                return ResourceManager.GetString("TimeAndLanguageGroupDescription", resourceCulture);
+                return ResourceManager.GetString("TimeAndLanguageCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Time &amp; Language.
         /// </summary>
-        internal static string TimeAndLanguageGroupName {
+        internal static string TimeAndLanguageCategoryName {
             get {
-                return ResourceManager.GetString("TimeAndLanguageGroupName", resourceCulture);
+                return ResourceManager.GetString("TimeAndLanguageCategoryName", resourceCulture);
             }
         }
         
@@ -1180,18 +1405,18 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         /// <summary>
         ///   Looks up a localized string similar to Windows Update, recovery, backup.
         /// </summary>
-        internal static string UpdateAndSecurityGroupDescription {
+        internal static string UpdateAndSecurityCategoryDescription {
             get {
-                return ResourceManager.GetString("UpdateAndSecurityGroupDescription", resourceCulture);
+                return ResourceManager.GetString("UpdateAndSecurityCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Update &amp; Security.
         /// </summary>
-        internal static string UpdateAndSecurityGroupName {
+        internal static string UpdateAndSecurityCategoryName {
             get {
-                return ResourceManager.GetString("UpdateAndSecurityGroupName", resourceCulture);
+                return ResourceManager.GetString("UpdateAndSecurityCategoryName", resourceCulture);
             }
         }
         

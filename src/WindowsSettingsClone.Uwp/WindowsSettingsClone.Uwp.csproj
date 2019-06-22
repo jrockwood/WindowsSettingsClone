@@ -127,20 +127,39 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToOpacityConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\GlyphInfoToFontFamilyConverter.cs" />
     <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\EditorViewModelToEditorViewConverter.cs" />
+    <Compile Include="Converters\TopThicknessConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Editors\BonusBar.xaml.cs">
+      <DependentUpon>BonusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Personalization\BackgroundEditorView.xaml.cs">
+      <DependentUpon>BackgroundEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Personalization\PersonalizePreviewControl.xaml.cs">
+      <DependentUpon>PersonalizePreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\EditorView.xaml.cs">
+      <DependentUpon>EditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewServices\NavigationService.cs" />
     <Compile Include="ViewServices\PlatformCapabilityService.cs" />
+    <Compile Include="ViewServices\ViewThreadDispatcher.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsGroupPage.xaml.cs">
-      <DependentUpon>SettingsGroupPage.xaml</DependentUpon>
+    <Compile Include="Views\CategoryPageNavigationView.xaml.cs">
+      <DependentUpon>CategoryPageNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoryPage.xaml.cs">
+      <DependentUpon>CategoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
@@ -192,6 +211,7 @@
     <Content Include="Assets\SplashScreen.scale-150.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\TranscodedWallpaper.png" />
     <Content Include="Assets\WideTile.scale-100.png" />
     <Content Include="Assets\WideTile.scale-125.png" />
     <Content Include="Assets\WideTile.scale-150.png" />
@@ -220,6 +240,22 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Editors\BonusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\Personalization\BackgroundEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\Personalization\PersonalizePreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\EditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -228,7 +264,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsGroupPage.xaml">
+    <Page Include="Views\CategoryPageNavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

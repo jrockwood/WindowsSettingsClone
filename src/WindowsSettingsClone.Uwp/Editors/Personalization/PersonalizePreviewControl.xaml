@@ -1,0 +1,296 @@
+﻿<UserControl x:Class="WindowsSettingsClone.Uwp.Editors.Personalization.PersonalizePreviewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             HorizontalAlignment="Left"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <SolidColorBrush x:Key="TileColorBrush" Color="{ThemeResource SystemAccentColor}" />
+
+    <Style x:Key="StartMenuHeading" TargetType="Rectangle">
+      <Setter Property="Width" Value="30" />
+      <Setter Property="Height" Value="2" />
+      <Setter Property="Margin" Value="2,0,0,0" />
+      <Setter Property="Opacity" Value="0.8" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="StartMenuLeftColumnTile" TargetType="Rectangle">
+      <Setter Property="Width" Value="10" />
+      <Setter Property="Height" Value="10" />
+      <Setter Property="Fill" Value="{StaticResource TileColorBrush}" />
+    </Style>
+
+    <Style x:Key="StartMenuLeftColumnText" TargetType="Rectangle">
+      <Setter Property="Width" Value="30" />
+      <Setter Property="Height" Value="2" />
+      <Setter Property="Fill" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+      <Setter Property="Margin" Value="2,0,0,0" />
+      <Setter Property="Opacity" Value="0.8" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="StartMenuLeftColumnStackPanel" TargetType="StackPanel">
+      <Setter Property="Orientation" Value="Horizontal" />
+      <Setter Property="Margin" Value="0,0,41,1" />
+      <Setter Property="Width" Value="29" />
+    </Style>
+  </UserControl.Resources>
+
+  <Grid x:Name="BackgroundPreviewGrid"
+        Width="328"
+        Height="185">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="105" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="12" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="160" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="115" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Canvas Grid.RowSpan="4" Grid.ColumnSpan="4">
+      <Image x:Name="BackgroundImage"
+             Canvas.Left="0"
+             Canvas.Top="0"
+             Width="328"
+             Height="184.5"
+             Source="ms-appx:///Assets/TranscodedWallpaper.png"
+             Stretch="UniformToFill">
+        <Image.Clip>
+          <RectangleGeometry Rect="0,0,328,185" />
+        </Image.Clip>
+      </Image>
+    </Canvas>
+
+    <Rectangle x:Name="TaskBar"
+               Grid.Row="3"
+               Grid.Column="0"
+               Grid.ColumnSpan="4"
+               Height="12"
+               VerticalAlignment="Bottom"
+               Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+               StrokeThickness="0"
+               Opacity="0.95" />
+
+    <Border x:Name="SampleWindowPreview"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="115"
+            Height="105"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            BorderBrush="{StaticResource TileColorBrush}"
+            BorderThickness="1">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="14" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+        <Rectangle Grid.Row="0"
+                   Width="25"
+                   Height="2"
+                   Margin="8,0,0,0"
+                   HorizontalAlignment="Left"
+                   Fill="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        <TextBlock x:Uid="PersonalizePreviewControlSampleTextBlock"
+                   Grid.Row="1"
+                   Margin="8,4,8,12"
+                   Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                   FontSize="12"
+                   FontWeight="Normal"
+                   TextWrapping="Wrap" />
+      </Grid>
+    </Border>
+
+    <Grid x:Name="StartMenuPreviewGrid"
+          Grid.Row="1"
+          Grid.RowSpan="2"
+          Grid.Column="0"
+          Width="160"
+          Height="120"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Bottom">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <Rectangle Grid.ColumnSpan="2"
+                 Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                 StrokeThickness="0"
+                 Opacity=".85" />
+
+      <StackPanel Grid.Column="0"
+                  Margin="6,28,6,0"
+                  Orientation="Horizontal">
+        <!-- Left column in start menu -->
+        <StackPanel x:Name="StartMenuLeftColumn" Orientation="Vertical">
+          <Rectangle Margin="0,0,0,3"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource StartMenuHeading}"
+                     Fill="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="26" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="18" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="22" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="10" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="18" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+          <StackPanel Style="{StaticResource StartMenuLeftColumnStackPanel}">
+            <Rectangle Style="{StaticResource StartMenuLeftColumnTile}" />
+            <Rectangle Width="26" Style="{StaticResource StartMenuLeftColumnText}" />
+          </StackPanel>
+        </StackPanel>
+
+        <!-- Right column in start menu -->
+        <StackPanel x:Name="StartMenuRightColumn" Orientation="Vertical">
+          <Rectangle Margin="0,0,0,3"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource StartMenuHeading}"
+                     Fill="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+
+          <StackPanel Orientation="Vertical">
+            <StackPanel Margin="0,1,0,0" Orientation="Horizontal">
+              <Grid Width="49"
+                    Height="50"
+                    Background="{StaticResource TileColorBrush}">
+                <TextBlock x:Uid="PersonalizePreviewControlSampleTileTextBlock"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"
+                           FontSize="14"
+                           FontWeight="Normal" />
+              </Grid>
+              <Grid Width="25"
+                    Height="50"
+                    Margin="1,0,0,0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="1" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="1" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="{ThemeResource TileColorBrush}" />
+                <Rectangle Grid.Row="2"
+                           Grid.Column="0"
+                           Fill="{ThemeResource TileColorBrush}" />
+              </Grid>
+            </StackPanel>
+            <StackPanel Margin="0,1" Orientation="Horizontal">
+              <Grid Width="24" Height="25">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="1" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="1" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="2"
+                           Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="2"
+                           Grid.Column="0"
+                           Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="2"
+                           Grid.Column="2"
+                           Fill="{StaticResource TileColorBrush}" />
+              </Grid>
+              <Rectangle Width="49"
+                         Height="25"
+                         Margin="1,0,0,0"
+                         Fill="{StaticResource TileColorBrush}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <Rectangle Width="49"
+                         Height="25"
+                         Margin="0,0,0,1"
+                         Fill="{StaticResource TileColorBrush}" />
+              <Rectangle Width="24"
+                         Height="25"
+                         Margin="1,0,0,1"
+                         Fill="{StaticResource TileColorBrush}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <Rectangle Width="24"
+                         Height="25"
+                         Margin="0,0,1,0"
+                         Fill="{StaticResource TileColorBrush}" />
+              <Rectangle Width="24"
+                         Height="25"
+                         Margin="0,0,1,0"
+                         Fill="{StaticResource TileColorBrush}" />
+              <Grid Width="24" Height="25">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="1" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="1" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="2"
+                           Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="2"
+                           Grid.Column="0"
+                           Fill="{StaticResource TileColorBrush}" />
+                <Rectangle Grid.Row="2"
+                           Grid.Column="2"
+                           Fill="{StaticResource TileColorBrush}" />
+              </Grid>
+            </StackPanel>
+          </StackPanel>
+        </StackPanel>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</UserControl>
