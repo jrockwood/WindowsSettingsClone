@@ -8,14 +8,14 @@
   IgnorableNamespaces="uap mp rescap">
 
   <Identity
-    Name="5016f9af-d5da-4996-8665-7b377da6881f"
+    Name="Rockwood.WindowsSettingsClone"
     Publisher="CN=justi"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>WindowsSettingsClone.Packaging</DisplayName>
-    <PublisherDisplayName>justi</PublisherDisplayName>
-    <Logo>Images\StoreLogo.png</Logo>
+    <DisplayName>Settings [Clone]</DisplayName>
+    <PublisherDisplayName>Justin Rockwood</PublisherDisplayName>
+    <Logo>Images\PackageLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -32,13 +32,23 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="WindowsSettingsClone.Packaging"
-        Description="WindowsSettingsClone.Packaging"
+        DisplayName="Settings [Clone]"
+        Description="Clone of the Windows 10 Settings app. Used as a learning tool."
         BackgroundColor="transparent"
-        Square150x150Logo="Images\Square150x150Logo.png"
-        Square44x44Logo="Images\Square44x44Logo.png">
+        Square150x150Logo="Images\MediumTile.png"
+        Square44x44Logo="Images\AppIcon.png">
         <uap:DefaultTile
-          Wide310x150Logo="Images\Wide310x150Logo.png" />
+          Wide310x150Logo="Images\WideTile.png"
+          Square71x71Logo="Images\SmallTile.png"
+          Square310x310Logo="Images\LargeTile.png"
+          ShortName="Settings">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
