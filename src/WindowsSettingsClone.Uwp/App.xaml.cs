@@ -8,12 +8,14 @@
 namespace WindowsSettingsClone.Uwp
 {
     using System;
+    using System.Threading.Tasks;
     using ViewModels.ViewServices;
     using Views;
     using ViewServices;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.Foundation;
+    using Windows.Foundation.Metadata;
     using Windows.UI.ViewManagement;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -87,6 +89,18 @@ namespace WindowsSettingsClone.Uwp
 
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+
+#pragma warning disable 4014
+            LaunchDesktopServices();
+#pragma warning restore 4014
+        }
+
+        private async Task LaunchDesktopServices()
+        {
+            if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
+            {
+                await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
             }
         }
 
