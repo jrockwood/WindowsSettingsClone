@@ -4,13 +4,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:personalization="using:WindowsSettingsClone.Uwp.Editors.Personalization"
-             xmlns:viewModels="using:WindowsSettingsClone.Uwp.ViewModels"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
 
   <StackPanel Orientation="Vertical">
-    <personalization:PersonalizePreviewControl Margin="0,-5,0,48" />
+    <personalization:PersonalizePreviewControl Margin="0,-5,0,48" ShowWindowPreview="False" />
 
     <!-- Background ComboBox -->
     <TextBlock x:Uid="BackgroundLabelTextBlock" Style="{StaticResource SettingTextBlockLabel}" />
