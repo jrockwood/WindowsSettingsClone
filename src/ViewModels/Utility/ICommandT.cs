@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.Utility
+namespace WindowsSettingsClone.ViewModels.Utility
 {
     using System.Windows.Input;
 

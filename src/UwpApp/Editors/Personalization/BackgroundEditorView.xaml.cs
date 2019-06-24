@@ -5,11 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Editors.Personalization
+namespace WindowsSettingsClone.UwpApp.Editors.Personalization
 {
     using System;
-    using ViewModels.EditorViewModels.Personalization;
     using Windows.UI.Xaml.Controls;
+    using ViewModels.EditorViewModels.Personalization;
 
     public sealed partial class BackgroundEditorView : UserControl
     {

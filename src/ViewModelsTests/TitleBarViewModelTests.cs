@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.Tests
+namespace WindowsSettingsClone.ViewModels.Tests
 {
     using System;
     using FluentAssertions;

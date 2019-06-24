@@ -5,11 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Editors
+namespace WindowsSettingsClone.UwpApp.Editors
 {
-    using ViewModels.EditorViewModels;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
+    using ViewModels.EditorViewModels;
 
     public sealed partial class EditorView : UserControl
     {

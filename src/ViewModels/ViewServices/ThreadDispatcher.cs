@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.ViewServices
+namespace WindowsSettingsClone.ViewModels.ViewServices
 {
     using System;
     using System.Threading;

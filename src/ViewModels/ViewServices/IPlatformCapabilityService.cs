@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.ViewServices
+namespace WindowsSettingsClone.ViewModels.ViewServices
 {
     /// <summary>
     /// Interface for querying the underlying platform capabilities.

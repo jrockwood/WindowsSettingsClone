@@ -6,7 +6,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable InvokeAsExtensionMethod
-namespace WindowsSettingsClone.Uwp.ViewModels.Tests.ViewServices
+namespace WindowsSettingsClone.ViewModels.Tests.ViewServices
 {
     using System;
     using System.Threading;

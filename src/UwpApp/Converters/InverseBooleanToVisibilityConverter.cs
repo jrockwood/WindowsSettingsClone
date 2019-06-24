@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Converters
+namespace WindowsSettingsClone.UwpApp.Converters
 {
     using System;
     using Windows.UI.Xaml;

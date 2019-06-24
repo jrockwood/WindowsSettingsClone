@@ -5,10 +5,9 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Views
+namespace WindowsSettingsClone.UwpApp.Views
 {
     using System;
-    using ViewModels;
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.Core;
@@ -16,6 +15,7 @@ namespace WindowsSettingsClone.Uwp.Views
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Media;
+    using ViewModels;
 
     public sealed partial class TitleBar : UserControl
     {

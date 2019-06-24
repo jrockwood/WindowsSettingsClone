@@ -5,12 +5,12 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Converters
+namespace WindowsSettingsClone.UwpApp.Converters
 {
     using System;
-    using ViewModels;
     using Windows.UI.Xaml.Data;
     using Windows.UI.Xaml.Media;
+    using ViewModels;
 
     /// <summary>
     /// Converts a <see cref="GlyphInfo"/> to a <see cref="FontFamily"/> that contains the glyph.

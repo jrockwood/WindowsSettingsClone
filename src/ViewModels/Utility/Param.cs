@@ -5,11 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.Utility
+namespace WindowsSettingsClone.ViewModels.Utility
 {
     using System;
 
-    internal static class Param
+    public static class Param
     {
         public static T VerifyNotNull<T>(T value, string parameterName) where T : class
         {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels {
+namespace WindowsSettingsClone.ViewModels {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace WindowsSettingsClone.Uwp.ViewModels {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WindowsSettingsClone.Uwp.ViewModels.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WindowsSettingsClone.ViewModels.Strings", typeof(Strings).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

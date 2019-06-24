@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.DesktopServices
+namespace WindowsSettingsClone.DesktopServicesApp
 {
     using System;
 

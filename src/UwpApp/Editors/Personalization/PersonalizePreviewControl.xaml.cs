@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Editors.Personalization
+namespace WindowsSettingsClone.UwpApp.Editors.Personalization
 {
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;

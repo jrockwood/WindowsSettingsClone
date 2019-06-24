@@ -5,15 +5,15 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Views
+namespace WindowsSettingsClone.UwpApp.Views
 {
     using System;
-    using ViewModels;
-    using ViewModels.ViewServices;
-    using ViewServices;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
+    using ViewModels;
+    using ViewModels.ViewServices;
+    using ViewServices;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

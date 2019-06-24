@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.Tests.SettingsEditorViewModels
+namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
 {
     using System;
     using System.Threading;

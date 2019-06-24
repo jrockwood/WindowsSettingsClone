@@ -5,13 +5,13 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewServices
+namespace WindowsSettingsClone.UwpApp.ViewServices
 {
     using System;
     using System.Threading.Tasks;
-    using ViewModels.ViewServices;
     using Windows.ApplicationModel.Core;
     using Windows.UI.Core;
+    using ViewModels.ViewServices;
 
     /// <summary>
     /// Default implementation of <see cref="IThreadDispatcher"/> that uses the application's main <see cref="CoreDispatcher"/>.

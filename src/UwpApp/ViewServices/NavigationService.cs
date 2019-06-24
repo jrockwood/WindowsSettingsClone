@@ -5,15 +5,15 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewServices
+namespace WindowsSettingsClone.UwpApp.ViewServices
 {
     using System;
     using System.Collections.Generic;
+    using Windows.UI.Xaml.Controls;
     using ViewModels;
     using ViewModels.Utility;
     using ViewModels.ViewServices;
     using Views;
-    using Windows.UI.Xaml.Controls;
 
     /// <summary>
     /// Implementation of <see cref="INavigationViewService"/> that uses the root frame to navigate to different pages.

@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels.EditorViewModels.Personalization
+namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
 {
     using System.Threading;
     using System.Threading.Tasks;

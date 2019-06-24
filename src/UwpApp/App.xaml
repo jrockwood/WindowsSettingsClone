@@ -1,7 +1,7 @@
-﻿<Application x:Class="WindowsSettingsClone.Uwp.App"
+﻿<Application x:Class="WindowsSettingsClone.UwpApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="using:WindowsSettingsClone.Uwp.Converters">
+             xmlns:converters="using:WindowsSettingsClone.UwpApp.Converters">
 
   <Application.Resources>
     <converters:BooleanToOpacityConverter x:Key="BooleanToOpacityConverter" />

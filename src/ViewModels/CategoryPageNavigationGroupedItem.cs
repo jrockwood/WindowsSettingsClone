@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels
+namespace WindowsSettingsClone.ViewModels
 {
     using System.Collections;
     using System.Collections.Generic;

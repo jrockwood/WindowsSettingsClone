@@ -5,15 +5,15 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Converters
+namespace WindowsSettingsClone.UwpApp.Converters
 {
     using System;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Data;
     using Editors.Personalization;
     using ViewModels;
     using ViewModels.EditorViewModels;
     using ViewModels.EditorViewModels.Personalization;
-    using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Data;
 
     /// <summary>
     /// Converts from a <see cref="EditorKind"/> to a settings editor view UserControl.

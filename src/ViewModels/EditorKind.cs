@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels
+namespace WindowsSettingsClone.ViewModels
 {
     /// <summary>
     /// Enumerates the different types of settings editors.

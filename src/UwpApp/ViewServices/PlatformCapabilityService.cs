@@ -5,10 +5,10 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewServices
+namespace WindowsSettingsClone.UwpApp.ViewServices
 {
-    using ViewModels.ViewServices;
     using Windows.Foundation.Metadata;
+    using ViewModels.ViewServices;
 
     /// <summary>
     /// Default implementation of the <see cref="IPlatformCapabilityService"/>. Uses a singleton instance to cache

@@ -5,11 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.Views
+namespace WindowsSettingsClone.UwpApp.Views
 {
     using System.Linq;
-    using ViewModels;
     using Windows.UI.Xaml.Controls;
+    using ViewModels;
 
     public sealed partial class CategoryPageNavigationView : UserControl
     {

@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Uwp.ViewModels
+namespace WindowsSettingsClone.ViewModels
 {
     /// <summary>
     /// Contains information about a glyph code and which font its defined in. The names of the glyphs are the names
