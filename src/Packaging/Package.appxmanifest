@@ -55,7 +55,7 @@
         <desktop:Extension
           xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
           Category="windows.fullTrustProcess"
-          Executable="WindowsSettingsClone.Uwp.DesktopServices\WindowsSettingsClone.Uwp.DesktopServices.exe" />
+          Executable="DesktopServicesApp\DesktopServicesApp.exe" />
       </Extensions>
     </Application>
   </Applications>

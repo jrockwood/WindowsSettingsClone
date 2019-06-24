@@ -7,8 +7,8 @@
     <ProjectGuid>{9A0D70E5-4A36-4C64-8228-BCA53FAF4D05}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsSettingsClone.Uwp</RootNamespace>
-    <AssemblyName>WindowsSettingsClone.Uwp</AssemblyName>
+    <RootNamespace>WindowsSettingsClone.UwpApp</RootNamespace>
+    <AssemblyName>WindowsSettingsClone.UwpApp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
@@ -23,7 +23,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <PackageCertificateThumbprint>3EF81C5D5FEAC9E29CF33AB78E892BF723B92D9C</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>WindowsSettingsClone.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>UwpApp_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
@@ -124,6 +124,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -281,14 +284,14 @@
     <Content Include="Assets\SetMDL2.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WindowsSettingsClone.Uwp.ViewModels\WindowsSettingsClone.Uwp.ViewModels.csproj">
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{23f522b7-eb71-4620-9ea9-f7671cc32075}</Project>
-      <Name>WindowsSettingsClone.Uwp.ViewModels</Name>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
-    <None Include="WindowsSettingsClone.Uwp_TemporaryKey.pfx" />
+    <None Include="UwpApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsDesktop, Version=10.0.17763.0">

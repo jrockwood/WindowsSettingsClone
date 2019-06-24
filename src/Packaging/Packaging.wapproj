@@ -38,18 +38,18 @@
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>WindowsSettingsClone.Packaging_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <EntryPointProjectUniqueName>..\WindowsSettingsClone.Uwp\WindowsSettingsClone.Uwp.csproj</EntryPointProjectUniqueName>
+    <PackageCertificateKeyFile>Packaging_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <EntryPointProjectUniqueName>..\UwpApp\UwpApp.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="WindowsSettingsClone.Packaging_TemporaryKey.pfx" />
+    <None Include="Packaging_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WindowsSettingsClone.Uwp.DesktopServices\WindowsSettingsClone.Uwp.DesktopServices.csproj" />
-    <ProjectReference Include="..\WindowsSettingsClone.Uwp\WindowsSettingsClone.Uwp.csproj" />
+    <ProjectReference Include="..\DesktopServicesApp\DesktopServicesApp.csproj" />
+    <ProjectReference Include="..\UwpApp\UwpApp.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\App.png" />

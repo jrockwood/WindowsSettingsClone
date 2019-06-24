@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Company information -->
+  <PropertyGroup>
+    <Authors>Justin Rockwood</Authors>
+    <Company>Justin Rockwood</Company>
+    <Product>Windows Settings Clone</Product>
+    <Copyright>Copyright © Justin Rockwood. All rights reserved.</Copyright>
+  </PropertyGroup>
+
+  <!-- Version information -->
+  <PropertyGroup>
+    <InformationalVersion>1.0</InformationalVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+</Project>

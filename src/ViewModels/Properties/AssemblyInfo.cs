@@ -8,5 +8,5 @@
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("WindowsSettingsClone.Uwp")]
+[assembly: InternalsVisibleTo("WindowsSettingsClone.ViewModels.Tests")]
 [assembly: NeutralResourcesLanguage("en-US")]
