@@ -30,7 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Model Layer", "04 - Mo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Services Layer", "05 - Services Layer", "{2BF5D3EE-6FB4-48E6-8B8C-7D8BA8D13B89}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - README", "00 - README", "{B14C7B72-E9FC-4149-A225-ADE03CC047D5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - README and Documentation", "00 - README and Documentation", "{B14C7B72-E9FC-4149-A225-ADE03CC047D5}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\Design.md = ..\docs\Design.md
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
