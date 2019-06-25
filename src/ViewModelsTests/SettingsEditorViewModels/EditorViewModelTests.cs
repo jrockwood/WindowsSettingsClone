@@ -13,7 +13,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
     using EditorViewModels;
     using FluentAssertions;
     using NUnit.Framework;
-    using ViewServices;
+    using ServiceContracts.Tests.ViewServices;
 
     public class EditorViewModelTests
     {

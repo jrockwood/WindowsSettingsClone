@@ -284,6 +284,10 @@
     <Content Include="Assets\SetMDL2.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj">
+      <Project>{9b501d31-6520-48c6-9c38-443d5478c466}</Project>
+      <Name>ServiceContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{23f522b7-eb71-4620-9ea9-f7671cc32075}</Project>
       <Name>ViewModels</Name>

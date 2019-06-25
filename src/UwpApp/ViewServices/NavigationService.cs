@@ -9,11 +9,11 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
 {
     using System;
     using System.Collections.Generic;
-    using Windows.UI.Xaml.Controls;
+    using ServiceContracts.ViewServices;
     using ViewModels;
     using ViewModels.Utility;
-    using ViewModels.ViewServices;
     using Views;
+    using Windows.UI.Xaml.Controls;
 
     /// <summary>
     /// Implementation of <see cref="INavigationViewService"/> that uses the root frame to navigate to different pages.
@@ -34,7 +34,10 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         //// Constructors
         //// ===========================================================================================================
 
-        public NavigationService(Frame rootFrame) => RootFrame = Param.VerifyNotNull(rootFrame, nameof(rootFrame));
+        public NavigationService(Frame rootFrame)
+        {
+            RootFrame = Param.VerifyNotNull(rootFrame, nameof(rootFrame));
+        }
 
         //// ===========================================================================================================
         //// Events
@@ -73,6 +76,9 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
             RaiseBackStackDepthChange();
         }
 
-        private void RaiseBackStackDepthChange() => BackStackDepthChange?.Invoke(this, EventArgs.Empty);
+        private void RaiseBackStackDepthChange()
+        {
+            BackStackDepthChange?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

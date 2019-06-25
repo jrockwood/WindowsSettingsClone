@@ -9,9 +9,9 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
 {
     using System;
     using System.Threading.Tasks;
+    using ServiceContracts.ViewServices;
     using Windows.ApplicationModel.Core;
     using Windows.UI.Core;
-    using ViewModels.ViewServices;
 
     /// <summary>
     /// Default implementation of <see cref="IThreadDispatcher"/> that uses the application's main <see cref="CoreDispatcher"/>.
@@ -23,8 +23,11 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         {
         }
 
-        public static Task RunOnCoreWindowDispatcher(Action action) => CoreApplication.MainView.CoreWindow.Dispatcher
-            .RunAsync(CoreDispatcherPriority.Normal, () => action())
-            .AsTask();
+        public static Task RunOnCoreWindowDispatcher(Action action)
+        {
+            return CoreApplication.MainView.CoreWindow.Dispatcher
+                .RunAsync(CoreDispatcherPriority.Normal, () => action())
+                .AsTask();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.UwpApp
 {
     using System;
     using System.Threading.Tasks;
+    using ServiceContracts.ViewServices;
     using Views;
     using ViewServices;
     using Windows.ApplicationModel;
@@ -18,7 +19,6 @@ namespace WindowsSettingsClone.UwpApp
     using Windows.UI.ViewManagement;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using ViewModels.ViewServices;
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

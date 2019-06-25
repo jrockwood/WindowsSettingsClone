@@ -10,7 +10,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using ViewServices;
+    using ServiceContracts.ViewServices;
 
     /// <summary>
     /// Abstract base class describing all settings editors.

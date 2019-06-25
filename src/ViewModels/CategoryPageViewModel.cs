@@ -10,8 +10,8 @@ namespace WindowsSettingsClone.ViewModels
     using System;
     using System.ComponentModel;
     using EditorViewModels;
+    using ServiceContracts.ViewServices;
     using Utility;
-    using ViewServices;
 
     /// <summary>
     /// Page that contains a grouping of individual settings. Examples include System, Devices, and Personalization.

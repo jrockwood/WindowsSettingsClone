@@ -9,8 +9,8 @@ namespace WindowsSettingsClone.ViewModels
 {
     using System;
     using System.Windows.Input;
+    using ServiceContracts.ViewServices;
     using Utility;
-    using ViewServices;
 
     public sealed class TitleBarViewModel : BaseViewModel
     {
