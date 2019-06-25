@@ -10,8 +10,8 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
     using System;
     using System.Collections.Generic;
     using ServiceContracts.ViewServices;
+    using Shared.Utility;
     using ViewModels;
-    using ViewModels.Utility;
     using Views;
     using Windows.UI.Xaml.Controls;
 

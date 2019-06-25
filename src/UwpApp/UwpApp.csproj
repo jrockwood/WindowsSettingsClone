@@ -288,6 +288,10 @@
       <Project>{9b501d31-6520-48c6-9c38-443d5478c466}</Project>
       <Name>ServiceContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{3399f211-a529-4c52-9325-e820add46a12}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{23f522b7-eb71-4620-9ea9-f7671cc32075}</Project>
       <Name>ViewModels</Name>

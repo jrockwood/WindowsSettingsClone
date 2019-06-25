@@ -9,7 +9,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Utility;
+    using Shared.Utility;
 
     /// <summary>
     /// ViewModel for the bonus bar, which is the list of related settings, questions, and other content on the right

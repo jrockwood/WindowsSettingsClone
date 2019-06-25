@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.ViewModels.Utility
 {
     using System;
     using System.Windows.Input;
+    using Shared.Utility;
 
     /// <summary>
     /// Implements an <see cref="ICommand"/> interface by calling delegates specified in the constructor.
@@ -59,13 +60,25 @@ namespace WindowsSettingsClone.ViewModels.Utility
         //// Methods
         //// ===========================================================================================================
 
-        bool ICommand.CanExecute(object parameter) => _enabled;
+        bool ICommand.CanExecute(object parameter)
+        {
+            return _enabled;
+        }
 
-        void ICommand.Execute(object parameter) => _executeAction((T)parameter);
+        void ICommand.Execute(object parameter)
+        {
+            _executeAction((T)parameter);
+        }
 
-        public bool CanExecute(T parameter) => _enabled;
+        public bool CanExecute(T parameter)
+        {
+            return _enabled;
+        }
 
-        public void Execute(T parameter) => _executeAction(parameter);
+        public void Execute(T parameter)
+        {
+            _executeAction(parameter);
+        }
     }
 
     /// <summary>
