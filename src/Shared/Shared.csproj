@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\DotnetStandardCompanyAndVersion.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <AssemblyName>WindowsSettingsClone.Shared</AssemblyName>
+    <RootNamespace>WindowsSettingsClone.Shared</RootNamespace>
+    <Description>Shared code used in all of the Windows Settings Clone UWP projects</Description>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

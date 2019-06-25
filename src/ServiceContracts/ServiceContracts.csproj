@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\DotnetStandardCompanyAndVersion.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <AssemblyName>WindowsSettingsClone.ServiceContracts</AssemblyName>
+    <RootNamespace>WindowsSettingsClone.ServiceContracts</RootNamespace>
+    <Description>Defines the service interfaces and command infrastructure for the Windows Settings Clone UWP projects</Description>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+</Project>
