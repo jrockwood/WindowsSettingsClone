@@ -8,12 +8,13 @@
 namespace WindowsSettingsClone.UwpApp
 {
     using System;
-    using System.Threading.Tasks;
     using ServiceContracts.ViewServices;
     using Views;
     using ViewServices;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
+    using Windows.ApplicationModel.AppService;
+    using Windows.ApplicationModel.Background;
     using Windows.Foundation;
     using Windows.Foundation.Metadata;
     using Windows.UI.ViewManagement;
@@ -49,6 +50,8 @@ namespace WindowsSettingsClone.UwpApp
             ((Window.Current.Content as Frame)?.Content as RootPage)?.NavigationService;
 
         public IThreadDispatcher ThreadDispatcher { get; } = new ViewThreadDispatcher();
+
+        public AppServiceConnection Connection { get; private set; }
 
         //// ===========================================================================================================
         //// Methods
@@ -91,12 +94,30 @@ namespace WindowsSettingsClone.UwpApp
                 Window.Current.Activate();
             }
 
-#pragma warning disable 4014
-            LaunchDesktopServices();
-#pragma warning restore 4014
+            LaunchDesktopServicesBridge();
         }
 
-        private async Task LaunchDesktopServices()
+        /// <summary>
+        /// Invoked when our application is activated in the background (most likely due to the application service).
+        /// </summary>
+        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+        {
+            base.OnBackgroundActivated(args);
+
+            // Make sure we've been invoked by the app service.
+            if (!(args.TaskInstance.TriggerDetails is AppServiceTriggerDetails triggerDetails))
+            {
+                return;
+            }
+
+            // This line of code looks like it doesn't do anything, however it's critical. The call to GetDeferral() does
+            // more than just return a deferral. It informs the system that the background task might continue to perform
+            // after it returns. Without this call, the full-trust DesktopServicesApp.exe will be terminated early.
+            BackgroundTaskDeferral deferral = args.TaskInstance.GetDeferral();
+            Connection = triggerDetails.AppServiceConnection;
+        }
+
+        private static async void LaunchDesktopServicesBridge()
         {
             if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
             {

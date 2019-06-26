@@ -84,5 +84,13 @@
                 SelectedItem="{x:Bind ViewModel.FitKinds.SelectedItem, Mode=TwoWay}"
                 SelectedValuePath="Value" />
     </StackPanel>
+
+    <StackPanel>
+      <Button x:Name="TestButton"
+              Click="TestButton_OnClick"
+              Content="Test" />
+
+      <TextBlock x:Name="TestResult" />
+    </StackPanel>
   </StackPanel>
 </UserControl>
