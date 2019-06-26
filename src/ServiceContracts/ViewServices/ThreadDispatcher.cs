@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.ViewServices
+namespace WindowsSettingsClone.ServiceContracts.ViewServices
 {
     using System;
     using System.Threading;
@@ -46,9 +46,15 @@ namespace WindowsSettingsClone.ViewModels.ViewServices
         //// Methods
         //// ===========================================================================================================
 
-        public virtual Task RunOnUIThreadAsync(Action action) => _uiThreadInvoker(action);
+        public virtual Task RunOnUIThreadAsync(Action action)
+        {
+            return _uiThreadInvoker(action);
+        }
 
-        public virtual Task RunOnBackgroundThreadAsync(Action action) => _backgroundThreadInvoker(action);
+        public virtual Task RunOnBackgroundThreadAsync(Action action)
+        {
+            return _backgroundThreadInvoker(action);
+        }
 
         public virtual async Task RunOnUIThreadDelayedAsync(
             Action action,

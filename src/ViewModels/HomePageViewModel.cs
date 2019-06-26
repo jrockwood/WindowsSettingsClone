@@ -9,8 +9,9 @@ namespace WindowsSettingsClone.ViewModels
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using ServiceContracts.ViewServices;
+    using Shared.Utility;
     using Utility;
-    using ViewServices;
 
     /// <summary>
     /// Represents the ViewModel for the MainPage view.

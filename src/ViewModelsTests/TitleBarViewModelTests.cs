@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.ViewModels.Tests
     using FluentAssertions.Events;
     using Moq;
     using NUnit.Framework;
-    using ViewModels.ViewServices;
+    using ServiceContracts.ViewServices;
 
     public class TitleBarViewModelTests
     {

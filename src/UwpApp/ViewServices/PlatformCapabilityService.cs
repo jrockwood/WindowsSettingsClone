@@ -7,8 +7,8 @@
 
 namespace WindowsSettingsClone.UwpApp.ViewServices
 {
+    using ServiceContracts.ViewServices;
     using Windows.Foundation.Metadata;
-    using ViewModels.ViewServices;
 
     /// <summary>
     /// Default implementation of the <see cref="IPlatformCapabilityService"/>. Uses a singleton instance to cache

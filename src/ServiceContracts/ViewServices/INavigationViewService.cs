@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.ViewServices
+namespace WindowsSettingsClone.ServiceContracts.ViewServices
 {
     using System;
 

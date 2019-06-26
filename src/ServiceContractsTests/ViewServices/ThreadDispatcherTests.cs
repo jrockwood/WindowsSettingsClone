@@ -6,14 +6,14 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable InvokeAsExtensionMethod
-namespace WindowsSettingsClone.ViewModels.Tests.ViewServices
+namespace WindowsSettingsClone.ServiceContracts.Tests.ViewServices
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
     using NUnit.Framework;
-    using ViewModels.ViewServices;
+    using ServiceContracts.ViewServices;
 
     public class ThreadDispatcherTests
     {

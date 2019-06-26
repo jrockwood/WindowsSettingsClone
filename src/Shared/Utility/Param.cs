@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.Utility
+namespace WindowsSettingsClone.Shared.Utility
 {
     using System;
 

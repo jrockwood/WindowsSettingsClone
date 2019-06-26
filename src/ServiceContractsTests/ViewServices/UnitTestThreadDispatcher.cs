@@ -5,18 +5,18 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.Tests.ViewServices
+namespace WindowsSettingsClone.ServiceContracts.Tests.ViewServices
 {
     using System;
     using System.Collections.Immutable;
     using System.Threading;
     using System.Threading.Tasks;
-    using ViewModels.ViewServices;
+    using ServiceContracts.ViewServices;
 
     /// <summary>
     /// Dispatcher suitable for unit tests where calls are tracked and everything is synchronous.
     /// </summary>
-    internal class UnitTestThreadDispatcher : ThreadDispatcher
+    public class UnitTestThreadDispatcher : ThreadDispatcher
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -73,7 +73,10 @@ namespace WindowsSettingsClone.ViewModels.Tests.ViewServices
             return Task.CompletedTask;
         }
 
-        private static Task DontDelay(int millisecondsDelay, CancellationToken cancellationToken) => Task.CompletedTask;
+        private static Task DontDelay(int millisecondsDelay, CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
 
         private void AddRunKind(DispatchRunKind runKind)
         {
@@ -87,7 +90,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.ViewServices
         }
     }
 
-    internal enum DispatchRunKind
+    public enum DispatchRunKind
     {
         UIThread,
         UIThreadDelayed,

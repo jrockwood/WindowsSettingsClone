@@ -7,7 +7,7 @@
 
 namespace WindowsSettingsClone.ViewModels
 {
-    using Utility;
+    using Shared.Utility;
 
     /// <summary>
     /// Represents enough information about an individual setting that it can be displayed on a page navigation control
