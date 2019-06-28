@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.UwpApp
 {
     using System;
+    using ServiceContracts.CommandBridge;
     using ServiceContracts.ViewServices;
     using Views;
     using ViewServices;
@@ -51,7 +52,7 @@ namespace WindowsSettingsClone.UwpApp
 
         public IThreadDispatcher ThreadDispatcher { get; } = new ViewThreadDispatcher();
 
-        public AppServiceConnection Connection { get; private set; }
+        public ICommandBridgeClientService BridgeClientService { get; private set; }
 
         //// ===========================================================================================================
         //// Methods
@@ -114,7 +115,7 @@ namespace WindowsSettingsClone.UwpApp
             // more than just return a deferral. It informs the system that the background task might continue to perform
             // after it returns. Without this call, the full-trust DesktopServicesApp.exe will be terminated early.
             BackgroundTaskDeferral deferral = args.TaskInstance.GetDeferral();
-            Connection = triggerDetails.AppServiceConnection;
+            BridgeClientService = new CommandBridgeClientService(triggerDetails.AppServiceConnection);
         }
 
         private static async void LaunchDesktopServicesBridge()

@@ -10,8 +10,11 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using System;
     using System.Threading.Tasks;
     using Microsoft.Win32;
+    using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
+    using RegistryHive = Microsoft.Win32.RegistryHive;
 
     /// <summary>
     /// Communication bridge between the full-trust application (this) and the UWP sand-boxed application.
@@ -72,45 +75,48 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
         private static async void OnConnectionRequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
-            ValueSet message = args.Request.Message;
+            var returnValueSet = new ValueSet();
 
-            string commandName = message["CommandName"] as string;
-
-            var returnValueSet = new ValueSet
+            if (!ServiceCommand.TryDeserialize(args.Request.Message, out ServiceCommand command, out ServiceCommandResponse errorResponse))
             {
-                ["CommandName"] = commandName,
-            };
-
-            switch (commandName)
+                errorResponse.SerializeTo(returnValueSet);
+            }
+            else
             {
-                case "ReadRegistryKey":
-                    try
-                    {
-                        string registryHiveString = message["RegistryHive"] as string ?? throw new InvalidOperationException("Missing parameter: RegistryHive");
-                        string registryViewString = message["RegistryView"] as string ?? RegistryView.Registry64.ToString();
-                        string registryPath = message["RegistryPath"] as string ?? throw new InvalidOperationException("Missing parameter: RegistryPath");
-                        string registryValueName = message["RegistryValueName"] as string ?? throw new InvalidOperationException("Missing parameter: RegistryValueName");
-                        object defaultValue = message["DefaultValue"];
-                        string registryValueOptionsString = message["RegistryValueOptions"] as string ?? RegistryValueOptions.None.ToString();
-
-                        var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), registryHiveString);
-                        var registryView = (RegistryView)Enum.Parse(typeof(RegistryView), registryViewString);
-                        var registryValueOptions = (RegistryValueOptions)Enum.Parse(typeof(RegistryValueOptions), registryValueOptionsString);
-
-                        // open HKLM with a 64bit view. If you use Registry32, your view will be virtualized to the current user
-                        using (var baseKey = RegistryKey.OpenBaseKey(registryHive, registryView))
-                        using (RegistryKey subKey = baseKey.OpenSubKey(registryPath, writable: false))
+                switch (command)
+                {
+                    case RegistryReadIntValueCommand registryCommand:
+                        try
                         {
-                            object value = subKey.GetValue(registryValueName, defaultValue, registryValueOptions);
-                            returnValueSet.Add("CommandResult", value);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        returnValueSet.Add("ExceptionMessage", e.Message);
-                    }
+                            var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), registryCommand.Hive.ToString());
 
-                    break;
+                            using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
+                            using (RegistryKey subKey = baseKey.OpenSubKey(registryCommand.Key, writable: false))
+                            {
+                                int? value = (int?)subKey?.GetValue(
+                                    registryCommand.ValueName,
+                                    registryCommand.DefaultValue);
+
+                                ServiceCommandResponse response = value.HasValue
+                                    ? ServiceCommandResponse.Create(command.CommandName, value)
+                                    : ServiceCommandResponse.CreateError(
+                                        command.CommandName,
+                                        ServiceErrorInfo.RegistryValueNameNotFound(
+                                            registryCommand.Hive,
+                                            registryCommand.Key,
+                                            registryCommand.ValueName));
+
+                                response.SerializeTo(returnValueSet);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            var response = ServiceCommandResponse.CreateError(command.CommandName, e);
+                            response.SerializeTo(returnValueSet);
+                        }
+
+                        break;
+                }
             }
 
             try
