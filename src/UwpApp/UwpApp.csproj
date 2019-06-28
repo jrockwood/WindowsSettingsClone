@@ -149,6 +149,7 @@
     <Compile Include="Editors\EditorView.xaml.cs">
       <DependentUpon>EditorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewServices\CommandBridgeClientService.cs" />
     <Compile Include="ViewServices\NavigationService.cs" />
     <Compile Include="ViewServices\PlatformCapabilityService.cs" />
     <Compile Include="ViewServices\ViewThreadDispatcher.cs" />

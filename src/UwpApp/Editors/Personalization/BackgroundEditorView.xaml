@@ -84,5 +84,53 @@
                 SelectedItem="{x:Bind ViewModel.FitKinds.SelectedItem, Mode=TwoWay}"
                 SelectedValuePath="Value" />
     </StackPanel>
+
+    <StackPanel>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Registry Key:" />
+        <TextBox x:Name="RegistryKey"
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="6,0,0,0"
+                 Text="Control Panel\\Personalization\\Desktop Slideshow" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Registry Value Name:" />
+        <TextBox x:Name="RegistryValueName"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="6,6,0,0"
+                 Text="Shuffle" />
+
+        <Button x:Name="TestButton"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,6,0,0"
+                HorizontalAlignment="Center"
+                Click="TestButton_OnClick"
+                Content="Test" />
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Result:" />
+        <TextBlock x:Name="TestResult"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Margin="6,6,0,0" />
+      </Grid>
+    </StackPanel>
   </StackPanel>
 </UserControl>
