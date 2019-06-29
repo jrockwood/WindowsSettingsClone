@@ -141,39 +141,4 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
                 });
         }
     }
-
-    /// <summary>
-    /// Represents the different kinds of desktop backgrounds.
-    /// </summary>
-    public enum DesktopBackgroundKind
-    {
-        Picture,
-        SolidColor,
-        Slideshow,
-    }
-
-    /// <summary>
-    /// Represents the different kinds of modes in fitting the background image on the desktop.
-    /// </summary>
-    public enum DesktopBackgroundFitMode
-    {
-        Fill,
-        Fit,
-        Stretch,
-        Tile,
-        Center,
-        Span,
-    }
-
-    public class SlideshowAlbum
-    {
-        public SlideshowAlbum(string displayName, string folderPath)
-        {
-            DisplayName = displayName;
-            FolderPath = folderPath;
-        }
-
-        public string DisplayName { get; }
-        public string FolderPath { get; }
-    }
 }
