@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Models.Personalization;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {

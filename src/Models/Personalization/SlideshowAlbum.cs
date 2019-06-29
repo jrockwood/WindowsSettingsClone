@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
+namespace WindowsSettingsClone.Models.Personalization
 {
     public class SlideshowAlbum
     {
