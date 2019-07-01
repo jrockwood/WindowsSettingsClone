@@ -46,12 +46,23 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     }
 
     /// <summary>
-    /// Command that reads an integer value (DWORD) from the Windows Registry.
+    /// Command that reads an integer value (REG_DWORD) from the Windows Registry.
     /// </summary>
     public sealed class RegistryReadIntValueCommand : RegistryReadValueCommand<int>
     {
         public RegistryReadIntValueCommand(RegistryHive hive, string key, string valueName, int defaultValue)
             : base(ServiceCommandName.RegistryReadIntValue, hive, key, valueName, defaultValue)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Command that reads a string value (REG_SZ) from the Windows Registry.
+    /// </summary>
+    public sealed class RegistryReadStringCommand : RegistryReadValueCommand<string>
+    {
+        public RegistryReadStringCommand(RegistryHive hive, string key, string valueName, string defaultValue)
+            : base(ServiceCommandName.RegistryReadStringValue, hive, key, valueName, defaultValue)
         {
         }
     }

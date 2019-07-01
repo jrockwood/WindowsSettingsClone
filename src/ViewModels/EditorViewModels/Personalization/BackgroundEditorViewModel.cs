@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
     using System.Threading;
     using System.Threading.Tasks;
     using Models.Personalization;
+    using ServiceContracts.FullTrust;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
@@ -115,9 +116,14 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Methods
         //// ===========================================================================================================
 
-        protected override Task LoadInternalAsync(CancellationToken cancellationToken)
+        protected override async Task LoadInternalAsync(
+            IRegistryReadService registryReadService,
+            CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
+            DesktopBackgroundSettings model = await DesktopBackgroundSettings.CreateAsync(registryReadService);
+            BackgroundKinds.Select(model.BackgroundKind);
+            FitKinds.Select(model.FitMode);
+            ShuffleSlideshow = model.ShuffleSlideshow;
         }
 
         private static BonusBarViewModel CreateBonusBarViewModel()

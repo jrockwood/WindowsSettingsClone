@@ -13,6 +13,7 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
     public enum ServiceCommandName
     {
         Unknown,
-        RegistryReadIntValue
+        RegistryReadIntValue,
+        RegistryReadStringValue,
     }
 }

@@ -36,19 +36,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - README and Documentati
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{FDFDEB10-F16D-4DB0-931C-A534582E5EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{FDFDEB10-F16D-4DB0-931C-A534582E5EEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelsTests", "ModelsTests\ModelsTests.csproj", "{EE543D9E-7550-4B77-B68A-02CA81C3EB37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelsTests", "ModelsTests\ModelsTests.csproj", "{EE543D9E-7550-4B77-B68A-02CA81C3EB37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Shared Layer", "06 - Shared Layer", "{B062C257-F309-4A10-8AAA-A37B0F62AB36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{3399F211-A529-4C52-9325-E820ADD46A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3399F211-A529-4C52-9325-E820ADD46A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{9B501D31-6520-48C6-9C38-443D5478C466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{9B501D31-6520-48C6-9C38-443D5478C466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContractsTests", "ServiceContractsTests\ServiceContractsTests.csproj", "{1C847F61-DF27-4C86-B443-BBE11693C11E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceContractsTests", "ServiceContractsTests\ServiceContractsTests.csproj", "{1C847F61-DF27-4C86-B443-BBE11693C11E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedTests", "SharedTests\SharedTests.csproj", "{86D5A757-4996-4091-A34B-7158EDAF5D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedTests", "SharedTests\SharedTests.csproj", "{86D5A757-4996-4091-A34B-7158EDAF5D50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,9 +149,7 @@ Global
 		{F44EEEDC-4D97-4B07-8D7E-0309B8746005}.Release|x64.Build.0 = Release|Any CPU
 		{F44EEEDC-4D97-4B07-8D7E-0309B8746005}.Release|x86.ActiveCfg = Release|Any CPU
 		{F44EEEDC-4D97-4B07-8D7E-0309B8746005}.Release|x86.Build.0 = Release|Any CPU
-		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|ARM.Build.0 = Debug|Any CPU
 		{C2C9E254-6377-4ED1-94ED-B0CD39932ECF}.Debug|ARM.Deploy.0 = Debug|Any CPU

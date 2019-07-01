@@ -112,5 +112,17 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
                 valueSet.Add(ParamName.ErrorMessage.ToString(), ErrorMessage);
             }
         }
+
+        /// <summary>
+        /// Throws an <see cref="InvalidOperationException"/> if this response represents an error. Does nothing if this
+        /// response is a success.
+        /// </summary>
+        public void ThrowIfError()
+        {
+            if (IsError)
+            {
+                throw new InvalidOperationException(ErrorMessage);
+            }
+        }
     }
 }
