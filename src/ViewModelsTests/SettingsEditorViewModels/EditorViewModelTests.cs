@@ -13,7 +13,9 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
     using EditorViewModels;
     using FluentAssertions;
     using NUnit.Framework;
-    using ServiceContracts.Tests.ViewServices;
+    using ServiceContracts.FullTrust;
+    using Shared.Tests.FakeServices;
+    using Shared.Tests.ViewServices;
 
     public class EditorViewModelTests
     {
@@ -45,7 +47,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
         {
             var vm = new TestEditorViewModel(s_bonusBar);
             CancellationToken cancellationToken = new CancellationTokenSource().Token;
-            await vm.LoadAsync(new UnitTestThreadDispatcher(), cancellationToken: cancellationToken);
+            await vm.LoadAsync(new UnitTestThreadDispatcher(), new FakeRegistryService(), cancellationToken: cancellationToken);
             vm.LoadInternalAsyncCalled.Should().BeTrue();
             vm.LoadInternalAsyncCancellationToken.Should().Be(cancellationToken);
         }
@@ -56,7 +58,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
-            await vm.LoadAsync(dispatcher);
+            await vm.LoadAsync(dispatcher, new FakeRegistryService());
             dispatcher.Runs.Should().ContainInOrder(DispatchRunKind.UIThreadDelayed, DispatchRunKind.BackgroundThread);
         }
 
@@ -71,23 +73,26 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
                 delayInvoker: (ms, token) =>
                 {
                     ms.Should().Be(delay);
-                    token.Should().NotBe(cancellationToken, "because the progress bar cancellation should be different");
+                    token.Should()
+                        .NotBe(cancellationToken, "because the progress bar cancellation should be different");
                     return Task.CompletedTask;
                 });
 
-            await vm.LoadAsync(dispatcher, delay, cancellationToken);
+            await vm.LoadAsync(dispatcher, new FakeRegistryService(), delay, cancellationToken);
         }
 
         [Test]
-        public async Task IsIndeterminateProgressBarVisible_should_be_true_after_a_delay_and_the_content_is_not_yet_ready()
+        public async Task
+            IsIndeterminateProgressBarVisible_should_be_true_after_a_delay_and_the_content_is_not_yet_ready()
         {
             var cancellationSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationSource.Token;
 
             var vm = new TestEditorViewModel(s_bonusBar);
-            var dispatcher = new UnitTestThreadDispatcher(backgroundThreadInvoker: action => Task.Delay(-1, cancellationToken));
+            var dispatcher =
+                new UnitTestThreadDispatcher(backgroundThreadInvoker: action => Task.Delay(-1, cancellationToken));
 
-            Task task = vm.LoadAsync(dispatcher, 0, cancellationToken);
+            Task task = vm.LoadAsync(dispatcher, new FakeRegistryService(), 0, cancellationToken);
             vm.IsIndeterminateProgressBarVisible.Should().BeTrue();
             cancellationSource.Cancel();
 
@@ -101,7 +106,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
-            await vm.LoadAsync(dispatcher);
+            await vm.LoadAsync(dispatcher, new FakeRegistryService());
             vm.IsIndeterminateProgressBarVisible.Should().BeFalse();
         }
 
@@ -111,7 +116,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
-            await vm.LoadAsync(dispatcher);
+            await vm.LoadAsync(dispatcher, new FakeRegistryService());
             vm.IsContentReady.Should().BeTrue();
         }
 
@@ -128,7 +133,9 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             public override EditorKind EditorKind => EditorKind.AccountsYourInfo;
             public override string DisplayName => "Test Setting";
 
-            protected override Task LoadInternalAsync(CancellationToken cancellationToken)
+            protected override Task LoadInternalAsync(
+                IRegistryReadService registryReadService,
+                CancellationToken cancellationToken)
             {
                 LoadInternalAsyncCalled = true;
                 LoadInternalAsyncCancellationToken = cancellationToken;

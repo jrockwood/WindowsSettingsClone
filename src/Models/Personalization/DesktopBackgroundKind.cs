@@ -1,19 +1,19 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceCommandName.cs" company="Justin Rockwood">
+// <copyright file="DesktopBackgroundKind.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Models.Personalization
 {
     /// <summary>
-    /// Enumerates all of the service commands.
+    /// Represents the different kinds of desktop backgrounds.
     /// </summary>
-    public enum ServiceCommandName
+    public enum DesktopBackgroundKind
     {
-        Unknown,
-        RegistryReadIntValue,
-        RegistryReadStringValue,
+        Picture,
+        SolidColor,
+        Slideshow,
     }
 }

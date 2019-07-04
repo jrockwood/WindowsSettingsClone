@@ -8,7 +8,9 @@
 namespace WindowsSettingsClone.UwpApp
 {
     using System;
+    using FullTrustServices;
     using ServiceContracts.CommandBridge;
+    using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
     using Views;
     using ViewServices;
@@ -51,6 +53,8 @@ namespace WindowsSettingsClone.UwpApp
             ((Window.Current.Content as Frame)?.Content as RootPage)?.NavigationService;
 
         public IThreadDispatcher ThreadDispatcher { get; } = new ViewThreadDispatcher();
+
+        public IRegistryReadService RegistryReadService { get; private set; }
 
         public ICommandBridgeClientService BridgeClientService { get; private set; }
 
@@ -116,6 +120,8 @@ namespace WindowsSettingsClone.UwpApp
             // after it returns. Without this call, the full-trust DesktopServicesApp.exe will be terminated early.
             BackgroundTaskDeferral deferral = args.TaskInstance.GetDeferral();
             BridgeClientService = new CommandBridgeClientService(triggerDetails.AppServiceConnection);
+
+            RegistryReadService = new RegistryReadService(BridgeClientService);
         }
 
         private static async void LaunchDesktopServicesBridge()

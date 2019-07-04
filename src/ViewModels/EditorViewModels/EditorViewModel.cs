@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
 
     /// <summary>
@@ -60,6 +61,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
         public async Task LoadAsync(
             IThreadDispatcher threadDispatcher,
+            IRegistryReadService registryReadService,
             int showProgressBarDelayMilliseconds = 500,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -78,7 +80,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 progressBarCancellationToken);
 
             // Start loading on a background thread.
-            await threadDispatcher.RunOnBackgroundThreadAsync(() => LoadInternalAsync(cancellationToken));
+            await threadDispatcher.RunOnBackgroundThreadAsync(
+                () => LoadInternalAsync(registryReadService, cancellationToken));
 
             // Cancel the progress bar timer if it hasn't been set yet.
             progressBarCancellationSource.Cancel();
@@ -92,6 +95,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 });
         }
 
-        protected abstract Task LoadInternalAsync(CancellationToken cancellationToken);
+        protected abstract Task LoadInternalAsync(
+            IRegistryReadService registryReadService,
+            CancellationToken cancellationToken);
     }
 }

@@ -1,19 +1,21 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceCommandName.cs" company="Justin Rockwood">
+// <copyright file="SlideshowAlbum.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Models.Personalization
 {
-    /// <summary>
-    /// Enumerates all of the service commands.
-    /// </summary>
-    public enum ServiceCommandName
+    public class SlideshowAlbum
     {
-        Unknown,
-        RegistryReadIntValue,
-        RegistryReadStringValue,
+        public SlideshowAlbum(string displayName, string folderPath)
+        {
+            DisplayName = displayName;
+            FolderPath = folderPath;
+        }
+
+        public string DisplayName { get; }
+        public string FolderPath { get; }
     }
 }

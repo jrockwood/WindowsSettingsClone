@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Tests.CommandBridge
+namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace WindowsSettingsClone.ServiceContracts.Tests.CommandBridge
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.CommandBridge;
+    using Shared.CommandBridge;
 
     public class ServiceCommandResponseTests
     {

@@ -5,14 +5,15 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Tests.CommandBridge
+namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 {
     using System;
     using System.Collections.Generic;
-    using Commands;
     using FluentAssertions;
     using NUnit.Framework;
-    using WindowsSettingsClone.ServiceContracts.CommandBridge;
+    using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
+    using Shared.CommandBridge;
 
     public class BridgeMessageDeserializerTests
     {

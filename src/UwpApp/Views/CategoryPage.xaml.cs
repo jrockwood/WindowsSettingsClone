@@ -8,9 +8,9 @@
 namespace WindowsSettingsClone.UwpApp.Views
 {
     using System;
+    using ViewModels;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
-    using ViewModels;
 
     public sealed partial class CategoryPage : Page
     {
@@ -28,7 +28,8 @@ namespace WindowsSettingsClone.UwpApp.Views
             ViewModel = CategoryPageViewModel.CreateFromCategoryKind(
                 category,
                 App.Current.NavigationService,
-                App.Current.ThreadDispatcher);
+                App.Current.ThreadDispatcher,
+                App.Current.RegistryReadService);
 
             SettingsGroupNavigationView.ViewModel = ViewModel.Navigation;
         }

@@ -1,19 +1,25 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceCommandName.cs" company="Justin Rockwood">
+// <copyright file="ParamName.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Shared.CommandBridge
 {
     /// <summary>
-    /// Enumerates all of the service commands.
+    /// Contains all of the parameter names (keys) used in a serialized parameter bag (ValueSet).
     /// </summary>
-    public enum ServiceCommandName
+    // PLEASE KEEP THESE ALPHABETIZED
+    internal enum ParamName
     {
-        Unknown,
-        RegistryReadIntValue,
-        RegistryReadStringValue,
+        CommandName,
+        CommandResult,
+        ErrorCode,
+        ErrorMessage,
+        RegistryDefaultValue,
+        RegistryHive,
+        RegistryKey,
+        RegistryValueName,
     }
 }

@@ -1,25 +1,22 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ParamName.cs" company="Justin Rockwood">
+// <copyright file="DesktopBackgroundFitMode.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Models.Personalization
 {
     /// <summary>
-    /// Contains all of the parameter names (keys) used in a serialized parameter bag (ValueSet).
+    /// Represents the different kinds of modes in fitting the background image on the desktop.
     /// </summary>
-    // PLEASE KEEP THESE ALPHABETIZED
-    internal enum ParamName
+    public enum DesktopBackgroundFitMode
     {
-        CommandName,
-        CommandResult,
-        ErrorCode,
-        ErrorMessage,
-        RegistryDefaultValue,
-        RegistryHive,
-        RegistryKey,
-        RegistryValueName,
+        Fill,
+        Fit,
+        Stretch,
+        Tile,
+        Center,
+        Span,
     }
 }

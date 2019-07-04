@@ -1,19 +1,17 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceCommandName.cs" company="Justin Rockwood">
+// <copyright file="LogLevel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.ServiceContracts.Logging
 {
-    /// <summary>
-    /// Enumerates all of the service commands.
-    /// </summary>
-    public enum ServiceCommandName
+    public enum LogLevel
     {
-        Unknown,
-        RegistryReadIntValue,
-        RegistryReadStringValue,
+        Debug,
+        Informational,
+        Warning,
+        Error,
     }
 }

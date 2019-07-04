@@ -9,6 +9,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Models.Personalization;
+    using ServiceContracts.FullTrust;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
@@ -114,9 +116,14 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Methods
         //// ===========================================================================================================
 
-        protected override Task LoadInternalAsync(CancellationToken cancellationToken)
+        protected override async Task LoadInternalAsync(
+            IRegistryReadService registryReadService,
+            CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
+            DesktopBackgroundSettings model = await DesktopBackgroundSettings.CreateAsync(registryReadService);
+            BackgroundKinds.Select(model.BackgroundKind);
+            FitKinds.Select(model.FitMode);
+            ShuffleSlideshow = model.ShuffleSlideshow;
         }
 
         private static BonusBarViewModel CreateBonusBarViewModel()
@@ -140,40 +147,5 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
                         "https://www.bing.com/search?q=change background picture windows 10 site:microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US")
                 });
         }
-    }
-
-    /// <summary>
-    /// Represents the different kinds of desktop backgrounds.
-    /// </summary>
-    public enum DesktopBackgroundKind
-    {
-        Picture,
-        SolidColor,
-        Slideshow,
-    }
-
-    /// <summary>
-    /// Represents the different kinds of modes in fitting the background image on the desktop.
-    /// </summary>
-    public enum DesktopBackgroundFitMode
-    {
-        Fill,
-        Fit,
-        Stretch,
-        Tile,
-        Center,
-        Span,
-    }
-
-    public class SlideshowAlbum
-    {
-        public SlideshowAlbum(string displayName, string folderPath)
-        {
-            DisplayName = displayName;
-            FolderPath = folderPath;
-        }
-
-        public string DisplayName { get; }
-        public string FolderPath { get; }
     }
 }

@@ -10,8 +10,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using System;
     using System.Threading.Tasks;
     using Microsoft.Win32;
-    using ServiceContracts.CommandBridge;
-    using ServiceContracts.Commands;
+    using Shared.CommandBridge;
+    using Shared.Commands;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
     using RegistryHive = Microsoft.Win32.RegistryHive;
@@ -73,11 +73,16 @@ namespace WindowsSettingsClone.DesktopServicesApp
             return result == AppServiceConnectionStatus.Success;
         }
 
-        private static async void OnConnectionRequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        private static async void OnConnectionRequestReceived(
+            AppServiceConnection sender,
+            AppServiceRequestReceivedEventArgs args)
         {
             var returnValueSet = new ValueSet();
 
-            if (!ServiceCommand.TryDeserialize(args.Request.Message, out ServiceCommand command, out ServiceCommandResponse errorResponse))
+            if (!ServiceCommand.TryDeserialize(
+                args.Request.Message,
+                out ServiceCommand command,
+                out ServiceCommandResponse errorResponse))
             {
                 errorResponse.SerializeTo(returnValueSet);
             }
@@ -88,7 +93,9 @@ namespace WindowsSettingsClone.DesktopServicesApp
                     case RegistryReadIntValueCommand registryCommand:
                         try
                         {
-                            var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), registryCommand.Hive.ToString());
+                            var registryHive = (RegistryHive)Enum.Parse(
+                                typeof(RegistryHive),
+                                registryCommand.Hive.ToString());
 
                             using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
                             using (RegistryKey subKey = baseKey.OpenSubKey(registryCommand.Key, writable: false))

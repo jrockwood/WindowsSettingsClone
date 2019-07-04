@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Tests.ViewServices
+namespace WindowsSettingsClone.Shared.Tests.ViewServices
 {
     using System;
     using System.Collections.Immutable;

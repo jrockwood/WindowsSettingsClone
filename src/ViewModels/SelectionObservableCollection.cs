@@ -7,9 +7,11 @@
 
 namespace WindowsSettingsClone.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Linq;
 
     public class SelectionObservableCollection<T> : ObservableCollection<T>
     {
@@ -38,6 +40,21 @@ namespace WindowsSettingsClone.ViewModels
                     _selectedItem = value;
                     OnPropertyChanged(new PropertyChangedEventArgs(nameof(SelectedItem)));
                 }
+            }
+        }
+    }
+
+    public static class SelectionObservableCollectionExtensions
+    {
+        public static void Select<T>(this SelectionObservableCollection<NamedValue<T>> collection, T itemToFind)
+        {
+            try
+            {
+                NamedValue<T> first = collection.First(namedValue => EqualityComparer<T>.Default.Equals(namedValue.Value));
+                collection.SelectedItem = first;
+            }
+            catch (InvalidOperationException)
+            {
             }
         }
     }
