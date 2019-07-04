@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
     using System;
     using System.Threading.Tasks;
     using ServiceContracts.CommandBridge;
+    using Shared.CommandBridge;
     using Shared.Utility;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
@@ -38,7 +39,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         //// Methods
         //// ===========================================================================================================
 
-        public async Task<ServiceCommandResponse> SendCommandAsync(ServiceCommand command)
+        public async Task<IServiceCommandResponse> SendCommandAsync(IServiceCommand command)
         {
             var valueSet = new ValueSet();
             command.SerializeTo(valueSet);

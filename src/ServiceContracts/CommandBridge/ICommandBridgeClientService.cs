@@ -14,6 +14,6 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
     /// </summary>
     public interface ICommandBridgeClientService
     {
-        Task<ServiceCommandResponse> SendCommandAsync(ServiceCommand command);
+        Task<IServiceCommandResponse> SendCommandAsync(IServiceCommand command);
     }
 }

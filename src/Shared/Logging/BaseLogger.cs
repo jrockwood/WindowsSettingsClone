@@ -5,10 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Logging
+namespace WindowsSettingsClone.Shared.Logging
 {
     using System;
     using System.Globalization;
+    using ServiceContracts.Logging;
 
     /// <summary>
     /// Abstract base class for all loggers.

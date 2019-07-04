@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.UwpApp.Editors.Personalization
     using System;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
+    using Shared.Commands;
     using ViewModels.EditorViewModels.Personalization;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -32,7 +33,7 @@ namespace WindowsSettingsClone.UwpApp.Editors.Personalization
                 RegistryKey.Text,
                 RegistryValueName.Text,
                 0);
-            ServiceCommandResponse response = await bridgeService.SendCommandAsync(command);
+            IServiceCommandResponse response = await bridgeService.SendCommandAsync(command);
             TestResult.Text = response.IsError ? response.ErrorMessage : response.Result.ToString();
         }
     }

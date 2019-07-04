@@ -65,6 +65,10 @@
       <Project>{9B501D31-6520-48C6-9C38-443D5478C466}</Project>
       <Name>ServiceContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{3399f211-a529-4c52-9325-e820add46a12}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,13 +5,13 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Tests.FakeServices
+namespace WindowsSettingsClone.Shared.Tests.FakeServices
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Commands;
-    using FullTrust;
+    using ServiceContracts.Commands;
+    using ServiceContracts.FullTrust;
 
     /// <summary>
     /// Implementation of a fake registry.

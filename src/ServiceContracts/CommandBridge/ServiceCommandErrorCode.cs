@@ -8,7 +8,7 @@
 namespace WindowsSettingsClone.ServiceContracts.CommandBridge
 {
     /// <summary>
-    /// Enumerates the different kinds of errors a <see cref="ServiceCommand"/> can encounter.
+    /// Enumerates the different kinds of errors a <see cref="IServiceCommand"/> can encounter.
     /// </summary>
     public enum ServiceCommandErrorCode
     {

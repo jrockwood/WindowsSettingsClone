@@ -5,11 +5,12 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Globalization;
-    using Commands;
+    using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
 
     /// <summary>
     /// Contains error information about a specific <see cref="ServiceCommandErrorCode"/>.

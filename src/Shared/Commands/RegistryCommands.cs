@@ -5,11 +5,13 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Commands
+namespace WindowsSettingsClone.Shared.Commands
 {
     using System.Collections.Generic;
     using CommandBridge;
-    using Shared.Utility;
+    using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
+    using Utility;
 
     /// <summary>
     /// Abstract base class for all of the commands that read a value from the Windows Registry.
@@ -48,7 +50,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// <summary>
     /// Command that reads an integer value (REG_DWORD) from the Windows Registry.
     /// </summary>
-    public sealed class RegistryReadIntValueCommand : RegistryReadValueCommand<int>
+    public sealed class RegistryReadIntValueCommand : RegistryReadValueCommand<int>, IRegistryReadIntValueCommand
     {
         public RegistryReadIntValueCommand(RegistryHive hive, string key, string valueName, int defaultValue)
             : base(ServiceCommandName.RegistryReadIntValue, hive, key, valueName, defaultValue)
@@ -59,7 +61,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// <summary>
     /// Command that reads a string value (REG_SZ) from the Windows Registry.
     /// </summary>
-    public sealed class RegistryReadStringCommand : RegistryReadValueCommand<string>
+    public sealed class RegistryReadStringCommand : RegistryReadValueCommand<string>, IRegistryReadStringCommand
     {
         public RegistryReadStringCommand(RegistryHive hive, string key, string valueName, string defaultValue)
             : base(ServiceCommandName.RegistryReadStringValue, hive, key, valueName, defaultValue)

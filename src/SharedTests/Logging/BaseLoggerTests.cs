@@ -5,11 +5,12 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Tests.Logging
+namespace WindowsSettingsClone.Shared.Tests.Logging
 {
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.Logging;
+    using Shared.Logging;
 
     public class BaseLoggerTests
     {

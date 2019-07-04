@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Shared.CommandBridge
 {
     /// <summary>
     /// Contains all of the parameter names (keys) used in a serialized parameter bag (ValueSet).

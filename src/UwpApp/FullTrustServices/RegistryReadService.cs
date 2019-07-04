@@ -11,6 +11,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
+    using Shared.Commands;
     using Shared.Utility;
 
     /// <summary>
@@ -41,7 +42,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<int> ReadValueAsync(RegistryHive hive, string key, string valueName, int defaultValue)
         {
             var command = new RegistryReadIntValueCommand(hive, key, valueName, defaultValue);
-            ServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result;
         }
@@ -49,7 +50,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<bool> ReadValueAsync(RegistryHive hive, string key, string valueName, bool defaultValue)
         {
             var command = new RegistryReadIntValueCommand(hive, key, valueName, defaultValue ? 1 : 0);
-            ServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result != 0;
         }
@@ -57,7 +58,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<string> ReadValueAsync(RegistryHive hive, string key, string valueName, string defaultValue)
         {
             var command = new RegistryReadStringCommand(hive, key, valueName, defaultValue);
-            ServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (string)response.Result;
         }

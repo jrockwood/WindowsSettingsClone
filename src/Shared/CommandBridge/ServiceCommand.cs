@@ -5,17 +5,19 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
     using Commands;
+    using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
 
     /// <summary>
     /// Represents a command that is sent to the full-trust host application from the UWP application to perform a system
     /// operation that requires full trust.
     /// </summary>
-    public abstract class ServiceCommand
+    public abstract class ServiceCommand : IServiceCommand
     {
         //// ===========================================================================================================
         //// Constructors

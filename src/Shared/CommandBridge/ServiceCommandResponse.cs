@@ -5,15 +5,16 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.CommandBridge
+namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using ServiceContracts.CommandBridge;
 
     /// <summary>
     /// Represents the response from a <see cref="ServiceCommand"/>.
     /// </summary>
-    public sealed class ServiceCommandResponse
+    public sealed class ServiceCommandResponse : IServiceCommandResponse
     {
         //// ===========================================================================================================
         //// Constructors

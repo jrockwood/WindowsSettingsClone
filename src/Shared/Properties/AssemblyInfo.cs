@@ -1,20 +1,12 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConsoleLogger.cs" company="Justin Rockwood">
+// <copyright file="AssemblyInfo.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.DesktopServicesApp.Logging
-{
-    using System;
-    using Shared.Logging;
+using System.Resources;
+using System.Runtime.CompilerServices;
 
-    internal class ConsoleLogger : BaseLogger
-    {
-        protected override void LogInternal(string message)
-        {
-            Console.WriteLine(message);
-        }
-    }
-}
+[assembly: InternalsVisibleTo("WindowsSettingsClone.Shared.Tests")]
+[assembly: NeutralResourcesLanguage("en-US")]

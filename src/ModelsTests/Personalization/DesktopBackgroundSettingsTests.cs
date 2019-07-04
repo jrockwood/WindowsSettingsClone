@@ -14,7 +14,7 @@ namespace WindowsSettingsClone.Models.Tests.Personalization
     using Models.Personalization;
     using NUnit.Framework;
     using ServiceContracts.Commands;
-    using ServiceContracts.Tests.FakeServices;
+    using Shared.Tests.FakeServices;
 
     public class DesktopBackgroundSettingsTests
     {
