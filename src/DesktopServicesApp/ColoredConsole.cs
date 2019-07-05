@@ -24,6 +24,11 @@ namespace WindowsSettingsClone.DesktopServicesApp
             WriteLine(message, ConsoleColor.Green);
         }
 
+        public static void WriteWarning(string message)
+        {
+            WriteLine(message, ConsoleColor.Yellow);
+        }
+
         public static void WriteError(string message)
         {
             WriteLine(message, ConsoleColor.Red);

@@ -10,8 +10,11 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using System;
     using System.Threading.Tasks;
     using Microsoft.Win32;
+    using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
+    using Shared.Logging;
+    using Shared.Utility;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
     using RegistryHive = Microsoft.Win32.RegistryHive;
@@ -33,13 +36,16 @@ namespace WindowsSettingsClone.DesktopServicesApp
         private const int E_FAIL = unchecked((int)0x80004005);
 
         private readonly AppServiceConnection _connection;
+        private readonly ILogger _logger;
 
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public UwpCommunicationBridge()
+        public UwpCommunicationBridge(ILogger logger)
         {
+            _logger = Param.VerifyNotNull(logger, nameof(logger));
+
             _connection = new AppServiceConnection
             {
                 // The AppServiceName must match the name declared in the Packaging project's Package.appxmanifest file.
@@ -73,7 +79,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
             return result == AppServiceConnectionStatus.Success;
         }
 
-        private static async void OnConnectionRequestReceived(
+        private async void OnConnectionRequestReceived(
             AppServiceConnection sender,
             AppServiceRequestReceivedEventArgs args)
         {
@@ -85,6 +91,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
                 out ServiceCommandResponse errorResponse))
             {
                 errorResponse.SerializeTo(returnValueSet);
+                _logger.LogError(errorResponse.ErrorMessage);
             }
             else
             {
@@ -120,6 +127,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
                         {
                             var response = ServiceCommandResponse.CreateError(command.CommandName, e);
                             response.SerializeTo(returnValueSet);
+                            _logger.LogError(response.ErrorMessage);
                         }
 
                         break;
@@ -128,6 +136,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
             try
             {
+                _logger.LogDebug($"Sending response for {command.ToDebugString()}");
+
                 // Return the data to the caller.
                 await args.Request.SendResponseAsync(returnValueSet);
             }

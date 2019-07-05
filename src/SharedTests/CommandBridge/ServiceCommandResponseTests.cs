@@ -174,5 +174,26 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                         (ParamName.ErrorMessage, "Internal error: message"),
                     });
         }
+
+        [Test]
+        public void ToDebugString_should_return_the_correct_format_for_successes()
+        {
+            var response = ServiceCommandResponse.Create(ServiceCommandName.RegistryReadIntValue, 123);
+            response.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: Result=123");
+        }
+
+        [Test]
+        public void ToDebugString_should_return_the_correct_format_for_errors()
+        {
+            var response = ServiceCommandResponse.CreateError(
+                ServiceCommandName.RegistryWriteIntValue,
+                new InvalidOperationException("message"));
+            response.ToDebugString()
+                .Should()
+                .Be(
+                    $"{ServiceCommandName.RegistryWriteIntValue}: " +
+                    $"ErrorCode={ServiceCommandErrorCode.InternalError}, " +
+                    $"ErrorMessage=Internal error: message");
+        }
     }
 }

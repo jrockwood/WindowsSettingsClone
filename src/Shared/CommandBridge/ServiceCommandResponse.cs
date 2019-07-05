@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using ServiceContracts.CommandBridge;
 
     /// <summary>
@@ -112,6 +113,24 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             {
                 valueSet.Add(ParamName.ErrorMessage.ToString(), ErrorMessage);
             }
+        }
+
+        public string ToDebugString()
+        {
+            var builder = new StringBuilder();
+            builder.Append($"{CommandName}: ");
+
+            if (IsError)
+            {
+                builder.Append($"ErrorCode={ErrorCode}, ");
+                builder.Append($"ErrorMessage={ErrorMessage}");
+            }
+            else
+            {
+                builder.Append($"Result={Result}");
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>

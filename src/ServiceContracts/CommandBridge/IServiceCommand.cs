@@ -26,5 +26,10 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         //// ===========================================================================================================
 
         void SerializeTo(IDictionary<string, object> valueSet);
+
+        /// <summary>
+        /// Returns a string used for logging or debugging that represents the important parts of this command.
+        /// </summary>
+        string ToDebugString();
     }
 }

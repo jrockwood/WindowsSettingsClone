@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using Commands;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
@@ -74,6 +75,21 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         {
             valueSet.Add(ParamName.CommandName.ToString(), CommandName.ToString());
             SerializeParams(valueSet);
+        }
+
+        public virtual string ToDebugString()
+        {
+            var valueSet = new Dictionary<string, object>();
+            SerializeParams(valueSet);
+
+            var builder = new StringBuilder($"{CommandName}: ");
+            foreach (KeyValuePair<string, object> pair in valueSet)
+            {
+                builder.Append($"{pair.Key}={pair.Value}, ");
+            }
+
+            builder.Remove(builder.Length - 2, 2);
+            return builder.ToString();
         }
 
         protected abstract void SerializeParams(IDictionary<string, object> valueSet);

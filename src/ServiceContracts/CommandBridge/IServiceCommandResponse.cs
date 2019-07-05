@@ -35,6 +35,11 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         void SerializeTo(IDictionary<string, object> valueSet);
 
         /// <summary>
+        /// Returns a string used for logging or debugging that represents the important parts of this command.
+        /// </summary>
+        string ToDebugString();
+
+        /// <summary>
         /// Throws an <see cref="InvalidOperationException"/> if this response represents an error. Does nothing if this
         /// response is a success.
         /// </summary>

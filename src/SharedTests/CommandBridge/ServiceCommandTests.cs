@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceCommandTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -101,6 +101,26 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
             errorResponse.ErrorMessage.Should().Contain(ParamName.RegistryHive.ToString());
+        }
+
+        [Test]
+        public void ToDebugString_should_return_the_correct_format()
+        {
+            var command = new TestServiceCommand(ServiceCommandName.RegistryReadIntValue);
+            command.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: key=value");
+        }
+
+        private sealed class TestServiceCommand : ServiceCommand
+        {
+            public TestServiceCommand(ServiceCommandName commandName)
+                : base(commandName)
+            {
+            }
+
+            protected override void SerializeParams(IDictionary<string, object> valueSet)
+            {
+                valueSet.Add("key", "value");
+            }
         }
     }
 }
