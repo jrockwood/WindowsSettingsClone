@@ -8,7 +8,6 @@
 namespace WindowsSettingsClone.DesktopServicesApp
 {
     using System.Threading.Tasks;
-    using Logging;
     using ServiceContracts.Logging;
     using Shared.Logging;
 

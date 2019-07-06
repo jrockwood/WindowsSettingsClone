@@ -5,13 +5,13 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.DesktopServicesApp.Logging
+namespace WindowsSettingsClone.Shared.Logging
 {
     using System;
+    using Console;
     using ServiceContracts.Logging;
-    using Shared.Logging;
 
-    internal class ConsoleLogger : BaseLogger
+    public class ConsoleLogger : BaseLogger
     {
         public ConsoleLogger(LogLevel minimumLogLevel = LogLevel.Warning)
             : base(minimumLogLevel)

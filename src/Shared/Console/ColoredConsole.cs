@@ -5,11 +5,11 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.DesktopServicesApp
+namespace WindowsSettingsClone.Shared.Console
 {
     using System;
 
-    internal static class ColoredConsole
+    public static class ColoredConsole
     {
         public static void WriteLine(string message, ConsoleColor foreground)
         {
