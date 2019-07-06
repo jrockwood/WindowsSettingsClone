@@ -9,7 +9,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
 {
     using System;
     using System.Threading.Tasks;
-    using Microsoft.Win32;
+    using RegistryCommands;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
@@ -17,7 +17,6 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using Shared.Utility;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
-    using RegistryHive = Microsoft.Win32.RegistryHive;
 
     /// <summary>
     /// Communication bridge between the full-trust application (this) and the UWP sand-boxed application.
@@ -83,60 +82,41 @@ namespace WindowsSettingsClone.DesktopServicesApp
             AppServiceConnection sender,
             AppServiceRequestReceivedEventArgs args)
         {
-            var returnValueSet = new ValueSet();
-
-            if (!ServiceCommand.TryDeserialize(
-                args.Request.Message,
-                out ServiceCommand command,
-                out ServiceCommandResponse errorResponse))
-            {
-                errorResponse.SerializeTo(returnValueSet);
-                _logger.LogError(errorResponse.ErrorMessage);
-            }
-            else
-            {
-                switch (command)
-                {
-                    case RegistryReadIntValueCommand registryCommand:
-                        try
-                        {
-                            var registryHive = (RegistryHive)Enum.Parse(
-                                typeof(RegistryHive),
-                                registryCommand.Hive.ToString());
-
-                            using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
-                            using (RegistryKey subKey = baseKey.OpenSubKey(registryCommand.Key, writable: false))
-                            {
-                                int? value = (int?)subKey?.GetValue(
-                                    registryCommand.ValueName,
-                                    registryCommand.DefaultValue);
-
-                                ServiceCommandResponse response = value.HasValue
-                                    ? ServiceCommandResponse.Create(command.CommandName, value)
-                                    : ServiceCommandResponse.CreateError(
-                                        command.CommandName,
-                                        ServiceErrorInfo.RegistryValueNameNotFound(
-                                            registryCommand.Hive,
-                                            registryCommand.Key,
-                                            registryCommand.ValueName));
-
-                                response.SerializeTo(returnValueSet);
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            var response = ServiceCommandResponse.CreateError(command.CommandName, e);
-                            response.SerializeTo(returnValueSet);
-                            _logger.LogError(response.ErrorMessage);
-                        }
-
-                        break;
-                }
-            }
-
             try
             {
-                _logger.LogDebug($"Sending response for {command.ToDebugString()}");
+                // Execute the command and get the response.
+                ServiceCommandResponse response;
+
+                if (!ServiceCommand.TryDeserialize(
+                    args.Request.Message,
+                    out ServiceCommand command,
+                    out ServiceCommandResponse errorResponse))
+                {
+                    response = errorResponse;
+                }
+                else
+                {
+                    _logger.LogDebug($"Received command: {command.ToDebugString()}");
+
+                    switch (command)
+                    {
+                        case RegistryReadIntValueCommand registryCommand:
+                            response = RegistryCommandsExecutor.Execute(registryCommand, _logger);
+                            break;
+
+                        default:
+                            response = ServiceCommandResponse.CreateError(
+                                command.CommandName,
+                                new InvalidOperationException($"Unknown or unhandled command '{command.CommandName}'"));
+                            break;
+                    }
+                }
+
+                // Serialize the response to a ValueSet.
+                var returnValueSet = new ValueSet();
+                response.SerializeTo(returnValueSet);
+
+                _logger.LogDebug($"Sending response: {response.ToDebugString()}");
 
                 // Return the data to the caller.
                 await args.Request.SendResponseAsync(returnValueSet);
