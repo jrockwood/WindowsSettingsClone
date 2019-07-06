@@ -8,11 +8,7 @@
 namespace WindowsSettingsClone.UwpApp.Editors.Personalization
 {
     using System;
-    using ServiceContracts.CommandBridge;
-    using ServiceContracts.Commands;
-    using Shared.Commands;
     using ViewModels.EditorViewModels.Personalization;
-    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
     public sealed partial class BackgroundEditorView : UserControl
@@ -24,17 +20,5 @@ namespace WindowsSettingsClone.UwpApp.Editors.Personalization
         }
 
         public BackgroundEditorViewModel ViewModel { get; }
-
-        private async void TestButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            ICommandBridgeClientService bridgeService = App.Current.BridgeClientService;
-            var command = new RegistryReadIntValueCommand(
-                RegistryHive.CurrentUser,
-                RegistryKey.Text,
-                RegistryValueName.Text,
-                0);
-            IServiceCommandResponse response = await bridgeService.SendCommandAsync(command);
-            TestResult.Text = response.IsError ? response.ErrorMessage : response.Result.ToString();
-        }
     }
 }
