@@ -35,6 +35,11 @@ namespace WindowsSettingsClone.Shared.Logging
         //// Methods
         //// ===========================================================================================================
 
+        public static bool ShouldLog(LogLevel logLevel, LogLevel minimumLogLevel)
+        {
+            return logLevel >= minimumLogLevel;
+        }
+
         public void Log(LogLevel level, string message, params object[] args)
         {
             if (!ShouldLog(level))
@@ -58,7 +63,7 @@ namespace WindowsSettingsClone.Shared.Logging
 
         protected bool ShouldLog(LogLevel logLevel)
         {
-            return logLevel >= MinimumLogLevel;
+            return ShouldLog(logLevel, MinimumLogLevel);
         }
 
         protected virtual string FormatPrefix(LogLevel logLevel)
