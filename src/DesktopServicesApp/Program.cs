@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="Program.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -7,6 +7,9 @@
 
 namespace WindowsSettingsClone.DesktopServicesApp
 {
+    using System;
+    using System.IO;
+    using System.Reflection;
     using System.Threading.Tasks;
     using ServiceContracts.Logging;
     using Shared.Logging;
@@ -64,6 +67,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
         private void Run()
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+
             var bridge = new UwpCommunicationBridge(_logger);
 
             // We can't have an async entry point, so do this on the thread pool.
@@ -86,6 +91,11 @@ namespace WindowsSettingsClone.DesktopServicesApp
                 // https://blogs.msdn.microsoft.com/cbrumme/2004/02/02/apartments-and-pumping-in-the-clr/
                 // Thread.CurrentThread.Join(0);
             }
+        }
+
+        private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            _logger.LogError($"Terminating: {e.ExceptionObject}");
         }
     }
 }
