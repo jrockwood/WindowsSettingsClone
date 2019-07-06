@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="RegistryReadIntValueCommand.cs" company="Justin Rockwood">
+// <copyright file="RegistryReadCommands.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -61,9 +61,9 @@ namespace WindowsSettingsClone.Shared.Commands
     /// <summary>
     /// Command that reads a string value (REG_SZ) from the Windows Registry.
     /// </summary>
-    public sealed class RegistryReadStringCommand : RegistryReadValueCommand<string>, IRegistryReadStringCommand
+    public sealed class RegistryReadStringValueCommand : RegistryReadValueCommand<string>, IRegistryReadStringCommand
     {
-        public RegistryReadStringCommand(RegistryHive hive, string key, string valueName, string defaultValue)
+        public RegistryReadStringValueCommand(RegistryHive hive, string key, string valueName, string defaultValue)
             : base(ServiceCommandName.RegistryReadStringValue, hive, key, valueName, defaultValue)
         {
         }

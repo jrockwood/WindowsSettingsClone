@@ -57,7 +57,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
 
         public async Task<string> ReadValueAsync(RegistryHive hive, string key, string valueName, string defaultValue)
         {
-            var command = new RegistryReadStringCommand(hive, key, valueName, defaultValue);
+            var command = new RegistryReadStringValueCommand(hive, key, valueName, defaultValue);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (string)response.Result;
