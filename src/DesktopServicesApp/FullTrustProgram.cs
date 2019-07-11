@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Justin Rockwood">
+// <copyright file="FullTrustProgram.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -13,13 +13,13 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using Shared.HeadlessApps;
     using Shared.Logging;
 
-    internal class Program : HeadlessProgram
+    internal class FullTrustProgram : HeadlessProgram
     {
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public Program()
+        public FullTrustProgram()
             : base(Assembly.GetExecutingAssembly().Location)
         {
         }
