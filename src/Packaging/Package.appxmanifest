@@ -6,7 +6,8 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="desktop mp uap rescap">
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="desktop mp rescap uap uap3">
 
   <Identity
     Name="Rockwood.WindowsSettingsClone"
@@ -56,6 +57,13 @@
         <desktop:Extension
           Category="windows.fullTrustProcess"
           Executable="DesktopServicesApp\DesktopServicesApp.exe" />
+        <uap3:Extension
+          Category="windows.appExecutionAlias"
+          Executable="ElevatedDesktopServicesApp\ElevatedDesktopServicesApp.exe" EntryPoint="Windows.FullTrustApplication">
+          <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="ElevatedDesktopServicesApp.exe" />
+          </uap3:AppExecutionAlias>
+        </uap3:Extension>
         <uap:Extension Category="windows.appService">
           <uap:AppService Name="org.rockwood.settingsclone" />
         </uap:Extension>
@@ -66,5 +74,6 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="allowElevation" />
   </Capabilities>
 </Package>

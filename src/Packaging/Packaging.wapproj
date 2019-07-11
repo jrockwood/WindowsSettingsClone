@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DesktopServicesApp\DesktopServicesApp.csproj" />
+    <ProjectReference Include="..\ElevatedDesktopServicesApp\ElevatedDesktopServicesApp.csproj" />
     <ProjectReference Include="..\UwpApp\UwpApp.csproj" />
   </ItemGroup>
   <ItemGroup>
