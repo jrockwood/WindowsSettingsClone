@@ -29,7 +29,8 @@ namespace WindowsSettingsClone.UwpApp.Views
                 category,
                 App.Current.NavigationService,
                 App.Current.ThreadDispatcher,
-                App.Current.RegistryReadService);
+                App.Current.RegistryReadService,
+                App.Current.RegistryWriteService);
 
             SettingsGroupNavigationView.ViewModel = ViewModel.Navigation;
         }

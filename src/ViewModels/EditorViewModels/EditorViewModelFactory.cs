@@ -9,10 +9,11 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
     using System;
     using Personalization;
+    using ServiceContracts.FullTrust;
 
     internal static class EditorViewModelFactory
     {
-        public static EditorViewModel CreateFromKind(EditorKind kind)
+        public static EditorViewModel CreateFromKind(EditorKind kind, IRegistryWriteService registryWriteService)
         {
             switch (kind)
             {
@@ -98,7 +99,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                     return new NotYetImplementedEditorViewModel(kind, kind.ToString());
 
                 case EditorKind.PersonalizationBackground:
-                    return new BackgroundEditorViewModel();
+                    return new BackgroundEditorViewModel(registryWriteService);
 
                 case EditorKind.PersonalizationColors:
                     return new NotYetImplementedEditorViewModel(kind, kind.ToString());

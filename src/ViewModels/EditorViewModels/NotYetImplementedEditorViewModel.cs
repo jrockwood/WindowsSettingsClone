@@ -9,12 +9,13 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
 
     public class NotYetImplementedEditorViewModel : EditorViewModel
     {
         public NotYetImplementedEditorViewModel(EditorKind editorKind, string displayName)
-            : base(new BonusBarViewModel(null))
+            : base(new DoNothingRegistryWriteService(), new BonusBarViewModel(null))
         {
             EditorKind = editorKind;
             DisplayName = displayName;
@@ -26,6 +27,24 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         protected override Task LoadInternalAsync(
             IRegistryReadService registryReadService,
             CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+    }
+
+    public sealed class DoNothingRegistryWriteService : IRegistryWriteService
+    {
+        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, int value)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, bool value)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, string value)
         {
             return Task.CompletedTask;
         }

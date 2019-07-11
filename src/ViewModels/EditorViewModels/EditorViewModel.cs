@@ -8,10 +8,12 @@
 namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
     using System;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
     using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
+    using Shared.Utility;
 
     /// <summary>
     /// Abstract base class describing all settings editors.
@@ -29,9 +31,10 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        protected EditorViewModel(BonusBarViewModel bonusBar)
+        protected EditorViewModel(IRegistryWriteService registryWriteService, BonusBarViewModel bonusBar)
         {
-            BonusBar = bonusBar ?? throw new ArgumentNullException(nameof(bonusBar));
+            RegistryWriteService = Param.VerifyNotNull(registryWriteService, nameof(registryWriteService));
+            BonusBar = Param.VerifyNotNull(bonusBar, nameof(bonusBar));
         }
 
         //// ===========================================================================================================
@@ -55,9 +58,55 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             set => SetProperty(ref _isIndeterminateProgressBarVisible, value);
         }
 
+        protected IRegistryWriteService RegistryWriteService { get; }
+
+        protected bool IsLoading { get; private set; }
+
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
+
+        protected bool SetPropertyAndWaitForAsyncUpdate<T>(
+            ref T field,
+            T value,
+            Func<Task> asyncUpdateFunc,
+            int millisecondsTimeout = 1000,
+            [CallerMemberName] string propertyName = null)
+        {
+            T currentValue = field;
+
+            if (!SetProperty(ref field, value, propertyName))
+            {
+                return false;
+            }
+
+            // Don't invoke the update function if we're still loading.
+            if (IsLoading)
+            {
+                return true;
+            }
+
+            bool revert;
+
+            try
+            {
+                bool completed = asyncUpdateFunc.Invoke().Wait(millisecondsTimeout);
+                //revert = !completed;
+                revert = false;
+            }
+            catch
+            {
+                revert = true;
+            }
+
+            if (revert)
+            {
+                SetProperty(ref field, currentValue, propertyName);
+                return false;
+            }
+
+            return true;
+        }
 
         public async Task LoadAsync(
             IThreadDispatcher threadDispatcher,
@@ -69,6 +118,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             {
                 throw new ArgumentNullException(nameof(threadDispatcher));
             }
+
+            IsLoading = true;
 
             // Start a timer to trigger the progress bar visibility if the content still hasn't loaded within the
             // specified delay.
@@ -93,6 +144,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                     IsIndeterminateProgressBarVisible = false;
                     IsContentReady = true;
                 });
+
+            IsLoading = false;
         }
 
         protected abstract Task LoadInternalAsync(

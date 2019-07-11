@@ -32,8 +32,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Constructors
         //// ===========================================================================================================
 
-        public BackgroundEditorViewModel()
-            : base(CreateBonusBarViewModel())
+        public BackgroundEditorViewModel(IRegistryWriteService registryWriteService)
+            : base(registryWriteService, CreateBonusBarViewModel())
         {
         }
 
@@ -109,7 +109,10 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         public bool ShuffleSlideshow
         {
             get => _shuffleSlideshow;
-            set => SetProperty(ref _shuffleSlideshow, value);
+            set => SetPropertyAndWaitForAsyncUpdate(
+                ref _shuffleSlideshow,
+                value,
+                () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, RegistryWriteService));
         }
 
         //// ===========================================================================================================
