@@ -12,7 +12,6 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     using System.Text;
     using Commands;
     using ServiceContracts.CommandBridge;
-    using ServiceContracts.Commands;
 
     /// <summary>
     /// Represents a command that is sent to the full-trust host application from the UWP application to perform a system
@@ -61,6 +60,14 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
                 case ServiceCommandName.RegistryReadStringValue:
                     command = new RegistryReadStringValueCommand(deserializer);
+                    break;
+
+                case ServiceCommandName.RegistryWriteIntValue:
+                    command = new RegistryWriteIntValueCommand(deserializer);
+                    break;
+
+                case ServiceCommandName.RegistryWriteStringValue:
+                    command = new RegistryWriteStringValueCommand(deserializer);
                     break;
 
                 case ServiceCommandName.Unknown:

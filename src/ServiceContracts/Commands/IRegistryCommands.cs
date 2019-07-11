@@ -30,4 +30,26 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
         string ValueName { get; }
         string DefaultValue { get; }
     }
+
+    /// <summary>
+    /// Command that writes an integer value (REG_DWORD) to the Windows Registry.
+    /// </summary>
+    public interface IRegistryWriteIntValueCommand : IServiceCommand
+    {
+        RegistryHive Hive { get; }
+        string Key { get; }
+        string ValueName { get; }
+        int Value { get; }
+    }
+
+    /// <summary>
+    /// Command that writes a string value (REG_SZ) to the Windows Registry.
+    /// </summary>
+    public interface IRegistryWriteStringCommand : IServiceCommand
+    {
+        RegistryHive Hive { get; }
+        string Key { get; }
+        string ValueName { get; }
+        string Value { get; }
+    }
 }

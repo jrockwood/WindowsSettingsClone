@@ -20,6 +20,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         RegistryDefaultValue,
         RegistryHive,
         RegistryKey,
+        RegistryValue,
         RegistryValueName,
     }
 }
