@@ -31,8 +31,13 @@ namespace WindowsSettingsClone.Shared.Tests.ViewServices
         public UnitTestThreadDispatcher(
             ThreadInvokerFunc uiThreadInvoker = null,
             ThreadInvokerFunc backgroundThreadInvoker = null,
+            AsyncThreadInvokerFunc backgroundAsyncThreadInvoker = null,
             DelayInvokerFunc delayInvoker = null)
-            : base(uiThreadInvoker ?? RunAction, backgroundThreadInvoker ?? RunAction, delayInvoker ?? DontDelay)
+            : base(
+                uiThreadInvoker ?? RunAction,
+                backgroundThreadInvoker ?? RunAction,
+                backgroundAsyncThreadInvoker ?? RunActionAsync,
+                delayInvoker ?? DontDelay)
         {
         }
 
@@ -67,7 +72,19 @@ namespace WindowsSettingsClone.Shared.Tests.ViewServices
             return base.RunOnBackgroundThreadAsync(action);
         }
 
+        public override Task RunOnBackgroundThreadAsync(Func<Task> actionAsync)
+        {
+            AddRunKind(DispatchRunKind.BackgroundThread);
+            return base.RunOnBackgroundThreadAsync(actionAsync);
+        }
+
         private static Task RunAction(Action action)
+        {
+            action();
+            return Task.CompletedTask;
+        }
+
+        private static Task RunActionAsync(Func<Task> action)
         {
             action();
             return Task.CompletedTask;
