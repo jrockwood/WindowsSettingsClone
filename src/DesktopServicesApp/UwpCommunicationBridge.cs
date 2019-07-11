@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="UwpCommunicationBridge.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using System;
     using System.Threading.Tasks;
     using RegistryCommands;
+    using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
@@ -29,10 +30,6 @@ namespace WindowsSettingsClone.DesktopServicesApp
         //// ===========================================================================================================
         //// Member Variables
         //// ===========================================================================================================
-
-        // HRESULT 80004005 is E_FAIL
-        // ReSharper disable once InconsistentNaming
-        private const int E_FAIL = unchecked((int)0x80004005);
 
         private readonly AppServiceConnection _connection;
         private readonly ILogger _logger;
@@ -85,7 +82,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
             try
             {
                 // Execute the command and get the response.
-                ServiceCommandResponse response;
+                IServiceCommandResponse response;
 
                 if (!ServiceCommand.TryDeserialize(
                     args.Request.Message,
@@ -101,7 +98,19 @@ namespace WindowsSettingsClone.DesktopServicesApp
                     switch (command)
                     {
                         case RegistryReadIntValueCommand registryCommand:
-                            response = RegistryCommandsExecutor.Execute(registryCommand, _logger);
+                            response = RegistryCommandsExecutor.ExecuteRead(registryCommand, _logger);
+                            break;
+
+                        case RegistryReadStringValueCommand registryCommand:
+                            response = RegistryCommandsExecutor.ExecuteRead(registryCommand, _logger);
+                            break;
+
+                        case RegistryWriteIntValueCommand registryCommand:
+                            response = await RegistryCommandsExecutor.ExecuteWriteAsync(registryCommand, _logger);
+                            break;
+
+                        case RegistryWriteStringValueCommand registryCommand:
+                            response = await RegistryCommandsExecutor.ExecuteWriteAsync(registryCommand, _logger);
                             break;
 
                         default:

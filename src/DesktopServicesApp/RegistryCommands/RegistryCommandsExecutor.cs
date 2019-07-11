@@ -8,7 +8,9 @@
 namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
 {
     using System;
+    using System.Threading.Tasks;
     using Microsoft.Win32;
+    using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
@@ -16,41 +18,24 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
 
     internal static class RegistryCommandsExecutor
     {
-        public static ServiceCommandResponse Execute(RegistryReadIntValueCommand command, ILogger logger)
-        {
-            return ExecuteInternal(command, logger);
-        }
-
-        public static ServiceCommandResponse Execute(RegistryReadStringValueCommand command, ILogger logger)
-        {
-            return ExecuteInternal(command, logger);
-        }
-
-        private static ServiceCommandResponse ExecuteInternal<T>(RegistryReadValueCommand<T> command, ILogger logger)
+        public static ServiceCommandResponse ExecuteRead<T>(RegistryReadValueCommand<T> command, ILogger logger)
         {
             ServiceCommandResponse response;
 
             try
             {
-                var registryHive = (RegistryHive)Enum.Parse(
-                    typeof(RegistryHive),
-                    command.Hive.ToString());
+                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
 
                 using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
                 using (RegistryKey subKey = baseKey.OpenSubKey(command.Key, writable: false))
                 {
-                    int? value = (int?)subKey?.GetValue(
-                        command.ValueName,
-                        command.DefaultValue);
+                    int? value = (int?)subKey?.GetValue(command.ValueName, command.DefaultValue);
 
                     response = value.HasValue
                        ? ServiceCommandResponse.Create(command.CommandName, value)
                        : ServiceCommandResponse.CreateError(
                            command.CommandName,
-                           ServiceErrorInfo.RegistryValueNameNotFound(
-                               command.Hive,
-                               command.Key,
-                               command.ValueName));
+                           ServiceErrorInfo.RegistryValueNameNotFound(command.Hive, command.Key, command.ValueName));
                 }
             }
             catch (Exception e)
@@ -60,6 +45,55 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
             }
 
             return response;
+        }
+
+        public static async Task<IServiceCommandResponse> ExecuteWriteAsync<T>(
+            RegistryWriteValueCommand<T> command,
+            ILogger logger)
+        {
+            IServiceCommandResponse response;
+
+            try
+            {
+                var elevatedBridge = new ElevatedAppCommunicationBridge();
+                response = await elevatedBridge.SendCommandAsync(command, logger);
+
+                //var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
+
+                //using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
+                //using (RegistryKey subKey = baseKey.CreateSubKey(command.Key, writable: true))
+                //{
+                //    subKey.SetValue(command.ValueName, command.Value, TypeToRegistryValueKind(typeof(T)));
+                //    response = ServiceCommandResponse.Create(command.CommandName, command.Value);
+                //}
+            }
+            catch (Exception e)
+            {
+                response = ServiceCommandResponse.CreateError(command.CommandName, e);
+                logger.LogError(response.ErrorMessage);
+            }
+
+            return response;
+        }
+
+        private static RegistryValueKind TypeToRegistryValueKind(Type type)
+        {
+            if (type == typeof(string))
+            {
+                return RegistryValueKind.String;
+            }
+
+            if (type == typeof(int) || type == typeof(bool))
+            {
+                return RegistryValueKind.DWord;
+            }
+
+            if (type == typeof(long))
+            {
+                return RegistryValueKind.QWord;
+            }
+
+            return RegistryValueKind.Unknown;
         }
     }
 }

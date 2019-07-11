@@ -56,6 +56,8 @@ namespace WindowsSettingsClone.UwpApp
 
         public IRegistryReadService RegistryReadService { get; private set; }
 
+        public IRegistryWriteService RegistryWriteService { get; private set; }
+
         public ICommandBridgeClientService BridgeClientService { get; private set; }
 
         //// ===========================================================================================================
@@ -122,6 +124,7 @@ namespace WindowsSettingsClone.UwpApp
             BridgeClientService = new CommandBridgeClientService(triggerDetails.AppServiceConnection);
 
             RegistryReadService = new RegistryReadService(BridgeClientService);
+            RegistryWriteService = new RegistryWriteService(BridgeClientService);
         }
 
         private static async void LaunchDesktopServicesBridge()
