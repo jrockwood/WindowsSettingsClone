@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditorViewModelTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -90,7 +90,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
 
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher =
-                new UnitTestThreadDispatcher(backgroundThreadInvoker: action => Task.Delay(-1, cancellationToken));
+                new UnitTestThreadDispatcher(backgroundAsyncThreadInvoker: action => Task.Delay(-1, cancellationToken));
 
             Task task = vm.LoadAsync(dispatcher, new FakeRegistryService(), 0, cancellationToken);
             vm.IsIndeterminateProgressBarVisible.Should().BeTrue();
