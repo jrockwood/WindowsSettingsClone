@@ -33,6 +33,15 @@ namespace WindowsSettingsClone.Shared.Commands
             DefaultValue = defaultValue;
         }
 
+        internal RegistryReadValueCommand(BridgeMessageDeserializer deserializer)
+            : base(deserializer.CommandName)
+        {
+            Hive = deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive);
+            Key = deserializer.GetStringValue(ParamName.RegistryKey);
+            ValueName = deserializer.GetStringValue(ParamName.RegistryValueName);
+            DefaultValue = (T)deserializer.GetValue(ParamName.RegistryDefaultValue);
+        }
+
         public RegistryHive Hive { get; }
         public string Key { get; }
         public string ValueName { get; }
@@ -56,6 +65,11 @@ namespace WindowsSettingsClone.Shared.Commands
             : base(ServiceCommandName.RegistryReadIntValue, hive, key, valueName, defaultValue)
         {
         }
+
+        internal RegistryReadIntValueCommand(BridgeMessageDeserializer deserializer)
+            : base(deserializer)
+        {
+        }
     }
 
     /// <summary>
@@ -65,6 +79,11 @@ namespace WindowsSettingsClone.Shared.Commands
     {
         public RegistryReadStringValueCommand(RegistryHive hive, string key, string valueName, string defaultValue)
             : base(ServiceCommandName.RegistryReadStringValue, hive, key, valueName, defaultValue)
+        {
+        }
+
+        internal RegistryReadStringValueCommand(BridgeMessageDeserializer deserializer)
+            : base(deserializer)
         {
         }
     }

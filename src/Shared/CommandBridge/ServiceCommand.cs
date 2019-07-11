@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceCommand.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -56,19 +56,24 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             switch (deserializer.CommandName)
             {
                 case ServiceCommandName.RegistryReadIntValue:
-                    RegistryHive hive = deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive);
-                    string key = deserializer.GetStringValue(ParamName.RegistryKey);
-                    string valueName = deserializer.GetStringValue(ParamName.RegistryValueName);
-                    int defaultValue = deserializer.GetIntValue(ParamName.RegistryDefaultValue);
-                    command = deserializer.HadError
-                        ? null
-                        : new RegistryReadIntValueCommand(hive, key, valueName, defaultValue);
-                    errorResponse = deserializer.LastError;
-                    return !deserializer.HadError;
+                    command = new RegistryReadIntValueCommand(deserializer);
+                    break;
 
+                case ServiceCommandName.RegistryReadStringValue:
+                    command = new RegistryReadStringValueCommand(deserializer);
+                    break;
+
+                case ServiceCommandName.Unknown:
                 default:
-                    throw new InvalidOperationException("Should not be hit");
+                    throw new InvalidOperationException($"Unknown command name: {deserializer.CommandName}");
             }
+
+            if (deserializer.HadError)
+            {
+                command = null;
+            }
+            errorResponse = deserializer.LastError;
+            return !deserializer.HadError;
         }
 
         public void SerializeTo(IDictionary<string, object> valueSet)
