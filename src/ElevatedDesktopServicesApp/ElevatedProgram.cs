@@ -10,7 +10,6 @@ namespace WindowsSettingsClone.ElevatedDesktopServicesApp
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Security.Principal;
     using Microsoft.Win32;
     using ServiceContracts.Logging;
     using Shared.Logging;
@@ -26,17 +25,12 @@ namespace WindowsSettingsClone.ElevatedDesktopServicesApp
 
             logger.LogDebug("Setting the registry key");
 
-            string currentUserSid = WindowsIdentity.GetCurrent().User?.Value ?? "Unknown SID";
-            logger.LogDebug($"SID={currentUserSid}");
-            if (currentUserSid != "Unknown SID")
+            using (var hkcu = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64))
+            using (RegistryKey valueKey = hkcu.OpenSubKey(
+                @"Control Panel\Personalization\Desktop Slideshow",
+                writable: true))
             {
-                using (var users = RegistryKey.OpenBaseKey(RegistryHive.Users, RegistryView.Registry64))
-                using (RegistryKey sidKey = users.OpenSubKey(currentUserSid))
-                using (RegistryKey valueKey = sidKey.OpenSubKey(@"Control Panel\Personalization\Desktop Slideshow",
-                    writable: true))
-                {
-                    valueKey.SetValue("Shuffle", 1, RegistryValueKind.DWord);
-                }
+                valueKey.SetValue("Shuffle", 1, RegistryValueKind.DWord);
             }
 
             logger.LogSuccess("Set the registry key");
