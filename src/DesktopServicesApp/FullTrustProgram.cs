@@ -75,10 +75,16 @@ namespace WindowsSettingsClone.DesktopServicesApp
 #endif
 
             var consoleLogger = new ConsoleLogger(minimumLogLevel);
-            var fileLogger = new FileLogger(
-                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "FullTrustProgram.log"),
-                LogLevel.Debug);
-            ILogger logger = new AggregateLogger(consoleLogger, fileLogger);
+            FileLogger.TryCreate(
+                Path.Combine(
+                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Environment.CurrentDirectory,
+                    "FullTrustProgram.log"),
+                LogLevel.Debug,
+                out FileLogger fileLogger);
+
+            ILogger logger = fileLogger != null
+                ? new AggregateLogger(consoleLogger, fileLogger)
+                : (ILogger)consoleLogger;
             return logger;
         }
     }

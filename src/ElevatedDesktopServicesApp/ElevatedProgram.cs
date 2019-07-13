@@ -48,8 +48,9 @@ namespace WindowsSettingsClone.ElevatedDesktopServicesApp
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(),
                 "ElevatedProgram.log");
 
-            var fileLogger = new FileLogger(filePath, LogLevel.Debug);
-            return fileLogger;
+            return FileLogger.TryCreate(filePath, LogLevel.Debug, out FileLogger fileLogger)
+                ? (ILogger)fileLogger
+                : new NullLogger();
         }
     }
 }

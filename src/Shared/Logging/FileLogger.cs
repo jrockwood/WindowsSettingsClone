@@ -21,22 +21,17 @@ namespace WindowsSettingsClone.Shared.Logging
         //// Member Variables
         //// ===========================================================================================================
 
-        private readonly FileStream _fileStream;
         private readonly StreamWriter _writer;
 
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public FileLogger(string filePath, LogLevel minimumLogLevel = LogLevel.Debug)
+        private FileLogger(StreamWriter writer, string filePath, LogLevel minimumLogLevel)
             : base(minimumLogLevel)
         {
-            FilePath = Path.GetFullPath(filePath);
-            _fileStream = new FileStream(FilePath, FileMode.Create, FileAccess.Write);
-            _writer = new StreamWriter(_fileStream, Encoding.UTF8)
-            {
-                AutoFlush = true
-            };
+            FilePath = filePath;
+            _writer = writer;
         }
 
         //// ===========================================================================================================
@@ -49,9 +44,29 @@ namespace WindowsSettingsClone.Shared.Logging
         //// Methods
         //// ===========================================================================================================
 
+        public static bool TryCreate(string filePath, LogLevel minimumLogLevel, out FileLogger fileLogger)
+        {
+            try
+            {
+                filePath = Path.GetFullPath(filePath);
+                var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                var writer = new StreamWriter(fileStream, Encoding.UTF8)
+                {
+                    AutoFlush = true
+                };
+
+                fileLogger = new FileLogger(writer, filePath, minimumLogLevel);
+                return true;
+            }
+            catch (Exception)
+            {
+                fileLogger = null;
+                return false;
+            }
+        }
+
         public void Dispose()
         {
-            _fileStream?.Dispose();
             _writer?.Dispose();
         }
 
