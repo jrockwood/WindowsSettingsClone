@@ -8,10 +8,13 @@
 namespace WindowsSettingsClone.UwpApp
 {
     using System;
+    using System.IO;
     using FullTrustServices;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
+    using Shared.Logging;
     using Views;
     using ViewServices;
     using Windows.ApplicationModel;
@@ -20,6 +23,7 @@ namespace WindowsSettingsClone.UwpApp
     using Windows.ApplicationModel.Background;
     using Windows.Foundation;
     using Windows.Foundation.Metadata;
+    using Windows.Storage;
     using Windows.UI.ViewManagement;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -39,6 +43,8 @@ namespace WindowsSettingsClone.UwpApp
         /// </summary>
         public App()
         {
+            CreateLoggerAsync();
+
             InitializeComponent();
             Suspending += OnSuspending;
         }
@@ -48,6 +54,8 @@ namespace WindowsSettingsClone.UwpApp
         //// ===========================================================================================================
 
         public static new App Current => (App)Application.Current;
+
+        public ILogger Logger { get; private set; } = new NullLogger();
 
         public INavigationViewService NavigationService =>
             ((Window.Current.Content as Frame)?.Content as RootPage)?.NavigationService;
@@ -133,6 +141,20 @@ namespace WindowsSettingsClone.UwpApp
             {
                 await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
             }
+        }
+
+        private async void CreateLoggerAsync()
+        {
+            StorageFolder logFolder = ApplicationData.Current.TemporaryFolder;
+            Stream fileStream = await logFolder.OpenStreamForWriteAsync("AppLog.txt", CreationCollisionOption.ReplaceExisting);
+
+#if DEBUG
+            LogLevel minimumLogLevel = LogLevel.Debug;
+#else
+            LogLevel minimumLogLevel = LogLevel.Warning;
+#endif
+            var streamLogger = new StreamLogger(fileStream, minimumLogLevel);
+            Logger = streamLogger;
         }
 
         private void AddPlatformStyles()
