@@ -11,7 +11,7 @@ namespace WindowsSettingsClone.Models.Personalization
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Contains the model for all of the settings related to the desktop background.

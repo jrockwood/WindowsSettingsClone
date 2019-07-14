@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -13,7 +13,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading.Tasks;
     using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Abstract base class describing all settings editors.

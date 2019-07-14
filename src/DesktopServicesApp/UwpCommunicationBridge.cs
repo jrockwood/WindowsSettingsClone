@@ -14,8 +14,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
+    using Shared.Diagnostics;
     using Shared.Logging;
-    using Shared.Utility;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
 

@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Shared.Utility
+namespace WindowsSettingsClone.Shared.Diagnostics
 {
     using System;
 

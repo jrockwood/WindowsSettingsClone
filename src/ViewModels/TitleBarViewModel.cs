@@ -10,7 +10,7 @@ namespace WindowsSettingsClone.ViewModels
     using System;
     using System.Windows.Input;
     using ServiceContracts.ViewServices;
-    using Shared.Utility;
+    using Shared.Diagnostics;
     using Utility;
 
     public sealed class TitleBarViewModel : BaseViewModel

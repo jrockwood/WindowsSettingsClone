@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.ViewModels
     using EditorViewModels;
     using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Page that contains a grouping of individual settings. Examples include System, Devices, and Personalization.

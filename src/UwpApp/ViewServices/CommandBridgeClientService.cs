@@ -11,7 +11,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
     using System.Threading.Tasks;
     using ServiceContracts.CommandBridge;
     using Shared.CommandBridge;
-    using Shared.Utility;
+    using Shared.Diagnostics;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
 

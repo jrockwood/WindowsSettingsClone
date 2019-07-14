@@ -9,7 +9,7 @@ namespace WindowsSettingsClone.ViewModels.Utility
 {
     using System;
     using System.Windows.Input;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Implements an <see cref="ICommand"/> interface by calling delegates specified in the constructor.

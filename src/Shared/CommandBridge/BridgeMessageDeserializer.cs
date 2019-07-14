@@ -9,8 +9,8 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using Diagnostics;
     using ServiceContracts.CommandBridge;
-    using Utility;
 
     /// <summary>
     /// Deserializes a low-level message that gets passed across the wire from the client to the server ( <see

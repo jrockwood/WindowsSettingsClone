@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
     using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
     using Shared.Commands;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Implementation of the <see cref="IRegistryReadService"/> that calls across the desktop bridge to read from the

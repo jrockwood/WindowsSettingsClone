@@ -9,9 +9,9 @@ namespace WindowsSettingsClone.Shared.Commands
 {
     using System.Collections.Generic;
     using CommandBridge;
+    using Diagnostics;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
-    using Utility;
 
     /// <summary>
     /// Abstract base class for all of the commands that read a value from the Windows Registry.
