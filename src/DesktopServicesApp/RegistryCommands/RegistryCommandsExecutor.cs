@@ -8,7 +8,6 @@
 namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
 {
     using System;
-    using System.Threading.Tasks;
     using Microsoft.Win32;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
@@ -47,7 +46,7 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
             return response;
         }
 
-        public static async Task<IServiceCommandResponse> ExecuteWriteAsync<T>(
+        public static IServiceCommandResponse ExecuteWrite<T>(
             RegistryWriteValueCommand<T> command,
             ILogger logger)
         {
@@ -55,17 +54,17 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
 
             try
             {
-                var elevatedBridge = new ElevatedAppCommunicationBridge();
-                response = await elevatedBridge.SendCommandAsync(command, logger);
+                //var elevatedBridge = new ElevatedAppCommunicationBridge();
+                //response = await elevatedBridge.SendCommandAsync(command, logger);
 
-                //var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
+                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
 
-                //using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
-                //using (RegistryKey subKey = baseKey.CreateSubKey(command.Key, writable: true))
-                //{
-                //    subKey.SetValue(command.ValueName, command.Value, TypeToRegistryValueKind(typeof(T)));
-                //    response = ServiceCommandResponse.Create(command.CommandName, command.Value);
-                //}
+                using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
+                using (RegistryKey subKey = baseKey.CreateSubKey(command.Key, writable: true))
+                {
+                    subKey.SetValue(command.ValueName, command.Value, TypeToRegistryValueKind(typeof(T)));
+                    response = ServiceCommandResponse.Create(command.CommandName, command.Value);
+                }
             }
             catch (Exception e)
             {

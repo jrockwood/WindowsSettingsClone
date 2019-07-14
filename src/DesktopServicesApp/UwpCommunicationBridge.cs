@@ -106,11 +106,11 @@ namespace WindowsSettingsClone.DesktopServicesApp
                             break;
 
                         case RegistryWriteIntValueCommand registryCommand:
-                            response = await RegistryCommandsExecutor.ExecuteWriteAsync(registryCommand, _logger);
+                            response = RegistryCommandsExecutor.ExecuteWrite(registryCommand, _logger);
                             break;
 
                         case RegistryWriteStringValueCommand registryCommand:
-                            response = await RegistryCommandsExecutor.ExecuteWriteAsync(registryCommand, _logger);
+                            response = RegistryCommandsExecutor.ExecuteWrite(registryCommand, _logger);
                             break;
 
                         default:
@@ -138,7 +138,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
             }
         }
 
-        private void OnConnectionServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
+        private static void OnConnectionServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
         {
             // The UWP app service is closing, so shut down this application.
             Environment.Exit(0);
