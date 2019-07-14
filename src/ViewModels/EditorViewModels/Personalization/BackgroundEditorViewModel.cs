@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="BackgroundEditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -11,6 +11,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
     using System.Threading.Tasks;
     using Models.Personalization;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
+    using ServiceContracts.ViewServices;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
@@ -32,8 +34,11 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Constructors
         //// ===========================================================================================================
 
-        public BackgroundEditorViewModel(IRegistryWriteService registryWriteService)
-            : base(registryWriteService, CreateBonusBarViewModel())
+        public BackgroundEditorViewModel(
+            ILogger logger,
+            IThreadDispatcher threadDispatcher,
+            IRegistryWriteService registryWriteService)
+            : base(logger, threadDispatcher, registryWriteService, CreateBonusBarViewModel())
         {
         }
 

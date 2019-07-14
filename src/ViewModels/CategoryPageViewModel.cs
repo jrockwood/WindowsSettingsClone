@@ -11,6 +11,7 @@ namespace WindowsSettingsClone.ViewModels
     using System.ComponentModel;
     using EditorViewModels;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
     using Shared.Diagnostics;
 
@@ -24,6 +25,7 @@ namespace WindowsSettingsClone.ViewModels
         //// ===========================================================================================================
 
         private EditorViewModel _currentEditor;
+        private readonly ILogger _logger;
         private readonly IRegistryReadService _registryReadService;
         private readonly IRegistryWriteService _registryWriteService;
         private readonly IThreadDispatcher _threadDispatcher;
@@ -33,11 +35,13 @@ namespace WindowsSettingsClone.ViewModels
         //// ===========================================================================================================
 
         private CategoryPageViewModel(
+            ILogger logger,
             IThreadDispatcher threadDispatcher,
             IRegistryReadService registryReadService,
             IRegistryWriteService registryWriteService,
             CategoryPageNavigationViewModel navigationViewModel)
         {
+            _logger = Param.VerifyNotNull(logger, nameof(logger));
             _threadDispatcher = Param.VerifyNotNull(threadDispatcher, nameof(threadDispatcher));
             _registryReadService = Param.VerifyNotNull(registryReadService, nameof(registryReadService));
             _registryWriteService = Param.VerifyNotNull(registryWriteService, nameof(registryWriteService));
@@ -68,6 +72,7 @@ namespace WindowsSettingsClone.ViewModels
         /// </summary>
         public static CategoryPageViewModel CreateFromCategoryKind(
             CategoryKind category,
+            ILogger logger,
             INavigationViewService navigationViewService,
             IThreadDispatcher threadDispatcher,
             IRegistryReadService registryReadService,
@@ -77,6 +82,7 @@ namespace WindowsSettingsClone.ViewModels
             {
                 case CategoryKind.System:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -142,6 +148,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Devices:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -183,6 +190,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Phone:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -193,6 +201,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.NetworkAndInternet:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -230,6 +239,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Personalization:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -271,6 +281,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Apps:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -308,6 +319,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Accounts:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -345,6 +357,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.TimeAndLanguage:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -374,6 +387,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Gaming:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -407,6 +421,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.EaseOfAccess:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -485,6 +500,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Search:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -510,6 +526,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Cortana:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -535,6 +552,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.Privacy:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -686,6 +704,7 @@ namespace WindowsSettingsClone.ViewModels
 
                 case CategoryKind.UpdateAndSecurity:
                     return new CategoryPageViewModel(
+                        logger,
                         threadDispatcher,
                         registryReadService,
                         registryWriteService,
@@ -751,7 +770,11 @@ namespace WindowsSettingsClone.ViewModels
 
             CurrentEditor = Navigation.SelectedItem == null
                 ? null
-                : EditorViewModelFactory.CreateFromKind(Navigation.SelectedItem.EditorKind, _registryWriteService);
+                : EditorViewModelFactory.CreateFromKind(
+                    Navigation.SelectedItem.EditorKind,
+                    _logger,
+                    _threadDispatcher,
+                    _registryWriteService);
 
             CurrentEditor?.LoadAsync(_threadDispatcher, _registryReadService);
         }

@@ -11,11 +11,17 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.ViewServices;
+    using Shared.Logging;
 
     public class NotYetImplementedEditorViewModel : EditorViewModel
     {
         public NotYetImplementedEditorViewModel(EditorKind editorKind, string displayName)
-            : base(new DoNothingRegistryWriteService(), new BonusBarViewModel(null))
+            : base(
+                new NullLogger(),
+                new ThreadDispatcher(Task.Run),
+                new DoNothingRegistryWriteService(),
+                new BonusBarViewModel(null))
         {
             EditorKind = editorKind;
             DisplayName = displayName;

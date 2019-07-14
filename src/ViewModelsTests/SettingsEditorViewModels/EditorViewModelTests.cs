@@ -14,6 +14,8 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.ViewServices;
+    using Shared.Logging;
     using Shared.Tests.FakeServices;
     using Shared.Tests.ViewServices;
 
@@ -123,7 +125,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
         private class TestEditorViewModel : EditorViewModel
         {
             public TestEditorViewModel(BonusBarViewModel bonusBar)
-                : base(new DoNothingRegistryWriteService(), bonusBar)
+                : base(new NullLogger(), new ThreadDispatcher(Task.Run), new DoNothingRegistryWriteService(), bonusBar)
             {
             }
 

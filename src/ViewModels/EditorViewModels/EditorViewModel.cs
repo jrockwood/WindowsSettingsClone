@@ -12,8 +12,11 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading;
     using System.Threading.Tasks;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
     using Shared.Diagnostics;
+    using Shared.Logging;
+    using Shared.Threading;
 
     /// <summary>
     /// Abstract base class describing all settings editors.
@@ -31,8 +34,14 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        protected EditorViewModel(IRegistryWriteService registryWriteService, BonusBarViewModel bonusBar)
+        protected EditorViewModel(
+            ILogger logger,
+            IThreadDispatcher threadDispatcher,
+            IRegistryWriteService registryWriteService,
+            BonusBarViewModel bonusBar)
         {
+            Logger = Param.VerifyNotNull(logger, nameof(logger));
+            ThreadDispatcher = Param.VerifyNotNull(threadDispatcher, nameof(threadDispatcher));
             RegistryWriteService = Param.VerifyNotNull(registryWriteService, nameof(registryWriteService));
             BonusBar = Param.VerifyNotNull(bonusBar, nameof(bonusBar));
         }
@@ -61,6 +70,10 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         protected IRegistryWriteService RegistryWriteService { get; }
 
         protected bool IsLoading { get; private set; }
+
+        protected ILogger Logger { get; }
+        protected IRegistryWriteService RegistryWriteService { get; }
+        protected IThreadDispatcher ThreadDispatcher { get; }
 
         //// ===========================================================================================================
         //// Methods

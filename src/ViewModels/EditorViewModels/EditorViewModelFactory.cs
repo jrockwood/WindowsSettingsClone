@@ -10,10 +10,16 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System;
     using Personalization;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
+    using ServiceContracts.ViewServices;
 
     internal static class EditorViewModelFactory
     {
-        public static EditorViewModel CreateFromKind(EditorKind kind, IRegistryWriteService registryWriteService)
+        public static EditorViewModel CreateFromKind(
+            EditorKind kind,
+            ILogger logger,
+            IThreadDispatcher threadDispatcher,
+            IRegistryWriteService registryWriteService)
         {
             switch (kind)
             {
@@ -99,7 +105,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                     return new NotYetImplementedEditorViewModel(kind, kind.ToString());
 
                 case EditorKind.PersonalizationBackground:
-                    return new BackgroundEditorViewModel(registryWriteService);
+                    return new BackgroundEditorViewModel(logger, threadDispatcher, registryWriteService);
 
                 case EditorKind.PersonalizationColors:
                     return new NotYetImplementedEditorViewModel(kind, kind.ToString());
