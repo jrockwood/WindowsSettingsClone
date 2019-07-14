@@ -26,6 +26,18 @@ namespace WindowsSettingsClone.ViewModels
         //// Methods
         //// ===========================================================================================================
 
+        /// <summary>
+        /// Sets the specified property value. If the property value changed, the <see
+        /// cref="INotifyPropertyChanged.PropertyChanged"/> event is raised.
+        /// </summary>
+        /// <typeparam name="T">The type of the field to change.</typeparam>
+        /// <param name="field">A reference to the field to change.</param>
+        /// <param name="value">The value to change to.</param>
+        /// <param name="propertyName">
+        /// The name of the property that is changing and that will be specified in the <see
+        /// cref="INotifyPropertyChanged.PropertyChanged"/> event.
+        /// </param>
+        /// <returns>True if the property was changed; otherwise, false.</returns>
         protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (!EqualityComparer<T>.Default.Equals(field, value))

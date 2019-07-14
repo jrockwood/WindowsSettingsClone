@@ -769,4 +769,8 @@
     <value>Your info</value>
     <comment>Name for the navigation pane and for the heading on the individual setting page</comment>
   </data>
+  <data name="EditorUpdateErrorMessage" xml:space="preserve">
+    <value>Setting '{0}' was not updated. Please see the logs for details.</value>
+    <comment>This is shown on an editor page if there was a problem updating a setting. This should probably be reworked since the error message is not really actionable.</comment>
+  </data>
 </root>
