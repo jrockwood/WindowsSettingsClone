@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileLogger.cs" company="Justin Rockwood">
+// <copyright file="StreamLogger.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -9,46 +9,51 @@ namespace WindowsSettingsClone.Shared.Logging
 {
     using System;
     using System.IO;
+    using System.Text;
     using ServiceContracts.Logging;
 
     /// <summary>
-    /// Implements a file-based logger.
+    /// Logs to a standard <see cref="Stream"/>.
     /// </summary>
-    public class FileLogger : StreamLogger, IDisposable
+    public class StreamLogger : BaseLogger, IDisposable
     {
+        //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
+        private StreamWriter _writer;
+
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        private FileLogger(Stream stream, string filePath, LogLevel minimumLogLevel)
-            : base(stream, minimumLogLevel, leaveOpen: false)
+        public StreamLogger(Stream stream, LogLevel minimumLogLevel, bool leaveOpen = false)
+            : base(minimumLogLevel)
         {
-            FilePath = filePath;
+            _writer = new StreamWriter(stream, Encoding.UTF8, 1024, leaveOpen) { AutoFlush = true };
         }
 
         //// ===========================================================================================================
-        //// Properties
+        //// Constructors
         //// ===========================================================================================================
 
-        public string FilePath { get; }
-
-        //// ===========================================================================================================
-        //// Methods
-        //// ===========================================================================================================
-
-        public static bool TryCreate(string filePath, LogLevel minimumLogLevel, out FileLogger fileLogger)
+        protected override void LogInternal(LogLevel level, string message)
         {
-            try
+            _writer.WriteLine(message);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                filePath = Path.GetFullPath(filePath);
-                var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-                fileLogger = new FileLogger(fileStream, filePath, minimumLogLevel);
-                return true;
-            }
-            catch (Exception)
-            {
-                fileLogger = null;
-                return false;
+                _writer?.Dispose();
+                _writer = null;
             }
         }
     }
