@@ -23,7 +23,7 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
 
             try
             {
-                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
+                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.BaseKey.ToString());
 
                 using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
                 using (RegistryKey subKey = baseKey.OpenSubKey(command.Key, writable: false))
@@ -34,7 +34,7 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
                        ? ServiceCommandResponse.Create(command.CommandName, value)
                        : ServiceCommandResponse.CreateError(
                            command.CommandName,
-                           ServiceErrorInfo.RegistryValueNameNotFound(command.Hive, command.Key, command.ValueName));
+                           ServiceErrorInfo.RegistryValueNameNotFound(command.BaseKey, command.Key, command.ValueName));
                 }
             }
             catch (Exception e)
@@ -57,7 +57,7 @@ namespace WindowsSettingsClone.DesktopServicesApp.RegistryCommands
                 //var elevatedBridge = new ElevatedAppCommunicationBridge();
                 //response = await elevatedBridge.SendCommandAsync(command, logger);
 
-                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.Hive.ToString());
+                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.BaseKey.ToString());
 
                 using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
                 using (RegistryKey subKey = baseKey.CreateSubKey(command.Key, writable: true))

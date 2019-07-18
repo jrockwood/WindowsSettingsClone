@@ -23,7 +23,7 @@ namespace WindowsSettingsClone.Models.Personalization
         //// ===========================================================================================================
 
         // ReSharper disable once InconsistentNaming
-        private const RegistryHive HKCU = RegistryHive.CurrentUser;
+        private const RegistryBaseKey HKCU = RegistryBaseKey.CurrentUser;
 
         private const string DesktopPath = @"Control Panel\Desktop";
         private const string SlideshowPath = @"Control Panel\Personalization\Desktop Slideshow";

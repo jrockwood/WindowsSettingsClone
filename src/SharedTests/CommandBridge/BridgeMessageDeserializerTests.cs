@@ -126,7 +126,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryHive.ToString()] = RegistryHive.CurrentUser
+                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
             BridgeMessageDeserializer.TryCreate(
@@ -136,9 +136,9 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryHive, out RegistryHive hive).Should().BeTrue();
+            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeTrue();
 
-            hive.Should().Be(RegistryHive.CurrentUser);
+            hive.Should().Be(RegistryBaseKey.CurrentUser);
             deserializer.LastError.Should().BeNull();
         }
 
@@ -157,9 +157,9 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryHive, out RegistryHive hive).Should().BeFalse();
+            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeFalse();
 
-            hive.Should().Be(default(RegistryHive));
+            hive.Should().Be(default(RegistryBaseKey));
             deserializer.LastError.Should().BeNull();
         }
 
@@ -169,7 +169,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryHive.ToString()] = "NotValid"
+                [ParamName.RegistryBaseKey.ToString()] = "NotValid"
             };
 
             BridgeMessageDeserializer.TryCreate(
@@ -179,14 +179,14 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryHive, out RegistryHive hive).Should().BeFalse();
+            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeFalse();
 
-            hive.Should().Be(default(RegistryHive));
+            hive.Should().Be(default(RegistryBaseKey));
 
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryHive.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
         [Test]
@@ -195,7 +195,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryHive.ToString()] = RegistryHive.CurrentUser
+                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
             BridgeMessageDeserializer.TryCreate(
@@ -205,7 +205,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive).Should().Be(RegistryHive.CurrentUser);
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(RegistryBaseKey.CurrentUser);
             deserializer.LastError.Should().BeNull();
         }
 
@@ -224,11 +224,11 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive).Should().Be(default(RegistryHive));
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(default(RegistryBaseKey));
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryHive.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
         [Test]
@@ -237,7 +237,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryHive.ToString()] = "NotValid"
+                [ParamName.RegistryBaseKey.ToString()] = "NotValid"
             };
 
             BridgeMessageDeserializer.TryCreate(
@@ -247,12 +247,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive).Should().Be(default(RegistryHive));
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(default(RegistryBaseKey));
 
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryHive.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
         [Test]

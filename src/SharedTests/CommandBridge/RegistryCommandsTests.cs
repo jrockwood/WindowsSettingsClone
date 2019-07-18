@@ -22,21 +22,21 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         [Test]
         public void RegistryReadValueCommand_ctor_should_throw_on_null_args()
         {
-            Action action = () => new RegistryReadIntValueCommand(RegistryHive.CurrentUser, null, "ValueName", 123);
+            Action action = () => new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, null, "ValueName", 123);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("key");
         }
 
         [Test]
         public void RegistryReadValueCommand_ctor_should_not_throw_on_null_ValueName()
         {
-            Action action = () => new RegistryReadIntValueCommand(RegistryHive.CurrentUser, "Key", null, 123);
+            Action action = () => new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "Key", null, 123);
             action.Should().NotThrow();
         }
 
         [Test]
         public void RegistryReadValueCommand_should_serialize_correctly()
         {
-            var command = new RegistryReadIntValueCommand(RegistryHive.CurrentUser, "Key", "ValueName", 123);
+            var command = new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "Key", "ValueName", 123);
             var valueSet = new Dictionary<string, object>();
             command.SerializeTo(valueSet);
 
@@ -46,7 +46,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                     new (ParamName, object)[]
                     {
                         (ParamName.CommandName, ServiceCommandName.RegistryReadIntValue.ToString()),
-                        (ParamName.RegistryHive, RegistryHive.CurrentUser.ToString()),
+                        (ParamName.RegistryBaseKey, RegistryBaseKey.CurrentUser.ToString()),
                         (ParamName.RegistryKey, "Key"),
                         (ParamName.RegistryValueName, "ValueName"),
                         (ParamName.RegistryDefaultValue, 123)

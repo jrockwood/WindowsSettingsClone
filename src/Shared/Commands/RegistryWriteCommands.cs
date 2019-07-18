@@ -21,13 +21,13 @@ namespace WindowsSettingsClone.Shared.Commands
     {
         protected RegistryWriteValueCommand(
             ServiceCommandName commandName,
-            RegistryHive hive,
+            RegistryBaseKey baseKey,
             string key,
             string valueName,
             T value)
             : base(commandName)
         {
-            Hive = hive;
+            BaseKey = baseKey;
             Key = Param.VerifyString(key, nameof(key));
             ValueName = valueName;
             Value = value;
@@ -36,20 +36,20 @@ namespace WindowsSettingsClone.Shared.Commands
         internal RegistryWriteValueCommand(BridgeMessageDeserializer deserializer)
             : base(deserializer.CommandName)
         {
-            Hive = deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive);
+            BaseKey = deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey);
             Key = deserializer.GetStringValue(ParamName.RegistryKey);
             ValueName = deserializer.GetStringValue(ParamName.RegistryValueName);
             Value = (T)deserializer.GetValue(ParamName.RegistryValue);
         }
 
-        public RegistryHive Hive { get; }
+        public RegistryBaseKey BaseKey { get; }
         public string Key { get; }
         public string ValueName { get; }
         public T Value { get; }
 
         protected override void SerializeParams(IDictionary<string, object> valueSet)
         {
-            valueSet.Add(ParamName.RegistryHive.ToString(), Hive.ToString());
+            valueSet.Add(ParamName.RegistryBaseKey.ToString(), BaseKey.ToString());
             valueSet.Add(ParamName.RegistryKey.ToString(), Key);
             valueSet.Add(ParamName.RegistryValueName.ToString(), ValueName);
             valueSet.Add(ParamName.RegistryValue.ToString(), Value);
@@ -61,8 +61,8 @@ namespace WindowsSettingsClone.Shared.Commands
     /// </summary>
     public sealed class RegistryWriteIntValueCommand : RegistryWriteValueCommand<int>, IRegistryWriteIntValueCommand
     {
-        public RegistryWriteIntValueCommand(RegistryHive hive, string key, string valueName, int value)
-            : base(ServiceCommandName.RegistryWriteIntValue, hive, key, valueName, value)
+        public RegistryWriteIntValueCommand(RegistryBaseKey baseKey, string key, string valueName, int value)
+            : base(ServiceCommandName.RegistryWriteIntValue, baseKey, key, valueName, value)
         {
         }
 
@@ -77,8 +77,8 @@ namespace WindowsSettingsClone.Shared.Commands
     /// </summary>
     public sealed class RegistryWriteStringValueCommand : RegistryWriteValueCommand<string>, IRegistryWriteStringCommand
     {
-        public RegistryWriteStringValueCommand(RegistryHive hive, string key, string valueName, string value)
-            : base(ServiceCommandName.RegistryWriteStringValue, hive, key, valueName, value)
+        public RegistryWriteStringValueCommand(RegistryBaseKey baseKey, string key, string valueName, string value)
+            : base(ServiceCommandName.RegistryWriteStringValue, baseKey, key, valueName, value)
         {
         }
 

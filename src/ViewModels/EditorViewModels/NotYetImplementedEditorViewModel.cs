@@ -40,17 +40,17 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
     public sealed class DoNothingRegistryWriteService : IRegistryWriteService
     {
-        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, int value)
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
         {
             return Task.CompletedTask;
         }
 
-        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, bool value)
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
         {
             return Task.CompletedTask;
         }
 
-        public Task WriteValueAsync(RegistryHive hive, string key, string valueName, string value)
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
         {
             return Task.CompletedTask;
         }

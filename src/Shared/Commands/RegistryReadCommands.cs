@@ -21,13 +21,13 @@ namespace WindowsSettingsClone.Shared.Commands
     {
         protected RegistryReadValueCommand(
             ServiceCommandName commandName,
-            RegistryHive hive,
+            RegistryBaseKey baseKey,
             string key,
             string valueName,
             T defaultValue)
             : base(commandName)
         {
-            Hive = hive;
+            BaseKey = baseKey;
             Key = Param.VerifyString(key, nameof(key));
             ValueName = valueName;
             DefaultValue = defaultValue;
@@ -36,20 +36,20 @@ namespace WindowsSettingsClone.Shared.Commands
         internal RegistryReadValueCommand(BridgeMessageDeserializer deserializer)
             : base(deserializer.CommandName)
         {
-            Hive = deserializer.GetEnumValue<RegistryHive>(ParamName.RegistryHive);
+            BaseKey = deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey);
             Key = deserializer.GetStringValue(ParamName.RegistryKey);
             ValueName = deserializer.GetStringValue(ParamName.RegistryValueName);
             DefaultValue = (T)deserializer.GetValue(ParamName.RegistryDefaultValue);
         }
 
-        public RegistryHive Hive { get; }
+        public RegistryBaseKey BaseKey { get; }
         public string Key { get; }
         public string ValueName { get; }
         public T DefaultValue { get; }
 
         protected override void SerializeParams(IDictionary<string, object> valueSet)
         {
-            valueSet.Add(ParamName.RegistryHive.ToString(), Hive.ToString());
+            valueSet.Add(ParamName.RegistryBaseKey.ToString(), BaseKey.ToString());
             valueSet.Add(ParamName.RegistryKey.ToString(), Key);
             valueSet.Add(ParamName.RegistryValueName.ToString(), ValueName);
             valueSet.Add(ParamName.RegistryDefaultValue.ToString(), DefaultValue);
@@ -61,8 +61,8 @@ namespace WindowsSettingsClone.Shared.Commands
     /// </summary>
     public sealed class RegistryReadIntValueCommand : RegistryReadValueCommand<int>, IRegistryReadIntValueCommand
     {
-        public RegistryReadIntValueCommand(RegistryHive hive, string key, string valueName, int defaultValue)
-            : base(ServiceCommandName.RegistryReadIntValue, hive, key, valueName, defaultValue)
+        public RegistryReadIntValueCommand(RegistryBaseKey baseKey, string key, string valueName, int defaultValue)
+            : base(ServiceCommandName.RegistryReadIntValue, baseKey, key, valueName, defaultValue)
         {
         }
 
@@ -77,8 +77,8 @@ namespace WindowsSettingsClone.Shared.Commands
     /// </summary>
     public sealed class RegistryReadStringValueCommand : RegistryReadValueCommand<string>, IRegistryReadStringCommand
     {
-        public RegistryReadStringValueCommand(RegistryHive hive, string key, string valueName, string defaultValue)
-            : base(ServiceCommandName.RegistryReadStringValue, hive, key, valueName, defaultValue)
+        public RegistryReadStringValueCommand(RegistryBaseKey baseKey, string key, string valueName, string defaultValue)
+            : base(ServiceCommandName.RegistryReadStringValue, baseKey, key, valueName, defaultValue)
         {
         }
 

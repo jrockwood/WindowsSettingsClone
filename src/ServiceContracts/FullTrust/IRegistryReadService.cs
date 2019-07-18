@@ -15,10 +15,10 @@ namespace WindowsSettingsClone.ServiceContracts.FullTrust
     /// </summary>
     public interface IRegistryReadService
     {
-        Task<int> ReadValueAsync(RegistryHive hive, string key, string valueName, int defaultValue);
+        Task<int> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, int defaultValue);
 
-        Task<bool> ReadValueAsync(RegistryHive hive, string key, string valueName, bool defaultValue);
+        Task<bool> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool defaultValue);
 
-        Task<string> ReadValueAsync(RegistryHive hive, string key, string valueName, string defaultValue);
+        Task<string> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, string defaultValue);
     }
 }

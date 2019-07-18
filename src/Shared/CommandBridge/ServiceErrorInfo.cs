@@ -44,13 +44,13 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return new ServiceErrorInfo(ServiceCommandErrorCode.InternalError, message);
         }
 
-        public static ServiceErrorInfo RegistryValueNameNotFound(RegistryHive hive, string key, string valueName)
+        public static ServiceErrorInfo RegistryValueNameNotFound(RegistryBaseKey baseKey, string key, string valueName)
         {
             string message = string.Format(
                 CultureInfo.CurrentCulture,
                 Strings.RegistryKeyNameNotFound,
                 valueName,
-                $"{hive}\\{key}");
+                $"{baseKey}\\{key}");
 
             return new ServiceErrorInfo(ServiceCommandErrorCode.RegistryValueNameNotFound, message);
         }

@@ -15,10 +15,10 @@ namespace WindowsSettingsClone.ServiceContracts.FullTrust
     /// </summary>
     public interface IRegistryWriteService
     {
-        Task WriteValueAsync(RegistryHive hive, string key, string valueName, int value);
+        Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value);
 
-        Task WriteValueAsync(RegistryHive hive, string key, string valueName, bool value);
+        Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value);
 
-        Task WriteValueAsync(RegistryHive hive, string key, string valueName, string value);
+        Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value);
     }
 }

@@ -14,7 +14,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// </summary>
     public interface IRegistryReadIntValueCommand : IServiceCommand
     {
-        RegistryHive Hive { get; }
+        RegistryBaseKey BaseKey { get; }
         string Key { get; }
         string ValueName { get; }
         int DefaultValue { get; }
@@ -25,7 +25,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// </summary>
     public interface IRegistryReadStringCommand : IServiceCommand
     {
-        RegistryHive Hive { get; }
+        RegistryBaseKey BaseKey { get; }
         string Key { get; }
         string ValueName { get; }
         string DefaultValue { get; }
@@ -36,7 +36,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// </summary>
     public interface IRegistryWriteIntValueCommand : IServiceCommand
     {
-        RegistryHive Hive { get; }
+        RegistryBaseKey BaseKey { get; }
         string Key { get; }
         string ValueName { get; }
         int Value { get; }
@@ -47,7 +47,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// </summary>
     public interface IRegistryWriteStringCommand : IServiceCommand
     {
-        RegistryHive Hive { get; }
+        RegistryBaseKey BaseKey { get; }
         string Key { get; }
         string ValueName { get; }
         string Value { get; }

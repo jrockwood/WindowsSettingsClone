@@ -18,7 +18,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         ErrorCode,
         ErrorMessage,
         RegistryDefaultValue,
-        RegistryHive,
+        RegistryBaseKey,
         RegistryKey,
         RegistryValue,
         RegistryValueName,

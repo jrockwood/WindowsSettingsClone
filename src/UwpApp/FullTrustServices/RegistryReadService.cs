@@ -39,25 +39,25 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         //// Methods
         //// ===========================================================================================================
 
-        public async Task<int> ReadValueAsync(RegistryHive hive, string key, string valueName, int defaultValue)
+        public async Task<int> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, int defaultValue)
         {
-            var command = new RegistryReadIntValueCommand(hive, key, valueName, defaultValue);
+            var command = new RegistryReadIntValueCommand(baseKey, key, valueName, defaultValue);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result;
         }
 
-        public async Task<bool> ReadValueAsync(RegistryHive hive, string key, string valueName, bool defaultValue)
+        public async Task<bool> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool defaultValue)
         {
-            var command = new RegistryReadIntValueCommand(hive, key, valueName, defaultValue ? 1 : 0);
+            var command = new RegistryReadIntValueCommand(baseKey, key, valueName, defaultValue ? 1 : 0);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result != 0;
         }
 
-        public async Task<string> ReadValueAsync(RegistryHive hive, string key, string valueName, string defaultValue)
+        public async Task<string> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, string defaultValue)
         {
-            var command = new RegistryReadStringValueCommand(hive, key, valueName, defaultValue);
+            var command = new RegistryReadStringValueCommand(baseKey, key, valueName, defaultValue);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (string)response.Result;

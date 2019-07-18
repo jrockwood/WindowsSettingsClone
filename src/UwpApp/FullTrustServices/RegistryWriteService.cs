@@ -39,23 +39,23 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         //// Methods
         //// ===========================================================================================================
 
-        public async Task WriteValueAsync(RegistryHive hive, string key, string valueName, int value)
+        public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
         {
-            var command = new RegistryWriteIntValueCommand(hive, key, valueName, value);
+            var command = new RegistryWriteIntValueCommand(baseKey, key, valueName, value);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
 
-        public async Task WriteValueAsync(RegistryHive hive, string key, string valueName, bool value)
+        public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
         {
-            var command = new RegistryWriteIntValueCommand(hive, key, valueName, value ? 1 : 0);
+            var command = new RegistryWriteIntValueCommand(baseKey, key, valueName, value ? 1 : 0);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
 
-        public async Task WriteValueAsync(RegistryHive hive, string key, string valueName, string value)
+        public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
         {
-            var command = new RegistryWriteStringValueCommand(hive, key, valueName, value);
+            var command = new RegistryWriteStringValueCommand(baseKey, key, valueName, value);
             IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
