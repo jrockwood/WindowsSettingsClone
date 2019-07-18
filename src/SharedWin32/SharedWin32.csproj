@@ -40,6 +40,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CommandExecutors\Registry\IWin32Registry.cs" />
+    <Compile Include="CommandExecutors\Registry\IWin32RegistryKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
