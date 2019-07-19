@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceCommandResponseTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -17,6 +17,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
     public class ServiceCommandResponseTests
     {
+        //// ===========================================================================================================
+        //// Create Tests
+        //// ===========================================================================================================
+
         [Test]
         public void Create_should_store_the_properties()
         {
@@ -26,6 +30,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             response.ErrorCode.Should().Be(ServiceCommandErrorCode.Success);
             response.ErrorMessage.Should().BeNull();
         }
+
+        //// ===========================================================================================================
+        //// CreateError Tests
+        //// ===========================================================================================================
 
         [Test]
         public void CreateError_should_store_the_properties()
@@ -51,8 +59,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             response.ErrorMessage.Should().NotBeNull();
         }
 
+        //// ===========================================================================================================
+        //// TryDeserializeFromValueSet Tests
+        //// ===========================================================================================================
+
         [Test]
-        public void TryDeserialize_should_deserialize_a_successful_response()
+        public void TryDeserializeFromValueSet_should_deserialize_a_successful_response()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -61,7 +73,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.ErrorCode.ToString()] = ServiceCommandErrorCode.Success,
             };
 
-            ServiceCommandResponse.TryDeserialize(
+            ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommandResponse response,
                     out ServiceCommandResponse errorResponse)
@@ -81,7 +93,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryDeserialize_should_deserialize_an_error()
+        public void TryDeserializeFromValueSet_should_deserialize_an_error()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -91,7 +103,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.ErrorMessage.ToString()] = "Error",
             };
 
-            ServiceCommandResponse.TryDeserialize(
+            ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommandResponse response,
                     out ServiceCommandResponse errorResponse)
@@ -111,7 +123,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryDeserialize_should_fail_if_missing_a_command_name()
+        public void TryDeserializeFromValueSet_should_fail_if_missing_a_command_name()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -119,7 +131,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.ErrorCode.ToString()] = ServiceCommandErrorCode.Success,
             };
 
-            ServiceCommandResponse.TryDeserialize(
+            ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommandResponse response,
                     out ServiceCommandResponse errorResponse)
@@ -140,7 +152,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         {
             var response = ServiceCommandResponse.Create(ServiceCommandName.RegistryReadIntValue, 123);
             var valueSet = new Dictionary<string, object>();
-            response.SerializeTo(valueSet);
+            response.SerializeToValueSet(valueSet);
 
             valueSet.Select(pair => ((ParamName)Enum.Parse(typeof(ParamName), pair.Key), pair.Value))
                 .Should()
@@ -161,7 +173,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 new InvalidOperationException("message"));
 
             var valueSet = new Dictionary<string, object>();
-            response.SerializeTo(valueSet);
+            response.SerializeToValueSet(valueSet);
 
             valueSet.Select(pair => ((ParamName)Enum.Parse(typeof(ParamName), pair.Key), pair.Value))
                 .Should()
@@ -174,6 +186,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                         (ParamName.ErrorMessage, "Internal error: message"),
                     });
         }
+
+        //// ===========================================================================================================
+        //// ToDebugString Tests
+        //// ===========================================================================================================
 
         [Test]
         public void ToDebugString_should_return_the_correct_format_for_successes()

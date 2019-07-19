@@ -38,7 +38,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         //// Methods
         //// ===========================================================================================================
 
-        public static bool TryDeserialize(
+        public static bool TryDeserializeFromValueSet(
             IDictionary<string, object> valueSet,
             out ServiceCommand command,
             out ServiceCommandResponse errorResponse)

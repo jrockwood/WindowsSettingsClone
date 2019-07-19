@@ -84,7 +84,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
                 // Execute the command and get the response.
                 IServiceCommandResponse response;
 
-                if (!ServiceCommand.TryDeserialize(
+                if (!ServiceCommand.TryDeserializeFromValueSet(
                     args.Request.Message,
                     out ServiceCommand command,
                     out ServiceCommandResponse errorResponse))

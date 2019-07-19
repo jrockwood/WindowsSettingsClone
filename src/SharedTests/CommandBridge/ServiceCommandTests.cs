@@ -18,15 +18,19 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
     public class ServiceCommandTests
     {
+        //// ===========================================================================================================
+        //// TryDeserializeFromValueSet Tests
+        //// ===========================================================================================================
+
         [Test]
-        public void TryDeserialize_should_throw_on_null_params()
+        public void TryDeserializeValueSet_should_throw_on_null_params()
         {
-            Action action = () => ServiceCommand.TryDeserialize(null, out _, out _);
+            Action action = () => ServiceCommand.TryDeserializeFromValueSet(null, out _, out _);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("valueSet");
         }
 
         [Test]
-        public void TryDeserialize_should_correctly_deserialize_a_RegistryReadIntValueCommand()
+        public void TryDeserializeValueSet_should_correctly_deserialize_a_RegistryReadIntValueCommand()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -37,7 +41,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryDefaultValue.ToString()] = 123
             };
 
-            ServiceCommand.TryDeserialize(
+            ServiceCommand.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommand command,
                     out ServiceCommandResponse errorResponse)
@@ -55,7 +59,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryDeserialize_should_return_an_error_if_missing_the_command_name()
+        public void TryDeserializeFromValueSet_should_return_an_error_if_missing_the_command_name()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -65,7 +69,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryDefaultValue.ToString()] = 123
             };
 
-            ServiceCommand.TryDeserialize(
+            ServiceCommand.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommand command,
                     out ServiceCommandResponse errorResponse)
@@ -79,7 +83,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryDeserialize_should_return_an_error_if_missing_a_required_parameter()
+        public void TryDeserializeValueSet_should_return_an_error_if_missing_a_required_parameter()
         {
             var valueSet = new Dictionary<string, object>
             {
@@ -89,7 +93,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryDefaultValue.ToString()] = 123
             };
 
-            ServiceCommand.TryDeserialize(
+            ServiceCommand.TryDeserializeFromValueSet(
                     valueSet,
                     out ServiceCommand command,
                     out ServiceCommandResponse errorResponse)

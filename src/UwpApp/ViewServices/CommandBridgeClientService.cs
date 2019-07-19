@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="CommandBridgeClientService.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -42,14 +42,14 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         public async Task<IServiceCommandResponse> SendCommandAsync(IServiceCommand command)
         {
             var valueSet = new ValueSet();
-            command.SerializeTo(valueSet);
+            command.SerializeToValueSet(valueSet);
             AppServiceResponse bridgeResponse = await _connection.SendMessageAsync(valueSet);
             AppServiceResponseStatus status = bridgeResponse.Status;
 
             ServiceCommandResponse response;
             if (status == AppServiceResponseStatus.Success)
             {
-                if (!ServiceCommandResponse.TryDeserialize(
+                if (!ServiceCommandResponse.TryDeserializeFromValueSet(
                     bridgeResponse.Message,
                     out response,
                     out ServiceCommandResponse errorResponse))

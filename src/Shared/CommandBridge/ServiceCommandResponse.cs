@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceCommandResponse.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -67,7 +67,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return CreateError(commandName, ServiceErrorInfo.InternalError(exception.Message));
         }
 
-        public static bool TryDeserialize(
+        public static bool TryDeserializeFromValueSet(
             IDictionary<string, object> valueSet,
             out ServiceCommandResponse response,
             out ServiceCommandResponse errorResponse)
