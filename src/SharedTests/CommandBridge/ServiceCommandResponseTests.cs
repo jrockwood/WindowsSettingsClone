@@ -148,6 +148,94 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         //// ===========================================================================================================
+        //// TryDeserializeFromValueSet Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void TryDeserializeFromJsonString_should_deserialize_a_successful_response()
+        {
+            string json = $@"
+{{
+    {ParamName.CommandName}: ""{ServiceCommandName.RegistryReadIntValue}"",
+    {ParamName.CommandResult}: 123,
+    {ParamName.ErrorCode}: ""{ServiceCommandErrorCode.Success}"",
+}}";
+
+            ServiceCommandResponse.TryDeserializeFromJsonString(
+                    json,
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeTrue("because there are no errors in deserialization: {0}", errorResponse?.ToDebugString());
+
+            response.Should().NotBeNull();
+            errorResponse.Should().BeNull();
+
+            response.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+            response.Result.Should().Be(123);
+            response.ErrorCode.Should().Be(ServiceCommandErrorCode.Success);
+            response.ErrorMessage.Should().BeNull();
+
+            response.IsError.Should().BeFalse();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Test]
+        public void TryDeserializeFromJsonString_should_deserialize_an_error()
+        {
+            string json = $@"
+{{
+    {ParamName.CommandName}: ""{ServiceCommandName.RegistryReadIntValue}"",
+    {ParamName.CommandResult}: null,
+    {ParamName.ErrorCode}: ""{ServiceCommandErrorCode.InternalError}"",
+    {ParamName.ErrorMessage}: ""Error"",
+}}";
+
+            ServiceCommandResponse.TryDeserializeFromJsonString(
+                    json,
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeTrue();
+
+            response.Should().NotBeNull();
+            errorResponse.Should().BeNull();
+
+            response.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+            response.Result.Should().BeNull();
+            response.ErrorCode.Should().Be(ServiceCommandErrorCode.InternalError);
+            response.ErrorMessage.Should().Be("Error");
+
+            response.IsError.Should().BeTrue();
+            response.IsSuccess.Should().BeFalse();
+        }
+
+        [Test]
+        public void TryDeserializeFromJsonString_should_fail_if_missing_a_command_name()
+        {
+            string json = $@"
+{{
+    {ParamName.CommandResult}: 123,
+    {ParamName.ErrorCode}: ""{ServiceCommandErrorCode.Success}"",
+}}";
+
+            ServiceCommandResponse.TryDeserializeFromJsonString(
+                    json,
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeFalse();
+
+            response.Should().BeNull();
+            errorResponse.Should().NotBeNull();
+
+            errorResponse.CommandName.Should().Be(ServiceCommandName.Unknown);
+            errorResponse.Result.Should().BeNull();
+            errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
+            errorResponse.ErrorMessage.Should().Contain(ParamName.CommandName.ToString());
+        }
+
+        //// ===========================================================================================================
         //// SerializeToValueSet Tests
         //// ===========================================================================================================
 
@@ -189,6 +277,28 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                         (ParamName.ErrorCode, ServiceCommandErrorCode.InternalError.ToString()),
                         (ParamName.ErrorMessage, "Internal error: message"),
                     });
+        }
+
+        //// ===========================================================================================================
+        //// SerializeToJsonString Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void SerializeToJsonString_should_serialize_into_compact_JSON()
+        {
+            var response = ServiceCommandResponse.Create(ServiceCommandName.RegistryReadIntValue, 123);
+            string expectedJson = $@"
+{{
+    ""{ParamName.CommandName}"": ""{ServiceCommandName.RegistryReadIntValue}"",
+    ""{ParamName.CommandResult}"": 123,
+    ""{ParamName.ErrorCode}"": ""{ServiceCommandErrorCode.Success}""
+}}
+";
+            expectedJson = expectedJson.Replace("\r", "")
+                .Replace("\n", "")
+                .Replace(" ", "");
+
+            response.SerializeToJsonString().Should().Be(expectedJson);
         }
 
         //// ===========================================================================================================
