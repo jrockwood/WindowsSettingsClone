@@ -85,17 +85,26 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
         public void SerializeToValueSet(IDictionary<string, object> valueSet)
         {
-            valueSet.Add(ParamName.CommandName.ToString(), CommandName.ToString());
-            SerializeParams(valueSet);
+            var allParams = new Dictionary<ParamName, object>
+            {
+                [ParamName.CommandName] = CommandName.ToString(),
+            };
+
+            SerializeParams(allParams);
+
+            foreach (KeyValuePair<ParamName, object> pair in allParams)
+            {
+                valueSet.Add(pair.Key.ToString(), pair.Value);
+            }
         }
 
         public virtual string ToDebugString()
         {
-            var valueSet = new Dictionary<string, object>();
+            var valueSet = new Dictionary<ParamName, object>();
             SerializeParams(valueSet);
 
             var builder = new StringBuilder($"{CommandName}: ");
-            foreach (KeyValuePair<string, object> pair in valueSet)
+            foreach (KeyValuePair<ParamName, object> pair in valueSet)
             {
                 builder.Append($"{pair.Key}={pair.Value}, ");
             }
@@ -104,6 +113,6 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return builder.ToString();
         }
 
-        protected abstract void SerializeParams(IDictionary<string, object> valueSet);
+        internal abstract void SerializeParams(IDictionary<ParamName, object> valueSet);
     }
 }

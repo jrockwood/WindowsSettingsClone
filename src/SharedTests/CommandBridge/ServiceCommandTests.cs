@@ -107,11 +107,15 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             errorResponse.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
+        //// ===========================================================================================================
+        //// ToDebugString Tests
+        //// ===========================================================================================================
+
         [Test]
         public void ToDebugString_should_return_the_correct_format()
         {
             var command = new TestServiceCommand(ServiceCommandName.RegistryReadIntValue);
-            command.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: key=value");
+            command.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: RegistryKey=value");
         }
 
         private sealed class TestServiceCommand : ServiceCommand
@@ -121,9 +125,9 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             {
             }
 
-            protected override void SerializeParams(IDictionary<string, object> valueSet)
+            internal override void SerializeParams(IDictionary<ParamName, object> valueSet)
             {
-                valueSet.Add("key", "value");
+                valueSet.Add(ParamName.RegistryKey, "value");
             }
         }
     }

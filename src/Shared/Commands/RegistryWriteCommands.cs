@@ -47,12 +47,12 @@ namespace WindowsSettingsClone.Shared.Commands
         public string ValueName { get; }
         public T Value { get; }
 
-        protected override void SerializeParams(IDictionary<string, object> valueSet)
+        internal override void SerializeParams(IDictionary<ParamName, object> valueSet)
         {
-            valueSet.Add(ParamName.RegistryBaseKey.ToString(), BaseKey.ToString());
-            valueSet.Add(ParamName.RegistryKey.ToString(), Key);
-            valueSet.Add(ParamName.RegistryValueName.ToString(), ValueName);
-            valueSet.Add(ParamName.RegistryValue.ToString(), Value);
+            valueSet.Add(ParamName.RegistryBaseKey, BaseKey.ToString());
+            valueSet.Add(ParamName.RegistryKey, Key);
+            valueSet.Add(ParamName.RegistryValueName, ValueName);
+            valueSet.Add(ParamName.RegistryValue, Value);
         }
     }
 
