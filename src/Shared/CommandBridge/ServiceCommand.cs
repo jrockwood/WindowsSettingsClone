@@ -80,6 +80,10 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         {
             switch (deserializer.CommandName)
             {
+                case ServiceCommandName.ShutdownServer:
+                    command = new ShutdownServerCommand();
+                    break;
+
                 case ServiceCommandName.Echo:
                     command = new EchoCommand(deserializer);
                     break;

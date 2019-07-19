@@ -12,10 +12,17 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
     /// </summary>
     public enum ServiceCommandErrorCode
     {
+        // Negative errors indicate an internal error that is a little more specific
+
         InternalError = -1,
         MissingRequiredMessageValue = -2,
         WrongMessageValueType = -3,
+
+        // Make sure success is always zero
         Success = 0,
+
+        // "Standard" errors are positive
+
         RegistryReadError,
         RegistryWriteError,
     }
