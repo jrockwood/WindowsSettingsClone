@@ -54,6 +54,10 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
             switch (deserializer.CommandName)
             {
+                case ServiceCommandName.Echo:
+                    command = new EchoCommand(deserializer);
+                    break;
+
                 case ServiceCommandName.RegistryReadIntValue:
                     command = new RegistryReadIntValueCommand(deserializer);
                     break;

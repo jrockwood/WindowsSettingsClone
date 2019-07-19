@@ -10,11 +10,13 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     /// <summary>
     /// Contains all of the parameter names (keys) used in a serialized parameter bag (ValueSet).
     /// </summary>
-    // PLEASE KEEP THESE ALPHABETIZED
     internal enum ParamName
     {
+        // PLEASE KEEP THESE ALPHABETIZED
+
         CommandName,
         CommandResult,
+        EchoMessage,
         ErrorCode,
         ErrorMessage,
         RegistryDefaultValue,
