@@ -43,7 +43,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             out IServiceCommand command,
             out IServiceCommandResponse errorResponse)
         {
-            if (!BridgeMessageDeserializer.TryCreate(
+            if (!BridgeMessageDeserializer.TryCreateFromValueSet(
                 valueSet,
                 out BridgeMessageDeserializer deserializer,
                 out errorResponse))

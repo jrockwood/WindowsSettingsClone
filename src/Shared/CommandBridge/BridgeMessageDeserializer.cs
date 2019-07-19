@@ -41,7 +41,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         //// Methods
         //// ===========================================================================================================
 
-        public static bool TryCreate(
+        public static bool TryCreateFromValueSet(
             IDictionary<string, object> valueSet,
             out BridgeMessageDeserializer deserializer,
             out IServiceCommandResponse errorResponse)

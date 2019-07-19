@@ -17,22 +17,26 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
     public class BridgeMessageDeserializerTests
     {
+        //// ===========================================================================================================
+        //// TryCreateFromValueSet Tests
+        //// ===========================================================================================================
+
         [Test]
-        public void TryCreate_should_throw_on_null_params()
+        public void TryCreateFromValueSet_should_throw_on_null_params()
         {
-            Action action = () => BridgeMessageDeserializer.TryCreate(null, out _, out _);
+            Action action = () => BridgeMessageDeserializer.TryCreateFromValueSet(null, out _, out _);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("valueSet");
         }
 
         [Test]
-        public void TryCreate_should_correctly_deserialize()
+        public void TryCreateFromValueSet_should_correctly_deserialize()
         {
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse errorResponse)
@@ -46,10 +50,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryCreate_should_return_an_error_if_missing_a_command_name()
+        public void TryCreateFromValueSet_should_return_an_error_if_missing_a_command_name()
         {
             var valueSet = new Dictionary<string, object>();
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse errorResponse)
@@ -65,11 +69,11 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void TryCreate_should_return_an_error_if_command_name_is_not_the_right_type()
+        public void TryCreateFromValueSet_should_return_an_error_if_command_name_is_not_the_right_type()
         {
             var valueSet = new Dictionary<string, object> { [ParamName.CommandName.ToString()] = "NotRight" };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse errorResponse)
@@ -84,6 +88,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             errorResponse.ErrorMessage.Should().Contain(ParamName.CommandName.ToString());
         }
 
+        //// ===========================================================================================================
+        //// LastError Tests
+        //// ===========================================================================================================
+
         [Test]
         public void LastError_should_be_null_on_a_new_instance()
         {
@@ -92,7 +100,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -102,6 +110,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             deserializer.LastError.Should().BeNull();
         }
 
+        //// ===========================================================================================================
+        //// HadError Tests
+        //// ===========================================================================================================
+
         [Test]
         public void HadError_should_be_false_initially()
         {
@@ -110,7 +122,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -119,6 +131,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             deserializer.HadError.Should().BeFalse();
         }
+
+        //// ===========================================================================================================
+        //// TryGetOptionalEnumValue Tests
+        //// ===========================================================================================================
 
         [Test]
         public void TryGetOptionalEnumValue_should_return_true_when_correctly_deserializing()
@@ -129,7 +145,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -150,7 +166,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -172,7 +188,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryBaseKey.ToString()] = "NotValid"
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -189,6 +205,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
+        //// ===========================================================================================================
+        //// GetEnumValue Tests
+        //// ===========================================================================================================
+
         [Test]
         public void GetEnumValue_should_return_the_deserialized_value()
         {
@@ -198,7 +218,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -217,7 +237,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -240,7 +260,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryBaseKey.ToString()] = "NotValid"
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -255,6 +275,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
         }
 
+        //// ===========================================================================================================
+        //// GetIntValue Tests
+        //// ===========================================================================================================
+
         [Test]
         public void GetIntValue_should_return_the_deserialized_value()
         {
@@ -264,7 +288,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.ErrorCode.ToString()] = 12345
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -283,7 +307,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -306,7 +330,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.ErrorCode.ToString()] = "NotValid"
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -321,6 +345,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
         }
 
+        //// ===========================================================================================================
+        //// GetStringValue Tests
+        //// ===========================================================================================================
+
         [Test]
         public void GetStringValue_should_return_the_deserialized_value()
         {
@@ -330,7 +358,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryKey.ToString()] = "Key"
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -349,7 +377,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -372,7 +400,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryKey.ToString()] = false
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -387,6 +415,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryKey.ToString());
         }
 
+        //// ===========================================================================================================
+        //// GetValue Tests
+        //// ===========================================================================================================
+
         [Test]
         public void GetValue_should_return_the_deserialized_value()
         {
@@ -396,7 +428,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.RegistryKey.ToString()] = "Key"
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
@@ -415,7 +447,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
             };
 
-            BridgeMessageDeserializer.TryCreate(
+            BridgeMessageDeserializer.TryCreateFromValueSet(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
                     out IServiceCommandResponse _)
