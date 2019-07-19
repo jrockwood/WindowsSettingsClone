@@ -89,6 +89,112 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         //// ===========================================================================================================
+        //// TryCreateFromJsonString Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void TryCreateFromJsonString_should_throw_on_null_params()
+        {
+            Action action = () => BridgeMessageDeserializer.TryCreateFromJsonString(null, out _, out _);
+            action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("jsonString");
+        }
+
+        [Test]
+        public void TryCreateFromJsonString_should_correctly_deserialize()
+        {
+            string json = $@"
+{{
+    {ParamName.CommandName}: ""{ServiceCommandName.Echo}"",
+    {ParamName.EchoMessage}: ""Test"",
+}}";
+
+            BridgeMessageDeserializer.TryCreateFromJsonString(
+                    json,
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeTrue();
+
+            deserializer.Should().NotBeNull();
+            errorResponse.Should().BeNull();
+
+            deserializer.CommandName.Should().Be(ServiceCommandName.Echo);
+            deserializer.GetStringValue(ParamName.EchoMessage).Should().Be("Test");
+        }
+
+        [Test]
+        public void TryCreateFromJsonString_should_return_an_error_if_missing_a_command_name()
+        {
+            BridgeMessageDeserializer.TryCreateFromJsonString(
+                    $"{{ Something: 10 }}",
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeFalse();
+
+            deserializer.Should().BeNull();
+            errorResponse.Should().NotBeNull();
+
+            errorResponse.CommandName.Should().Be(ServiceCommandName.Unknown);
+            errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
+            errorResponse.ErrorMessage.Should().Contain(ParamName.CommandName.ToString());
+        }
+
+        [Test]
+        public void TryCreateFromJsonString_should_return_an_error_if_command_name_is_not_the_right_type()
+        {
+            BridgeMessageDeserializer.TryCreateFromJsonString(
+                    $"{{ {ParamName.CommandName}: \"NotRight\" }}",
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeFalse();
+
+            deserializer.Should().BeNull();
+            errorResponse.Should().NotBeNull();
+
+            errorResponse.CommandName.Should().Be(ServiceCommandName.Unknown);
+            errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
+            errorResponse.ErrorMessage.Should().Contain(ParamName.CommandName.ToString());
+        }
+
+        [Test]
+        public void TryCreateFromJsonString_should_return_an_error_if_the_json_is_invalid()
+        {
+            BridgeMessageDeserializer.TryCreateFromJsonString(
+                    "invalidJson: 123",
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeFalse();
+
+            deserializer.Should().BeNull();
+            errorResponse.Should().NotBeNull();
+
+            errorResponse.CommandName.Should().Be(ServiceCommandName.Unknown);
+            errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.InternalError);
+            errorResponse.ErrorMessage.Should().StartWith("Internal error: Unexpected character");
+        }
+
+        [Test]
+        public void TryCreateFromJsonString_should_return_an_error_if_the_json_contains_nested_objects()
+        {
+            BridgeMessageDeserializer.TryCreateFromJsonString(
+                    "{ invalidJson: { nested: 123 } }",
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse errorResponse)
+                .Should()
+                .BeFalse();
+
+            deserializer.Should().BeNull();
+            errorResponse.Should().NotBeNull();
+
+            errorResponse.CommandName.Should().Be(ServiceCommandName.Unknown);
+            errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.InternalError);
+            errorResponse.ErrorMessage.Should().Contain("Unable to cast object of type");
+        }
+
+        //// ===========================================================================================================
         //// LastError Tests
         //// ===========================================================================================================
 

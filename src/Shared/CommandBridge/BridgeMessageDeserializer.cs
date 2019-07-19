@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     using System;
     using System.Collections.Generic;
     using Diagnostics;
+    using Newtonsoft.Json.Linq;
     using ServiceContracts.CommandBridge;
 
     /// <summary>
@@ -40,6 +41,36 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
+
+        public static bool TryCreateFromJsonString(
+            string jsonString,
+            out BridgeMessageDeserializer deserializer,
+            out IServiceCommandResponse errorResponse)
+        {
+            Param.VerifyString(jsonString, nameof(jsonString));
+
+            var valueSet = new Dictionary<string, object>();
+
+            try
+            {
+                // Try to parse the JSON.
+                var jsonObject = JObject.Parse(jsonString);
+
+                // Populate a value set from the parsed JSON.
+                foreach (KeyValuePair<string, JToken> pair in jsonObject)
+                {
+                    valueSet.Add(pair.Key, ((JValue)pair.Value).Value);
+                }
+            }
+            catch (Exception e)
+            {
+                deserializer = null;
+                errorResponse = ServiceCommandResponse.CreateError(ServiceCommandName.Unknown, e);
+                return false;
+            }
+
+            return TryCreateFromValueSet(valueSet, out deserializer, out errorResponse);
+        }
 
         public static bool TryCreateFromValueSet(
             IDictionary<string, object> valueSet,
