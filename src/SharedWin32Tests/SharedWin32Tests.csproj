@@ -84,6 +84,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CommandExecutors\Registry\RegistryCommandExecutorTests.cs" />
     <Compile Include="Fakes\FakeRegistry.cs" />
     <Compile Include="Fakes\FakeRegistryBehaviorEquivalenceTests.cs" />
     <Compile Include="Fakes\FakeRegistryTests.cs" />
@@ -94,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj">
+      <Project>{9B501D31-6520-48C6-9C38-443D5478C466}</Project>
+      <Name>ServiceContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedWin32\SharedWin32.csproj">
       <Project>{edefac45-4c0d-4397-8c06-83ccc44e0a90}</Project>
       <Name>SharedWin32</Name>

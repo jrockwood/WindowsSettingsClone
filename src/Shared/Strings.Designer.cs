@@ -80,11 +80,20 @@ namespace WindowsSettingsClone.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registry value name &apos;{0}&apos; not found in path &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Error in reading registry value &apos;{0}\{1}&apos;: {2}..
         /// </summary>
-        internal static string RegistryKeyNameNotFound {
+        internal static string RegistryReadError {
             get {
-                return ResourceManager.GetString("RegistryKeyNameNotFound", resourceCulture);
+                return ResourceManager.GetString("RegistryReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in writing registry value &apos;{0}\{1}&apos;: {2}..
+        /// </summary>
+        internal static string RegistryWriteError {
+            get {
+                return ResourceManager.GetString("RegistryWriteError", resourceCulture);
             }
         }
         

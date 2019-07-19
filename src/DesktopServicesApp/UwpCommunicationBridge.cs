@@ -9,13 +9,13 @@ namespace WindowsSettingsClone.DesktopServicesApp
 {
     using System;
     using System.Threading.Tasks;
-    using RegistryCommands;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Commands;
     using Shared.Diagnostics;
     using Shared.Logging;
+    using SharedWin32.CommandExecutors.Registry;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
 
@@ -95,22 +95,24 @@ namespace WindowsSettingsClone.DesktopServicesApp
                 {
                     _logger.LogDebug($"Received command: {command.ToDebugString()}");
 
+                    var registryExecutor = new RegistryCommandExecutor();
+
                     switch (command)
                     {
                         case RegistryReadIntValueCommand registryCommand:
-                            response = RegistryCommandsExecutor.ExecuteRead(registryCommand, _logger);
+                            response = registryExecutor.ExecuteRead(registryCommand, _logger);
                             break;
 
                         case RegistryReadStringValueCommand registryCommand:
-                            response = RegistryCommandsExecutor.ExecuteRead(registryCommand, _logger);
+                            response = registryExecutor.ExecuteRead(registryCommand, _logger);
                             break;
 
                         case RegistryWriteIntValueCommand registryCommand:
-                            response = RegistryCommandsExecutor.ExecuteWrite(registryCommand, _logger);
+                            response = registryExecutor.ExecuteWrite(registryCommand, _logger);
                             break;
 
                         case RegistryWriteStringValueCommand registryCommand:
-                            response = RegistryCommandsExecutor.ExecuteWrite(registryCommand, _logger);
+                            response = registryExecutor.ExecuteWrite(registryCommand, _logger);
                             break;
 
                         default:

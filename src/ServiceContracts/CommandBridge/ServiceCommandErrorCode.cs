@@ -16,6 +16,7 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         MissingRequiredMessageValue = -2,
         WrongMessageValueType = -3,
         Success = 0,
-        RegistryValueNameNotFound,
+        RegistryReadError,
+        RegistryWriteError,
     }
 }

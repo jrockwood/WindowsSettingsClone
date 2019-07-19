@@ -10,7 +10,6 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     using System;
     using System.Globalization;
     using ServiceContracts.CommandBridge;
-    using ServiceContracts.Commands;
 
     /// <summary>
     /// Contains error information about a specific <see cref="ServiceCommandErrorCode"/>.
@@ -44,15 +43,28 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return new ServiceErrorInfo(ServiceCommandErrorCode.InternalError, message);
         }
 
-        public static ServiceErrorInfo RegistryValueNameNotFound(RegistryBaseKey baseKey, string key, string valueName)
+        public static ServiceErrorInfo RegistryReadError(string hive, string key, string valueName, Exception exception)
         {
             string message = string.Format(
                 CultureInfo.CurrentCulture,
-                Strings.RegistryKeyNameNotFound,
+                Strings.RegistryReadError,
+                $"{hive}\\{key}",
                 valueName,
-                $"{baseKey}\\{key}");
+                $"{exception.GetType()}: {exception.Message}");
 
-            return new ServiceErrorInfo(ServiceCommandErrorCode.RegistryValueNameNotFound, message);
+            return new ServiceErrorInfo(ServiceCommandErrorCode.RegistryReadError, message);
+        }
+
+        public static ServiceErrorInfo RegistryWriteError(string hive, string key, string valueName, Exception exception)
+        {
+            string message = string.Format(
+                CultureInfo.CurrentCulture,
+                Strings.RegistryWriteError,
+                $"{hive}\\{key}",
+                valueName,
+                $"{exception.GetType()}: {exception.Message}");
+
+            return new ServiceErrorInfo(ServiceCommandErrorCode.RegistryWriteError, message);
         }
 
         internal static ServiceErrorInfo MissingRequiredMessageValue(ParamName paramName)

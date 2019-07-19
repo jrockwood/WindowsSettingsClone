@@ -42,9 +42,16 @@
     </Compile>
     <Compile Include="CommandExecutors\Registry\IWin32Registry.cs" />
     <Compile Include="CommandExecutors\Registry\IWin32RegistryKey.cs" />
+    <Compile Include="CommandExecutors\Registry\RegistryCommandExecutor.cs" />
+    <Compile Include="CommandExecutors\Registry\Win32Registry.cs" />
+    <Compile Include="CommandExecutors\Registry\Win32RegistryKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj">
+      <Project>{9B501D31-6520-48C6-9C38-443D5478C466}</Project>
+      <Name>ServiceContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{3399f211-a529-4c52-9325-e820add46a12}</Project>
       <Name>Shared</Name>

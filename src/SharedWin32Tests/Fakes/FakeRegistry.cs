@@ -9,6 +9,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using Microsoft.Win32;
     using SharedWin32.CommandExecutors.Registry;
@@ -26,6 +27,67 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
             new Dictionary<string, Dictionary<string, object>>(StringComparer.OrdinalIgnoreCase);
 
         //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeRegistry"/> class with the specified keys and value.
+        /// </summary>
+        /// <param name="keysAndValues">
+        /// The string needs to be in the form "BASE\SubKey[\Value=123]", where BASE is one of <c>HKEY_CLASSES_ROOT</c>
+        /// (or <c>HKCR</c>), <c>HKEY_CURRENT_USER</c> (or <c>HKCU</c>), <c>HKEY_LOCAL_MACHINE</c> (or <c>HKLM</c>), or
+        /// HKEY_USERS (or <c>HKU</c>). The value can either be an integer or a string with single quotes.
+        /// </param>
+        public FakeRegistry(params string[] keysAndValues)
+        {
+            (RegistryHive hive, string Path, string ValueName, object Value) Parse(string s)
+            {
+                string[] parts = s.Split('\\');
+
+                RegistryHive hive = RegistryCommandExecutor.Win32NameToHive(parts[0]);
+                string path;
+                string valueName = null;
+                object value = null;
+
+                int equalIndex = parts.Last().IndexOf('=');
+                if (equalIndex < 0)
+                {
+                    path = string.Join("\\", parts.Skip(1));
+                }
+                else
+                {
+                    path = string.Join("\\", parts.Skip(1).Take(parts.Length - 2));
+                    valueName = parts.Last().Substring(0, equalIndex);
+                    string rawValue = parts.Last().Substring(equalIndex + 1);
+
+                    if (rawValue.First() == '\'' && rawValue.Last() == '\'')
+                    {
+                        value = rawValue.Substring(1, rawValue.Length - 2);
+                    }
+                    else
+                    {
+                        value = int.Parse(rawValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+                    }
+                }
+
+                return (hive, path, valueName, value);
+            }
+
+            foreach (string keyAndValue in keysAndValues)
+            {
+                (RegistryHive hive, string path, string valueName, object value) = Parse(keyAndValue);
+                using (IWin32RegistryKey key = OpenBaseKey(hive, RegistryView.Registry64).CreateSubKey(path, writable: true))
+                {
+                    if (!string.IsNullOrEmpty(valueName))
+                    {
+                        RegistryValueKind kind = value is string ? RegistryValueKind.String : RegistryValueKind.DWord;
+                        key.SetValue(valueName, value, kind);
+                    }
+                }
+            }
+        }
+
+        //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
@@ -36,33 +98,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
                 throw new ArgumentException("View type not supported", nameof(view));
             }
 
-            return CreateSubKey(HiveToWin32Name(hKey), false);
-        }
-
-        private static string HiveToWin32Name(RegistryHive hive)
-        {
-            switch (hive)
-            {
-                case RegistryHive.ClassesRoot:
-                    return "HKEY_CLASSES_ROOT";
-
-                case RegistryHive.CurrentUser:
-                    return "HKEY_CURRENT_USER";
-
-                case RegistryHive.LocalMachine:
-                    return "HKEY_LOCAL_MACHINE";
-
-                case RegistryHive.Users:
-                    return "HKEY_USERS";
-
-                case RegistryHive.PerformanceData:
-                case RegistryHive.CurrentConfig:
-                case RegistryHive.DynData:
-                    throw new NotSupportedException();
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(hive), hive, null);
-            }
+            return CreateSubKey(RegistryCommandExecutor.HiveToWin32Name(hKey), false);
         }
 
         private IWin32RegistryKey OpenSubKey(string fullPath, bool writable)
