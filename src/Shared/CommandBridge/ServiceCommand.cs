@@ -40,8 +40,8 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
         public static bool TryDeserializeFromValueSet(
             IDictionary<string, object> valueSet,
-            out ServiceCommand command,
-            out ServiceCommandResponse errorResponse)
+            out IServiceCommand command,
+            out IServiceCommandResponse errorResponse)
         {
             if (!BridgeMessageDeserializer.TryCreate(
                 valueSet,

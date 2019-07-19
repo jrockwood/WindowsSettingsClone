@@ -75,8 +75,8 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
-                    out ServiceCommandResponse response,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeTrue();
 
@@ -105,8 +105,8 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
-                    out ServiceCommandResponse response,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeTrue();
 
@@ -133,8 +133,8 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             ServiceCommandResponse.TryDeserializeFromValueSet(
                     valueSet,
-                    out ServiceCommandResponse response,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse response,
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeFalse();
 

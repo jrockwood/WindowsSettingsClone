@@ -35,7 +35,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeTrue();
 
@@ -52,7 +52,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeFalse();
 
@@ -72,7 +72,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse errorResponse)
+                    out IServiceCommandResponse errorResponse)
                 .Should()
                 .BeFalse();
 
@@ -95,7 +95,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -113,7 +113,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -132,7 +132,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -153,7 +153,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -175,7 +175,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -201,7 +201,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -220,7 +220,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -243,7 +243,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -267,7 +267,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -286,7 +286,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -309,7 +309,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -333,7 +333,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -352,7 +352,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -375,7 +375,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -399,7 +399,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 
@@ -418,7 +418,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             BridgeMessageDeserializer.TryCreate(
                     valueSet,
                     out BridgeMessageDeserializer deserializer,
-                    out ServiceCommandResponse _)
+                    out IServiceCommandResponse _)
                 .Should()
                 .BeTrue();
 

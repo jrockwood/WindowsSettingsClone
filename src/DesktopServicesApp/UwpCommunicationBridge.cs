@@ -86,8 +86,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
                 if (!ServiceCommand.TryDeserializeFromValueSet(
                     args.Request.Message,
-                    out ServiceCommand command,
-                    out ServiceCommandResponse errorResponse))
+                    out IServiceCommand command,
+                    out IServiceCommandResponse errorResponse))
                 {
                     response = errorResponse;
                 }

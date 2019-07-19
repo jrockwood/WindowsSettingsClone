@@ -34,7 +34,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
         public ServiceCommandName CommandName { get; }
         public bool HadError => LastError != null;
-        public ServiceCommandResponse LastError { get; private set; }
+        public IServiceCommandResponse LastError { get; private set; }
         public IDictionary<string, object> ValueSet { get; }
 
         //// ===========================================================================================================
@@ -44,7 +44,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         public static bool TryCreate(
             IDictionary<string, object> valueSet,
             out BridgeMessageDeserializer deserializer,
-            out ServiceCommandResponse errorResponse)
+            out IServiceCommandResponse errorResponse)
         {
             Param.VerifyNotNull(valueSet, nameof(valueSet));
 
@@ -125,7 +125,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         private static bool TryGetCommandName(
             IDictionary<string, object> valueSet,
             out ServiceCommandName commandName,
-            out ServiceCommandResponse errorResponse)
+            out IServiceCommandResponse errorResponse)
         {
             if (!valueSet.TryGetValue(ParamName.CommandName.ToString(), out object rawValue))
             {
