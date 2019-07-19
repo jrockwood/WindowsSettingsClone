@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceCommandResponseTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -147,8 +147,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             errorResponse.ErrorMessage.Should().Contain(ParamName.CommandName.ToString());
         }
 
+        //// ===========================================================================================================
+        //// SerializeToValueSet Tests
+        //// ===========================================================================================================
+
         [Test]
-        public void SerializeTo_should_add_all_of_the_parameters_except_ErrorMessage_when_successful()
+        public void SerializeToValueSet_should_add_all_of_the_parameters_except_ErrorMessage_when_successful()
         {
             var response = ServiceCommandResponse.Create(ServiceCommandName.RegistryReadIntValue, 123);
             var valueSet = new Dictionary<string, object>();
@@ -166,7 +170,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         [Test]
-        public void SerializeTo_should_add_all_of_the_parameters_including_ErrorMessage_when_an_error()
+        public void SerializeToValueSet_should_add_all_of_the_parameters_including_ErrorMessage_when_an_error()
         {
             var response = ServiceCommandResponse.CreateError(
                 ServiceCommandName.RegistryReadIntValue,

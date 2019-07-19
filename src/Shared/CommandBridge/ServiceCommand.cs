@@ -83,7 +83,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return !deserializer.HadError;
         }
 
-        public void SerializeTo(IDictionary<string, object> valueSet)
+        public void SerializeToValueSet(IDictionary<string, object> valueSet)
         {
             valueSet.Add(ParamName.CommandName.ToString(), CommandName.ToString());
             SerializeParams(valueSet);

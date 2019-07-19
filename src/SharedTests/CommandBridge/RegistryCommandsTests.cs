@@ -38,7 +38,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         {
             var command = new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "Key", "ValueName", 123);
             var valueSet = new Dictionary<string, object>();
-            command.SerializeTo(valueSet);
+            command.SerializeToValueSet(valueSet);
 
             valueSet.Select(pair => ((ParamName)Enum.Parse(typeof(ParamName), pair.Key), pair.Value))
                 .Should()

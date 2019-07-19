@@ -125,7 +125,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
                 // Serialize the response to a ValueSet.
                 var returnValueSet = new ValueSet();
-                response.SerializeTo(returnValueSet);
+                response.SerializeToValueSet(returnValueSet);
 
                 _logger.LogDebug($"Sending response: {response.ToDebugString()}");
 
