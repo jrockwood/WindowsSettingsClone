@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.Shared.Commands
 {
+    using System;
     using System.Collections.Generic;
     using CommandBridge;
     using Diagnostics;
@@ -39,7 +40,7 @@ namespace WindowsSettingsClone.Shared.Commands
             BaseKey = deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey);
             Key = deserializer.GetStringValue(ParamName.RegistryKey);
             ValueName = deserializer.GetStringValue(ParamName.RegistryValueName);
-            DefaultValue = (T)deserializer.GetValue(ParamName.RegistryDefaultValue);
+            DefaultValue = (T)Convert.ChangeType(deserializer.GetValue(ParamName.RegistryDefaultValue), typeof(T));
         }
 
         public RegistryBaseKey BaseKey { get; }

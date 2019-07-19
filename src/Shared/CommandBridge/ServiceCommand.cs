@@ -11,6 +11,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     using System.Collections.Generic;
     using System.Text;
     using Commands;
+    using Newtonsoft.Json;
     using ServiceContracts.CommandBridge;
 
     /// <summary>
@@ -38,6 +39,23 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         //// Methods
         //// ===========================================================================================================
 
+        public static bool TryDeserializeFromJsonString(
+            string jsonString,
+            out IServiceCommand command,
+            out IServiceCommandResponse errorResponse)
+        {
+            if (!BridgeMessageDeserializer.TryCreateFromJsonString(
+                jsonString,
+                out BridgeMessageDeserializer deserializer,
+                out errorResponse))
+            {
+                command = null;
+                return false;
+            }
+
+            return TryDeserialize(deserializer, out command, out errorResponse);
+        }
+
         public static bool TryDeserializeFromValueSet(
             IDictionary<string, object> valueSet,
             out IServiceCommand command,
@@ -52,6 +70,14 @@ namespace WindowsSettingsClone.Shared.CommandBridge
                 return false;
             }
 
+            return TryDeserialize(deserializer, out command, out errorResponse);
+        }
+
+        private static bool TryDeserialize(
+            BridgeMessageDeserializer deserializer,
+            out IServiceCommand command,
+            out IServiceCommandResponse errorResponse)
+        {
             switch (deserializer.CommandName)
             {
                 case ServiceCommandName.Echo:
@@ -76,7 +102,8 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
                 case ServiceCommandName.Unknown:
                 default:
-                    throw new InvalidOperationException($"Unknown command name: {deserializer.CommandName}");
+                    throw new InvalidOperationException(
+                        "This should be unreachable because the deserializer should have detected an invalid command name");
             }
 
             if (deserializer.HadError)
@@ -87,6 +114,23 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return !deserializer.HadError;
         }
 
+        /// <summary>
+        /// Serializes the response to a single string. It should be treated as an opaque serialization format to be
+        /// deserialized with <see cref="TryDeserializeFromJsonString"/>.
+        /// </summary>
+        public string SerializeToJsonString()
+        {
+            var valueSet = new Dictionary<string, object>();
+            SerializeToValueSet(valueSet);
+
+            string jsonString = JsonConvert.SerializeObject(valueSet, Formatting.None);
+            return jsonString;
+        }
+
+        /// <summary>
+        /// Serializes the response to a dictionary. It should be treated as an opaque serialization format to be
+        /// deserialized with <see cref="TryDeserializeFromValueSet"/>.
+        /// </summary>
         public void SerializeToValueSet(IDictionary<string, object> valueSet)
         {
             var allParams = new Dictionary<ParamName, object>
