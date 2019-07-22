@@ -7,9 +7,11 @@
 
 namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
 {
+    using System;
     using System.Globalization;
     using System.Linq;
     using Microsoft.Win32;
+    using ServiceContracts.Commands;
     using Shared.Diagnostics;
 
     /// <summary>
@@ -64,7 +66,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         {
             string[] parts = s.Split('\\');
 
-            RegistryHive hive = RegistryCommandExecutor.Win32NameToHive(parts[0]);
+            RegistryHive hive = Win32NameToHive(parts[0]);
             string path;
             string valueName = null;
             object value = null;
@@ -92,6 +94,100 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
             }
 
             return new RegistryPath(hive, path, valueName, value);
+        }
+
+        public static RegistryHive BaseKeyToHive(RegistryBaseKey baseKey)
+        {
+            switch (baseKey)
+            {
+                case RegistryBaseKey.ClassesRoot:
+                    return RegistryHive.ClassesRoot;
+
+                case RegistryBaseKey.CurrentUser:
+                    return RegistryHive.CurrentUser;
+
+                case RegistryBaseKey.LocalMachine:
+                    return RegistryHive.LocalMachine;
+
+                case RegistryBaseKey.Users:
+                    return RegistryHive.Users;
+
+                case RegistryBaseKey.PerformanceData:
+                    return RegistryHive.PerformanceData;
+
+                case RegistryBaseKey.CurrentConfig:
+                    return RegistryHive.CurrentConfig;
+
+                case RegistryBaseKey.DynData:
+                    return RegistryHive.DynData;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(baseKey), baseKey, null);
+            }
+        }
+
+        public static string HiveToWin32Name(RegistryHive hive)
+        {
+            switch (hive)
+            {
+                case RegistryHive.ClassesRoot:
+                    return "HKEY_CLASSES_ROOT";
+
+                case RegistryHive.CurrentUser:
+                    return "HKEY_CURRENT_USER";
+
+                case RegistryHive.LocalMachine:
+                    return "HKEY_LOCAL_MACHINE";
+
+                case RegistryHive.Users:
+                    return "HKEY_USERS";
+
+                case RegistryHive.PerformanceData:
+                    return "HKEY_PERFORMANCE_DATA";
+
+                case RegistryHive.CurrentConfig:
+                    return "HKEY_CURRENT_CONFIG";
+
+                case RegistryHive.DynData:
+                    return "HKEY_DYN_DATA";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(hive), hive, null);
+            }
+        }
+
+        public static RegistryHive Win32NameToHive(string win32HiveName)
+        {
+            switch (win32HiveName.ToUpperInvariant())
+            {
+                case "HKCR":
+                case "HKEY_CLASSES_ROOT":
+                    return RegistryHive.ClassesRoot;
+
+                case "HKCU":
+                case "HKEY_CURRENT_USER":
+                    return RegistryHive.CurrentUser;
+
+                case "HKLM":
+                case "HKEY_LOCAL_MACHINE":
+                    return RegistryHive.LocalMachine;
+
+                case "HKU":
+                case "HKEY_USERS":
+                    return RegistryHive.Users;
+
+                case "HKEY_CURRENT_CONFIG":
+                    return RegistryHive.CurrentConfig;
+
+                case "HKEY_PERFORMANCE_DATA":
+                    return RegistryHive.PerformanceData;
+
+                case "HKEY_DYN_DATA":
+                    return RegistryHive.DynData;
+
+                default:
+                    throw new InvalidOperationException($"Unknown registry hive: {win32HiveName}");
+            }
         }
     }
 }

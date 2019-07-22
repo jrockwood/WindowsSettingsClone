@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryPathTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -12,6 +12,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
     using FluentAssertions.Equivalency;
     using Microsoft.Win32;
     using NUnit.Framework;
+    using ServiceContracts.Commands;
     using SharedWin32.CommandExecutors.Registry;
 
     public class RegistryPathTests
@@ -20,6 +21,60 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
             EquivalencyAssertionOptions<RegistryPath> options)
         {
             return options.Excluding(path => path.StringValue).Excluding(path => path.IntValue);
+        }
+
+        [Test]
+        public void BaseKeyToHive_should_correctly_map_keys_to_Win32_hives()
+        {
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.ClassesRoot)
+                .Should()
+                .Be(RegistryHive.ClassesRoot);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.CurrentUser)
+                .Should()
+                .Be(RegistryHive.CurrentUser);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.LocalMachine)
+                .Should()
+                .Be(RegistryHive.LocalMachine);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.Users)
+                .Should()
+                .Be(RegistryHive.Users);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.PerformanceData)
+                .Should()
+                .Be(RegistryHive.PerformanceData);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.CurrentConfig)
+                .Should()
+                .Be(RegistryHive.CurrentConfig);
+            RegistryPath.BaseKeyToHive(RegistryBaseKey.DynData)
+                .Should()
+                .Be(RegistryHive.DynData);
+        }
+
+        [Test]
+        public void HiveToWin32Name_should_correctly_map_hives_to_long_names()
+        {
+            RegistryPath.HiveToWin32Name(RegistryHive.ClassesRoot).Should().Be("HKEY_CLASSES_ROOT");
+            RegistryPath.HiveToWin32Name(RegistryHive.CurrentUser).Should().Be("HKEY_CURRENT_USER");
+            RegistryPath.HiveToWin32Name(RegistryHive.LocalMachine).Should().Be("HKEY_LOCAL_MACHINE");
+            RegistryPath.HiveToWin32Name(RegistryHive.Users).Should().Be("HKEY_USERS");
+            RegistryPath.HiveToWin32Name(RegistryHive.CurrentConfig).Should().Be("HKEY_CURRENT_CONFIG");
+            RegistryPath.HiveToWin32Name(RegistryHive.PerformanceData).Should().Be("HKEY_PERFORMANCE_DATA");
+            RegistryPath.HiveToWin32Name(RegistryHive.DynData).Should().Be("HKEY_DYN_DATA");
+        }
+
+        [Test]
+        public void Win32NameToHive_should_correctly_map_names_to_hives()
+        {
+            RegistryPath.Win32NameToHive("HKEY_CLASSES_ROOT").Should().Be(RegistryHive.ClassesRoot);
+            RegistryPath.Win32NameToHive("HKCR").Should().Be(RegistryHive.ClassesRoot);
+            RegistryPath.Win32NameToHive("HKEY_CURRENT_USER").Should().Be(RegistryHive.CurrentUser);
+            RegistryPath.Win32NameToHive("HKCU").Should().Be(RegistryHive.CurrentUser);
+            RegistryPath.Win32NameToHive("HKEY_LOCAL_MACHINE").Should().Be(RegistryHive.LocalMachine);
+            RegistryPath.Win32NameToHive("HKLM").Should().Be(RegistryHive.LocalMachine);
+            RegistryPath.Win32NameToHive("HKEY_USERS").Should().Be(RegistryHive.Users);
+            RegistryPath.Win32NameToHive("HKU").Should().Be(RegistryHive.Users);
+            RegistryPath.Win32NameToHive("HKEY_CURRENT_CONFIG").Should().Be(RegistryHive.CurrentConfig);
+            RegistryPath.Win32NameToHive("HKEY_PERFORMANCE_DATA").Should().Be(RegistryHive.PerformanceData);
+            RegistryPath.Win32NameToHive("HKEY_DYN_DATA").Should().Be(RegistryHive.DynData);
         }
 
         //// ===========================================================================================================

@@ -67,7 +67,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
                 throw new ArgumentException("View type not supported", nameof(view));
             }
 
-            return CreateSubKey(RegistryCommandExecutor.HiveToWin32Name(hKey), false);
+            return CreateSubKey(RegistryPath.HiveToWin32Name(hKey), false);
         }
 
         private IWin32RegistryKey OpenSubKey(string fullPath, bool writable)

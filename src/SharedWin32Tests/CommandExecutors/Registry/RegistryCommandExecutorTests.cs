@@ -21,60 +21,6 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
 
     public class RegistryCommandExecutorTests
     {
-        [Test]
-        public void BaseKeyToHive_should_correctly_map_keys_to_Win32_hives()
-        {
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.ClassesRoot)
-                .Should()
-                .Be(RegistryHive.ClassesRoot);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.CurrentUser)
-                .Should()
-                .Be(RegistryHive.CurrentUser);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.LocalMachine)
-                .Should()
-                .Be(RegistryHive.LocalMachine);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.Users)
-                .Should()
-                .Be(RegistryHive.Users);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.PerformanceData)
-                .Should()
-                .Be(RegistryHive.PerformanceData);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.CurrentConfig)
-                .Should()
-                .Be(RegistryHive.CurrentConfig);
-            RegistryCommandExecutor.BaseKeyToHive(RegistryBaseKey.DynData)
-                .Should()
-                .Be(RegistryHive.DynData);
-        }
-
-        [Test]
-        public void HiveToWin32Name_should_correctly_map_hives_to_long_names()
-        {
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.ClassesRoot).Should().Be("HKEY_CLASSES_ROOT");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.CurrentUser).Should().Be("HKEY_CURRENT_USER");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.LocalMachine).Should().Be("HKEY_LOCAL_MACHINE");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.Users).Should().Be("HKEY_USERS");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.CurrentConfig).Should().Be("HKEY_CURRENT_CONFIG");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.PerformanceData).Should().Be("HKEY_PERFORMANCE_DATA");
-            RegistryCommandExecutor.HiveToWin32Name(RegistryHive.DynData).Should().Be("HKEY_DYN_DATA");
-        }
-
-        [Test]
-        public void Win32NameToHive_should_correctly_map_names_to_hives()
-        {
-            RegistryCommandExecutor.Win32NameToHive("HKEY_CLASSES_ROOT").Should().Be(RegistryHive.ClassesRoot);
-            RegistryCommandExecutor.Win32NameToHive("HKCR").Should().Be(RegistryHive.ClassesRoot);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_CURRENT_USER").Should().Be(RegistryHive.CurrentUser);
-            RegistryCommandExecutor.Win32NameToHive("HKCU").Should().Be(RegistryHive.CurrentUser);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_LOCAL_MACHINE").Should().Be(RegistryHive.LocalMachine);
-            RegistryCommandExecutor.Win32NameToHive("HKLM").Should().Be(RegistryHive.LocalMachine);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_USERS").Should().Be(RegistryHive.Users);
-            RegistryCommandExecutor.Win32NameToHive("HKU").Should().Be(RegistryHive.Users);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_CURRENT_CONFIG").Should().Be(RegistryHive.CurrentConfig);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_PERFORMANCE_DATA").Should().Be(RegistryHive.PerformanceData);
-            RegistryCommandExecutor.Win32NameToHive("HKEY_DYN_DATA").Should().Be(RegistryHive.DynData);
-        }
-
         //// ===========================================================================================================
         //// ExecuteRead
         //// ===========================================================================================================
