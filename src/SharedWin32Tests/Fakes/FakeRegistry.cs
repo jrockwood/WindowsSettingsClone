@@ -9,7 +9,6 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using Microsoft.Win32;
     using SharedWin32.CommandExecutors.Registry;
@@ -36,52 +35,22 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
         /// <param name="keysAndValues">
         /// The string needs to be in the form "BASE\SubKey[\Value=123]", where BASE is one of <c>HKEY_CLASSES_ROOT</c>
         /// (or <c>HKCR</c>), <c>HKEY_CURRENT_USER</c> (or <c>HKCU</c>), <c>HKEY_LOCAL_MACHINE</c> (or <c>HKLM</c>), or
-        /// HKEY_USERS (or <c>HKU</c>). The value can either be an integer or a string with single quotes.
+        /// HKEY_USERS (or <c>HKU</c>). The value can either be an integer or a string with single or double quotes.
         /// </param>
         public FakeRegistry(params string[] keysAndValues)
         {
-            (RegistryHive hive, string Path, string ValueName, object Value) Parse(string s)
-            {
-                string[] parts = s.Split('\\');
-
-                RegistryHive hive = RegistryCommandExecutor.Win32NameToHive(parts[0]);
-                string path;
-                string valueName = null;
-                object value = null;
-
-                int equalIndex = parts.Last().IndexOf('=');
-                if (equalIndex < 0)
-                {
-                    path = string.Join("\\", parts.Skip(1));
-                }
-                else
-                {
-                    path = string.Join("\\", parts.Skip(1).Take(parts.Length - 2));
-                    valueName = parts.Last().Substring(0, equalIndex);
-                    string rawValue = parts.Last().Substring(equalIndex + 1);
-
-                    if (rawValue.First() == '\'' && rawValue.Last() == '\'')
-                    {
-                        value = rawValue.Substring(1, rawValue.Length - 2);
-                    }
-                    else
-                    {
-                        value = int.Parse(rawValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                    }
-                }
-
-                return (hive, path, valueName, value);
-            }
-
             foreach (string keyAndValue in keysAndValues)
             {
-                (RegistryHive hive, string path, string valueName, object value) = Parse(keyAndValue);
-                using (IWin32RegistryKey key = OpenBaseKey(hive, RegistryView.Registry64).CreateSubKey(path, writable: true))
+                var parsedPath = RegistryPath.Parse(keyAndValue);
+                using (IWin32RegistryKey key = OpenBaseKey(parsedPath.Hive, RegistryView.Registry64)
+                    .CreateSubKey(parsedPath.Path, writable: true))
                 {
-                    if (!string.IsNullOrEmpty(valueName))
+                    if (!string.IsNullOrEmpty(parsedPath.ValueName))
                     {
-                        RegistryValueKind kind = value is string ? RegistryValueKind.String : RegistryValueKind.DWord;
-                        key.SetValue(valueName, value, kind);
+                        RegistryValueKind kind = parsedPath.Value is string
+                            ? RegistryValueKind.String
+                            : RegistryValueKind.DWord;
+                        key.SetValue(parsedPath.ValueName, parsedPath.Value, kind);
                     }
                 }
             }
