@@ -12,10 +12,9 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
-    using Shared.Commands;
     using Shared.Diagnostics;
     using Shared.Logging;
-    using SharedWin32.CommandExecutors.Registry;
+    using SharedWin32.CommandExecutors;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
 
@@ -95,32 +94,8 @@ namespace WindowsSettingsClone.DesktopServicesApp
                 {
                     _logger.LogDebug($"Received command: {command.ToDebugString()}");
 
-                    var registryExecutor = new RegistryCommandExecutor();
-
-                    switch (command)
-                    {
-                        case RegistryReadIntValueCommand registryCommand:
-                            response = registryExecutor.ExecuteRead(registryCommand, _logger);
-                            break;
-
-                        case RegistryReadStringValueCommand registryCommand:
-                            response = registryExecutor.ExecuteRead(registryCommand, _logger);
-                            break;
-
-                        case RegistryWriteIntValueCommand registryCommand:
-                            response = registryExecutor.ExecuteWrite(registryCommand, _logger);
-                            break;
-
-                        case RegistryWriteStringValueCommand registryCommand:
-                            response = registryExecutor.ExecuteWrite(registryCommand, _logger);
-                            break;
-
-                        default:
-                            response = ServiceCommandResponse.CreateError(
-                                command.CommandName,
-                                new InvalidOperationException($"Unknown or unhandled command '{command.CommandName}'"));
-                            break;
-                    }
+                    var commandExecutor = new CommandExecutor(_logger);
+                    response = commandExecutor.Execute(command);
                 }
 
                 // Serialize the response to a ValueSet.

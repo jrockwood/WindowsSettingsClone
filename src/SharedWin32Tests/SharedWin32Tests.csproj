@@ -84,6 +84,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CommandExecutors\CommandExecutorTests.cs" />
     <Compile Include="CommandExecutors\Registry\RegistryCommandExecutorTests.cs" />
     <Compile Include="CommandExecutors\Registry\RegistryPathTests.cs" />
     <Compile Include="Fakes\FakeRegistry.cs" />

@@ -54,6 +54,10 @@
       <Project>{9b501d31-6520-48c6-9c38-443d5478c466}</Project>
       <Name>ServiceContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedWin32\SharedWin32.csproj">
+      <Project>{edefac45-4c0d-4397-8c06-83ccc44e0a90}</Project>
+      <Name>SharedWin32</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{3399f211-a529-4c52-9325-e820add46a12}</Project>
       <Name>Shared</Name>
