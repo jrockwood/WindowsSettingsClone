@@ -43,6 +43,7 @@
     <Compile Include="CommandExecutors\Registry\IWin32Registry.cs" />
     <Compile Include="CommandExecutors\Registry\IWin32RegistryKey.cs" />
     <Compile Include="CommandExecutors\Registry\RegistryCommandExecutor.cs" />
+    <Compile Include="CommandExecutors\Registry\RegistryPath.cs" />
     <Compile Include="CommandExecutors\Registry\Win32Registry.cs" />
     <Compile Include="CommandExecutors\Registry\Win32RegistryKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
