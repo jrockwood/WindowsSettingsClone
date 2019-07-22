@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryPathTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -17,7 +17,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
 
     public class RegistryPathTests
     {
-        private static EquivalencyAssertionOptions<RegistryPath> GetOptions(
+        private static EquivalencyAssertionOptions<RegistryPath> GetEquivalenceOptions(
             EquivalencyAssertionOptions<RegistryPath> options)
         {
             return options.Excluding(path => path.StringValue).Excluding(path => path.IntValue);
@@ -86,10 +86,10 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             RegistryPath.Parse("HKCU")
                 .Should()
-                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.CurrentUser), GetOptions);
+                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.CurrentUser), GetEquivalenceOptions);
             RegistryPath.Parse("HKEY_CURRENT_USER")
                 .Should()
-                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.CurrentUser), GetOptions);
+                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.CurrentUser), GetEquivalenceOptions);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             RegistryPath.Parse(@"HKLM\SubKey")
                 .Should()
-                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.LocalMachine, "SubKey"), GetOptions);
+                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.LocalMachine, "SubKey"), GetEquivalenceOptions);
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             RegistryPath.Parse(@"HKU\Level1\Level2\Level3")
                 .Should()
-                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.Users, @"Level1\Level2\Level3"), GetOptions);
+                .BeEquivalentTo(RegistryPath.CreatePath(RegistryHive.Users, @"Level1\Level2\Level3"), GetEquivalenceOptions);
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
                 .Should()
                 .BeEquivalentTo(
                     RegistryPath.CreateValuePath(RegistryHive.DynData, "SubKey", "IntValue", 123),
-                    GetOptions);
+                    GetEquivalenceOptions);
         }
 
         [Test]
@@ -125,13 +125,13 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
                 .Should()
                 .BeEquivalentTo(
                     RegistryPath.CreateValuePath(RegistryHive.ClassesRoot, "SubKey", "StringValue", "s"),
-                    GetOptions);
+                    GetEquivalenceOptions);
 
             RegistryPath.Parse(@"HKEY_PERFORMANCE_DATA\SubKey\StringValue='s'")
                 .Should()
                 .BeEquivalentTo(
                     RegistryPath.CreateValuePath(RegistryHive.PerformanceData, "SubKey", "StringValue", "s"),
-                    GetOptions);
+                    GetEquivalenceOptions);
         }
 
         [Test]
