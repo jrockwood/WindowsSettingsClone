@@ -5,17 +5,17 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.Shared.Tests.CommandBridge
+namespace WindowsSettingsClone.Shared.Tests.Commands
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Commands;
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
     using Shared.CommandBridge;
+    using Shared.Commands;
 
     public class RegistryCommandsTests
     {
