@@ -11,7 +11,6 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.ComponentModel;
     using System.Globalization;
     using System.Runtime.CompilerServices;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using ServiceContracts.FullTrust;
@@ -143,7 +142,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         /// cref="INotifyPropertyChanged.PropertyChanged"/> event.
         /// </param>
         /// <returns>True if the property was changed; otherwise, false.</returns>
-        protected bool SetPropertyAndPerformAsyncUpdate<T>(
+        protected internal bool SetPropertyAndPerformAsyncUpdate<T>(
             ref T field,
             T value,
             Func<Task> asyncUpdateFunc,
@@ -161,12 +160,18 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 return true;
             }
 
-            PerformUpdateForPropertyAsync(asyncUpdateFunc, propertyName, millisecondsTimeout);
+            SetModelPropertyAsyncFromEventHandler(asyncUpdateFunc, propertyName, millisecondsTimeout);
 
             return true;
         }
 
-        protected async void PerformUpdateForPropertyAsync(
+        /// <summary>
+        /// Performs an asynchronous update and sets the <see cref="UpdateErrorMessage"/> if there was an error.
+        /// </summary>
+        /// <param name="updateTask">The asynchronous task to perform.</param>
+        /// <param name="propertyName">The name of the property that is being updated.</param>
+        /// <param name="millisecondsTimeout">The number of milliseconds to wait for the update before it times out.</param>
+        protected internal async Task SetModelPropertyAsync(
             Func<Task> updateTask,
             string propertyName,
             int millisecondsTimeout = DefaultPropertyUpdateTimeoutMs)
@@ -182,18 +187,13 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 Logger.LogWarning("Timeout occurred while updating {0}", propertyName);
                 wasError = true;
             }
-            catch (AggregateException e)
+            catch (Exception e)
             {
-                StringBuilder builder = new StringBuilder("An AggregateException occurred with the following message: ")
-                    .AppendLine(e.Message)
-                    .AppendLine("  InnerExceptions:");
-
-                foreach (Exception innerException in e.InnerExceptions)
-                {
-                    builder.Append("    ").AppendLine(innerException.ToString());
-                }
-
-                Logger.LogWarning(builder.ToString());
+                Logger.LogWarning(
+                    "Exception while performing update on property {0}: {1}: {2}",
+                    propertyName,
+                    e.GetType(),
+                    e.Message);
                 wasError = true;
             }
 
@@ -205,6 +205,22 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                         Strings.EditorUpdateErrorMessage,
                         propertyName));
             }
+        }
+
+        /// <summary>
+        /// Performs an asynchronous update and sets the <see cref="UpdateErrorMessage"/> if there was an error. This
+        /// version should be called from within an event handler since the event handler cannot be made async. Prefer
+        /// using <see cref="SetModelPropertyAsync"/> whenever possible.
+        /// </summary>
+        /// <param name="updateTask">The asynchronous task to perform.</param>
+        /// <param name="propertyName">The name of the property that is being updated.</param>
+        /// <param name="millisecondsTimeout">The number of milliseconds to wait for the update before it times out.</param>
+        protected async void SetModelPropertyAsyncFromEventHandler(
+            Func<Task> updateTask,
+            string propertyName,
+            int millisecondsTimeout = DefaultPropertyUpdateTimeoutMs)
+        {
+            await SetModelPropertyAsync(updateTask, propertyName, millisecondsTimeout);
         }
     }
 }

@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditorViewModelTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
 {
     using System;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using EditorViewModels;
@@ -126,6 +127,113 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             vm.IsContentReady.Should().BeTrue();
         }
 
+        //// ===========================================================================================================
+        //// SetModelPropertyAsync Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_invoke_the_task()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            bool wasInvoked = false;
+            await vm.SetModelPropertyAsync(() =>
+            {
+                wasInvoked = true;
+                return Task.CompletedTask;
+            }, "PropertyName");
+
+            wasInvoked.Should().BeTrue();
+        }
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_set_UpdateErrorMessage_if_there_was_a_timeout()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            await vm.SetModelPropertyAsync(() => Task.Delay(TimeSpan.FromMinutes(1)), "LongProperty", 1);
+            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+        }
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_set_UpdateErrorMessage_if_there_was_an_error()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            await vm.SetModelPropertyAsync(() => Task.FromException(new InvalidOperationException()), "Error");
+            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+        }
+
+        //// ===========================================================================================================
+        //// SetPropertyAndPerformAsyncUpdate Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_set_the_property()
+        {
+            string fakeProperty = "Nothing";
+
+            var vm = new TestEditorViewModel(s_bonusBar);
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref fakeProperty,
+                    "Changed",
+                    () => Task.CompletedTask,
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeTrue();
+
+            fakeProperty.Should().Be("Changed");
+        }
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_not_do_anything_if_the_property_has_not_chnaged()
+        {
+            string fakeProperty = "Nothing";
+
+            var vm = new TestEditorViewModel(s_bonusBar);
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref fakeProperty,
+                    "Nothing",
+                    () => Task.CompletedTask,
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeFalse();
+
+            fakeProperty.Should().Be("Nothing");
+        }
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_not_invoke_the_update_func_if_loading()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            typeof(EditorViewModel)
+                .InvokeMember(
+                    "IsLoading",
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetProperty,
+                    Type.DefaultBinder,
+                    vm,
+                    new object[] { true });
+
+            int value = 0;
+            bool invokedUpdateAction = false;
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref value,
+                    10,
+                    () =>
+                    {
+                        invokedUpdateAction = true;
+                        return Task.CompletedTask;
+                    },
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeTrue();
+
+            invokedUpdateAction.Should().BeFalse();
+        }
+
         private class TestEditorViewModel : EditorViewModel
         {
             public TestEditorViewModel(BonusBarViewModel bonusBar, IThreadDispatcher threadDispatcher = null)
@@ -143,13 +251,15 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             public override EditorKind EditorKind => EditorKind.AccountsYourInfo;
             public override string DisplayName => "Test Setting";
 
+            public Task LoadingTask { get; set; } = Task.CompletedTask;
+
             protected override Task LoadInternalAsync(
                 IRegistryReadService registryReadService,
                 CancellationToken cancellationToken)
             {
                 LoadInternalAsyncCalled = true;
                 LoadInternalAsyncCancellationToken = cancellationToken;
-                return Task.CompletedTask;
+                return LoadingTask;
             }
         }
     }
