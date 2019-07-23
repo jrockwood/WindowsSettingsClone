@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
     using Models.Personalization;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32;
+    using ServiceContracts.Win32Services;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
