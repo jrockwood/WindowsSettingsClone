@@ -5,13 +5,12 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
+namespace WindowsSettingsClone.ViewModels.Tests.EditorViewModels
 {
     using System;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using EditorViewModels;
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.FullTrust;
@@ -19,6 +18,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
     using Shared.Logging;
     using Shared.Tests.FakeServices;
     using Shared.Tests.ViewServices;
+    using ViewModels.EditorViewModels;
 
     public class EditorViewModelTests
     {
