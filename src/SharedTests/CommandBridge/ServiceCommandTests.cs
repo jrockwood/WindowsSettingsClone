@@ -9,12 +9,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 {
     using System;
     using System.Collections.Generic;
-    using Commands;
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
     using Shared.CommandBridge;
+    using Shared.Commands;
 
     public class ServiceCommandTests
     {

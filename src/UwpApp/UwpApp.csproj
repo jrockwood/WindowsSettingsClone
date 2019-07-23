@@ -136,6 +136,7 @@
     <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\EditorViewModelToEditorViewConverter.cs" />
     <Compile Include="Converters\TopThicknessConverter.cs" />
+    <Compile Include="FullTrustServices\FullTrustServiceBase.cs" />
     <Compile Include="FullTrustServices\RegistryWriteService.cs" />
     <Compile Include="FullTrustServices\RegistryReadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

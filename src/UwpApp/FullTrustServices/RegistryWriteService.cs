@@ -12,27 +12,20 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
     using ServiceContracts.Commands;
     using ServiceContracts.Win32;
     using Shared.Commands;
-    using Shared.Diagnostics;
 
     /// <summary>
     /// Implementation of the <see cref="IRegistryWriteService"/> that calls across the desktop bridge to write to the
     /// Windows Registry.
     /// </summary>
-    internal class RegistryWriteService : IRegistryWriteService
+    internal class RegistryWriteService : FullTrustServiceBase, IRegistryWriteService
     {
-        //// ===========================================================================================================
-        //// Member Variables
-        //// ===========================================================================================================
-
-        private readonly ICommandBridgeClientService _commandBridge;
-
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
         public RegistryWriteService(ICommandBridgeClientService commandBridge)
+            : base(commandBridge)
         {
-            _commandBridge = Param.VerifyNotNull(commandBridge, nameof(commandBridge));
         }
 
         //// ===========================================================================================================
@@ -42,21 +35,21 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
         {
             var command = new RegistryWriteIntValueCommand(baseKey, key, valueName, value);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
 
         public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
         {
             var command = new RegistryWriteIntValueCommand(baseKey, key, valueName, value ? 1 : 0);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
 
         public async Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
         {
             var command = new RegistryWriteStringValueCommand(baseKey, key, valueName, value);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
         }
     }

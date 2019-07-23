@@ -12,27 +12,20 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
     using ServiceContracts.Commands;
     using ServiceContracts.Win32;
     using Shared.Commands;
-    using Shared.Diagnostics;
 
     /// <summary>
     /// Implementation of the <see cref="IRegistryReadService"/> that calls across the desktop bridge to read from the
     /// Windows Registry.
     /// </summary>
-    internal class RegistryReadService : IRegistryReadService
+    internal class RegistryReadService : FullTrustServiceBase, IRegistryReadService
     {
-        //// ===========================================================================================================
-        //// Member Variables
-        //// ===========================================================================================================
-
-        private readonly ICommandBridgeClientService _commandBridge;
-
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
         public RegistryReadService(ICommandBridgeClientService commandBridge)
+            : base(commandBridge)
         {
-            _commandBridge = Param.VerifyNotNull(commandBridge, nameof(commandBridge));
         }
 
         //// ===========================================================================================================
@@ -42,7 +35,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<int> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, int defaultValue)
         {
             var command = new RegistryReadIntValueCommand(baseKey, key, valueName, defaultValue);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result;
         }
@@ -50,7 +43,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<bool> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool defaultValue)
         {
             var command = new RegistryReadIntValueCommand(baseKey, key, valueName, defaultValue ? 1 : 0);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (int)response.Result != 0;
         }
@@ -58,7 +51,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
         public async Task<string> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, string defaultValue)
         {
             var command = new RegistryReadStringValueCommand(baseKey, key, valueName, defaultValue);
-            IServiceCommandResponse response = await _commandBridge.SendCommandAsync(command);
+            IServiceCommandResponse response = await CommandBridge.SendCommandAsync(command);
             response.ThrowIfError();
             return (string)response.Result;
         }
