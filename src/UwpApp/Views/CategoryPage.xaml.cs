@@ -27,9 +27,11 @@ namespace WindowsSettingsClone.UwpApp.Views
             var category = (CategoryKind)Enum.Parse(typeof(CategoryKind), (string)e.Parameter);
             ViewModel = CategoryPageViewModel.CreateFromCategoryKind(
                 category,
+                App.Current.Logger,
                 App.Current.NavigationService,
                 App.Current.ThreadDispatcher,
-                App.Current.RegistryReadService);
+                App.Current.RegistryReadService,
+                App.Current.RegistryWriteService);
 
             SettingsGroupNavigationView.ViewModel = ViewModel.Navigation;
         }

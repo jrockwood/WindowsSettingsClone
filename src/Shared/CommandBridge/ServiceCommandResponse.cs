@@ -9,6 +9,8 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
+    using Newtonsoft.Json;
     using ServiceContracts.CommandBridge;
 
     /// <summary>
@@ -66,12 +68,29 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return CreateError(commandName, ServiceErrorInfo.InternalError(exception.Message));
         }
 
-        public static bool TryDeserialize(
-            IDictionary<string, object> valueSet,
-            out ServiceCommandResponse response,
-            out ServiceCommandResponse errorResponse)
+        public static bool TryDeserializeFromJsonString(
+            string jsonString,
+            out IServiceCommandResponse response,
+            out IServiceCommandResponse errorResponse)
         {
-            if (!BridgeMessageDeserializer.TryCreate(
+            if (!BridgeMessageDeserializer.TryCreateFromJsonString(
+                jsonString,
+                out BridgeMessageDeserializer deserializer,
+                out errorResponse))
+            {
+                response = null;
+                return false;
+            }
+
+            return TryDeserialize(deserializer, out response, out errorResponse);
+        }
+
+        public static bool TryDeserializeFromValueSet(
+            IDictionary<string, object> valueSet,
+            out IServiceCommandResponse response,
+            out IServiceCommandResponse errorResponse)
+        {
+            if (!BridgeMessageDeserializer.TryCreateFromValueSet(
                 valueSet,
                 out BridgeMessageDeserializer deserializer,
                 out errorResponse))
@@ -80,6 +99,14 @@ namespace WindowsSettingsClone.Shared.CommandBridge
                 return false;
             }
 
+            return TryDeserialize(deserializer, out response, out errorResponse);
+        }
+
+        private static bool TryDeserialize(
+            BridgeMessageDeserializer deserializer,
+            out IServiceCommandResponse response,
+            out IServiceCommandResponse errorResponse)
+        {
             // Check for a non-success ErrorCode, which indicates we're deserializing an error
             if (deserializer.TryGetOptionalEnumValue(ParamName.ErrorCode, out ServiceCommandErrorCode errorCode) &&
                 errorCode != ServiceCommandErrorCode.Success)
@@ -102,7 +129,24 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return errorResponse == null;
         }
 
-        public void SerializeTo(IDictionary<string, object> valueSet)
+        /// <summary>
+        /// Serializes the response to a single string. It should be treated as an opaque serialization format to be
+        /// deserialized with <see cref="TryDeserializeFromJsonString"/>.
+        /// </summary>
+        public string SerializeToJsonString()
+        {
+            var valueSet = new Dictionary<string, object>();
+            SerializeToValueSet(valueSet);
+
+            string jsonString = JsonConvert.SerializeObject(valueSet, Formatting.None);
+            return jsonString;
+        }
+
+        /// <summary>
+        /// Serializes the response to a dictionary. It should be treated as an opaque serialization format to be
+        /// deserialized with <see cref="TryDeserializeFromValueSet"/>.
+        /// </summary>
+        public void SerializeToValueSet(IDictionary<string, object> valueSet)
         {
             valueSet.Add(ParamName.CommandName.ToString(), CommandName.ToString());
             valueSet.Add(ParamName.CommandResult.ToString(), Result);
@@ -112,6 +156,24 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             {
                 valueSet.Add(ParamName.ErrorMessage.ToString(), ErrorMessage);
             }
+        }
+
+        public string ToDebugString()
+        {
+            var builder = new StringBuilder();
+            builder.Append($"{CommandName}: ");
+
+            if (IsError)
+            {
+                builder.Append($"ErrorCode={ErrorCode}, ");
+                builder.Append($"ErrorMessage={ErrorMessage}");
+            }
+            else
+            {
+                builder.Append($"Result={Result}");
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>

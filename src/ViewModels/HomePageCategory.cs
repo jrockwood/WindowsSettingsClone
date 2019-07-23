@@ -7,7 +7,7 @@
 
 namespace WindowsSettingsClone.ViewModels
 {
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     public class HomePageCategory
     {

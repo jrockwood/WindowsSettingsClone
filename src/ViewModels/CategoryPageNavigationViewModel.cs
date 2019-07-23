@@ -12,7 +12,7 @@ namespace WindowsSettingsClone.ViewModels
     using System.Linq;
     using System.Windows.Input;
     using ServiceContracts.ViewServices;
-    using Shared.Utility;
+    using Shared.Diagnostics;
     using Utility;
 
     public class CategoryPageNavigationViewModel : BaseViewModel

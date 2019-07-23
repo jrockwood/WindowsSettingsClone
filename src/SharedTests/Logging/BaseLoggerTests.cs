@@ -15,10 +15,10 @@ namespace WindowsSettingsClone.Shared.Tests.Logging
     public class BaseLoggerTests
     {
         [Test]
-        public void MinimumLogLevel_should_default_at_Warning_level()
+        public void MinimumLogLevel_should_default_at_Success_level()
         {
             var logger = new TestLogger();
-            logger.MinimumLogLevel.Should().Be(LogLevel.Warning);
+            logger.MinimumLogLevel.Should().Be(LogLevel.Success);
         }
 
         [Test]
@@ -40,6 +40,9 @@ namespace WindowsSettingsClone.Shared.Tests.Logging
 
             logger.Log(LogLevel.Informational, "message");
             logger.LastLogMessage.Should().Be("info: message");
+
+            logger.Log(LogLevel.Success, "message");
+            logger.LastLogMessage.Should().Be("success: message");
 
             logger.Log(LogLevel.Warning, "message");
             logger.LastLogMessage.Should().Be("warn: message");
@@ -68,7 +71,7 @@ namespace WindowsSettingsClone.Shared.Tests.Logging
         {
             public string LastLogMessage { get; private set; }
 
-            protected override void LogInternal(string message)
+            protected override void LogInternal(LogLevel level, string message)
             {
                 LastLogMessage = message;
             }

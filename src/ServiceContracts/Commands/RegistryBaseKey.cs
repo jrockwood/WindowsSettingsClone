@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="RegistryHive.cs" company="Justin Rockwood">
+// <copyright file="RegistryBaseKey.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -10,7 +10,7 @@ namespace WindowsSettingsClone.ServiceContracts.Commands
     /// <summary>
     /// Represents the possible values for a top-level node in the Windows Registry.
     /// </summary>
-    public enum RegistryHive
+    public enum RegistryBaseKey
     {
         /// <summary>
         /// Represents the HKEY_CLASSES_ROOT base key.

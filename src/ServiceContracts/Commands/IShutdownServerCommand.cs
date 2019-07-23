@@ -1,20 +1,18 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConsoleLogger.cs" company="Justin Rockwood">
+// <copyright file="IShutdownServerCommand.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.DesktopServicesApp.Logging
+namespace WindowsSettingsClone.ServiceContracts.Commands
 {
-    using System;
-    using Shared.Logging;
+    using CommandBridge;
 
-    internal class ConsoleLogger : BaseLogger
+    /// <summary>
+    /// Command that requests the server to shutdown and terminate.
+    /// </summary>
+    public interface IShutdownServerCommand : IServiceCommand
     {
-        protected override void LogInternal(string message)
-        {
-            Console.WriteLine(message);
-        }
     }
 }

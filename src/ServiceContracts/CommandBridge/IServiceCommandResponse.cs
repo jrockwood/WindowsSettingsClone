@@ -32,7 +32,28 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         //// Methods
         //// ===========================================================================================================
 
-        void SerializeTo(IDictionary<string, object> valueSet);
+        /// <summary>
+        /// Serializes the response to a single string. It should be treated as an opaque serialization format to be
+        /// deserialized with <c>ServiceCommandResponse.TryDeserializeFromJsonString</c>.
+        /// </summary>
+        /// <remarks>
+        /// This is where I wish C# had the ability to specify a constructor in an interface, which would deserialize the command.
+        /// </remarks>
+        string SerializeToJsonString();
+
+        /// <summary>
+        /// Serializes the response to a dictionary. It should be treated as an opaque serialization format to be
+        /// deserialized with <c>ServiceCommandResponse.TryDeserializeFromValueSet</c>.
+        /// </summary>
+        /// <remarks>
+        /// This is where I wish C# had the ability to specify a constructor in an interface, which would deserialize the command.
+        /// </remarks>
+        void SerializeToValueSet(IDictionary<string, object> valueSet);
+
+        /// <summary>
+        /// Returns a string used for logging or debugging that represents the important parts of this command.
+        /// </summary>
+        string ToDebugString();
 
         /// <summary>
         /// Throws an <see cref="InvalidOperationException"/> if this response represents an error. Does nothing if this

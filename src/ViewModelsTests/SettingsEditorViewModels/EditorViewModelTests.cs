@@ -8,12 +8,15 @@
 namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
 {
     using System;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using EditorViewModels;
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.ViewServices;
+    using Shared.Logging;
     using Shared.Tests.FakeServices;
     using Shared.Tests.ViewServices;
 
@@ -42,12 +45,16 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             vm.IsIndeterminateProgressBarVisible.Should().BeFalse();
         }
 
+        //// ===========================================================================================================
+        //// LoadAsync Tests
+        //// ===========================================================================================================
+
         [Test]
         public async Task LoadAsync_should_invoke_LoadInternalAsync_using_the_correct_parameters()
         {
             var vm = new TestEditorViewModel(s_bonusBar);
             CancellationToken cancellationToken = new CancellationTokenSource().Token;
-            await vm.LoadAsync(new UnitTestThreadDispatcher(), new FakeRegistryService(), cancellationToken: cancellationToken);
+            await vm.LoadAsync(new FakeRegistryService(), cancellationToken: cancellationToken);
             vm.LoadInternalAsyncCalled.Should().BeTrue();
             vm.LoadInternalAsyncCancellationToken.Should().Be(cancellationToken);
         }
@@ -55,10 +62,10 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
         [Test]
         public async Task LoadAsync_should_start_a_timer_for_the_progress_bar_then_run_the_action()
         {
-            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
+            var vm = new TestEditorViewModel(s_bonusBar, dispatcher);
 
-            await vm.LoadAsync(dispatcher, new FakeRegistryService());
+            await vm.LoadAsync(new FakeRegistryService());
             dispatcher.Runs.Should().ContainInOrder(DispatchRunKind.UIThreadDelayed, DispatchRunKind.BackgroundThread);
         }
 
@@ -68,7 +75,6 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             const int delay = 1;
             var cancellationToken = new CancellationToken();
 
-            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher(
                 delayInvoker: (ms, token) =>
                 {
@@ -77,8 +83,9 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
                         .NotBe(cancellationToken, "because the progress bar cancellation should be different");
                     return Task.CompletedTask;
                 });
+            var vm = new TestEditorViewModel(s_bonusBar, dispatcher);
 
-            await vm.LoadAsync(dispatcher, new FakeRegistryService(), delay, cancellationToken);
+            await vm.LoadAsync(new FakeRegistryService(), delay, cancellationToken);
         }
 
         [Test]
@@ -88,11 +95,11 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var cancellationSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationSource.Token;
 
-            var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher =
-                new UnitTestThreadDispatcher(backgroundThreadInvoker: action => Task.Delay(-1, cancellationToken));
+                new UnitTestThreadDispatcher(backgroundAsyncThreadInvoker: action => Task.Delay(-1, cancellationToken));
+            var vm = new TestEditorViewModel(s_bonusBar, dispatcher);
 
-            Task task = vm.LoadAsync(dispatcher, new FakeRegistryService(), 0, cancellationToken);
+            Task task = vm.LoadAsync(new FakeRegistryService(), 0, cancellationToken);
             vm.IsIndeterminateProgressBarVisible.Should().BeTrue();
             cancellationSource.Cancel();
 
@@ -106,7 +113,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
-            await vm.LoadAsync(dispatcher, new FakeRegistryService());
+            await vm.LoadAsync(new FakeRegistryService());
             vm.IsIndeterminateProgressBarVisible.Should().BeFalse();
         }
 
@@ -116,14 +123,125 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             var vm = new TestEditorViewModel(s_bonusBar);
             var dispatcher = new UnitTestThreadDispatcher();
 
-            await vm.LoadAsync(dispatcher, new FakeRegistryService());
+            await vm.LoadAsync(new FakeRegistryService());
             vm.IsContentReady.Should().BeTrue();
+        }
+
+        //// ===========================================================================================================
+        //// SetModelPropertyAsync Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_invoke_the_task()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            bool wasInvoked = false;
+            await vm.SetModelPropertyAsync(() =>
+            {
+                wasInvoked = true;
+                return Task.CompletedTask;
+            }, "PropertyName");
+
+            wasInvoked.Should().BeTrue();
+        }
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_set_UpdateErrorMessage_if_there_was_a_timeout()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            await vm.SetModelPropertyAsync(() => Task.Delay(TimeSpan.FromMinutes(1)), "LongProperty", 1);
+            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+        }
+
+        [Test]
+        public async Task SetModelPropertyAsync_should_set_UpdateErrorMessage_if_there_was_an_error()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            await vm.SetModelPropertyAsync(() => Task.FromException(new InvalidOperationException()), "Error");
+            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+        }
+
+        //// ===========================================================================================================
+        //// SetPropertyAndPerformAsyncUpdate Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_set_the_property()
+        {
+            string fakeProperty = "Nothing";
+
+            var vm = new TestEditorViewModel(s_bonusBar);
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref fakeProperty,
+                    "Changed",
+                    () => Task.CompletedTask,
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeTrue();
+
+            fakeProperty.Should().Be("Changed");
+        }
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_not_do_anything_if_the_property_has_not_chnaged()
+        {
+            string fakeProperty = "Nothing";
+
+            var vm = new TestEditorViewModel(s_bonusBar);
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref fakeProperty,
+                    "Nothing",
+                    () => Task.CompletedTask,
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeFalse();
+
+            fakeProperty.Should().Be("Nothing");
+        }
+
+        [Test]
+        public void SetPropertyAndPerformAsyncUpdate_should_not_invoke_the_update_func_if_loading()
+        {
+            var vm = new TestEditorViewModel(s_bonusBar);
+            typeof(EditorViewModel)
+                .InvokeMember(
+                    "IsLoading",
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetProperty,
+                    Type.DefaultBinder,
+                    vm,
+                    new object[] { true });
+
+            int value = 0;
+            bool invokedUpdateAction = false;
+            vm.SetPropertyAndPerformAsyncUpdate(
+                    ref value,
+                    10,
+                    () =>
+                    {
+                        invokedUpdateAction = true;
+                        return Task.CompletedTask;
+                    },
+                    TimeSpan.FromMinutes(1).Milliseconds,
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    "TestProperty")
+                .Should()
+                .BeTrue();
+
+            invokedUpdateAction.Should().BeFalse();
         }
 
         private class TestEditorViewModel : EditorViewModel
         {
-            public TestEditorViewModel(BonusBarViewModel bonusBar)
-                : base(bonusBar)
+            public TestEditorViewModel(BonusBarViewModel bonusBar, IThreadDispatcher threadDispatcher = null)
+                : base(
+                    new NullLogger(),
+                    threadDispatcher ?? new UnitTestThreadDispatcher(),
+                    new DoNothingRegistryWriteService(),
+                    bonusBar)
             {
             }
 
@@ -133,13 +251,15 @@ namespace WindowsSettingsClone.ViewModels.Tests.SettingsEditorViewModels
             public override EditorKind EditorKind => EditorKind.AccountsYourInfo;
             public override string DisplayName => "Test Setting";
 
+            public Task LoadingTask { get; set; } = Task.CompletedTask;
+
             protected override Task LoadInternalAsync(
                 IRegistryReadService registryReadService,
                 CancellationToken cancellationToken)
             {
                 LoadInternalAsyncCalled = true;
                 LoadInternalAsyncCancellationToken = cancellationToken;
-                return Task.CompletedTask;
+                return LoadingTask;
             }
         }
     }

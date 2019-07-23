@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="DesktopBackgroundSettings.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -11,7 +11,7 @@ namespace WindowsSettingsClone.Models.Personalization
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
     using ServiceContracts.FullTrust;
-    using Shared.Utility;
+    using Shared.Diagnostics;
 
     /// <summary>
     /// Contains the model for all of the settings related to the desktop background.
@@ -23,7 +23,7 @@ namespace WindowsSettingsClone.Models.Personalization
         //// ===========================================================================================================
 
         // ReSharper disable once InconsistentNaming
-        private const RegistryHive HKCU = RegistryHive.CurrentUser;
+        private const RegistryBaseKey HKCU = RegistryBaseKey.CurrentUser;
 
         private const string DesktopPath = @"Control Panel\Desktop";
         private const string SlideshowPath = @"Control Panel\Personalization\Desktop Slideshow";
@@ -87,6 +87,11 @@ namespace WindowsSettingsClone.Models.Personalization
                 fitMode: DesktopBackgroundFitMode.Fill,
                 shuffleSlideshow: shuffle,
                 slideshowInterval: interval);
+        }
+
+        public static async Task SetShuffleSlideshowAsync(bool value, IRegistryWriteService registryWriteService)
+        {
+            await registryWriteService.WriteValueAsync(HKCU, SlideshowPath, Shuffle, value);
         }
 
         private static DesktopBackgroundKind BackgroundTypeToFit(int backgroundType)

@@ -13,6 +13,8 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
 
     public delegate Task ThreadInvokerFunc(Action action);
 
+    public delegate Task AsyncThreadInvokerFunc(Func<Task> action);
+
     public delegate Task DelayInvokerFunc(int millisecondsDelay, CancellationToken cancellationToken);
 
     /// <summary>
@@ -26,6 +28,7 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
 
         private readonly ThreadInvokerFunc _uiThreadInvoker;
         private readonly ThreadInvokerFunc _backgroundThreadInvoker;
+        private readonly AsyncThreadInvokerFunc _backgroundAsyncThreadInvoker;
         private readonly DelayInvokerFunc _delayInvoker;
 
         //// ===========================================================================================================
@@ -35,10 +38,12 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
         public ThreadDispatcher(
             ThreadInvokerFunc uiThreadInvoker,
             ThreadInvokerFunc backgroundThreadInvoker = null,
+            AsyncThreadInvokerFunc backgroundAsyncThreadInvoker = null,
             DelayInvokerFunc delayInvoker = null)
         {
             _uiThreadInvoker = uiThreadInvoker ?? throw new ArgumentNullException(nameof(uiThreadInvoker));
             _backgroundThreadInvoker = backgroundThreadInvoker ?? Task.Run;
+            _backgroundAsyncThreadInvoker = backgroundAsyncThreadInvoker ?? Task.Run;
             _delayInvoker = delayInvoker ?? Task.Delay;
         }
 
@@ -49,11 +54,6 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
         public virtual Task RunOnUIThreadAsync(Action action)
         {
             return _uiThreadInvoker(action);
-        }
-
-        public virtual Task RunOnBackgroundThreadAsync(Action action)
-        {
-            return _backgroundThreadInvoker(action);
         }
 
         public virtual async Task RunOnUIThreadDelayedAsync(
@@ -74,6 +74,16 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
             catch (TaskCanceledException)
             {
             }
+        }
+
+        public virtual Task RunOnBackgroundThreadAsync(Action action)
+        {
+            return _backgroundThreadInvoker(action);
+        }
+
+        public virtual Task RunOnBackgroundThreadAsync(Func<Task> actionAsync)
+        {
+            return _backgroundAsyncThreadInvoker(actionAsync);
         }
     }
 }

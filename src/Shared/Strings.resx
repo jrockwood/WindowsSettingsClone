@@ -123,8 +123,11 @@
   <data name="MissingRequiredMessageValue" xml:space="preserve">
     <value>Missing required value '{0}' from message.</value>
   </data>
-  <data name="RegistryKeyNameNotFound" xml:space="preserve">
-    <value>Registry value name '{0}' not found in path '{1}'.</value>
+  <data name="RegistryReadError" xml:space="preserve">
+    <value>Error in reading registry value '{0}\{1}': {2}.</value>
+  </data>
+  <data name="RegistryWriteError" xml:space="preserve">
+    <value>Error in writing registry value '{0}\{1}': {2}.</value>
   </data>
   <data name="WrongMessageValueType" xml:space="preserve">
     <value>Message value '{0}' has an incorrect type '{1}'. Expecting type '{2}'.</value>

@@ -9,8 +9,9 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 {
     using System;
     using System.Collections.Generic;
+    using Diagnostics;
+    using Newtonsoft.Json.Linq;
     using ServiceContracts.CommandBridge;
-    using Utility;
 
     /// <summary>
     /// Deserializes a low-level message that gets passed across the wire from the client to the server ( <see
@@ -34,17 +35,47 @@ namespace WindowsSettingsClone.Shared.CommandBridge
 
         public ServiceCommandName CommandName { get; }
         public bool HadError => LastError != null;
-        public ServiceCommandResponse LastError { get; private set; }
+        public IServiceCommandResponse LastError { get; private set; }
         public IDictionary<string, object> ValueSet { get; }
 
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
-        public static bool TryCreate(
+        public static bool TryCreateFromJsonString(
+            string jsonString,
+            out BridgeMessageDeserializer deserializer,
+            out IServiceCommandResponse errorResponse)
+        {
+            Param.VerifyString(jsonString, nameof(jsonString));
+
+            var valueSet = new Dictionary<string, object>();
+
+            try
+            {
+                // Try to parse the JSON.
+                var jsonObject = JObject.Parse(jsonString);
+
+                // Populate a value set from the parsed JSON.
+                foreach (KeyValuePair<string, JToken> pair in jsonObject)
+                {
+                    valueSet.Add(pair.Key, ((JValue)pair.Value).Value);
+                }
+            }
+            catch (Exception e)
+            {
+                deserializer = null;
+                errorResponse = ServiceCommandResponse.CreateError(ServiceCommandName.Unknown, e);
+                return false;
+            }
+
+            return TryCreateFromValueSet(valueSet, out deserializer, out errorResponse);
+        }
+
+        public static bool TryCreateFromValueSet(
             IDictionary<string, object> valueSet,
             out BridgeMessageDeserializer deserializer,
-            out ServiceCommandResponse errorResponse)
+            out IServiceCommandResponse errorResponse)
         {
             Param.VerifyNotNull(valueSet, nameof(valueSet));
 
@@ -125,7 +156,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         private static bool TryGetCommandName(
             IDictionary<string, object> valueSet,
             out ServiceCommandName commandName,
-            out ServiceCommandResponse errorResponse)
+            out IServiceCommandResponse errorResponse)
         {
             if (!valueSet.TryGetValue(ParamName.CommandName.ToString(), out object rawValue))
             {

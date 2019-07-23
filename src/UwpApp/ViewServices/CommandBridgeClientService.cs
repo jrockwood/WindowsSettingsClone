@@ -11,7 +11,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
     using System.Threading.Tasks;
     using ServiceContracts.CommandBridge;
     using Shared.CommandBridge;
-    using Shared.Utility;
+    using Shared.Diagnostics;
     using Windows.ApplicationModel.AppService;
     using Windows.Foundation.Collections;
 
@@ -42,17 +42,17 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         public async Task<IServiceCommandResponse> SendCommandAsync(IServiceCommand command)
         {
             var valueSet = new ValueSet();
-            command.SerializeTo(valueSet);
+            command.SerializeToValueSet(valueSet);
             AppServiceResponse bridgeResponse = await _connection.SendMessageAsync(valueSet);
             AppServiceResponseStatus status = bridgeResponse.Status;
 
-            ServiceCommandResponse response;
+            IServiceCommandResponse response;
             if (status == AppServiceResponseStatus.Success)
             {
-                if (!ServiceCommandResponse.TryDeserialize(
+                if (!ServiceCommandResponse.TryDeserializeFromValueSet(
                     bridgeResponse.Message,
                     out response,
-                    out ServiceCommandResponse errorResponse))
+                    out IServiceCommandResponse errorResponse))
                 {
                     response = errorResponse;
                 }

@@ -10,10 +10,19 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
     /// <summary>
     /// Enumerates all of the service commands.
     /// </summary>
+    // PLEASE ALPHABETIZE THESE COMMANDS (except for the first Unknown value).
     public enum ServiceCommandName
     {
+        // Keep this first
         Unknown,
+
+        // Alphabetize the rest
+
+        Echo,
         RegistryReadIntValue,
         RegistryReadStringValue,
+        RegistryWriteIntValue,
+        RegistryWriteStringValue,
+        ShutdownServer,
     }
 }

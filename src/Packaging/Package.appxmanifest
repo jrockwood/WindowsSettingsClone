@@ -1,48 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="desktop mp uap rescap">
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="desktop desktop6 mp rescap uap uap3">
 
-  <Identity
-    Name="Rockwood.WindowsSettingsClone"
-    Publisher="CN=justi"
-    Version="1.0.0.0" />
-
+  <Identity Name="Rockwood.WindowsSettingsClone" Publisher="CN=justi" Version="1.0.2.0" />
   <Properties>
     <DisplayName>Settings [Clone]</DisplayName>
     <PublisherDisplayName>Justin Rockwood</PublisherDisplayName>
     <Logo>Images\PackageLogo.png</Logo>
+    <desktop6:RegistryWriteVirtualization>disabled</desktop6:RegistryWriteVirtualization>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
   </Dependencies>
-
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$">
-      <uap:VisualElements
-        DisplayName="Settings [Clone]"
-        Description="Clone of the Windows 10 Settings app. Used as a learning tool."
-        BackgroundColor="transparent"
-        Square150x150Logo="Images\MediumTile.png"
-        Square44x44Logo="Images\AppIcon.png">
-        <uap:DefaultTile
-          Wide310x150Logo="Images\WideTile.png"
-          Square71x71Logo="Images\SmallTile.png"
-          Square310x310Logo="Images\LargeTile.png"
-          ShortName="Settings">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+      <uap:VisualElements DisplayName="Settings [Clone]" Description="Clone of the Windows 10 Settings app. Used as a learning tool." BackgroundColor="transparent" Square150x150Logo="Images\MediumTile.png" Square44x44Logo="Images\AppIcon.png">
+        <uap:DefaultTile Wide310x150Logo="Images\WideTile.png" Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" ShortName="Settings">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
@@ -51,20 +35,23 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
-
       <Extensions>
-        <desktop:Extension
-          Category="windows.fullTrustProcess"
-          Executable="DesktopServicesApp\DesktopServicesApp.exe" />
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="DesktopServicesApp\DesktopServicesApp.exe" />
+        <uap3:Extension Category="windows.appExecutionAlias" Executable="ElevatedDesktopServicesApp\ElevatedDesktopServicesApp.exe" EntryPoint="Windows.FullTrustApplication">
+          <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="ElevatedDesktopServicesApp.exe" />
+          </uap3:AppExecutionAlias>
+        </uap3:Extension>
         <uap:Extension Category="windows.appService">
           <uap:AppService Name="org.rockwood.settingsclone" />
         </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="allowElevation" />
+    <rescap:Capability Name="unvirtualizedResources" />
   </Capabilities>
 </Package>

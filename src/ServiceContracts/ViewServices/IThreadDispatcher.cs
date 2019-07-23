@@ -43,5 +43,12 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
         /// <param name="action">The action to run on a background thread.</param>
         /// <returns>An asynchronous <see cref="Task"/>.</returns>
         Task RunOnBackgroundThreadAsync(Action action);
+
+        /// <summary>
+        /// Schedules the provided callback on a background thread and returns the results asynchronously.
+        /// </summary>
+        /// <param name="actionAsync">The action to run on a background thread.</param>
+        /// <returns>An asynchronous <see cref="Task"/>.</returns>
+        Task RunOnBackgroundThreadAsync(Func<Task> actionAsync);
     }
 }

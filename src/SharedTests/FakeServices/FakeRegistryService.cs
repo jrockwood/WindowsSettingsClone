@@ -29,45 +29,45 @@ namespace WindowsSettingsClone.Shared.Tests.FakeServices
         //// Methods
         //// ===========================================================================================================
 
-        public void SetMockedValue(RegistryHive hive, string key, string valueName, int value)
+        public void SetMockedValue(RegistryBaseKey baseKey, string key, string valueName, int value)
         {
-            string path = ConstructFullPath(hive, key, valueName);
+            string path = ConstructFullPath(baseKey, key, valueName);
             _registry[path] = value;
         }
 
-        public void SetMockedValue(RegistryHive hive, string key, string valueName, string value)
+        public void SetMockedValue(RegistryBaseKey baseKey, string key, string valueName, string value)
         {
-            string path = ConstructFullPath(hive, key, valueName);
+            string path = ConstructFullPath(baseKey, key, valueName);
             _registry[path] = value;
         }
 
-        public async Task<int> ReadValueAsync(RegistryHive hive, string key, string valueName, int defaultValue)
+        public async Task<int> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, int defaultValue)
         {
-            int value = ReadValue(hive, key, valueName, defaultValue);
+            int value = ReadValue(baseKey, key, valueName, defaultValue);
             return await Task.FromResult(value);
         }
 
-        public async Task<bool> ReadValueAsync(RegistryHive hive, string key, string valueName, bool defaultValue)
+        public async Task<bool> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool defaultValue)
         {
-            int value = ReadValue(hive, key, valueName, defaultValue ? 1 : 0);
+            int value = ReadValue(baseKey, key, valueName, defaultValue ? 1 : 0);
             return await Task.FromResult(value != 0);
         }
 
-        public async Task<string> ReadValueAsync(RegistryHive hive, string key, string valueName, string defaultValue)
+        public async Task<string> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, string defaultValue)
         {
-            string value = ReadValue(hive, key, valueName, defaultValue);
+            string value = ReadValue(baseKey, key, valueName, defaultValue);
             return await Task.FromResult(value);
         }
 
-        private T ReadValue<T>(RegistryHive hive, string key, string valueName, T defaultValue)
+        private T ReadValue<T>(RegistryBaseKey baseKey, string key, string valueName, T defaultValue)
         {
-            string path = ConstructFullPath(hive, key, valueName);
+            string path = ConstructFullPath(baseKey, key, valueName);
             return _registry.ContainsKey(path) ? (T)_registry[path] : defaultValue;
         }
 
-        private static string ConstructFullPath(RegistryHive hive, string key, string valueName)
+        private static string ConstructFullPath(RegistryBaseKey baseKey, string key, string valueName)
         {
-            return $@"{hive}\{key}\{valueName}";
+            return $@"{baseKey}\{key}\{valueName}";
         }
     }
 }

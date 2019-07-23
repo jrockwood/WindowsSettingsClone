@@ -11,6 +11,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
     using System.Threading.Tasks;
     using Models.Personalization;
     using ServiceContracts.FullTrust;
+    using ServiceContracts.Logging;
+    using ServiceContracts.ViewServices;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
@@ -32,8 +34,11 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Constructors
         //// ===========================================================================================================
 
-        public BackgroundEditorViewModel()
-            : base(CreateBonusBarViewModel())
+        public BackgroundEditorViewModel(
+            ILogger logger,
+            IThreadDispatcher threadDispatcher,
+            IRegistryWriteService registryWriteService)
+            : base(logger, threadDispatcher, registryWriteService, CreateBonusBarViewModel())
         {
         }
 
@@ -109,7 +114,10 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         public bool ShuffleSlideshow
         {
             get => _shuffleSlideshow;
-            set => SetProperty(ref _shuffleSlideshow, value);
+            set => SetPropertyAndPerformAsyncUpdate(
+                ref _shuffleSlideshow,
+                value,
+                () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, RegistryWriteService));
         }
 
         //// ===========================================================================================================

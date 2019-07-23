@@ -17,35 +17,53 @@ namespace WindowsSettingsClone.Shared.Logging
     public abstract class BaseLogger : ILogger
     {
         //// ===========================================================================================================
+        //// Constructors
+        //// ===========================================================================================================
+
+        protected BaseLogger(LogLevel minimumLogLevel = LogLevel.Success)
+        {
+            MinimumLogLevel = minimumLogLevel;
+        }
+
+        //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
 
-        public LogLevel MinimumLogLevel { get; set; } = LogLevel.Warning;
+        public LogLevel MinimumLogLevel { get; set; }
 
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
+        public static bool ShouldLog(LogLevel logLevel, LogLevel minimumLogLevel)
+        {
+            return logLevel >= minimumLogLevel;
+        }
+
         public void Log(LogLevel level, string message, params object[] args)
         {
-            if (ShouldLog(level))
+            if (!ShouldLog(level))
             {
-                string fullMessage =
-                    $"{FormatPrefix(level)}: {string.Format(CultureInfo.InvariantCulture, message, args)}";
-                LogInternal(fullMessage);
+                return;
             }
+
+            string fullMessage = $"{FormatPrefix(level)}: {string.Format(CultureInfo.InvariantCulture, message, args)}";
+            LogInternal(level, fullMessage);
         }
 
         /// <summary>
         /// Implemented by sub classes to do the actual logging. This will only be called if the logging should happen
         /// (if it cleared the minimum logging level).
         /// </summary>
+        /// <param name="level">
+        /// The log level that should be logged. Useful for showing levels in different colors or other differentiation.
+        /// </param>
         /// <param name="message">The exact string to log.</param>
-        protected abstract void LogInternal(string message);
+        protected abstract void LogInternal(LogLevel level, string message);
 
         protected bool ShouldLog(LogLevel logLevel)
         {
-            return logLevel >= MinimumLogLevel;
+            return ShouldLog(logLevel, MinimumLogLevel);
         }
 
         protected virtual string FormatPrefix(LogLevel logLevel)
@@ -57,6 +75,9 @@ namespace WindowsSettingsClone.Shared.Logging
 
                 case LogLevel.Informational:
                     return "info";
+
+                case LogLevel.Success:
+                    return "success";
 
                 case LogLevel.Warning:
                     return "warn";

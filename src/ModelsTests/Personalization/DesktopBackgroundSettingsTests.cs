@@ -40,7 +40,7 @@ namespace WindowsSettingsClone.Models.Tests.Personalization
             foreach (KeyValuePair<int, DesktopBackgroundKind> pair in registryValueToBackgroundKinds)
             {
                 fakeRegistry.SetMockedValue(
-                    RegistryHive.CurrentUser,
+                    RegistryBaseKey.CurrentUser,
                     @"Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers",
                     "BackgroundType",
                     pair.Key);
@@ -67,7 +67,7 @@ namespace WindowsSettingsClone.Models.Tests.Personalization
         //    foreach (KeyValuePair<string, DesktopBackgroundFitMode> pair in registryValueToFitMode)
         //    {
         //        fakeRegistry.SetMockedValue(
-        //            RegistryHive.CurrentUser,
+        //            RegistryBaseKey.CurrentUser,
         //            @"Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers",
         //            "BackgroundType",
         //            pair.Key);

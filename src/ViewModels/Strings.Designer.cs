@@ -611,6 +611,15 @@ namespace WindowsSettingsClone.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting &apos;{0}&apos; was not updated. Please see the logs for details..
+        /// </summary>
+        internal static string EditorUpdateErrorMessage {
+            get {
+                return ResourceManager.GetString("EditorUpdateErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email &amp; accounts.
         /// </summary>
         internal static string EmailAndAccountsSettingName {
