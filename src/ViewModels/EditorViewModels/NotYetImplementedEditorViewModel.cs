@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
@@ -19,8 +20,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         public NotYetImplementedEditorViewModel(EditorKind editorKind, string displayName)
             : base(
                 new NullLogger(),
-                new ThreadDispatcher(Task.Run),
-                new DoNothingRegistryWriteService(),
+                new DoNothingAppServiceLocator(),
                 new BonusBarViewModel(null))
         {
             EditorKind = editorKind;
@@ -36,23 +36,109 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         {
             return Task.CompletedTask;
         }
-    }
 
-    public sealed class DoNothingRegistryWriteService : IRegistryWriteService
-    {
-        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
+        //// ===========================================================================================================
+        //// Classes
+        //// ===========================================================================================================
+
+        private sealed class DoNothingAppServiceLocator : IAppServiceLocator
         {
-            return Task.CompletedTask;
+            public INavigationViewService NavigationViewService { get; } = new DoNothingNavigationViewService();
+
+            public IPlatformCapabilityService PlatformCapabilityService { get; } =
+                new DoNothingPlatformCapabilityService();
+
+            public IThreadDispatcher ThreadDispatcher { get; } = new DoNothingThreadDispatcher();
+            public IRegistryReadService RegistryReadService { get; } = new DoNothingRegistryReadService();
+            public IRegistryWriteService RegistryWriteService { get; } = new DoNothingRegistryWriteService();
         }
 
-        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
+        private sealed class DoNothingPlatformCapabilityService : IPlatformCapabilityService
         {
-            return Task.CompletedTask;
+            public bool IsRevealBrushSupported => false;
         }
 
-        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
+        private sealed class DoNothingThreadDispatcher : IThreadDispatcher
         {
-            return Task.CompletedTask;
+            public Task RunOnUIThreadAsync(Action action)
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task RunOnUIThreadDelayedAsync(
+                Action action,
+                int millisecondsDelay,
+                CancellationToken cancellationToken = default(CancellationToken))
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task RunOnBackgroundThreadAsync(Action action)
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task RunOnBackgroundThreadAsync(Func<Task> actionAsync)
+            {
+                return Task.CompletedTask;
+            }
+        }
+
+        private sealed class DoNothingNavigationViewService : INavigationViewService
+        {
+            public event EventHandler BackStackDepthChange;
+
+            public bool CanGoBack => false;
+
+            public int BackStackDepth
+            {
+                get
+                {
+                    // This is only here to avoid the compiler error that this event is not used.
+                    BackStackDepthChange?.Invoke(this, EventArgs.Empty);
+                    return 0;
+                }
+            }
+
+            public void GoBack() { }
+
+            public void NavigateTo(Type pageViewModelType, string pageViewModelState) { }
+        }
+
+        private sealed class DoNothingRegistryReadService : IRegistryReadService
+        {
+            public Task<int> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, int defaultValue)
+            {
+                return Task.FromResult(0);
+            }
+
+            public Task<bool> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool defaultValue)
+            {
+                return Task.FromResult(false);
+            }
+
+            public Task<string> ReadValueAsync(RegistryBaseKey baseKey, string key, string valueName, string defaultValue)
+            {
+                return Task.FromResult(string.Empty);
+            }
+        }
+
+        private sealed class DoNothingRegistryWriteService : IRegistryWriteService
+        {
+            public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
+            {
+                return Task.CompletedTask;
+            }
         }
     }
 }

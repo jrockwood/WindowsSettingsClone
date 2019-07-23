@@ -34,17 +34,14 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Constructors
         //// ===========================================================================================================
 
-        public BackgroundEditorViewModel(
-            ILogger logger,
-            IThreadDispatcher threadDispatcher,
-            IRegistryWriteService registryWriteService)
-            : base(logger, threadDispatcher, registryWriteService, CreateBonusBarViewModel())
+        public BackgroundEditorViewModel(ILogger logger, IAppServiceLocator serviceLocator)
+            : base(logger, serviceLocator, CreateBonusBarViewModel())
         {
             ChangePictureIntervals.SelectedItemChanged += (_, __) =>
                 SetModelPropertyAsyncFromEventHandler(
                     () => DesktopBackgroundSettings.SetSlideshowIntervalAsync(
                         ChangePictureIntervals.SelectedItem.Value,
-                        RegistryWriteService),
+                        serviceLocator.RegistryWriteService),
                     nameof(ChangePictureIntervals));
         }
 
@@ -123,7 +120,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
             set => SetPropertyAndPerformAsyncUpdate(
                 ref _shuffleSlideshow,
                 value,
-                () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, RegistryWriteService));
+                () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, ServiceLocator.RegistryWriteService));
         }
 
         //// ===========================================================================================================

@@ -12,7 +12,6 @@ namespace WindowsSettingsClone.ViewModels
     using EditorViewModels;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32Services;
     using Shared.Diagnostics;
 
     /// <summary>
@@ -26,9 +25,7 @@ namespace WindowsSettingsClone.ViewModels
 
         private EditorViewModel _currentEditor;
         private readonly ILogger _logger;
-        private readonly IRegistryReadService _registryReadService;
-        private readonly IRegistryWriteService _registryWriteService;
-        private readonly IThreadDispatcher _threadDispatcher;
+        private readonly IAppServiceLocator _serviceLocator;
 
         //// ===========================================================================================================
         //// Constructors
@@ -36,15 +33,11 @@ namespace WindowsSettingsClone.ViewModels
 
         private CategoryPageViewModel(
             ILogger logger,
-            IThreadDispatcher threadDispatcher,
-            IRegistryReadService registryReadService,
-            IRegistryWriteService registryWriteService,
+            IAppServiceLocator serviceLocator,
             CategoryPageNavigationViewModel navigationViewModel)
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
-            _threadDispatcher = Param.VerifyNotNull(threadDispatcher, nameof(threadDispatcher));
-            _registryReadService = Param.VerifyNotNull(registryReadService, nameof(registryReadService));
-            _registryWriteService = Param.VerifyNotNull(registryWriteService, nameof(registryWriteService));
+            _serviceLocator = Param.VerifyNotNull(serviceLocator, nameof(serviceLocator));
 
             Navigation = Param.VerifyNotNull(navigationViewModel, nameof(navigationViewModel));
             Navigation.PropertyChanged += OnNavigationPropertyChanged;
@@ -73,21 +66,16 @@ namespace WindowsSettingsClone.ViewModels
         public static CategoryPageViewModel CreateFromCategoryKind(
             CategoryKind category,
             ILogger logger,
-            INavigationViewService navigationViewService,
-            IThreadDispatcher threadDispatcher,
-            IRegistryReadService registryReadService,
-            IRegistryWriteService registryWriteService)
+            IAppServiceLocator serviceLocator)
         {
             switch (category)
             {
                 case CategoryKind.System:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.System,
                             Strings.SystemCategoryName,
                             new[]
@@ -149,11 +137,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Devices:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Devices,
                             Strings.DevicesCategoryName,
                             new[]
@@ -191,22 +177,18 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Phone:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Phone,
                             Strings.PhoneCategoryName));
 
                 case CategoryKind.NetworkAndInternet:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.NetworkAndInternet,
                             Strings.NetworkAndInternetCategoryName,
                             new[]
@@ -240,11 +222,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Personalization:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Personalization,
                             Strings.PersonalizationCategoryName,
                             new[]
@@ -282,11 +262,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Apps:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Apps,
                             Strings.AppsCategoryName,
                             new[]
@@ -320,11 +298,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Accounts:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Accounts,
                             Strings.AccountsCategoryName,
                             new[]
@@ -358,11 +334,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.TimeAndLanguage:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.TimeAndLanguage,
                             Strings.TimeAndLanguageCategoryName,
                             new[]
@@ -388,11 +362,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Gaming:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Gaming,
                             Strings.GamingCategoryName,
                             new[]
@@ -422,11 +394,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.EaseOfAccess:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.EaseOfAccess,
                             Strings.EaseOfAccessCategoryName,
                             new[]
@@ -501,11 +471,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Search:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Search,
                             Strings.SearchCategoryName,
                             new[]
@@ -527,11 +495,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Cortana:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Cortana,
                             Strings.CortanaCategoryName,
                             new[]
@@ -553,11 +519,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.Privacy:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.Privacy,
                             Strings.PrivacyCategoryName,
                             new[]
@@ -705,11 +669,9 @@ namespace WindowsSettingsClone.ViewModels
                 case CategoryKind.UpdateAndSecurity:
                     return new CategoryPageViewModel(
                         logger,
-                        threadDispatcher,
-                        registryReadService,
-                        registryWriteService,
+                        serviceLocator,
                         new CategoryPageNavigationViewModel(
-                            navigationViewService,
+                            serviceLocator.NavigationViewService,
                             CategoryKind.UpdateAndSecurity,
                             Strings.UpdateAndSecurityCategoryName,
                             new[]
@@ -770,13 +732,8 @@ namespace WindowsSettingsClone.ViewModels
 
             CurrentEditor = Navigation.SelectedItem == null
                 ? null
-                : EditorViewModelFactory.CreateFromKind(
-                    Navigation.SelectedItem.EditorKind,
-                    _logger,
-                    _threadDispatcher,
-                    _registryWriteService);
-
-            CurrentEditor?.LoadAsync(_registryReadService);
+                : EditorViewModelFactory.CreateFromKind(Navigation.SelectedItem.EditorKind, _logger, _serviceLocator);
+            CurrentEditor?.LoadAsync();
         }
     }
 }

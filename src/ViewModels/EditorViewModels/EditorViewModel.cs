@@ -39,15 +39,10 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         //// Constructors
         //// ===========================================================================================================
 
-        protected EditorViewModel(
-            ILogger logger,
-            IThreadDispatcher threadDispatcher,
-            IRegistryWriteService registryWriteService,
-            BonusBarViewModel bonusBar)
+        protected EditorViewModel(ILogger logger, IAppServiceLocator serviceLocator, BonusBarViewModel bonusBar)
         {
             Logger = Param.VerifyNotNull(logger, nameof(logger));
-            ThreadDispatcher = Param.VerifyNotNull(threadDispatcher, nameof(threadDispatcher));
-            RegistryWriteService = Param.VerifyNotNull(registryWriteService, nameof(registryWriteService));
+            ServiceLocator = Param.VerifyNotNull(serviceLocator, nameof(serviceLocator));
             BonusBar = Param.VerifyNotNull(bonusBar, nameof(bonusBar));
         }
 
@@ -83,15 +78,13 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         protected bool IsLoading { get; private set; }
 
         protected ILogger Logger { get; }
-        protected IRegistryWriteService RegistryWriteService { get; }
-        protected IThreadDispatcher ThreadDispatcher { get; }
+        protected IAppServiceLocator ServiceLocator { get; }
 
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
         public async Task LoadAsync(
-            IRegistryReadService registryReadService,
             int showProgressBarDelayMilliseconds = 500,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -101,20 +94,20 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             // specified delay.
             var progressBarCancellationSource = new CancellationTokenSource();
             CancellationToken progressBarCancellationToken = progressBarCancellationSource.Token;
-            Task progressTask = ThreadDispatcher.RunOnUIThreadDelayedAsync(
+            Task progressTask = ServiceLocator.ThreadDispatcher.RunOnUIThreadDelayedAsync(
                 () => IsIndeterminateProgressBarVisible = true,
                 showProgressBarDelayMilliseconds,
                 progressBarCancellationToken);
 
             // Start loading on a background thread.
-            await ThreadDispatcher.RunOnBackgroundThreadAsync(
-                () => LoadInternalAsync(registryReadService, cancellationToken));
+            await ServiceLocator.ThreadDispatcher.RunOnBackgroundThreadAsync(
+                () => LoadInternalAsync(ServiceLocator.RegistryReadService, cancellationToken));
 
             // Cancel the progress bar timer if it hasn't been set yet.
             progressBarCancellationSource.Cancel();
 
             // Set the progress bar and content ready flags.
-            await ThreadDispatcher.RunOnUIThreadAsync(
+            await ServiceLocator.ThreadDispatcher.RunOnUIThreadAsync(
                 () =>
                 {
                     IsIndeterminateProgressBarVisible = false;
@@ -199,7 +192,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
             if (wasError)
             {
-                await ThreadDispatcher.RunOnUIThreadAsync(
+                await ServiceLocator.ThreadDispatcher.RunOnUIThreadAsync(
                     () => UpdateErrorMessage = string.Format(
                         CultureInfo.CurrentCulture,
                         Strings.EditorUpdateErrorMessage,

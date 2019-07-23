@@ -7,9 +7,9 @@
 
 namespace WindowsSettingsClone.UwpApp.Views
 {
+    using ViewModels;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
-    using ViewModels;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -24,7 +24,8 @@ namespace WindowsSettingsClone.UwpApp.Views
             NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
-        public HomePageViewModel ViewModel { get; } = new HomePageViewModel(App.Current.NavigationService);
+        public HomePageViewModel ViewModel { get; } =
+            new HomePageViewModel(App.Current.AppServiceLocator.NavigationViewService);
 
         private void OnSettingsGridViewItemClick(object sender, ItemClickEventArgs e)
         {

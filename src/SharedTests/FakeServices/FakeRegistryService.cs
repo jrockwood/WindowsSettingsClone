@@ -16,7 +16,7 @@ namespace WindowsSettingsClone.Shared.Tests.FakeServices
     /// <summary>
     /// Implementation of a fake registry.
     /// </summary>
-    public class FakeRegistryService : IRegistryReadService
+    public class FakeRegistryService : IRegistryReadService, IRegistryWriteService
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -63,6 +63,27 @@ namespace WindowsSettingsClone.Shared.Tests.FakeServices
         {
             string path = ConstructFullPath(baseKey, key, valueName);
             return _registry.ContainsKey(path) ? (T)_registry[path] : defaultValue;
+        }
+
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, int value)
+        {
+            string path = ConstructFullPath(baseKey, key, valueName);
+            _registry[path] = value;
+            return Task.CompletedTask;
+        }
+
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, bool value)
+        {
+            string path = ConstructFullPath(baseKey, key, valueName);
+            _registry[path] = value;
+            return Task.CompletedTask;
+        }
+
+        public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
+        {
+            string path = ConstructFullPath(baseKey, key, valueName);
+            _registry[path] = value;
+            return Task.CompletedTask;
         }
 
         private static string ConstructFullPath(RegistryBaseKey baseKey, string key, string valueName)

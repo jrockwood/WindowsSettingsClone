@@ -13,7 +13,6 @@ namespace WindowsSettingsClone.UwpApp
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32Services;
     using Shared.Logging;
     using Views;
     using ViewServices;
@@ -33,6 +32,12 @@ namespace WindowsSettingsClone.UwpApp
     /// </summary>
     public sealed partial class App : Application
     {
+        //// ===========================================================================================================
+        //// Member Variables
+        //// ===========================================================================================================
+
+        private readonly AppServiceLocator _appServiceLocator = new AppServiceLocator();
+
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
@@ -57,16 +62,9 @@ namespace WindowsSettingsClone.UwpApp
 
         public ILogger Logger { get; private set; } = new NullLogger();
 
-        public INavigationViewService NavigationService =>
-            ((Window.Current.Content as Frame)?.Content as RootPage)?.NavigationService;
-
-        public IThreadDispatcher ThreadDispatcher { get; } = new ViewThreadDispatcher();
-
-        public IRegistryReadService RegistryReadService { get; private set; }
-
-        public IRegistryWriteService RegistryWriteService { get; private set; }
-
         public ICommandBridgeClientService BridgeClientService { get; private set; }
+
+        public IAppServiceLocator AppServiceLocator => _appServiceLocator;
 
         //// ===========================================================================================================
         //// Methods
@@ -131,8 +129,8 @@ namespace WindowsSettingsClone.UwpApp
             BackgroundTaskDeferral deferral = args.TaskInstance.GetDeferral();
             BridgeClientService = new CommandBridgeClientService(triggerDetails.AppServiceConnection);
 
-            RegistryReadService = new RegistryReadService(BridgeClientService);
-            RegistryWriteService = new RegistryWriteService(BridgeClientService);
+            _appServiceLocator.RegistryReadService = new RegistryReadService(BridgeClientService);
+            _appServiceLocator.RegistryWriteService = new RegistryWriteService(BridgeClientService);
         }
 
         private static async void LaunchDesktopServicesBridge()
@@ -164,7 +162,7 @@ namespace WindowsSettingsClone.UwpApp
             // embedded resource. We can't embed the reveal styles since our Visual Studio project targets an older
             // platform (Creator's Update) where the reveal brush is not supported. Therefore we get compile-time errors
             // when trying to embed it.
-            ResourceDictionary stylesDictionary = PlatformCapabilityService.Instance.IsRevealBrushSupported
+            ResourceDictionary stylesDictionary = AppServiceLocator.PlatformCapabilityService.IsRevealBrushSupported
                 ? new ResourceDictionary { Source = new Uri("ms-appx:///Resources/RevealStyles.xaml") }
                 : new ResourceDictionary { Source = new Uri("ms-appx:///Resources/NonRevealStyles.xaml") };
 

@@ -1,25 +1,28 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="PlatformCapabilityService.cs" company="Justin Rockwood">
+// <copyright file="IAppServiceLocator.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.UwpApp.ViewServices
+namespace WindowsSettingsClone.ServiceContracts.ViewServices
 {
-    using ServiceContracts.ViewServices;
-    using Windows.Foundation.Metadata;
+    using Win32Services;
 
     /// <summary>
-    /// Default implementation of the <see cref="IPlatformCapabilityService"/>. Uses a singleton instance to cache
-    /// results since it can be expensive to query the platform.
+    /// Service contract for finding other services that are meant to be used across the entire application. For example,
+    /// there should only every be one instance of a <see cref="INavigationViewService"/>.
     /// </summary>
-    internal class PlatformCapabilityService : IPlatformCapabilityService
+    public interface IAppServiceLocator
     {
         //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
 
-        public bool IsRevealBrushSupported { get; } = ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.RevealBrush");
+        INavigationViewService NavigationViewService { get; }
+        IPlatformCapabilityService PlatformCapabilityService { get; }
+        IThreadDispatcher ThreadDispatcher { get; }
+        IRegistryReadService RegistryReadService { get; }
+        IRegistryWriteService RegistryWriteService { get; }
     }
 }
