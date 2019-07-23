@@ -89,6 +89,11 @@ namespace WindowsSettingsClone.Models.Personalization
                 slideshowInterval: interval);
         }
 
+        public static async Task SetSlideshowIntervalAsync(int value, IRegistryWriteService registryWriteService)
+        {
+            await registryWriteService.WriteValueAsync(HKCU, SlideshowPath, Interval, value);
+        }
+
         public static async Task SetShuffleSlideshowAsync(bool value, IRegistryWriteService registryWriteService)
         {
             await registryWriteService.WriteValueAsync(HKCU, SlideshowPath, Shuffle, value);

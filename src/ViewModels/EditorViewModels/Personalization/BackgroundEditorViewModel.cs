@@ -40,6 +40,12 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
             IRegistryWriteService registryWriteService)
             : base(logger, threadDispatcher, registryWriteService, CreateBonusBarViewModel())
         {
+            ChangePictureIntervals.SelectedItemChanged += (_, __) =>
+                SetModelPropertyAsyncFromEventHandler(
+                    () => DesktopBackgroundSettings.SetSlideshowIntervalAsync(
+                        ChangePictureIntervals.SelectedItem.Value,
+                        RegistryWriteService),
+                    nameof(ChangePictureIntervals));
         }
 
         //// ===========================================================================================================
@@ -130,8 +136,9 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         {
             DesktopBackgroundSettings model = await DesktopBackgroundSettings.CreateAsync(registryReadService);
             BackgroundKinds.Select(model.BackgroundKind);
-            FitKinds.Select(model.FitMode);
+            ChangePictureIntervals.Select(model.SlideshowInterval);
             ShuffleSlideshow = model.ShuffleSlideshow;
+            FitKinds.Select(model.FitMode);
         }
 
         private static BonusBarViewModel CreateBonusBarViewModel()
