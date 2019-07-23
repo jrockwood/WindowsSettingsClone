@@ -776,7 +776,7 @@ namespace WindowsSettingsClone.ViewModels
                     _threadDispatcher,
                     _registryWriteService);
 
-            CurrentEditor?.LoadAsync(_threadDispatcher, _registryReadService);
+            CurrentEditor?.LoadAsync(_registryReadService);
         }
     }
 }

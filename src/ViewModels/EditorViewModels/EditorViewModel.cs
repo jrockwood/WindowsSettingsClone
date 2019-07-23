@@ -30,6 +30,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         //// Member Variables
         //// ===========================================================================================================
 
+        protected const int DefaultPropertyUpdateTimeoutMs = 1000;
+
         private bool _isContentReady;
         private bool _isIndeterminateProgressBarVisible;
         private string _updateErrorMessage;
@@ -89,6 +91,43 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         //// Methods
         //// ===========================================================================================================
 
+        public async Task LoadAsync(
+            IRegistryReadService registryReadService,
+            int showProgressBarDelayMilliseconds = 500,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            IsLoading = true;
+
+            // Start a timer to trigger the progress bar visibility if the content still hasn't loaded within the
+            // specified delay.
+            var progressBarCancellationSource = new CancellationTokenSource();
+            CancellationToken progressBarCancellationToken = progressBarCancellationSource.Token;
+            Task progressTask = ThreadDispatcher.RunOnUIThreadDelayedAsync(
+                () => IsIndeterminateProgressBarVisible = true,
+                showProgressBarDelayMilliseconds,
+                progressBarCancellationToken);
+
+            // Start loading on a background thread.
+            await ThreadDispatcher.RunOnBackgroundThreadAsync(
+                () => LoadInternalAsync(registryReadService, cancellationToken));
+
+            // Cancel the progress bar timer if it hasn't been set yet.
+            progressBarCancellationSource.Cancel();
+
+            // Set the progress bar and content ready flags.
+            await ThreadDispatcher.RunOnUIThreadAsync(
+                () =>
+                {
+                    IsIndeterminateProgressBarVisible = false;
+                    IsContentReady = true;
+                    IsLoading = false;
+                });
+        }
+
+        protected abstract Task LoadInternalAsync(
+            IRegistryReadService registryReadService,
+            CancellationToken cancellationToken);
+
         /// <summary>
         /// Sets the specified property value. If the property value changed, the <see
         /// cref="INotifyPropertyChanged.PropertyChanged"/> event is raised an an async update is kicked off. If there
@@ -108,7 +147,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             ref T field,
             T value,
             Func<Task> asyncUpdateFunc,
-            int millisecondsTimeout = 1000,
+            int millisecondsTimeout = DefaultPropertyUpdateTimeoutMs,
             [CallerMemberName] string propertyName = null)
         {
             if (!SetProperty(ref field, value, propertyName))
@@ -122,62 +161,21 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 return true;
             }
 
-            DoUpdateForPropertyAsync(asyncUpdateFunc(), millisecondsTimeout, propertyName);
+            PerformUpdateForPropertyAsync(asyncUpdateFunc, propertyName, millisecondsTimeout);
 
             return true;
         }
 
-        public async Task LoadAsync(
-            IThreadDispatcher threadDispatcher,
-            IRegistryReadService registryReadService,
-            int showProgressBarDelayMilliseconds = 500,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (threadDispatcher == null)
-            {
-                throw new ArgumentNullException(nameof(threadDispatcher));
-            }
-
-            IsLoading = true;
-
-            // Start a timer to trigger the progress bar visibility if the content still hasn't loaded within the
-            // specified delay.
-            var progressBarCancellationSource = new CancellationTokenSource();
-            CancellationToken progressBarCancellationToken = progressBarCancellationSource.Token;
-            Task progressTask = threadDispatcher.RunOnUIThreadDelayedAsync(
-                () => IsIndeterminateProgressBarVisible = true,
-                showProgressBarDelayMilliseconds,
-                progressBarCancellationToken);
-
-            // Start loading on a background thread.
-            await threadDispatcher.RunOnBackgroundThreadAsync(
-                () => LoadInternalAsync(registryReadService, cancellationToken));
-
-            // Cancel the progress bar timer if it hasn't been set yet.
-            progressBarCancellationSource.Cancel();
-
-            // Set the progress bar and content ready flags.
-            await threadDispatcher.RunOnUIThreadAsync(
-                () =>
-                {
-                    IsIndeterminateProgressBarVisible = false;
-                    IsContentReady = true;
-                });
-
-            IsLoading = false;
-        }
-
-        protected abstract Task LoadInternalAsync(
-            IRegistryReadService registryReadService,
-            CancellationToken cancellationToken);
-
-        private async void DoUpdateForPropertyAsync(Task updateTask, int millisecondsTimeout, string propertyName)
+        protected async void PerformUpdateForPropertyAsync(
+            Func<Task> updateTask,
+            string propertyName,
+            int millisecondsTimeout = DefaultPropertyUpdateTimeoutMs)
         {
             bool wasError = false;
 
             try
             {
-                await updateTask.TimeoutAfter(millisecondsTimeout);
+                await updateTask().TimeoutAfter(millisecondsTimeout);
             }
             catch (TimeoutException)
             {
