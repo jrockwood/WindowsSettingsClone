@@ -13,9 +13,9 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
-    using ServiceContracts.FullTrust;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using Shared.Diagnostics;
     using Shared.Logging;
     using Shared.Threading;

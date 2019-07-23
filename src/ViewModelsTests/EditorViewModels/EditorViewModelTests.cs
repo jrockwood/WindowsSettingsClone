@@ -13,8 +13,8 @@ namespace WindowsSettingsClone.ViewModels.Tests.EditorViewModels
     using System.Threading.Tasks;
     using FluentAssertions;
     using NUnit.Framework;
-    using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using Shared.Logging;
     using Shared.Tests.FakeServices;
     using Shared.Tests.ViewServices;

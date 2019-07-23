@@ -10,8 +10,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading;
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
-    using ServiceContracts.FullTrust;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using Shared.Logging;
 
     public class NotYetImplementedEditorViewModel : EditorViewModel

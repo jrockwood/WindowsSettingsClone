@@ -10,7 +10,7 @@ namespace WindowsSettingsClone.UwpApp.FullTrustServices
     using System.Threading.Tasks;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
-    using ServiceContracts.FullTrust;
+    using ServiceContracts.Win32;
     using Shared.Commands;
     using Shared.Diagnostics;
 

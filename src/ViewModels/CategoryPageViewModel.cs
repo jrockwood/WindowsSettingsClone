@@ -10,9 +10,9 @@ namespace WindowsSettingsClone.ViewModels
     using System;
     using System.ComponentModel;
     using EditorViewModels;
-    using ServiceContracts.FullTrust;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using Shared.Diagnostics;
 
     /// <summary>

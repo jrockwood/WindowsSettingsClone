@@ -11,7 +11,7 @@ namespace WindowsSettingsClone.Shared.Tests.FakeServices
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
-    using ServiceContracts.FullTrust;
+    using ServiceContracts.Win32;
 
     /// <summary>
     /// Implementation of a fake registry.

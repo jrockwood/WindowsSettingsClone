@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.FullTrust
+namespace WindowsSettingsClone.ServiceContracts.Win32
 {
     using System.Threading.Tasks;
     using Commands;

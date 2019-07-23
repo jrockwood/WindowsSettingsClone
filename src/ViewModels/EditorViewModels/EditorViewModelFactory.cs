@@ -9,9 +9,9 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 {
     using System;
     using Personalization;
-    using ServiceContracts.FullTrust;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
 
     internal static class EditorViewModelFactory
     {
