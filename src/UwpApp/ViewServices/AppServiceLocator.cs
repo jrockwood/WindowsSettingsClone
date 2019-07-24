@@ -8,6 +8,7 @@
 namespace WindowsSettingsClone.UwpApp.ViewServices
 {
     using System;
+    using System.Runtime.CompilerServices;
     using ServiceContracts.ViewServices;
     using ServiceContracts.Win32Services;
     using Views;
@@ -40,29 +41,24 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         public IRegistryReadService RegistryReadService
         {
             get => _registryReadService;
-            set
-            {
-                if (_registryReadService != null)
-                {
-                    throw new InvalidOperationException("Cannot set the service more than once");
-                }
-
-                _registryReadService = value;
-            }
+            set => SetOnlyOnce(ref _registryReadService, value);
         }
 
         public IRegistryWriteService RegistryWriteService
         {
             get => _registryWriteService;
-            set
-            {
-                if (_registryWriteService != null)
-                {
-                    throw new InvalidOperationException("Cannot set the service more than once");
-                }
+            set => SetOnlyOnce(ref _registryWriteService, value);
+        }
 
-                _registryWriteService = value;
+        private static void SetOnlyOnce<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+            where T : class
+        {
+            if (field != null)
+            {
+                throw new InvalidOperationException($"Cannot set {propertyName} more than once");
             }
+
+            field = value;
         }
     }
 }
