@@ -62,7 +62,7 @@ namespace WindowsSettingsClone.Shared.Logging
 
             foreach (ILogger logger in _loggers)
             {
-                logger.Log(level, message);
+                logger.Log(level, message, args);
             }
         }
     }
