@@ -104,6 +104,14 @@ namespace WindowsSettingsClone.Shared.CommandBridge
                     command = new RegistryWriteStringValueCommand(deserializer);
                     break;
 
+                case ServiceCommandName.SystemParametersInfoGetValue:
+                    command = new SystemParametersInfoGetValueCommand(deserializer);
+                    break;
+
+                case ServiceCommandName.SystemParametersInfoSetValue:
+                    command = new SystemParametersInfoSetValueCommand(deserializer);
+                    break;
+
                 case ServiceCommandName.Unknown:
                 default:
                     throw new InvalidOperationException(

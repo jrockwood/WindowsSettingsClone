@@ -24,5 +24,7 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         RegistryWriteIntValue,
         RegistryWriteStringValue,
         ShutdownServer,
+        SystemParametersInfoGetValue,
+        SystemParametersInfoSetValue,
     }
 }

@@ -24,5 +24,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
         RegistryKey,
         RegistryValue,
         RegistryValueName,
+        SystemParameter,
+        UpdateKind,
     }
 }
