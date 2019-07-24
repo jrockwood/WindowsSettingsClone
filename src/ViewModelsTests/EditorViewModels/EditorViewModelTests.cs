@@ -14,7 +14,6 @@ namespace WindowsSettingsClone.ViewModels.Tests.EditorViewModels
     using FluentAssertions;
     using NUnit.Framework;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32Services;
     using Shared.Logging;
     using Shared.Tests.FakeServices;
     using Shared.Tests.ViewServices;
@@ -150,7 +149,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.EditorViewModels
         {
             var vm = new TestEditorViewModel(s_bonusBar);
             await vm.SetModelPropertyAsync(() => Task.Delay(TimeSpan.FromMinutes(1)), "LongProperty", 1);
-            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+            vm.ErrorMessage.Should().NotBeNullOrWhiteSpace();
         }
 
         [Test]
@@ -158,7 +157,7 @@ namespace WindowsSettingsClone.ViewModels.Tests.EditorViewModels
         {
             var vm = new TestEditorViewModel(s_bonusBar);
             await vm.SetModelPropertyAsync(() => Task.FromException(new InvalidOperationException()), "Error");
-            vm.UpdateErrorMessage.Should().NotBeNullOrWhiteSpace();
+            vm.ErrorMessage.Should().NotBeNullOrWhiteSpace();
         }
 
         //// ===========================================================================================================

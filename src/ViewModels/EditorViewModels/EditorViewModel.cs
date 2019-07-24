@@ -32,7 +32,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
         private bool _isContentReady;
         private bool _isIndeterminateProgressBarVisible;
-        private string _updateErrorMessage;
+        private string _errorMessage;
 
         //// ===========================================================================================================
         //// Constructors
@@ -66,13 +66,13 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             set => SetProperty(ref _isIndeterminateProgressBarVisible, value);
         }
 
-        public string UpdateErrorMessage
+        public string ErrorMessage
         {
-            get => _updateErrorMessage;
-            set => SetProperty(ref _updateErrorMessage, value);
+            get => _errorMessage;
+            set => SetProperty(ref _errorMessage, value);
         }
 
-        public bool HasUpdateErrorMessage => !string.IsNullOrEmpty(UpdateErrorMessage);
+        public bool HasUpdateErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
         protected bool IsLoading { get; private set; }
 
@@ -120,7 +120,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         /// <summary>
         /// Sets the specified property value. If the property value changed, the <see
         /// cref="INotifyPropertyChanged.PropertyChanged"/> event is raised an an async update is kicked off. If there
-        /// was an error during the async update, the <see cref="UpdateErrorMessage"/> is set with the error.
+        /// was an error during the async update, the <see cref="ErrorMessage"/> is set with the error.
         /// </summary>
         /// <typeparam name="T">The type of the field to change.</typeparam>
         /// <param name="field">A reference to the field to change.</param>
@@ -156,7 +156,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         }
 
         /// <summary>
-        /// Performs an asynchronous update and sets the <see cref="UpdateErrorMessage"/> if there was an error.
+        /// Performs an asynchronous update and sets the <see cref="ErrorMessage"/> if there was an error.
         /// </summary>
         /// <param name="updateTask">The asynchronous task to perform.</param>
         /// <param name="propertyName">The name of the property that is being updated.</param>
@@ -190,7 +190,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             if (wasError)
             {
                 await ServiceLocator.ThreadDispatcher.RunOnUIThreadAsync(
-                    () => UpdateErrorMessage = string.Format(
+                    () => ErrorMessage = string.Format(
                         CultureInfo.CurrentCulture,
                         Strings.EditorUpdateErrorMessage,
                         propertyName));
@@ -198,7 +198,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         }
 
         /// <summary>
-        /// Performs an asynchronous update and sets the <see cref="UpdateErrorMessage"/> if there was an error. This
+        /// Performs an asynchronous update and sets the <see cref="ErrorMessage"/> if there was an error. This
         /// version should be called from within an event handler since the event handler cannot be made async. Prefer
         /// using <see cref="SetModelPropertyAsync"/> whenever possible.
         /// </summary>
