@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.ServiceContracts.ViewServices
 {
+    using Win32;
     using Win32Services;
 
     /// <summary>
@@ -24,5 +25,6 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
         IThreadDispatcher ThreadDispatcher { get; }
         IRegistryReadService RegistryReadService { get; }
         IRegistryWriteService RegistryWriteService { get; }
+        IWin32ApiService Win32ApiService { get; }
     }
 }

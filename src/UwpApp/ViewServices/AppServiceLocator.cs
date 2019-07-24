@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
     using System;
     using System.Runtime.CompilerServices;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using ServiceContracts.Win32Services;
     using Views;
     using Windows.UI.Xaml;
@@ -26,6 +27,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
 
         private IRegistryReadService _registryReadService;
         private IRegistryWriteService _registryWriteService;
+        private IWin32ApiService _win32ApiService;
 
         //// ===========================================================================================================
         //// Properties
@@ -48,6 +50,12 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         {
             get => _registryWriteService;
             set => SetOnlyOnce(ref _registryWriteService, value);
+        }
+
+        public IWin32ApiService Win32ApiService
+        {
+            get => _win32ApiService;
+            set => SetOnlyOnce(ref _win32ApiService, value);
         }
 
         private static void SetOnlyOnce<T>(ref T field, T value, [CallerMemberName] string propertyName = null)

@@ -12,6 +12,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
     using ServiceContracts.ViewServices;
+    using ServiceContracts.Win32;
     using ServiceContracts.Win32Services;
     using Shared.Logging;
 
@@ -49,6 +50,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             public IThreadDispatcher ThreadDispatcher { get; } = new DoNothingThreadDispatcher();
             public IRegistryReadService RegistryReadService { get; } = new DoNothingRegistryReadService();
             public IRegistryWriteService RegistryWriteService { get; } = new DoNothingRegistryWriteService();
+            public IWin32ApiService Win32ApiService { get; } = new DoNothingWin32ApiService();
         }
 
         private sealed class DoNothingPlatformCapabilityService : IPlatformCapabilityService
@@ -136,6 +138,14 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             public Task WriteValueAsync(RegistryBaseKey baseKey, string key, string valueName, string value)
             {
                 return Task.CompletedTask;
+            }
+        }
+
+        private sealed class DoNothingWin32ApiService : IWin32ApiService
+        {
+            public Task<string> GetDesktopWallpaperPathAsync()
+            {
+                return Task.FromResult(string.Empty);
             }
         }
     }

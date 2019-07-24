@@ -131,6 +131,7 @@ namespace WindowsSettingsClone.UwpApp
 
             _appServiceLocator.RegistryReadService = new RegistryReadService(BridgeClientService);
             _appServiceLocator.RegistryWriteService = new RegistryWriteService(BridgeClientService);
+            _appServiceLocator.Win32ApiService = new Win32ApiService(BridgeClientService);
         }
 
         private static async void LaunchDesktopServicesBridge()
