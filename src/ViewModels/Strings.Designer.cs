@@ -611,6 +611,15 @@ namespace WindowsSettingsClone.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings page could not be loaded. Please see the logs for details..
+        /// </summary>
+        internal static string EditorLoadError {
+            get {
+                return ResourceManager.GetString("EditorLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setting &apos;{0}&apos; was not updated. Please see the logs for details..
         /// </summary>
         internal static string EditorUpdateErrorMessage {

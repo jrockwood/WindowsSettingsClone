@@ -33,6 +33,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         private bool _isContentReady;
         private bool _isIndeterminateProgressBarVisible;
         private string _errorMessage;
+        private string _errorMessageDetails;
 
         //// ===========================================================================================================
         //// Constructors
@@ -69,10 +70,28 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         public string ErrorMessage
         {
             get => _errorMessage;
-            set => SetProperty(ref _errorMessage, value);
+            set
+            {
+                if (SetProperty(ref _errorMessage, value))
+                {
+                    OnPropertyChanged(nameof(HasErrorMessage));
+                }
+            }
         }
 
-        public bool HasUpdateErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
+        public string ErrorMessageDetails
+        {
+            get => _errorMessageDetails;
+            set
+            {
+                if (SetProperty(ref _errorMessageDetails, value))
+                {
+                    OnPropertyChanged(nameof(HasErrorMessage));
+                }
+            }
+        }
+
+        public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
         protected bool IsLoading { get; private set; }
 
@@ -100,7 +119,23 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
             // Start loading on a background thread.
             await ServiceLocator.ThreadDispatcher.RunOnBackgroundThreadAsync(
-                () => LoadInternalAsync(cancellationToken));
+                async () =>
+                {
+                    try
+                    {
+                        await LoadInternalAsync(cancellationToken);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError($"Error loading settings page {EditorKind}: {e.GetType()}: {e.Message}");
+                        await ServiceLocator.ThreadDispatcher.RunOnUIThreadAsync(
+                            () =>
+                            {
+                                ErrorMessage = Strings.EditorLoadError;
+                                ErrorMessageDetails = e.ToString();
+                            });
+                    }
+                });
 
             // Cancel the progress bar timer if it hasn't been set yet.
             progressBarCancellationSource.Cancel();
