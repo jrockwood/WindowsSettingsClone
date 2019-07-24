@@ -17,7 +17,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
     using Shared.Logging;
 
     /// <summary>
-    /// Executes registryKey commands.
+    /// Executes registry commands.
     /// </summary>
     public class RegistryCommandExecutor
     {

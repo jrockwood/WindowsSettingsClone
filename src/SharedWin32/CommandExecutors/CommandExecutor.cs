@@ -14,6 +14,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
     using Shared.Commands;
     using Shared.Diagnostics;
     using Shared.Logging;
+    using SystemParametersInfo;
 
     /// <summary>
     /// Executes all known commands. Used in both the full-trust and elevated apps.
@@ -26,15 +27,17 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
 
         private readonly ILogger _logger;
         private readonly RegistryCommandExecutor _registryExecutor;
+        private readonly SystemParametersInfoCommandExecutor _systemParametersInfoCommandExecutor;
 
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public CommandExecutor(ILogger logger, IWin32Registry registry = null)
+        public CommandExecutor(ILogger logger, IWin32Registry registry = null, IWin32SystemParametersInfo systemParametersInfo = null)
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
             _registryExecutor = new RegistryCommandExecutor(registry);
+            _systemParametersInfoCommandExecutor = new SystemParametersInfoCommandExecutor(systemParametersInfo);
         }
 
         public IServiceCommandResponse Execute(IServiceCommand command)
@@ -62,6 +65,14 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
 
                 case RegistryWriteIntValueCommand registryCommand:
                     response = _registryExecutor.ExecuteWrite(registryCommand, _logger);
+                    break;
+
+                case SystemParametersInfoGetValueCommand systemParametersInfoCommand:
+                    response = _systemParametersInfoCommandExecutor.ExecuteGet(systemParametersInfoCommand);
+                    break;
+
+                case SystemParametersInfoSetValueCommand systemParametersInfoCommand:
+                    response = _systemParametersInfoCommandExecutor.ExecuteSet(systemParametersInfoCommand);
                     break;
 
                 default:

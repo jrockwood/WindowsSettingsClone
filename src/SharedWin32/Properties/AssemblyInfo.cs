@@ -6,6 +6,8 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("WindowsSettingsClone.SharedWin32")]
 [assembly: AssemblyDescription("Shared library that can access the complete Win32 API")]
+[assembly: InternalsVisibleTo("WindowsSettingsClone.SharedWin32Tests")]
