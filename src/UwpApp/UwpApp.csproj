@@ -139,6 +139,7 @@
     <Compile Include="FullTrustServices\FullTrustServiceBase.cs" />
     <Compile Include="FullTrustServices\RegistryWriteService.cs" />
     <Compile Include="FullTrustServices\RegistryReadService.cs" />
+    <Compile Include="FullTrustServices\Win32ApiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Editors\BonusBar.xaml.cs">
       <DependentUpon>BonusBar.xaml</DependentUpon>
