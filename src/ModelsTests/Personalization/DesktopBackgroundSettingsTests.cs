@@ -21,9 +21,14 @@ namespace WindowsSettingsClone.Models.Tests.Personalization
         [Test]
         public async Task CreateAsync_should_throw_on_null_args()
         {
-            Func<Task<DesktopBackgroundSettings>> action = () => DesktopBackgroundSettings.CreateAsync(null);
+            Func<Task<DesktopBackgroundSettings>> action = () =>
+                DesktopBackgroundSettings.CreateAsync(null, new FakeWin32ApiService());
             (await action.Should().ThrowExactlyAsync<ArgumentNullException>()).And.ParamName.Should()
                 .Be("registryReadService");
+
+            action = () => DesktopBackgroundSettings.CreateAsync(new FakeRegistryService(), null);
+            (await action.Should().ThrowExactlyAsync<ArgumentNullException>()).And.ParamName.Should()
+                .Be("win32ApiService");
         }
 
         [Test]
@@ -45,7 +50,7 @@ namespace WindowsSettingsClone.Models.Tests.Personalization
                     "BackgroundType",
                     pair.Key);
 
-                DesktopBackgroundSettings settings = await DesktopBackgroundSettings.CreateAsync(fakeRegistry);
+                DesktopBackgroundSettings settings = await DesktopBackgroundSettings.CreateAsync(fakeRegistry, new FakeWin32ApiService());
                 settings.BackgroundKind.Should().Be(pair.Value);
             }
         }

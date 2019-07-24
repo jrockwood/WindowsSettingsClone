@@ -28,6 +28,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
 
         private SlideshowAlbum _slideshowAlbum = new SlideshowAlbum("DesktopWallpaper", @"C:\");
         private bool _shuffleSlideshow;
+        private string _wallpaperImagePath;
 
         //// ===========================================================================================================
         //// Constructors
@@ -122,19 +123,27 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
                 () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, ServiceLocator.RegistryWriteService));
         }
 
+        public string WallpaperImagePath
+        {
+            get => _wallpaperImagePath;
+            set => SetProperty(ref _wallpaperImagePath, value);
+        }
+
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
         protected override async Task LoadInternalAsync(CancellationToken cancellationToken)
         {
-            DesktopBackgroundSettings model =
-                await DesktopBackgroundSettings.CreateAsync(ServiceLocator.RegistryReadService);
+            DesktopBackgroundSettings model = await DesktopBackgroundSettings.CreateAsync(
+                ServiceLocator.RegistryReadService,
+                ServiceLocator.Win32ApiService);
 
             BackgroundKinds.Select(model.BackgroundKind);
             ChangePictureIntervals.Select(model.SlideshowInterval);
             ShuffleSlideshow = model.ShuffleSlideshow;
             FitKinds.Select(model.FitMode);
+            WallpaperImagePath = model.WallpaperImagePath;
         }
 
         private static BonusBarViewModel CreateBonusBarViewModel()

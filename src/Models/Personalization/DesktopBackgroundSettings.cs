@@ -10,6 +10,7 @@ namespace WindowsSettingsClone.Models.Personalization
     using System;
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
+    using ServiceContracts.Win32;
     using ServiceContracts.Win32Services;
     using Shared.Diagnostics;
 
@@ -52,12 +53,14 @@ namespace WindowsSettingsClone.Models.Personalization
             DesktopBackgroundKind backgroundKind,
             DesktopBackgroundFitMode fitMode,
             bool shuffleSlideshow,
-            int slideshowInterval)
+            int slideshowInterval,
+            string wallpaperImagePath)
         {
             BackgroundKind = backgroundKind;
             FitMode = fitMode;
             ShuffleSlideshow = shuffleSlideshow;
             SlideshowInterval = slideshowInterval;
+            WallpaperImagePath = wallpaperImagePath;
         }
 
         //// ===========================================================================================================
@@ -70,23 +73,30 @@ namespace WindowsSettingsClone.Models.Personalization
         public int SlideshowInterval { get; }
         public bool ShuffleSlideshow { get; }
 
+        public string WallpaperImagePath { get; }
+
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
 
-        public static async Task<DesktopBackgroundSettings> CreateAsync(IRegistryReadService registryReadService)
+        public static async Task<DesktopBackgroundSettings> CreateAsync(
+            IRegistryReadService registryReadService,
+            IWin32ApiService win32ApiService)
         {
             Param.VerifyNotNull(registryReadService, nameof(registryReadService));
+            Param.VerifyNotNull(win32ApiService, nameof(win32ApiService));
 
             int backgroundType = await registryReadService.ReadValueAsync(HKCU, WallpapersPath, BackgroundType, 0);
             int interval = await registryReadService.ReadValueAsync(HKCU, SlideshowPath, Interval, 1000 * 60);
             bool shuffle = await registryReadService.ReadValueAsync(HKCU, SlideshowPath, Shuffle, false);
+            string wallpaperImagePath = await win32ApiService.GetDesktopWallpaperPathAsync();
 
             return new DesktopBackgroundSettings(
                 backgroundKind: BackgroundTypeToFit(backgroundType),
                 fitMode: DesktopBackgroundFitMode.Fill,
                 shuffleSlideshow: shuffle,
-                slideshowInterval: interval);
+                slideshowInterval: interval,
+                wallpaperImagePath: wallpaperImagePath);
         }
 
         public static async Task SetSlideshowIntervalAsync(int value, IRegistryWriteService registryWriteService)
