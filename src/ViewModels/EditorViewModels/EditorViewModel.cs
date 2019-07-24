@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -15,7 +15,6 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
     using System.Threading.Tasks;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32Services;
     using Shared.Diagnostics;
     using Shared.Logging;
     using Shared.Threading;
@@ -101,7 +100,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
 
             // Start loading on a background thread.
             await ServiceLocator.ThreadDispatcher.RunOnBackgroundThreadAsync(
-                () => LoadInternalAsync(ServiceLocator.RegistryReadService, cancellationToken));
+                () => LoadInternalAsync(cancellationToken));
 
             // Cancel the progress bar timer if it hasn't been set yet.
             progressBarCancellationSource.Cancel();
@@ -116,9 +115,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                 });
         }
 
-        protected abstract Task LoadInternalAsync(
-            IRegistryReadService registryReadService,
-            CancellationToken cancellationToken);
+        protected abstract Task LoadInternalAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Sets the specified property value. If the property value changed, the <see

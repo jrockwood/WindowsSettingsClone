@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="BackgroundEditorViewModel.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -12,7 +12,6 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
     using Models.Personalization;
     using ServiceContracts.Logging;
     using ServiceContracts.ViewServices;
-    using ServiceContracts.Win32Services;
 
     public class BackgroundEditorViewModel : EditorViewModel
     {
@@ -127,11 +126,11 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
         //// Methods
         //// ===========================================================================================================
 
-        protected override async Task LoadInternalAsync(
-            IRegistryReadService registryReadService,
-            CancellationToken cancellationToken)
+        protected override async Task LoadInternalAsync(CancellationToken cancellationToken)
         {
-            DesktopBackgroundSettings model = await DesktopBackgroundSettings.CreateAsync(registryReadService);
+            DesktopBackgroundSettings model =
+                await DesktopBackgroundSettings.CreateAsync(ServiceLocator.RegistryReadService);
+
             BackgroundKinds.Select(model.BackgroundKind);
             ChangePictureIntervals.Select(model.SlideshowInterval);
             ShuffleSlideshow = model.ShuffleSlideshow;
