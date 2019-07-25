@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryCommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -10,9 +10,9 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
     using System;
     using Microsoft.Win32;
     using ServiceContracts.CommandBridge;
+    using ServiceContracts.Commands;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
-    using Shared.Commands;
     using Shared.Diagnostics;
     using Shared.Logging;
 
@@ -52,7 +52,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// </summary>
         /// <param name="command">The command to execute.</param>
         /// <returns>A response indicating success and the read value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteRead(RegistryReadIntValueCommand command)
+        public IServiceCommandResponse ExecuteRead(IRegistryReadIntValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
 
@@ -67,7 +67,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// </summary>
         /// <param name="command">The command to execute.</param>
         /// <returns>A response indicating success and the read value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteRead(RegistryReadStringValueCommand command)
+        public IServiceCommandResponse ExecuteRead(IRegistryReadStringValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
 
@@ -82,7 +82,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// </summary>
         /// <param name="command">The command to execute.</param>
         /// <returns>A response indicating success and the written value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteWrite(RegistryWriteIntValueCommand command)
+        public IServiceCommandResponse ExecuteWrite(IRegistryWriteIntValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
 
@@ -96,7 +96,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// </summary>
         /// <param name="command">The command to execute.</param>
         /// <returns>A response indicating success and the written value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteWrite(RegistryWriteStringValueCommand command)
+        public IServiceCommandResponse ExecuteWrite(IRegistryWriteStringValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
 
