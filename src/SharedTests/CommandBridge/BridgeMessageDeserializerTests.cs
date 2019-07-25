@@ -388,21 +388,37 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         [Test]
         public void GetIntValue_should_return_the_deserialized_value()
         {
-            var valueSet = new Dictionary<string, object>
+            var inputExpectedOutputPairs = new (object Input, int ExpectedOutput)[]
             {
-                [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.ErrorCode.ToString()] = 12345
+                (Input: 'a', ExpectedOutput: 'a'),
+                (Input: (sbyte)1, ExpectedOutput: 1),
+                (Input: (byte)2, ExpectedOutput: 2),
+                (Input: (short)3, ExpectedOutput: 3),
+                (Input: (ushort)4, ExpectedOutput: 4),
+                (Input: 5, ExpectedOutput: 5),
+                (Input: (uint)6, ExpectedOutput: 6),
+                (Input: (long)7, ExpectedOutput: 7),
+                (Input: (ulong)8, ExpectedOutput: 8),
             };
 
-            BridgeMessageDeserializer.TryCreateFromValueSet(
-                    valueSet,
-                    out BridgeMessageDeserializer deserializer,
-                    out IServiceCommandResponse _)
-                .Should()
-                .BeTrue();
+            foreach ((object input, int expectedOutput) in inputExpectedOutputPairs)
+            {
+                var valueSet = new Dictionary<string, object>
+                {
+                    [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
+                    [ParamName.ErrorCode.ToString()] = input
+                };
 
-            deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(12345);
-            deserializer.LastError.Should().BeNull();
+                BridgeMessageDeserializer.TryCreateFromValueSet(
+                        valueSet,
+                        out BridgeMessageDeserializer deserializer,
+                        out IServiceCommandResponse _)
+                    .Should()
+                    .BeTrue();
+
+                deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(expectedOutput);
+                deserializer.LastError.Should().BeNull();
+            }
         }
 
         [Test]
@@ -430,25 +446,59 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         [Test]
         public void GetIntValue_should_set_LastError_if_the_parameter_is_not_the_right_type()
         {
-            var valueSet = new Dictionary<string, object>
+            object[] inputs = { "123", decimal.One, (float)1, (double)2 };
+
+            foreach (object input in inputs)
             {
-                [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.ErrorCode.ToString()] = "NotValid"
-            };
+                var valueSet = new Dictionary<string, object>
+                {
+                    [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
+                    [ParamName.ErrorCode.ToString()] = input
+                };
 
-            BridgeMessageDeserializer.TryCreateFromValueSet(
-                    valueSet,
-                    out BridgeMessageDeserializer deserializer,
-                    out IServiceCommandResponse _)
-                .Should()
-                .BeTrue();
+                BridgeMessageDeserializer.TryCreateFromValueSet(
+                        valueSet,
+                        out BridgeMessageDeserializer deserializer,
+                        out IServiceCommandResponse _)
+                    .Should()
+                    .BeTrue();
 
-            deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(default(int));
+                deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(default(int));
 
-            deserializer.LastError.Should().NotBeNull();
-            deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
-            deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
+                deserializer.LastError.Should().NotBeNull();
+                deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+                deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
+                deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
+            }
+        }
+
+        [Test]
+        public void GetIntValue_should_set_LastError_if_the_parameter_is_out_of_range()
+        {
+            object[] inputs = { uint.MaxValue, ulong.MaxValue, long.MinValue, long.MaxValue };
+
+            foreach (object input in inputs)
+            {
+                var valueSet = new Dictionary<string, object>
+                {
+                    [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
+                    [ParamName.ErrorCode.ToString()] = input
+                };
+
+                BridgeMessageDeserializer.TryCreateFromValueSet(
+                        valueSet,
+                        out BridgeMessageDeserializer deserializer,
+                        out IServiceCommandResponse _)
+                    .Should()
+                    .BeTrue();
+
+                deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(default(int));
+
+                deserializer.LastError.Should().NotBeNull();
+                deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+                deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
+                deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
+            }
         }
 
         //// ===========================================================================================================

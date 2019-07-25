@@ -118,15 +118,41 @@ namespace WindowsSettingsClone.Shared.CommandBridge
                 return 0;
             }
 
-            if (rawValue is int value)
+            switch (rawValue)
             {
-                return value;
-            }
+                case int intValue:
+                    return intValue;
 
-            LastError = ServiceCommandResponse.CreateError(
-                CommandName,
-                ServiceErrorInfo.WrongMessageValueType(paramName, rawValue.GetType(), typeof(int)));
-            return 0;
+                case char charValue:
+                    return charValue;
+
+                case sbyte sbyteValue:
+                    return sbyteValue;
+
+                case byte byteValue:
+                    return byteValue;
+
+                case short shortValue:
+                    return shortValue;
+
+                case ushort ushortValue:
+                    return ushortValue;
+
+                case long longValue when longValue >= int.MinValue && longValue <= int.MaxValue:
+                    return (int)longValue;
+
+                case uint uintValue when uintValue <= int.MaxValue:
+                    return (int)uintValue;
+
+                case ulong ulongValue when ulongValue <= int.MaxValue:
+                    return (int)ulongValue;
+
+                default:
+                    LastError = ServiceCommandResponse.CreateError(
+                        CommandName,
+                        ServiceErrorInfo.WrongMessageValueType(paramName, rawValue.GetType(), typeof(int)));
+                    return 0;
+            }
         }
 
         public bool GetBoolValue(ParamName paramName)
