@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="CommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -37,7 +37,8 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
             _registryExecutor = new RegistryCommandExecutor(registry, logger);
-            _systemParametersInfoCommandExecutor = new SystemParametersInfoCommandExecutor(systemParametersInfo);
+            _systemParametersInfoCommandExecutor =
+                new SystemParametersInfoCommandExecutor(systemParametersInfo, logger);
         }
 
         public IServiceCommandResponse Execute(IServiceCommand command)

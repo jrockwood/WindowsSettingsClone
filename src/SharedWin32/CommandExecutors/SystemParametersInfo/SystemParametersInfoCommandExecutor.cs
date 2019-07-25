@@ -11,7 +11,9 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
     using System.Text;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Commands;
+    using ServiceContracts.Logging;
     using Shared.CommandBridge;
+    using Shared.Logging;
 
     /// <summary>
     /// Executes <see cref="ISystemParametersInfoGetValueCommand"/> and <see cref="ISystemParametersInfoSetValueCommand"/> commands.
@@ -22,6 +24,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
         //// Member Variables
         //// ===========================================================================================================
 
+        private readonly ILogger _logger;
         private readonly IWin32SystemParametersInfo _win32Invoker;
 
         //// ===========================================================================================================
@@ -33,9 +36,11 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
         /// win32 API invoker.
         /// </summary>
         /// <param name="win32Invoker">A Win32 API invoker to use (the real Windows API is used if null).</param>
-        public SystemParametersInfoCommandExecutor(IWin32SystemParametersInfo win32Invoker = null)
+        /// <param name="logger">The logger to use.</param>
+        public SystemParametersInfoCommandExecutor(IWin32SystemParametersInfo win32Invoker = null, ILogger logger = null)
         {
             _win32Invoker = win32Invoker ?? new Win32SystemParametersInfo();
+            _logger = logger ?? new NullLogger();
         }
 
         //// ===========================================================================================================
