@@ -148,13 +148,13 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         [Test]
         public void HasValue_should_be_true_if_there_is_a_value()
         {
-            RegistryPath.CreateValuePath(RegistryHive.Users, "Path", "Value", 123).HasValue.Should().BeTrue();
+            RegistryPath.CreateValuePath(RegistryHive.Users, "Key", "Value", 123).HasValue.Should().BeTrue();
         }
 
         [Test]
         public void HasValue_should_be_false_if_there_is_no_value()
         {
-            RegistryPath.CreatePath(RegistryHive.Users, "Path").HasValue.Should().BeFalse();
+            RegistryPath.CreatePath(RegistryHive.Users, "Key").HasValue.Should().BeFalse();
         }
 
         //// ===========================================================================================================
@@ -164,19 +164,19 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         [Test]
         public void IntValue_should_return_an_integer_if_originally_specified()
         {
-            RegistryPath.CreateValuePath(RegistryHive.Users, "Path", "Value", 123).IntValue.Should().Be(123);
+            RegistryPath.CreateValuePath(RegistryHive.Users, "Key", "Value", 123).IntValue.Should().Be(123);
         }
 
         [Test]
         public void StringValue_should_return_an_integer_if_originally_specified()
         {
-            RegistryPath.CreateValuePath(RegistryHive.Users, "Path", "Value", "s").StringValue.Should().Be("s");
+            RegistryPath.CreateValuePath(RegistryHive.Users, "Key", "Value", "s").StringValue.Should().Be("s");
         }
 
         [Test]
         public void IntValue_should_throw_an_InvalidCastExpression_if_the_value_is_not_an_integer()
         {
-            var path = RegistryPath.CreateValuePath(RegistryHive.Users, "Path", "Value", "s");
+            var path = RegistryPath.CreateValuePath(RegistryHive.Users, "Key", "Value", "s");
             Action action = () => { int unused = path.IntValue; };
             action.Should().ThrowExactly<InvalidCastException>();
         }
@@ -184,7 +184,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         [Test]
         public void StringValue_should_throw_an_InvalidCastExpression_if_the_value_is_not_a_string()
         {
-            var path = RegistryPath.CreateValuePath(RegistryHive.Users, "Path", "Value", 123);
+            var path = RegistryPath.CreateValuePath(RegistryHive.Users, "Key", "Value", 123);
             Action action = () => { string unused = path.StringValue; };
             action.Should().ThrowExactly<InvalidCastException>();
         }

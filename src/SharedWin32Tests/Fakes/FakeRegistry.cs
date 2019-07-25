@@ -43,7 +43,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
             {
                 var parsedPath = RegistryPath.Parse(keyAndValue);
                 using (IWin32RegistryKey key = OpenBaseKey(parsedPath.Hive, RegistryView.Registry64)
-                    .CreateSubKey(parsedPath.Path, writable: true))
+                    .CreateSubKey(parsedPath.Key, writable: true))
                 {
                     if (!string.IsNullOrEmpty(parsedPath.ValueName))
                     {

@@ -23,10 +23,10 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// Member Variables
         //// ===========================================================================================================
 
-        private RegistryPath(RegistryHive hive, string path, string valueName, object value)
+        private RegistryPath(RegistryHive hive, string key, string valueName, object value)
         {
             Hive = hive;
-            Path = path ?? string.Empty;
+            Key = key ?? string.Empty;
             ValueName = valueName ?? string.Empty;
             Value = value;
         }
@@ -36,7 +36,8 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// ===========================================================================================================
 
         public RegistryHive Hive { get; }
-        public string Path { get; }
+
+        public string Key { get; }
         public string ValueName { get; }
         public object Value { get; }
 
@@ -48,16 +49,16 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// Methods
         //// ===========================================================================================================
 
-        public static RegistryPath CreatePath(RegistryHive hive, string path = null)
+        public static RegistryPath CreatePath(RegistryHive hive, string key = null)
         {
-            return new RegistryPath(hive, path, null, null);
+            return new RegistryPath(hive, key, null, null);
         }
 
-        public static RegistryPath CreateValuePath(RegistryHive hive, string path, string valueName, object value)
+        public static RegistryPath CreateValuePath(RegistryHive hive, string key, string valueName, object value)
         {
             return new RegistryPath(
                 hive,
-                Param.VerifyString(path, nameof(path)),
+                Param.VerifyString(key, nameof(key)),
                 Param.VerifyString(valueName, nameof(valueName)),
                 value);
         }
