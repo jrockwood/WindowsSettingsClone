@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+  <command name="Echo" description="A command that echoes whatever it receives as the response. Useful for testing.">
+    <param name="EchoMessage" type="string" />
+  </command>
+  <command name="RegistryReadIntValue" description="Command that reads an integer value (REG_DWORD) from the Windows Registry.">
+    <param name="BaseKey" type="RegistryBaseKey" />
+    <param name="Key" type="string" />
+    <param name="ValueName" type="string" />
+    <param name="DefaultValue" type="int" />
+  </command>
+  <command name="RegistryReadStringValue" description="Command that reads a string value (REG_SZ) from the Windows Registry.">
+    <param name="BaseKey" type="RegistryBaseKey" />
+    <param name="Key" type="string" />
+    <param name="ValueName" type="string" />
+    <param name="DefaultValue" type="string" />
+  </command>
+  <command name="RegistryWriteIntValue" description="Command that writes an integer value (REG_DWORD) to the Windows Registry.">
+    <param name="BaseKey" type="RegistryBaseKey" />
+    <param name="Key" type="string" />
+    <param name="ValueName" type="string" />
+    <param name="Value" type="int" />
+  </command>
+  <command name="RegistryWriteStringValue" description="Command that writes a string value (REG_SZ) to the Windows Registry.">
+    <param name="BaseKey" type="RegistryBaseKey" />
+    <param name="Key" type="string" />
+    <param name="ValueName" type="string" />
+    <param name="Value" type="string" />
+  </command>
+  <command name="ShutdownServer" description="Command that requests the server to shutdown and terminate." />
+  <command name="SystemParametersInfoGetValue"
+           description="Command that invokes the underlying Win32 &lt;c&gt;SystemParametersInfo&lt;/c&gt; function that retrieves a value.">
+    <param name="SystemParameter" type="SystemParameterInfoKind" />
+  </command>
+  <command name="SystemParametersInfoSetValue"
+           description="Command that invokes the underlying Win32 &lt;c&gt;SystemParametersInfo&lt;/c&gt; function that sets a value.">
+    <param name="SystemParameter" type="SystemParameterInfoKind" />
+    <param name="UpdateKind" type="SystemParameterInfoUpdateKind" />
+  </command>
+</commands>
