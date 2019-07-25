@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="SystemParametersInfoCommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -18,7 +18,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
     /// <summary>
     /// Executes <see cref="ISystemParametersInfoGetValueCommand"/> and <see cref="ISystemParametersInfoSetValueCommand"/> commands.
     /// </summary>
-    public class SystemParametersInfoCommandExecutor
+    public sealed class SystemParametersInfoCommandExecutor
     {
         //// ===========================================================================================================
         //// Member Variables
