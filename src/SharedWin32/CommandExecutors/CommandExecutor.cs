@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="CommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -36,7 +36,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
         public CommandExecutor(ILogger logger, IWin32Registry registry = null, IWin32SystemParametersInfo systemParametersInfo = null)
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
-            _registryExecutor = new RegistryCommandExecutor(registry);
+            _registryExecutor = new RegistryCommandExecutor(registry, logger);
             _systemParametersInfoCommandExecutor = new SystemParametersInfoCommandExecutor(systemParametersInfo);
         }
 
@@ -56,15 +56,15 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
                     break;
 
                 case RegistryReadIntValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteRead(registryCommand, _logger);
+                    response = _registryExecutor.ExecuteRead(registryCommand);
                     break;
 
                 case RegistryReadStringValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteRead(registryCommand, _logger);
+                    response = _registryExecutor.ExecuteRead(registryCommand);
                     break;
 
                 case RegistryWriteIntValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteWrite(registryCommand, _logger);
+                    response = _registryExecutor.ExecuteWrite(registryCommand);
                     break;
 
                 case SystemParametersInfoGetValueCommand systemParametersInfoCommand:

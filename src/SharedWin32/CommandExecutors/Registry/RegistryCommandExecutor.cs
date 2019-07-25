@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryCommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -25,6 +25,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// Member Variables
         //// ===========================================================================================================
 
+        private readonly ILogger _logger;
         private readonly IWin32Registry _registry;
 
         //// ===========================================================================================================
@@ -35,9 +36,11 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// Initializes a new instance of the <see cref="RegistryCommandExecutor"/> class using the specified registry.
         /// </summary>
         /// <param name="registry">A registry to use (the real Windows registry is used if null).</param>
-        public RegistryCommandExecutor(IWin32Registry registry = null)
+        /// <param name="logger">The logger to use.</param>
+        public RegistryCommandExecutor(IWin32Registry registry = null, ILogger logger = null)
         {
             _registry = registry ?? new Win32Registry();
+            _logger = logger ?? new NullLogger();
         }
 
         //// ===========================================================================================================
