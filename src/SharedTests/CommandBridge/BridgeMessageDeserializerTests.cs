@@ -452,6 +452,87 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         }
 
         //// ===========================================================================================================
+        //// GetBoolValue Tests
+        //// ===========================================================================================================
+
+        [Test]
+        public void GetBoolValue_should_return_the_deserialized_value()
+        {
+            var inputExpectedOutputPairs = new (object Input, bool ExpectedOutput)[]
+            {
+                (Input: true, ExpectedOutput: true),
+                (Input: false, ExpectedOutput: false),
+            };
+
+            foreach ((object input, bool expectedOutput) in inputExpectedOutputPairs)
+            {
+                var valueSet = new Dictionary<string, object>
+                {
+                    [ParamName.CommandName.ToString()] = ServiceCommandName.FileCopy,
+                    [ParamName.Overwrite.ToString()] = input,
+                };
+
+                BridgeMessageDeserializer.TryCreateFromValueSet(
+                        valueSet,
+                        out BridgeMessageDeserializer deserializer,
+                        out IServiceCommandResponse _)
+                    .Should()
+                    .BeTrue();
+
+                deserializer.GetBoolValue(ParamName.Overwrite)
+                    .Should()
+                    .Be(expectedOutput, $"because {input} should have been converted to a boolean");
+                deserializer.LastError.Should().BeNull();
+            }
+        }
+
+        [Test]
+        public void GetBoolValue_should_set_LastError_if_the_parameter_is_not_present()
+        {
+            var valueSet = new Dictionary<string, object>
+            {
+                [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
+            };
+
+            BridgeMessageDeserializer.TryCreateFromValueSet(
+                    valueSet,
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse _)
+                .Should()
+                .BeTrue();
+
+            deserializer.GetBoolValue(ParamName.ErrorCode).Should().Be(default(bool));
+            deserializer.LastError.Should().NotBeNull();
+            deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+            deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
+        }
+
+        [Test]
+        public void GetBoolValue_should_set_LastError_if_the_parameter_is_not_the_right_type()
+        {
+            var valueSet = new Dictionary<string, object>
+            {
+                [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
+                [ParamName.ErrorCode.ToString()] = "NotValid"
+            };
+
+            BridgeMessageDeserializer.TryCreateFromValueSet(
+                    valueSet,
+                    out BridgeMessageDeserializer deserializer,
+                    out IServiceCommandResponse _)
+                .Should()
+                .BeTrue();
+
+            deserializer.GetIntValue(ParamName.ErrorCode).Should().Be(default(int));
+
+            deserializer.LastError.Should().NotBeNull();
+            deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
+            deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.ErrorCode.ToString());
+        }
+
+        //// ===========================================================================================================
         //// GetStringValue Tests
         //// ===========================================================================================================
 

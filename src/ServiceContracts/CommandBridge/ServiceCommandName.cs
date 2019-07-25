@@ -19,6 +19,7 @@ namespace WindowsSettingsClone.ServiceContracts.CommandBridge
         Unknown,
 
         Echo,
+        FileCopy,
         RegistryReadIntValue,
         RegistryReadStringValue,
         RegistryWriteIntValue,

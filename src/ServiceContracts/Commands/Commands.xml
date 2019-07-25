@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- When you change this file, manually invoke all of the generators by clicking "Build/Transform all T4 Templates". -->
 <commands>
   <command name="Echo" description="A command that echoes whatever it receives as the response. Useful for testing.">
     <param name="EchoMessage" type="string" />
+  </command>
+  <command name="FileCopy" description="Command that copies a file.">
+    <param name="SourcePath" type="string" />
+    <param name="DestinationPath" type="string" />
+    <param name="Overwrite" type="bool" />
   </command>
   <command name="RegistryReadIntValue" description="Command that reads an integer value (REG_DWORD) from the Windows Registry.">
     <param name="BaseKey" type="RegistryBaseKey" />

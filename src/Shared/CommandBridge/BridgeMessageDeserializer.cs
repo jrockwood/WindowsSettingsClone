@@ -129,6 +129,24 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             return 0;
         }
 
+        public bool GetBoolValue(ParamName paramName)
+        {
+            if (!GetRequiredValue(paramName, out object rawValue))
+            {
+                return false;
+            }
+
+            if (rawValue is bool value)
+            {
+                return value;
+            }
+
+            LastError = ServiceCommandResponse.CreateError(
+                CommandName,
+                ServiceErrorInfo.WrongMessageValueType(paramName, rawValue.GetType(), typeof(bool)));
+            return false;
+        }
+
         public string GetStringValue(ParamName paramName)
         {
             if (!GetRequiredValue(paramName, out object rawValue))

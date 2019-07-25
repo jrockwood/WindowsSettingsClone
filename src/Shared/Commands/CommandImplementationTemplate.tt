@@ -184,6 +184,10 @@ private static string ConstructCtorDeserializationStatements(XElement command)
                 methodCall = "GetStringValue";
                 break;
 
+            case "bool":
+                methodCall = "GetBoolValue";
+                break;
+
             default:
                 methodCall = $"GetEnumValue<{typeName}>";
                 break;
