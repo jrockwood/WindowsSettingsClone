@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryCommandExecutorTests.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -28,7 +28,10 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         public void ExecuteRead_should_throw_on_null_params()
         {
             var executor = new RegistryCommandExecutor(new FakeRegistry());
-            Action action = () => executor.ExecuteRead<int>(null);
+            Action action = () => executor.ExecuteRead((RegistryReadIntValueCommand)null);
+            action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
+
+            action = () => executor.ExecuteRead((RegistryReadStringValueCommand)null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
         }
 
@@ -74,7 +77,10 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         public void ExecuteWrite_should_throw_on_null_params()
         {
             var executor = new RegistryCommandExecutor(new FakeRegistry());
-            Action action = () => executor.ExecuteWrite<int>(null);
+            Action action = () => executor.ExecuteWrite((RegistryWriteIntValueCommand)null);
+            action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
+
+            action = () => executor.ExecuteWrite((RegistryWriteStringValueCommand)null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
         }
 

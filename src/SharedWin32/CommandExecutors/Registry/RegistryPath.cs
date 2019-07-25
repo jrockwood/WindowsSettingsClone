@@ -36,6 +36,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// ===========================================================================================================
 
         public RegistryHive Hive { get; }
+        public string HiveAsWin32Name => HiveToWin32Name(Hive);
 
         public string Key { get; }
         public string ValueName { get; }
@@ -58,6 +59,15 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         {
             return new RegistryPath(
                 hive,
+                Param.VerifyString(key, nameof(key)),
+                Param.VerifyString(valueName, nameof(valueName)),
+                value);
+        }
+
+        public static RegistryPath CreateValuePath(RegistryBaseKey baseKey, string key, string valueName, object value)
+        {
+            return new RegistryPath(
+                BaseKeyToHive(baseKey),
                 Param.VerifyString(key, nameof(key)),
                 Param.VerifyString(valueName, nameof(valueName)),
                 value);

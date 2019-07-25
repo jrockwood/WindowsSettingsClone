@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="RegistryCommandExecutor.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -50,78 +50,107 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         /// <summary>
         /// Reads a value from the Windows registryKey.
         /// </summary>
-        /// <typeparam name="T">The type of value that is read (<see cref="RegistryReadValueCommand{T}"/>).</typeparam>
         /// <param name="command">The command to execute.</param>
-        /// <param name="logger">The logger to use.</param>
         /// <returns>A response indicating success and the read value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteRead<T>(RegistryReadValueCommand<T> command, ILogger logger)
+        public IServiceCommandResponse ExecuteRead(RegistryReadIntValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
-            Param.VerifyNotNull(logger, nameof(logger));
 
-            ServiceCommandResponse response;
+            return ExecuteRead(
+                command.CommandName,
+                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, null),
+                command.DefaultValue);
+        }
 
-            try
-            {
-                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.BaseKey.ToString());
+        /// <summary>
+        /// Reads a value from the Windows registryKey.
+        /// </summary>
+        /// <param name="command">The command to execute.</param>
+        /// <returns>A response indicating success and the read value, or failure with error details.</returns>
+        public IServiceCommandResponse ExecuteRead(RegistryReadStringValueCommand command)
+        {
+            Param.VerifyNotNull(command, nameof(command));
 
-                using (IWin32RegistryKey baseKey = _registry.OpenBaseKey(registryHive, RegistryView.Registry64))
-                using (IWin32RegistryKey subKey = baseKey.OpenSubKey(command.Key, writable: false))
-                {
-                    object value = subKey?.GetValue(command.ValueName, command.DefaultValue) ?? command.DefaultValue;
-                    response = ServiceCommandResponse.Create(command.CommandName, value);
-                }
-            }
-            catch (Exception e)
-            {
-                response = ServiceCommandResponse.CreateError(
-                    command.CommandName,
-                    ServiceErrorInfo.RegistryReadError(
-                        RegistryPath.HiveToWin32Name(RegistryPath.BaseKeyToHive(command.BaseKey)),
-                        command.Key,
-                        command.ValueName,
-                        e));
-                logger.LogError(response.ErrorMessage);
-            }
-
-            return response;
+            return ExecuteRead(
+                command.CommandName,
+                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, null),
+                command.DefaultValue);
         }
 
         /// <summary>
         /// Writes a value to the Windows registryKey.
         /// </summary>
-        /// <typeparam name="T">The type of value that is written (<see cref="RegistryReadValueCommand{T}"/>).</typeparam>
         /// <param name="command">The command to execute.</param>
-        /// <param name="logger">The logger to use.</param>
         /// <returns>A response indicating success and the written value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteWrite<T>(RegistryWriteValueCommand<T> command, ILogger logger)
+        public IServiceCommandResponse ExecuteWrite(RegistryWriteIntValueCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
-            Param.VerifyNotNull(logger, nameof(logger));
 
-            IServiceCommandResponse response;
+            return ExecuteWrite(
+                command.CommandName,
+                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, command.Value));
+        }
+
+        /// <summary>
+        /// Writes a value to the Windows registryKey.
+        /// </summary>
+        /// <param name="command">The command to execute.</param>
+        /// <returns>A response indicating success and the written value, or failure with error details.</returns>
+        public IServiceCommandResponse ExecuteWrite(RegistryWriteStringValueCommand command)
+        {
+            Param.VerifyNotNull(command, nameof(command));
+
+            return ExecuteWrite(
+                command.CommandName,
+                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, command.Value));
+        }
+
+        private IServiceCommandResponse ExecuteRead(
+            ServiceCommandName commandName,
+            RegistryPath path,
+            object defaultValue)
+        {
+            ServiceCommandResponse response;
 
             try
             {
-                var registryHive = (RegistryHive)Enum.Parse(typeof(RegistryHive), command.BaseKey.ToString());
-
-                using (IWin32RegistryKey baseKey = _registry.OpenBaseKey(registryHive, RegistryView.Registry64))
-                using (IWin32RegistryKey subKey = baseKey.CreateSubKey(command.Key, writable: true))
+                using (IWin32RegistryKey baseKey = _registry.OpenBaseKey(path.Hive, RegistryView.Registry64))
+                using (IWin32RegistryKey subKey = baseKey.OpenSubKey(path.Key, writable: false))
                 {
-                    subKey.SetValue(command.ValueName, command.Value, TypeToRegistryValueKind(typeof(T)));
-                    response = ServiceCommandResponse.Create(command.CommandName, command.Value);
+                    object value = subKey?.GetValue(path.ValueName, defaultValue) ?? defaultValue;
+                    response = ServiceCommandResponse.Create(commandName, value);
                 }
             }
             catch (Exception e)
             {
                 response = ServiceCommandResponse.CreateError(
-                    command.CommandName,
-                    ServiceErrorInfo.RegistryWriteError(
-                        RegistryPath.HiveToWin32Name(RegistryPath.BaseKeyToHive(command.BaseKey)),
-                        command.Key,
-                        command.ValueName,
-                        e));
-                logger.LogError(response.ErrorMessage);
+                    commandName,
+                    ServiceErrorInfo.RegistryReadError(path.HiveAsWin32Name, path.Key, path.ValueName, e));
+                _logger.LogError(response.ErrorMessage);
+            }
+
+            return response;
+        }
+
+        private IServiceCommandResponse ExecuteWrite(ServiceCommandName commandName, RegistryPath path)
+        {
+            IServiceCommandResponse response;
+
+            try
+            {
+                using (IWin32RegistryKey baseKey = _registry.OpenBaseKey(path.Hive, RegistryView.Registry64))
+                using (IWin32RegistryKey subKey = baseKey.CreateSubKey(path.Key, writable: true))
+                {
+                    subKey.SetValue(path.ValueName, path.Value, TypeToRegistryValueKind(path.Value.GetType()));
+                    response = ServiceCommandResponse.Create(commandName, path.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                response = ServiceCommandResponse.CreateError(
+                    commandName,
+                    ServiceErrorInfo.RegistryWriteError(path.HiveAsWin32Name, path.Key, path.ValueName, e));
+                _logger.LogError(response.ErrorMessage);
             }
 
             return response;
