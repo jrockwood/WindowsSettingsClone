@@ -248,7 +248,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -258,7 +258,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeTrue();
+            deserializer.TryGetOptionalEnumValue(ParamName.BaseKey, out RegistryBaseKey hive).Should().BeTrue();
 
             hive.Should().Be(RegistryBaseKey.CurrentUser);
             deserializer.LastError.Should().BeNull();
@@ -279,7 +279,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeFalse();
+            deserializer.TryGetOptionalEnumValue(ParamName.BaseKey, out RegistryBaseKey hive).Should().BeFalse();
 
             hive.Should().Be(default(RegistryBaseKey));
             deserializer.LastError.Should().BeNull();
@@ -291,7 +291,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryBaseKey.ToString()] = "NotValid"
+                [ParamName.BaseKey.ToString()] = "NotValid"
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -301,14 +301,14 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.TryGetOptionalEnumValue(ParamName.RegistryBaseKey, out RegistryBaseKey hive).Should().BeFalse();
+            deserializer.TryGetOptionalEnumValue(ParamName.BaseKey, out RegistryBaseKey hive).Should().BeFalse();
 
             hive.Should().Be(default(RegistryBaseKey));
 
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.BaseKey.ToString());
         }
 
         //// ===========================================================================================================
@@ -321,7 +321,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -331,7 +331,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(RegistryBaseKey.CurrentUser);
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.BaseKey).Should().Be(RegistryBaseKey.CurrentUser);
             deserializer.LastError.Should().BeNull();
         }
 
@@ -350,11 +350,11 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(default(RegistryBaseKey));
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.BaseKey).Should().Be(default(RegistryBaseKey));
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.BaseKey.ToString());
         }
 
         [Test]
@@ -363,7 +363,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryBaseKey.ToString()] = "NotValid"
+                [ParamName.BaseKey.ToString()] = "NotValid"
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -373,12 +373,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.RegistryBaseKey).Should().Be(default(RegistryBaseKey));
+            deserializer.GetEnumValue<RegistryBaseKey>(ParamName.BaseKey).Should().Be(default(RegistryBaseKey));
 
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.BaseKey.ToString());
         }
 
         //// ===========================================================================================================
@@ -461,7 +461,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryKey.ToString()] = "Key"
+                [ParamName.Key.ToString()] = "Key"
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -471,7 +471,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetStringValue(ParamName.RegistryKey).Should().Be("Key");
+            deserializer.GetStringValue(ParamName.Key).Should().Be("Key");
             deserializer.LastError.Should().BeNull();
         }
 
@@ -490,11 +490,11 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetStringValue(ParamName.RegistryKey).Should().BeNull();
+            deserializer.GetStringValue(ParamName.Key).Should().BeNull();
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.Key.ToString());
         }
 
         [Test]
@@ -503,7 +503,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryKey.ToString()] = false
+                [ParamName.Key.ToString()] = false
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -513,12 +513,12 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetStringValue(ParamName.RegistryKey).Should().BeNull();
+            deserializer.GetStringValue(ParamName.Key).Should().BeNull();
 
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.WrongMessageValueType);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.Key.ToString());
         }
 
         //// ===========================================================================================================
@@ -531,7 +531,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue,
-                [ParamName.RegistryKey.ToString()] = "Key"
+                [ParamName.Key.ToString()] = "Key"
             };
 
             BridgeMessageDeserializer.TryCreateFromValueSet(
@@ -541,7 +541,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetValue(ParamName.RegistryKey).Should().Be("Key");
+            deserializer.GetValue(ParamName.Key).Should().Be("Key");
             deserializer.LastError.Should().BeNull();
         }
 
@@ -560,11 +560,11 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
                 .Should()
                 .BeTrue();
 
-            deserializer.GetValue(ParamName.RegistryKey).Should().BeNull();
+            deserializer.GetValue(ParamName.Key).Should().BeNull();
             deserializer.LastError.Should().NotBeNull();
             deserializer.LastError.CommandName.Should().Be(ServiceCommandName.RegistryReadIntValue);
             deserializer.LastError.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
-            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.RegistryKey.ToString());
+            deserializer.LastError.ErrorMessage.Should().Contain(ParamName.Key.ToString());
         }
     }
 }

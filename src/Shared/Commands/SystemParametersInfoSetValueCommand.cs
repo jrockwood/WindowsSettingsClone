@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="EchoCommand.cs" company="Justin Rockwood">
+// <copyright file="SystemParametersInfoSetValueCommand.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -16,31 +16,34 @@ namespace WindowsSettingsClone.Shared.Commands
     using ServiceContracts.Commands;
 
     /// <summary>
-    /// A command that echoes whatever it receives as the response. Useful for testing.
+    /// Command that invokes the underlying Win32 <c>SystemParametersInfo</c> function that sets a value.
     /// </summary>
-    public sealed class EchoCommand : ServiceCommand, IEchoCommand
+    public sealed class SystemParametersInfoSetValueCommand : ServiceCommand, ISystemParametersInfoSetValueCommand
     {
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public EchoCommand(string echoMessage)
-            : base(ServiceCommandName.Echo)
+        public SystemParametersInfoSetValueCommand(SystemParameterInfoKind systemParameter, SystemParameterInfoUpdateKind updateKind)
+            : base(ServiceCommandName.SystemParametersInfoSetValue)
         {
-            EchoMessage = Param.VerifyString(echoMessage, nameof(echoMessage));
+            SystemParameter = systemParameter;
+            UpdateKind = updateKind;
         }
 
-        internal EchoCommand(BridgeMessageDeserializer deserializer)
-            : base(ServiceCommandName.Echo)
+        internal SystemParametersInfoSetValueCommand(BridgeMessageDeserializer deserializer)
+            : base(ServiceCommandName.SystemParametersInfoSetValue)
         {
-            EchoMessage = deserializer.GetStringValue(ParamName.EchoMessage);
+            SystemParameter = deserializer.GetEnumValue<SystemParameterInfoKind>(ParamName.SystemParameter);
+            UpdateKind = deserializer.GetEnumValue<SystemParameterInfoUpdateKind>(ParamName.UpdateKind);
         }
 
         //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
 
-        public string EchoMessage { get; }
+        public SystemParameterInfoKind SystemParameter { get; }
+        public SystemParameterInfoUpdateKind UpdateKind { get; }
 
         //// ===========================================================================================================
         //// Methods
@@ -48,7 +51,8 @@ namespace WindowsSettingsClone.Shared.Commands
 
         internal override void SerializeParams(IDictionary<ParamName, object> valueSet)
         {
-            valueSet.Add(ParamName.EchoMessage, EchoMessage);
+            valueSet.Add(ParamName.SystemParameter, SystemParameter.ToString());
+            valueSet.Add(ParamName.UpdateKind, UpdateKind.ToString());
         }
     }
 }

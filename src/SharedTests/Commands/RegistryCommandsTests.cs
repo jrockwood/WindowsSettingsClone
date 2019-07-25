@@ -27,10 +27,10 @@ namespace WindowsSettingsClone.Shared.Tests.Commands
         }
 
         [Test]
-        public void RegistryReadValueCommand_ctor_should_not_throw_on_null_ValueName()
+        public void RegistryReadValueCommand_ctor_should_throw_on_null_ValueName()
         {
             Action action = () => new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "Key", null, 123);
-            action.Should().NotThrow();
+            action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("valueName");
         }
 
         [Test]
@@ -46,10 +46,10 @@ namespace WindowsSettingsClone.Shared.Tests.Commands
                     new (ParamName, object)[]
                     {
                         (ParamName.CommandName, ServiceCommandName.RegistryReadIntValue.ToString()),
-                        (ParamName.RegistryBaseKey, RegistryBaseKey.CurrentUser.ToString()),
-                        (ParamName.RegistryKey, "Key"),
-                        (ParamName.RegistryValueName, "ValueName"),
-                        (ParamName.RegistryDefaultValue, 123)
+                        (ParamName.BaseKey, RegistryBaseKey.CurrentUser.ToString()),
+                        (ParamName.Key, "Key"),
+                        (ParamName.ValueName, "ValueName"),
+                        (ParamName.DefaultValue, 123)
                     });
         }
     }

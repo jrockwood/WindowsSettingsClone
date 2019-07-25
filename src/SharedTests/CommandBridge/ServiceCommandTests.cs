@@ -35,10 +35,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue.ToString(),
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryDefaultValue.ToString()] = 123
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.DefaultValue.ToString()] = 123
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -64,10 +64,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadStringValue.ToString(),
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryDefaultValue.ToString()] = "Value"
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.DefaultValue.ToString()] = "Value"
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -93,10 +93,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryWriteIntValue.ToString(),
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryValue.ToString()] = 123
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.Value.ToString()] = 123
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -122,10 +122,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryWriteStringValue.ToString(),
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryValue.ToString()] = "Value"
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.Value.ToString()] = "Value"
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -150,10 +150,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         {
             var valueSet = new Dictionary<string, object>
             {
-                [ParamName.RegistryBaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryDefaultValue.ToString()] = 123
+                [ParamName.BaseKey.ToString()] = RegistryBaseKey.CurrentUser.ToString(),
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.DefaultValue.ToString()] = 123
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -175,9 +175,9 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             var valueSet = new Dictionary<string, object>
             {
                 [ParamName.CommandName.ToString()] = ServiceCommandName.RegistryReadIntValue.ToString(),
-                [ParamName.RegistryKey.ToString()] = "Key",
-                [ParamName.RegistryValueName.ToString()] = "ValueName",
-                [ParamName.RegistryDefaultValue.ToString()] = 123
+                [ParamName.Key.ToString()] = "Key",
+                [ParamName.ValueName.ToString()] = "ValueName",
+                [ParamName.DefaultValue.ToString()] = 123
             };
 
             ServiceCommand.TryDeserializeFromValueSet(
@@ -191,7 +191,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             errorResponse.Should().NotBeNull();
 
             errorResponse.ErrorCode.Should().Be(ServiceCommandErrorCode.MissingRequiredMessageValue);
-            errorResponse.ErrorMessage.Should().Contain(ParamName.RegistryBaseKey.ToString());
+            errorResponse.ErrorMessage.Should().Contain(ParamName.BaseKey.ToString());
         }
 
         //// ===========================================================================================================
@@ -225,10 +225,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             string jsonString = $@"
 {{
     {ParamName.CommandName}: ""{ServiceCommandName.RegistryReadIntValue}"",
-    {ParamName.RegistryBaseKey}: ""{RegistryBaseKey.CurrentUser}"",
-    {ParamName.RegistryKey}: ""Key"",
-    {ParamName.RegistryValueName}: ""ValueName"",
-    {ParamName.RegistryDefaultValue}: 123,
+    {ParamName.BaseKey}: ""{RegistryBaseKey.CurrentUser}"",
+    {ParamName.Key}: ""Key"",
+    {ParamName.ValueName}: ""ValueName"",
+    {ParamName.DefaultValue}: 123,
 }}";
 
             ServiceCommand.TryDeserializeFromJsonString(
@@ -254,10 +254,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             string jsonString = $@"
 {{
     {ParamName.CommandName}: ""{ServiceCommandName.RegistryReadStringValue}"",
-    {ParamName.RegistryBaseKey}: ""{RegistryBaseKey.CurrentUser}"",
-    {ParamName.RegistryKey}: ""Key"",
-    {ParamName.RegistryValueName}: ""ValueName"",
-    {ParamName.RegistryDefaultValue}: ""Value"",
+    {ParamName.BaseKey}: ""{RegistryBaseKey.CurrentUser}"",
+    {ParamName.Key}: ""Key"",
+    {ParamName.ValueName}: ""ValueName"",
+    {ParamName.DefaultValue}: ""Value"",
 }}";
 
             ServiceCommand.TryDeserializeFromJsonString(
@@ -288,10 +288,10 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
             string expectedJson = $@"
 {{
     ""{ParamName.CommandName}"": ""{ServiceCommandName.RegistryReadIntValue}"",
-    ""{ParamName.RegistryBaseKey}"": ""{RegistryBaseKey.CurrentUser}"",
-    ""{ParamName.RegistryKey}"": ""SubPath"",
-    ""{ParamName.RegistryValueName}"": ""IntValue"",
-    ""{ParamName.RegistryDefaultValue}"": 123
+    ""{ParamName.BaseKey}"": ""{RegistryBaseKey.CurrentUser}"",
+    ""{ParamName.Key}"": ""SubPath"",
+    ""{ParamName.ValueName}"": ""IntValue"",
+    ""{ParamName.DefaultValue}"": 123
 }}
 ";
             expectedJson = expectedJson.Replace("\r", "")
@@ -309,7 +309,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
         public void ToDebugString_should_return_the_correct_format()
         {
             var command = new TestServiceCommand(ServiceCommandName.RegistryReadIntValue);
-            command.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: RegistryKey=value");
+            command.ToDebugString().Should().Be($"{ServiceCommandName.RegistryReadIntValue}: Key=value");
         }
 
         private sealed class TestServiceCommand : ServiceCommand
@@ -321,7 +321,7 @@ namespace WindowsSettingsClone.Shared.Tests.CommandBridge
 
             internal override void SerializeParams(IDictionary<ParamName, object> valueSet)
             {
-                valueSet.Add(ParamName.RegistryKey, "value");
+                valueSet.Add(ParamName.Key, "value");
             }
         }
     }

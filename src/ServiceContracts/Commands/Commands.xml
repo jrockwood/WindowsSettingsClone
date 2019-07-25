@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- When you change this file, manually invoke all of the generators by clicking "Build/Transform all T4 Templates". -->
 <commands>
   <command name="Echo" description="A command that echoes whatever it receives as the response. Useful for testing.">
     <param name="EchoMessage" type="string" />
@@ -13,7 +14,7 @@
     <param name="BaseKey" type="RegistryBaseKey" />
     <param name="Key" type="string" />
     <param name="ValueName" type="string" />
-    <param name="DefaultValue" type="string" />
+    <param name="DefaultValue" type="string" isNullAllowed="true" />
   </command>
   <command name="RegistryWriteIntValue" description="Command that writes an integer value (REG_DWORD) to the Windows Registry.">
     <param name="BaseKey" type="RegistryBaseKey" />
@@ -25,7 +26,7 @@
     <param name="BaseKey" type="RegistryBaseKey" />
     <param name="Key" type="string" />
     <param name="ValueName" type="string" />
-    <param name="Value" type="string" />
+    <param name="Value" type="string" isNullAllowed="true" />
   </command>
   <command name="ShutdownServer" description="Command that requests the server to shutdown and terminate." />
   <command name="SystemParametersInfoGetValue"

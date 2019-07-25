@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="EchoCommand.cs" company="Justin Rockwood">
+// <copyright file="RegistryWriteStringValueCommand.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
 // </copyright>
@@ -16,31 +16,40 @@ namespace WindowsSettingsClone.Shared.Commands
     using ServiceContracts.Commands;
 
     /// <summary>
-    /// A command that echoes whatever it receives as the response. Useful for testing.
+    /// Command that writes a string value (REG_SZ) to the Windows Registry.
     /// </summary>
-    public sealed class EchoCommand : ServiceCommand, IEchoCommand
+    public sealed class RegistryWriteStringValueCommand : ServiceCommand, IRegistryWriteStringValueCommand
     {
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public EchoCommand(string echoMessage)
-            : base(ServiceCommandName.Echo)
+        public RegistryWriteStringValueCommand(RegistryBaseKey baseKey, string key, string valueName, string value)
+            : base(ServiceCommandName.RegistryWriteStringValue)
         {
-            EchoMessage = Param.VerifyString(echoMessage, nameof(echoMessage));
+            BaseKey = baseKey;
+            Key = Param.VerifyString(key, nameof(key));
+            ValueName = Param.VerifyString(valueName, nameof(valueName));
+            Value = value;
         }
 
-        internal EchoCommand(BridgeMessageDeserializer deserializer)
-            : base(ServiceCommandName.Echo)
+        internal RegistryWriteStringValueCommand(BridgeMessageDeserializer deserializer)
+            : base(ServiceCommandName.RegistryWriteStringValue)
         {
-            EchoMessage = deserializer.GetStringValue(ParamName.EchoMessage);
+            BaseKey = deserializer.GetEnumValue<RegistryBaseKey>(ParamName.BaseKey);
+            Key = deserializer.GetStringValue(ParamName.Key);
+            ValueName = deserializer.GetStringValue(ParamName.ValueName);
+            Value = deserializer.GetStringValue(ParamName.Value);
         }
 
         //// ===========================================================================================================
         //// Properties
         //// ===========================================================================================================
 
-        public string EchoMessage { get; }
+        public RegistryBaseKey BaseKey { get; }
+        public string Key { get; }
+        public string ValueName { get; }
+        public string Value { get; }
 
         //// ===========================================================================================================
         //// Methods
@@ -48,7 +57,10 @@ namespace WindowsSettingsClone.Shared.Commands
 
         internal override void SerializeParams(IDictionary<ParamName, object> valueSet)
         {
-            valueSet.Add(ParamName.EchoMessage, EchoMessage);
+            valueSet.Add(ParamName.BaseKey, BaseKey.ToString());
+            valueSet.Add(ParamName.Key, Key);
+            valueSet.Add(ParamName.ValueName, ValueName);
+            valueSet.Add(ParamName.Value, Value);
         }
     }
 }
