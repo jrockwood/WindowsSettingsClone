@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.SharedWin32.CommandExecutors
 {
+    using IO;
     using Registry;
     using ServiceContracts.CommandBridge;
     using ServiceContracts.Logging;
@@ -28,17 +29,23 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
         private readonly ILogger _logger;
         private readonly RegistryCommandExecutor _registryExecutor;
         private readonly SystemParametersInfoCommandExecutor _systemParametersInfoCommandExecutor;
+        private readonly FileCommandExecutor _fileCommandExecutor;
 
         //// ===========================================================================================================
         //// Constructors
         //// ===========================================================================================================
 
-        public CommandExecutor(ILogger logger, IWin32Registry registry = null, IWin32SystemParametersInfo systemParametersInfo = null)
+        public CommandExecutor(
+            ILogger logger,
+            IWin32Registry registry = null,
+            IWin32SystemParametersInfo systemParametersInfo = null,
+            IWin32FileSystem fileSystem = null)
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
             _registryExecutor = new RegistryCommandExecutor(registry, logger);
             _systemParametersInfoCommandExecutor =
                 new SystemParametersInfoCommandExecutor(systemParametersInfo, logger);
+            _fileCommandExecutor = new FileCommandExecutor(fileSystem, logger);
         }
 
         public IServiceCommandResponse Execute(IServiceCommand command)
@@ -74,6 +81,10 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
 
                 case SystemParametersInfoSetValueCommand systemParametersInfoCommand:
                     response = _systemParametersInfoCommandExecutor.ExecuteSet(systemParametersInfoCommand);
+                    break;
+
+                case FileCopyCommand fileCopyCommand:
+                    response = _fileCommandExecutor.Execute(fileCopyCommand);
                     break;
 
                 default:
