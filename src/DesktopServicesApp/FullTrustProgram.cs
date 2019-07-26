@@ -10,7 +10,6 @@ namespace WindowsSettingsClone.DesktopServicesApp
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Threading.Tasks;
     using ServiceContracts.Logging;
     using Shared.Logging;
 
@@ -34,7 +33,10 @@ namespace WindowsSettingsClone.DesktopServicesApp
             ILogger logger = CreateLogger();
 
             AppDomain.CurrentDomain.UnhandledException +=
-                (sender, e) => logger.LogError($"Terminating: {e.ExceptionObject}");
+                (sender, e) => logger.LogException(
+                    $"Terminating.",
+                    e.ExceptionObject as Exception ??
+                    new Exception($"Cannot cast '{e.ExceptionObject.GetType()}' to an Exception"));
 
             InitializeServices(logger);
 
@@ -50,12 +52,12 @@ namespace WindowsSettingsClone.DesktopServicesApp
             }
         }
 
-        private static void InitializeServices(ILogger logger)
+        private static async void InitializeServices(ILogger logger)
         {
             var bridge = new UwpCommunicationBridge(logger);
 
             // We can't have an async entry point, so do this on the thread pool.
-            bool success = Task.Run(async () => await bridge.InitializeAsync()).GetAwaiter().GetResult();
+            bool success = await bridge.InitializeAsync();
             if (success)
             {
                 logger.LogSuccess("Established app service connection");
@@ -68,13 +70,7 @@ namespace WindowsSettingsClone.DesktopServicesApp
 
         private static ILogger CreateLogger()
         {
-#if DEBUG
-            const LogLevel minimumLogLevel = LogLevel.Debug;
-#else
-            const LogLevel minimumLogLevel = LogLevel.Warning;
-#endif
-
-            var consoleLogger = new ConsoleLogger(minimumLogLevel);
+            var consoleLogger = new ConsoleLogger(LogLevel.Debug);
             FileLogger.TryCreate(
                 Path.Combine(
                     Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Environment.CurrentDirectory,

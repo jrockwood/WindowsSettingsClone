@@ -150,12 +150,7 @@ namespace WindowsSettingsClone.UwpApp
                 "AppLog.log",
                 CreationCollisionOption.ReplaceExisting);
 
-#if DEBUG
-            LogLevel minimumLogLevel = LogLevel.Debug;
-#else
-            LogLevel minimumLogLevel = LogLevel.Warning;
-#endif
-            var streamLogger = new StreamLogger(fileStream, minimumLogLevel);
+            var streamLogger = new StreamLogger(fileStream, LogLevel.Debug);
             Logger = streamLogger;
         }
 

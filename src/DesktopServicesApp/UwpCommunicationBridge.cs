@@ -115,9 +115,10 @@ namespace WindowsSettingsClone.DesktopServicesApp
             }
         }
 
-        private static void OnConnectionServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
+        private void OnConnectionServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
         {
             // The UWP app service is closing, so shut down this application.
+            _logger.LogInfo($"Closing the AppServiceConnection. Status={args.Status}.");
             Environment.Exit(0);
         }
     }
