@@ -89,6 +89,9 @@
     <Compile Include="CommandExecutors\Registry\RegistryPathTests.cs" />
     <Compile Include="CommandExecutors\SystemParametersInfo\SystemParametersInfoCommandExecutorTests.cs" />
     <Compile Include="ExceptionEquivalenceOptions.cs" />
+    <Compile Include="Fakes\FakeFileSystem.cs" />
+    <Compile Include="Fakes\FakeFileSystemBehaviorEquivalenceTests.cs" />
+    <Compile Include="Fakes\FakeFileSystemTests.cs" />
     <Compile Include="Fakes\FakeRegistry.cs" />
     <Compile Include="Fakes\FakeRegistryBehaviorEquivalenceTests.cs" />
     <Compile Include="Fakes\FakeRegistryTests.cs" />
