@@ -53,7 +53,7 @@ namespace WindowsSettingsClone.Shared.Logging
             _loggers.Add(logger);
         }
 
-        public void Log(LogLevel level, string message, params object[] args)
+        public void Log(LogLevel level, string message)
         {
             if (UseAggregateMinimumLogLevel && !BaseLogger.ShouldLog(level, MinimumLogLevel))
             {
@@ -62,7 +62,7 @@ namespace WindowsSettingsClone.Shared.Logging
 
             foreach (ILogger logger in _loggers)
             {
-                logger.Log(level, message, args);
+                logger.Log(level, message);
             }
         }
     }

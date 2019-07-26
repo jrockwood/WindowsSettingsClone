@@ -7,6 +7,7 @@
 
 namespace WindowsSettingsClone.Shared.Logging
 {
+    using System;
     using ServiceContracts.Logging;
 
     /// <summary>
@@ -14,29 +15,35 @@ namespace WindowsSettingsClone.Shared.Logging
     /// </summary>
     public static class LoggerExtensions
     {
-        public static void LogDebug(this ILogger logger, string message, params object[] args)
+        public static void LogDebug(this ILogger logger, string message)
         {
-            logger.Log(LogLevel.Debug, message, args);
+            logger.Log(LogLevel.Debug, message);
         }
 
-        public static void LogInfo(this ILogger logger, string message, params object[] args)
+        public static void LogInfo(this ILogger logger, string message)
         {
-            logger.Log(LogLevel.Informational, message, args);
+            logger.Log(LogLevel.Informational, message);
         }
 
-        public static void LogSuccess(this ILogger logger, string message, params object[] args)
+        public static void LogSuccess(this ILogger logger, string message)
         {
-            logger.Log(LogLevel.Success, message, args);
+            logger.Log(LogLevel.Success, message);
         }
 
-        public static void LogWarning(this ILogger logger, string message, params object[] args)
+        public static void LogWarning(this ILogger logger, string message)
         {
-            logger.Log(LogLevel.Warning, message, args);
+            logger.Log(LogLevel.Warning, message);
         }
 
-        public static void LogError(this ILogger logger, string message, params object[] args)
+        public static void LogError(this ILogger logger, string message)
         {
-            logger.Log(LogLevel.Error, message, args);
+            logger.Log(LogLevel.Error, message);
+        }
+
+        public static void LogException(this ILogger logger, string message, Exception e, LogLevel level = LogLevel.Error)
+        {
+            logger.Log(level, $"{message} {e.GetType()}: {e.Message}");
+            logger.Log(level, $"Stack trace: {e.StackTrace}");
         }
     }
 }

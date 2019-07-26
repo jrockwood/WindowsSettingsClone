@@ -79,7 +79,7 @@ namespace WindowsSettingsClone.ElevatedDesktopServicesApp
             {
                 _logger.LogDebug("Waiting for request");
                 string serializedCommand = readLineFunc();
-                _logger.LogInfo("Request received: ", serializedCommand);
+                _logger.LogInfo($"Request received: {serializedCommand}");
 
                 IServiceCommandResponse response;
 
@@ -92,13 +92,13 @@ namespace WindowsSettingsClone.ElevatedDesktopServicesApp
                 }
                 else
                 {
-                    _logger.LogDebug("Executing command: ", command.ToDebugString());
+                    _logger.LogDebug($"Executing command: {command.ToDebugString()}");
                     shutdownRequested = command.CommandName == ServiceCommandName.ShutdownServer;
                     response = commandExecutor.Execute(command);
                 }
 
                 string responseMessage = response.SerializeToJsonString();
-                _logger.LogInfo("Sending response: ", response.ToDebugString());
+                _logger.LogInfo($"Sending response: {response.ToDebugString()}");
                 writeLineAction(responseMessage);
             }
         }

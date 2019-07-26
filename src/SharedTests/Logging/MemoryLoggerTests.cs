@@ -20,7 +20,7 @@ namespace WindowsSettingsClone.Shared.Tests.Logging
             var logger = new MemoryLogger();
             foreach (LogLevel logLevel in Enum.GetValues(typeof(LogLevel)))
             {
-                logger.Log(logLevel, "{0}", (int)logLevel);
+                logger.Log(logLevel, ((int)logLevel).ToString());
             }
 
             return logger;

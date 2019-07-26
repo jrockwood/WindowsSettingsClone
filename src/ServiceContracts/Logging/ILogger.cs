@@ -18,6 +18,6 @@ namespace WindowsSettingsClone.ServiceContracts.Logging
         /// </summary>
         LogLevel MinimumLogLevel { get; set; }
 
-        void Log(LogLevel level, string message, params object[] args);
+        void Log(LogLevel level, string message);
     }
 }

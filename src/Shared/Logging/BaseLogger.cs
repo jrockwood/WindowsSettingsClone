@@ -8,7 +8,6 @@
 namespace WindowsSettingsClone.Shared.Logging
 {
     using System;
-    using System.Globalization;
     using ServiceContracts.Logging;
 
     /// <summary>
@@ -40,14 +39,14 @@ namespace WindowsSettingsClone.Shared.Logging
             return logLevel >= minimumLogLevel;
         }
 
-        public void Log(LogLevel level, string message, params object[] args)
+        public void Log(LogLevel level, string message)
         {
             if (!ShouldLog(level))
             {
                 return;
             }
 
-            string fullMessage = $"{FormatPrefix(level)}: {string.Format(CultureInfo.InvariantCulture, message, args)}";
+            string fullMessage = $"{FormatPrefix(level)}: {message}";
             LogInternal(level, fullMessage);
         }
 

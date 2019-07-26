@@ -62,7 +62,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
         {
             IServiceCommandResponse response;
 
-            _logger.LogDebug("Executing command: ", command.ToDebugString());
+            _logger.LogDebug($"Executing command: {command.ToDebugString()}");
             switch (command)
             {
                 case ShutdownServerCommand _:
@@ -81,7 +81,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
                     }
                     else
                     {
-                        _logger.LogWarning("Unsupported command: ", command.CommandName);
+                        _logger.LogWarning($"Unsupported command: {command.CommandName}");
                         response = ServiceCommandResponse.CreateError(
                             command.CommandName,
                             ServiceErrorInfo.InternalError(

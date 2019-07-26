@@ -128,6 +128,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
                     catch (Exception e)
                     {
                         Logger.LogError($"Error loading settings page {EditorKind}: {e.GetType()}: {e.Message}");
+                        Logger.LogError($"Stack: {e.StackTrace}");
                         await ServiceLocator.ThreadDispatcher.RunOnUIThreadAsync(
                             () =>
                             {
@@ -209,16 +210,12 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             }
             catch (TimeoutException)
             {
-                Logger.LogWarning("Timeout occurred while updating {0}", propertyName);
+                Logger.LogWarning($"Timeout occurred while updating {propertyName}");
                 wasError = true;
             }
             catch (Exception e)
             {
-                Logger.LogWarning(
-                    "Exception while performing update on property {0}: {1}: {2}",
-                    propertyName,
-                    e.GetType(),
-                    e.Message);
+                Logger.LogException($"Exception while performing update on property {propertyName}", e);
                 wasError = true;
             }
 

@@ -52,14 +52,6 @@ namespace WindowsSettingsClone.Shared.Tests.Logging
         }
 
         [Test]
-        public void Log_should_format_the_message_with_args()
-        {
-            var logger = new TestLogger();
-            logger.Log(LogLevel.Error, "{0} {1}", "one", "two");
-            logger.LastLogMessage.Should().EndWith("one two");
-        }
-
-        [Test]
         public void Log_should_skip_messages_below_the_minimum_level()
         {
             var logger = new TestLogger();
