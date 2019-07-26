@@ -13,6 +13,9 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
     using NUnit.Framework;
     using SharedWin32.CommandExecutors.Registry;
 
+    /// <summary>
+    /// Tests that make sure the fake does the same thing as the real implementation.
+    /// </summary>
     public class FakeRegistryBehaviorEquivalenceTests
     {
         private const string TestPath = @"__RockwoodTestTemp__";
@@ -51,12 +54,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.Fakes
                 action.Should()
                     .Throw<Exception>()
                     .And.Should()
-                    .BeEquivalentTo(
-                        expectedException,
-                        options => options.Excluding(e => e.TargetSite)
-                            .Excluding(e => e.StackTrace)
-                            .Excluding(e => e.Source)
-                            .Excluding(info => info.SelectedMemberInfo.Name == "IPForWatsonBuckets"));
+                    .BeEquivalentTo(expectedException, ExceptionEquivalenceOptions.GetOptions);
             }
         }
 
