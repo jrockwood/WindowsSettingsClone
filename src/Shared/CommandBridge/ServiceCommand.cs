@@ -7,10 +7,8 @@
 
 namespace WindowsSettingsClone.Shared.CommandBridge
 {
-    using System;
     using System.Collections.Generic;
     using System.Text;
-    using Commands;
     using Newtonsoft.Json;
     using ServiceContracts.CommandBridge;
 
@@ -18,7 +16,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
     /// Represents a command that is sent to the full-trust host application from the UWP application to perform a system
     /// operation that requires full trust.
     /// </summary>
-    public abstract class ServiceCommand : IServiceCommand
+    public abstract partial class ServiceCommand : IServiceCommand
     {
         //// ===========================================================================================================
         //// Constructors
@@ -78,46 +76,7 @@ namespace WindowsSettingsClone.Shared.CommandBridge
             out IServiceCommand command,
             out IServiceCommandResponse errorResponse)
         {
-            switch (deserializer.CommandName)
-            {
-                case ServiceCommandName.ShutdownServer:
-                    command = new ShutdownServerCommand();
-                    break;
-
-                case ServiceCommandName.Echo:
-                    command = new EchoCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.RegistryReadIntValue:
-                    command = new RegistryReadIntValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.RegistryReadStringValue:
-                    command = new RegistryReadStringValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.RegistryWriteIntValue:
-                    command = new RegistryWriteIntValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.RegistryWriteStringValue:
-                    command = new RegistryWriteStringValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.SystemParametersInfoGetValue:
-                    command = new SystemParametersInfoGetValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.SystemParametersInfoSetValue:
-                    command = new SystemParametersInfoSetValueCommand(deserializer);
-                    break;
-
-                case ServiceCommandName.Unknown:
-                default:
-                    throw new InvalidOperationException(
-                        "This should be unreachable because the deserializer should have detected an invalid command name");
-            }
-
+            command = CreateCommand(deserializer);
             if (deserializer.HadError)
             {
                 command = null;
