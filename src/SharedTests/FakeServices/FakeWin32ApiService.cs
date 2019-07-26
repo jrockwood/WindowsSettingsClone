@@ -8,7 +8,7 @@
 namespace WindowsSettingsClone.Shared.Tests.FakeServices
 {
     using System.Threading.Tasks;
-    using ServiceContracts.Win32;
+    using ServiceContracts.Win32Services;
 
     /// <summary>
     /// Implements a fake implementation of an <see cref="IWin32ApiService"/>.

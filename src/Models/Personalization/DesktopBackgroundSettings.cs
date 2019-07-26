@@ -10,7 +10,6 @@ namespace WindowsSettingsClone.Models.Personalization
     using System;
     using System.Threading.Tasks;
     using ServiceContracts.Commands;
-    using ServiceContracts.Win32;
     using ServiceContracts.Win32Services;
     using Shared.Diagnostics;
 

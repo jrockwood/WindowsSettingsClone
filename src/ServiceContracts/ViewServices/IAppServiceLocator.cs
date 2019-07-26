@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="IAppServiceLocator.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -7,7 +7,6 @@
 
 namespace WindowsSettingsClone.ServiceContracts.ViewServices
 {
-    using Win32;
     using Win32Services;
 
     /// <summary>

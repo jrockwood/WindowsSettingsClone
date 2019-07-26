@@ -5,7 +5,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-namespace WindowsSettingsClone.ServiceContracts.Win32
+namespace WindowsSettingsClone.ServiceContracts.Win32Services
 {
     using System.Threading.Tasks;
 
