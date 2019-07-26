@@ -63,7 +63,7 @@
              Canvas.Top="0"
              Width="328"
              Height="184.5"
-             Source="ms-appx:///Assets/TranscodedWallpaper.png"
+             Source="{x:Bind DesktopWallpaperImageSource, Mode=OneWay}"
              Stretch="UniformToFill">
         <Image.Clip>
           <RectangleGeometry Rect="0,0,328,185" />

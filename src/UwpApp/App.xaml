@@ -6,6 +6,7 @@
   <Application.Resources>
     <converters:BooleanToOpacityConverter x:Key="BooleanToOpacityConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
     <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     <converters:GlyphInfoToFontFamilyConverter x:Key="GlyphInfoToFontFamilyConverter" />
     <converters:TopThicknessConverter x:Key="TopThicknessConverter" />

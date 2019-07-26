@@ -123,11 +123,7 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
                 () => DesktopBackgroundSettings.SetShuffleSlideshowAsync(value, ServiceLocator.RegistryWriteService));
         }
 
-        public string WallpaperImagePath
-        {
-            get => _wallpaperImagePath;
-            set => SetProperty(ref _wallpaperImagePath, value);
-        }
+        public string WallpaperImagePath => _wallpaperImagePath;
 
         //// ===========================================================================================================
         //// Methods
@@ -143,7 +139,15 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels.Personalization
             ChangePictureIntervals.Select(model.SlideshowInterval);
             ShuffleSlideshow = model.ShuffleSlideshow;
             FitKinds.Select(model.FitMode);
-            WallpaperImagePath = model.WallpaperImagePath;
+
+            // Copy the wallpaper image to a temp directory that will be accessible from the UWP app
+            string tempImagePath =
+                await ServiceLocator.UwpFileSystemService.CreateTemporaryFileAsync("wallpaper.png", overwrite: true);
+            await ServiceLocator.Win32FileSystemService.CopyFileAsync(
+                model.WallpaperImagePath,
+                tempImagePath,
+                overwrite: true);
+            _wallpaperImagePath = tempImagePath;
         }
 
         private static BonusBarViewModel CreateBonusBarViewModel()

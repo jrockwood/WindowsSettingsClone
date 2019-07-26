@@ -9,7 +9,10 @@
              mc:Ignorable="d">
 
   <StackPanel Orientation="Vertical">
-    <personalization:PersonalizePreviewControl Margin="0,-5,0,48" ShowWindowPreview="False" />
+    <personalization:PersonalizePreviewControl x:Name="PreviewControl"
+                                               Margin="0,-5,0,48"
+                                               DesktopWallpaperImageSource="{x:Bind ViewModel.WallpaperImagePath, Mode=OneWay, Converter={StaticResource FilePathToImageSourceConverter}}"
+                                               ShowWindowPreview="False" />
 
     <!-- Background ComboBox -->
     <TextBlock x:Uid="BackgroundLabelTextBlock" Style="{StaticResource SettingTextBlockLabel}" />
