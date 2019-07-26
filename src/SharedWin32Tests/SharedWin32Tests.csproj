@@ -92,6 +92,7 @@
     <Compile Include="Fakes\FakeRegistry.cs" />
     <Compile Include="Fakes\FakeRegistryBehaviorEquivalenceTests.cs" />
     <Compile Include="Fakes\FakeRegistryTests.cs" />
+    <Compile Include="Fakes\FakeSystemParametersInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
