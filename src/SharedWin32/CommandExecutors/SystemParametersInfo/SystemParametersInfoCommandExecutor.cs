@@ -13,12 +13,14 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
     using ServiceContracts.Commands;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
+    using Shared.Extensions;
     using Shared.Logging;
 
     /// <summary>
-    /// Executes <see cref="ISystemParametersInfoGetValueCommand"/> and <see cref="ISystemParametersInfoSetValueCommand"/> commands.
+    /// Executes <see cref="ISystemParametersInfoGetValueCommand"/> and <see
+    /// cref="ISystemParametersInfoSetValueCommand"/> commands.
     /// </summary>
-    public sealed class SystemParametersInfoCommandExecutor
+    internal sealed class SystemParametersInfoCommandExecutor : ICommandExecutor
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -47,7 +49,29 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
         //// Methods
         //// ===========================================================================================================
 
-        public IServiceCommandResponse ExecuteGet(ISystemParametersInfoGetValueCommand getCommand)
+        public bool CanExecute(IServiceCommand command)
+        {
+            return command.CommandName.IsOneOf(
+                ServiceCommandName.SystemParametersInfoGetValue,
+                ServiceCommandName.SystemParametersInfoSetValue);
+        }
+
+        public IServiceCommandResponse Execute(IServiceCommand command)
+        {
+            switch (command)
+            {
+                case ISystemParametersInfoGetValueCommand cmd:
+                    return ExecuteGet(cmd);
+
+                case ISystemParametersInfoSetValueCommand cmd:
+                    return ExecuteSet(cmd);
+
+                default:
+                    throw new ArgumentException($"Unsupported command '{command.CommandName}'.");
+            }
+        }
+
+        private IServiceCommandResponse ExecuteGet(ISystemParametersInfoGetValueCommand getCommand)
         {
             var buffer = new StringBuilder(NativeMethods.MaxPath, NativeMethods.MaxPath);
 
@@ -81,7 +105,7 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.SystemParametersInfo
             return response;
         }
 
-        public IServiceCommandResponse ExecuteSet(ISystemParametersInfoSetValueCommand setCommand)
+        private IServiceCommandResponse ExecuteSet(ISystemParametersInfoSetValueCommand setCommand)
         {
             return null;
         }

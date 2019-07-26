@@ -14,12 +14,13 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
     using Shared.Diagnostics;
+    using Shared.Extensions;
     using Shared.Logging;
 
     /// <summary>
     /// Executes registry commands.
     /// </summary>
-    public sealed class RegistryCommandExecutor
+    internal sealed class RegistryCommandExecutor : ICommandExecutor
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -47,62 +48,46 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.Registry
         //// Methods
         //// ===========================================================================================================
 
-        /// <summary>
-        /// Reads a value from the Windows registryKey.
-        /// </summary>
-        /// <param name="command">The command to execute.</param>
-        /// <returns>A response indicating success and the read value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteRead(IRegistryReadIntValueCommand command)
+        public bool CanExecute(IServiceCommand command)
         {
-            Param.VerifyNotNull(command, nameof(command));
-
-            return ExecuteRead(
-                command.CommandName,
-                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, null),
-                command.DefaultValue);
+            return command.CommandName.IsOneOf(
+                ServiceCommandName.RegistryReadIntValue,
+                ServiceCommandName.RegistryReadStringValue,
+                ServiceCommandName.RegistryWriteIntValue,
+                ServiceCommandName.RegistryWriteStringValue);
         }
 
-        /// <summary>
-        /// Reads a value from the Windows registryKey.
-        /// </summary>
-        /// <param name="command">The command to execute.</param>
-        /// <returns>A response indicating success and the read value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteRead(IRegistryReadStringValueCommand command)
+        public IServiceCommandResponse Execute(IServiceCommand command)
         {
             Param.VerifyNotNull(command, nameof(command));
 
-            return ExecuteRead(
-                command.CommandName,
-                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, null),
-                command.DefaultValue);
-        }
+            switch (command)
+            {
+                case IRegistryReadIntValueCommand cmd:
+                    return ExecuteRead(
+                        command.CommandName,
+                        RegistryPath.CreateValuePath(cmd.BaseKey, cmd.Key, cmd.ValueName, null),
+                        cmd.DefaultValue);
 
-        /// <summary>
-        /// Writes a value to the Windows registryKey.
-        /// </summary>
-        /// <param name="command">The command to execute.</param>
-        /// <returns>A response indicating success and the written value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteWrite(IRegistryWriteIntValueCommand command)
-        {
-            Param.VerifyNotNull(command, nameof(command));
+                case IRegistryReadStringValueCommand cmd:
+                    return ExecuteRead(
+                        command.CommandName,
+                        RegistryPath.CreateValuePath(cmd.BaseKey, cmd.Key, cmd.ValueName, null),
+                        cmd.DefaultValue);
 
-            return ExecuteWrite(
-                command.CommandName,
-                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, command.Value));
-        }
+                case IRegistryWriteIntValueCommand cmd:
+                    return ExecuteWrite(
+                        command.CommandName,
+                        RegistryPath.CreateValuePath(cmd.BaseKey, cmd.Key, cmd.ValueName, cmd.Value));
 
-        /// <summary>
-        /// Writes a value to the Windows registryKey.
-        /// </summary>
-        /// <param name="command">The command to execute.</param>
-        /// <returns>A response indicating success and the written value, or failure with error details.</returns>
-        public IServiceCommandResponse ExecuteWrite(IRegistryWriteStringValueCommand command)
-        {
-            Param.VerifyNotNull(command, nameof(command));
+                case IRegistryWriteStringValueCommand cmd:
+                    return ExecuteWrite(
+                        command.CommandName,
+                        RegistryPath.CreateValuePath(cmd.BaseKey, cmd.Key, cmd.ValueName, cmd.Value));
 
-            return ExecuteWrite(
-                command.CommandName,
-                RegistryPath.CreateValuePath(command.BaseKey, command.Key, command.ValueName, command.Value));
+                default:
+                    throw new ArgumentException($"Unsupported command '{command.CommandName}'.");
+            }
         }
 
         private IServiceCommandResponse ExecuteRead(

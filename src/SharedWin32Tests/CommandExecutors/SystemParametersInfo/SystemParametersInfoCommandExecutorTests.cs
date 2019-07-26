@@ -43,7 +43,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.SystemParameter
                     });
 
             var executor = new SystemParametersInfoCommandExecutor(mock.Object);
-            executor.ExecuteGet(new SystemParametersInfoGetValueCommand(SystemParameterInfoKind.GetDesktopWallpaper))
+            executor.Execute(new SystemParametersInfoGetValueCommand(SystemParameterInfoKind.GetDesktopWallpaper))
                 .Should()
                 .BeEquivalentTo(
                     ServiceCommandResponse.Create(ServiceCommandName.SystemParametersInfoGetValue, wallpaperPath));

@@ -12,9 +12,10 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.IO
     using ServiceContracts.Commands;
     using ServiceContracts.Logging;
     using Shared.CommandBridge;
+    using Shared.Extensions;
     using Shared.Logging;
 
-    public sealed class FileCommandExecutor
+    internal sealed class FileCommandExecutor : ICommandExecutor
     {
         //// ===========================================================================================================
         //// Member Variables
@@ -41,6 +42,23 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors.IO
         //// ===========================================================================================================
         //// Methods
         //// ===========================================================================================================
+
+        public bool CanExecute(IServiceCommand command)
+        {
+            return command.CommandName.IsOneOf(ServiceCommandName.FileCopy);
+        }
+
+        public IServiceCommandResponse Execute(IServiceCommand command)
+        {
+            switch (command)
+            {
+                case IFileCopyCommand cmd:
+                    return Execute(cmd);
+
+                default:
+                    throw new ArgumentException($"Unsupported command '{command.CommandName}'.");
+            }
+        }
 
         public IServiceCommandResponse Execute(IFileCopyCommand command)
         {

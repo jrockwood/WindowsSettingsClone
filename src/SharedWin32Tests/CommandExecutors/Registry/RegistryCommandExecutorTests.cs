@@ -21,17 +21,14 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
     public class RegistryCommandExecutorTests
     {
         //// ===========================================================================================================
-        //// ExecuteRead
+        //// Execute (Read) Tests
         //// ===========================================================================================================
 
         [Test]
         public void ExecuteRead_should_throw_on_null_params()
         {
             var executor = new RegistryCommandExecutor(new FakeRegistry());
-            Action action = () => executor.ExecuteRead((RegistryReadIntValueCommand)null);
-            action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
-
-            action = () => executor.ExecuteRead((RegistryReadStringValueCommand)null);
+            Action action = () => executor.Execute(null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
         }
 
@@ -40,7 +37,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             var registry = new FakeRegistry(@"HKCU\SubKey\IntValue=123");
             var executor = new RegistryCommandExecutor(registry);
-            IServiceCommandResponse response = executor.ExecuteRead(
+            IServiceCommandResponse response = executor.Execute(
                 new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "SubKey", "IntValue", 0));
 
             response.IsSuccess.Should().BeTrue();
@@ -59,7 +56,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
                 .Returns(mockKey.Object);
 
             var executor = new RegistryCommandExecutor(mockRegistry.Object);
-            IServiceCommandResponse response = executor.ExecuteRead(
+            IServiceCommandResponse response = executor.Execute(
                 new RegistryReadIntValueCommand(RegistryBaseKey.CurrentUser, "SubKey", "IntValue", 0));
 
             response.IsError.Should().BeTrue();
@@ -70,17 +67,17 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         }
 
         //// ===========================================================================================================
-        //// ExecuteWrite
+        //// Execute (Write) Tests
         //// ===========================================================================================================
 
         [Test]
         public void ExecuteWrite_should_throw_on_null_params()
         {
             var executor = new RegistryCommandExecutor(new FakeRegistry());
-            Action action = () => executor.ExecuteWrite((RegistryWriteIntValueCommand)null);
+            Action action = () => executor.Execute(null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
 
-            action = () => executor.ExecuteWrite((RegistryWriteStringValueCommand)null);
+            action = () => executor.Execute(null);
             action.Should().ThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("command");
         }
 
@@ -89,7 +86,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             var registry = new FakeRegistry(@"HKLM\SubKey");
             var executor = new RegistryCommandExecutor(registry);
-            IServiceCommandResponse response = executor.ExecuteWrite(
+            IServiceCommandResponse response = executor.Execute(
                 new RegistryWriteIntValueCommand(RegistryBaseKey.LocalMachine, "SubKey", "IntValue", 123));
 
             response.IsSuccess.Should().BeTrue();
@@ -101,7 +98,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             var registry = new FakeRegistry(@"HKLM\SubKey");
             var executor = new RegistryCommandExecutor(registry);
-            executor.ExecuteWrite(
+            executor.Execute(
                 new RegistryWriteIntValueCommand(RegistryBaseKey.LocalMachine, "SubKey", "IntValue", 123));
 
             registry.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64)
@@ -116,7 +113,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
         {
             var registry = new FakeRegistry(@"HKLM");
             var executor = new RegistryCommandExecutor(registry);
-            executor.ExecuteWrite(
+            executor.Execute(
                 new RegistryWriteIntValueCommand(RegistryBaseKey.LocalMachine, "SubKey", "IntValue", 123));
 
             registry.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64)
@@ -138,7 +135,7 @@ namespace WindowsSettingsClone.SharedWin32Tests.CommandExecutors.Registry
                 .Returns(mockKey.Object);
 
             var executor = new RegistryCommandExecutor(mockRegistry.Object);
-            IServiceCommandResponse response = executor.ExecuteWrite(
+            IServiceCommandResponse response = executor.Execute(
                 new RegistryWriteIntValueCommand(RegistryBaseKey.CurrentUser, "SubKey", "IntValue", 0));
 
             response.IsError.Should().BeTrue();

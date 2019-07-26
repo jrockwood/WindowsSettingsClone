@@ -7,6 +7,8 @@
 
 namespace WindowsSettingsClone.SharedWin32.CommandExecutors
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using IO;
     using Registry;
     using ServiceContracts.CommandBridge;
@@ -14,22 +16,21 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
     using Shared.CommandBridge;
     using Shared.Commands;
     using Shared.Diagnostics;
+    using Shared.Extensions;
     using Shared.Logging;
     using SystemParametersInfo;
 
     /// <summary>
     /// Executes all known commands. Used in both the full-trust and elevated apps.
     /// </summary>
-    public sealed class CommandExecutor
+    public sealed class CommandExecutor : ICommandExecutor
     {
         //// ===========================================================================================================
         //// Member Variables
         //// ===========================================================================================================
 
         private readonly ILogger _logger;
-        private readonly RegistryCommandExecutor _registryExecutor;
-        private readonly SystemParametersInfoCommandExecutor _systemParametersInfoCommandExecutor;
-        private readonly FileCommandExecutor _fileCommandExecutor;
+        private readonly IReadOnlyList<ICommandExecutor> _executors;
 
         //// ===========================================================================================================
         //// Constructors
@@ -42,10 +43,19 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
             IWin32FileSystem fileSystem = null)
         {
             _logger = Param.VerifyNotNull(logger, nameof(logger));
-            _registryExecutor = new RegistryCommandExecutor(registry, logger);
-            _systemParametersInfoCommandExecutor =
-                new SystemParametersInfoCommandExecutor(systemParametersInfo, logger);
-            _fileCommandExecutor = new FileCommandExecutor(fileSystem, logger);
+
+            _executors = new ICommandExecutor[]
+            {
+                new RegistryCommandExecutor(registry, logger),
+                new SystemParametersInfoCommandExecutor(systemParametersInfo, logger),
+                new FileCommandExecutor(fileSystem, logger)
+            };
+        }
+
+        public bool CanExecute(IServiceCommand command)
+        {
+            return command.CommandName.IsOneOf(ServiceCommandName.ShutdownServer, ServiceCommandName.Echo) ||
+                   _executors.Any(x => x.CanExecute(command));
         }
 
         public IServiceCommandResponse Execute(IServiceCommand command)
@@ -63,36 +73,21 @@ namespace WindowsSettingsClone.SharedWin32.CommandExecutors
                     response = ServiceCommandResponse.Create(ServiceCommandName.Echo, echoCommand.EchoMessage);
                     break;
 
-                case RegistryReadIntValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteRead(registryCommand);
-                    break;
-
-                case RegistryReadStringValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteRead(registryCommand);
-                    break;
-
-                case RegistryWriteIntValueCommand registryCommand:
-                    response = _registryExecutor.ExecuteWrite(registryCommand);
-                    break;
-
-                case SystemParametersInfoGetValueCommand systemParametersInfoCommand:
-                    response = _systemParametersInfoCommandExecutor.ExecuteGet(systemParametersInfoCommand);
-                    break;
-
-                case SystemParametersInfoSetValueCommand systemParametersInfoCommand:
-                    response = _systemParametersInfoCommandExecutor.ExecuteSet(systemParametersInfoCommand);
-                    break;
-
-                case FileCopyCommand fileCopyCommand:
-                    response = _fileCommandExecutor.Execute(fileCopyCommand);
-                    break;
-
                 default:
-                    _logger.LogWarning("Unsupported command: ", command.CommandName);
-                    response = ServiceCommandResponse.CreateError(
-                        command.CommandName,
-                        ServiceErrorInfo.InternalError(
-                            $"Command '{command.CommandName}' is not supported for execution in the elevated bridge application."));
+                    ICommandExecutor executor = _executors.FirstOrDefault(x => x.CanExecute(command));
+                    if (executor != null)
+                    {
+                        response = executor.Execute(command);
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Unsupported command: ", command.CommandName);
+                        response = ServiceCommandResponse.CreateError(
+                            command.CommandName,
+                            ServiceErrorInfo.InternalError(
+                                $"Command '{command.CommandName}' is not supported for execution."));
+                    }
+
                     break;
             }
 

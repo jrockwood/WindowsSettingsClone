@@ -41,6 +41,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CommandExecutors\CommandExecutor.cs" />
+    <Compile Include="CommandExecutors\ICommandExecutor.cs" />
     <Compile Include="CommandExecutors\IO\FileCommandExecutor.cs" />
     <Compile Include="CommandExecutors\IO\IWin32FileSystem.cs" />
     <Compile Include="CommandExecutors\IO\Win32FileSystem.cs" />
