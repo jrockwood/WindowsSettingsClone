@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="AppServiceLocator.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -27,6 +27,7 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
         private IRegistryReadService _registryReadService;
         private IRegistryWriteService _registryWriteService;
         private IWin32ApiService _win32ApiService;
+        private IWin32FileSystemService _win32FileSystemService;
 
         //// ===========================================================================================================
         //// Properties
@@ -56,6 +57,14 @@ namespace WindowsSettingsClone.UwpApp.ViewServices
             get => _win32ApiService;
             set => SetOnlyOnce(ref _win32ApiService, value);
         }
+
+        public IWin32FileSystemService Win32FileSystemService
+        {
+            get => _win32FileSystemService;
+            set => SetOnlyOnce(ref _win32FileSystemService, value);
+        }
+
+        public IUwpFileSystemService UwpFileSystemService { get; } = new UwpFileSystemService();
 
         private static void SetOnlyOnce<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
             where T : class

@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="FakeAppServiceLocator.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -26,5 +26,7 @@ namespace WindowsSettingsClone.Shared.Tests.FakeServices
         public IRegistryReadService RegistryReadService { get; set; }
         public IRegistryWriteService RegistryWriteService { get; set; }
         public IWin32ApiService Win32ApiService { get; set; }
+        public IWin32FileSystemService Win32FileSystemService { get; set; }
+        public IUwpFileSystemService UwpFileSystemService { get; set; }
     }
 }

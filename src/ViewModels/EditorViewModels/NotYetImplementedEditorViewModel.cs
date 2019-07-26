@@ -50,6 +50,8 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
             public IRegistryReadService RegistryReadService { get; } = new DoNothingRegistryReadService();
             public IRegistryWriteService RegistryWriteService { get; } = new DoNothingRegistryWriteService();
             public IWin32ApiService Win32ApiService { get; } = new DoNothingWin32ApiService();
+            public IWin32FileSystemService Win32FileSystemService { get; } = new DoNothingWin32FileSystemService();
+            public IUwpFileSystemService UwpFileSystemService { get; } = new DoNothingUwpFileSystemService();
         }
 
         private sealed class DoNothingPlatformCapabilityService : IPlatformCapabilityService
@@ -143,6 +145,22 @@ namespace WindowsSettingsClone.ViewModels.EditorViewModels
         private sealed class DoNothingWin32ApiService : IWin32ApiService
         {
             public Task<string> GetDesktopWallpaperPathAsync()
+            {
+                return Task.FromResult(string.Empty);
+            }
+        }
+
+        private sealed class DoNothingWin32FileSystemService : IWin32FileSystemService
+        {
+            public Task CopyFileAsync(string sourceFileName, string destinationFileName, bool overwrite)
+            {
+                return Task.CompletedTask;
+            }
+        }
+
+        private sealed class DoNothingUwpFileSystemService : IUwpFileSystemService
+        {
+            public Task<string> CreateTemporaryFileAsync(string desiredFileName, bool overwrite)
             {
                 return Task.FromResult(string.Empty);
             }

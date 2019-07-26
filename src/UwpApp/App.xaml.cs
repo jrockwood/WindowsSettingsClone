@@ -132,6 +132,7 @@ namespace WindowsSettingsClone.UwpApp
             _appServiceLocator.RegistryReadService = new RegistryReadService(BridgeClientService);
             _appServiceLocator.RegistryWriteService = new RegistryWriteService(BridgeClientService);
             _appServiceLocator.Win32ApiService = new Win32ApiService(BridgeClientService);
+            _appServiceLocator.Win32FileSystemService = new Win32FileSystemService(BridgeClientService);
         }
 
         private static async void LaunchDesktopServicesBridge()
@@ -145,7 +146,9 @@ namespace WindowsSettingsClone.UwpApp
         private async void CreateLoggerAsync()
         {
             StorageFolder logFolder = ApplicationData.Current.TemporaryFolder;
-            Stream fileStream = await logFolder.OpenStreamForWriteAsync("AppLog.txt", CreationCollisionOption.ReplaceExisting);
+            Stream fileStream = await logFolder.OpenStreamForWriteAsync(
+                "AppLog.log",
+                CreationCollisionOption.ReplaceExisting);
 
 #if DEBUG
             LogLevel minimumLogLevel = LogLevel.Debug;

@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------
 // <copyright file="IAppServiceLocator.cs" company="Justin Rockwood">
 //   Copyright (c) Justin Rockwood. All Rights Reserved. Licensed under the Apache License, Version 2.0. See
 //   LICENSE.txt in the project root for license information.
@@ -25,5 +25,7 @@ namespace WindowsSettingsClone.ServiceContracts.ViewServices
         IRegistryReadService RegistryReadService { get; }
         IRegistryWriteService RegistryWriteService { get; }
         IWin32ApiService Win32ApiService { get; }
+        IWin32FileSystemService Win32FileSystemService { get; }
+        IUwpFileSystemService UwpFileSystemService { get; }
     }
 }
